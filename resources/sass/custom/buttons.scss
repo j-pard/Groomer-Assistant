@@ -1,0 +1,21 @@
+.btn-circle {
+      width: 60px;
+      height: 60px;
+
+      border-radius: 30px;      
+      border: 2px solid $pink;
+      color: white !important;
+      background-color: #343a40;
+
+      font-size: 20px !important;
+
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+
+      transition: all .3s;
+}
+
+.btn-circle:hover {
+      color: $pink !important;
+}

@@ -1,0 +1,12 @@
+#aside-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      padding: 150px 30px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+}
