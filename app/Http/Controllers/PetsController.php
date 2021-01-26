@@ -22,13 +22,17 @@ class PetsController extends Controller
     {
         return $dataTable->render('customers.pets.index');
     }
-    /**
-     * Show specified pet card.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function show()
+    
+
+    public function create()
     {
-        return view('cards.pet');
+        return view('customers.pets.form');
+    }
+
+    public function edit(Pet $pet)
+    {
+        return view('customers.pets.form', [
+            'pet' => $pet,
+        ]);
     }
 }

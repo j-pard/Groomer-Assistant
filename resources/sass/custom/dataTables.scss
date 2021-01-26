@@ -1,0 +1,13 @@
+.dataTable {
+    tbody {
+        tr {
+            td:first-child {
+                text-align: center;
+                
+                i {
+                    color: $pink;
+                }
+            }
+        }
+    }
+}

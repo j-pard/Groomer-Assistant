@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card shadow-lg rounded">
+    <div class="card">
         <div class="card-header">
-            <h3>Leya</h3>
-            <i class="fas fa-dog h3"></i>
+            <h2><span class="text-pink">New</span> pet</h2>
         </div>
+
+        @include('partials.session-message')
+
         <div class="card-body">
-            Example card
+            
         </div>
     </div>
+
 @endsection

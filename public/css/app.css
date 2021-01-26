@@ -11426,3 +11426,11 @@ h3 {
   width: 250px;
   max-height: 250px;
 }
+
+.dataTable tbody tr td:first-child {
+  text-align: center;
+}
+
+.dataTable tbody tr td:first-child i {
+  color: #ff0096;
+}

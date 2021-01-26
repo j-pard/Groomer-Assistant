@@ -86,7 +86,6 @@
                 <nav id="aside-nav">
                     <a href="/" class="btn btn-circle"><i class="fas fa-calendar-alt"></i></a>
                     <a href="{{ route('pets') }}" class="btn btn-circle"><i class="fas fa-paw"></i></a>
-                    <a href="{{ route('showPetCard') }}" class="btn btn-circle"><i class="fas fa-address-card"></i></a>
                     <a href="" class="btn btn-circle"><i class="fas fa-users"></i></a>
                     <a href="" class="btn btn-circle"><i class="fas fa-cog"></i></a>
                 </nav>

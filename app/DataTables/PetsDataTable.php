@@ -2,9 +2,9 @@
 
 namespace App\DataTables;
 
+use App\Http\Resources\DataTables\Pet as PetResource;
 use App\Models\Pet;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Auth;
 
 class PetsDataTable extends DataTable
 {
@@ -16,8 +16,16 @@ class PetsDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables()
-            ->eloquent($query);
+        return datatables($query)
+            ->setTransformer(function ($item) {
+                $item->menu = [
+                    [
+                        //
+                    ],
+                ];
+
+                return PetResource::make($item, Auth::user())->resolve();
+            });
     }
 
     /**
@@ -42,7 +50,7 @@ class PetsDataTable extends DataTable
                     ->setTableId('pets-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1);
+                    ->parameters($this->getBuilderParameters());
     }
 
     /**
@@ -53,10 +61,48 @@ class PetsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
-            Column::make('name'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            [
+                'data' => 'type',
+                'title' => 'Type',
+                'responsivePriority' => 0,
+                'width' => '50px',
+            ],
+            [
+                'data' => 'name',
+                'title' => 'Nom',
+                'responsivePriority' => 0,
+            ],
+            [
+                'data' => 'customer_id',
+                'title' => 'Propriétaire',
+                'responsivePriority' => 0,
+            ],
+            [
+                'data' => 'created_at',
+                'title' => 'Date de création',
+                'responsivePriority' => 0,
+            ],
+            [
+                'data' => 'id',
+                'title' => 'Actions',
+                'responsivePriority' => 0,
+                'searchable' => false,
+                'orderable' => false,
+            ],
+
         ];
+    }
+
+    /**
+     * Get default builder parameters.
+     *
+     * @return array
+     */
+    protected function getBuilderParameters()
+    {
+        // Default order: ASC
+        $params['order'] = [[1, 'asc']];
+
+        return $params;
     }
 }
