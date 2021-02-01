@@ -17,12 +17,11 @@ class CreatePetsTable extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
-            $table->enum('type', ['dog', 'cat'])->default('dog');
             $table->string('name');
-            $table->timestamp('birthdate')->nullable();
+            $table->date('birthdate')->nullable();
             $table->enum('status', ['active', 'not going', 'dead'])->default('active');
             $table->integer('average_duration')->nullable();
-            $table->json('remarks')->nullable();
+            $table->longText('remarks')->nullable();
             $table->timestamps();
         });
     }

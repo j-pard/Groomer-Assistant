@@ -62,12 +62,6 @@ class PetsDataTable extends DataTable
     {
         return [
             [
-                'data' => 'type',
-                'title' => 'Type',
-                'responsivePriority' => 0,
-                'width' => '50px',
-            ],
-            [
                 'data' => 'name',
                 'title' => 'Nom',
                 'responsivePriority' => 0,

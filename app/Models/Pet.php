@@ -31,7 +31,7 @@ class Pet extends Model
      * @var array
      */
     protected $casts = [
-        'remarks' => 'array',
+        //
     ];
 
     /**
@@ -42,5 +42,35 @@ class Pet extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    /**
+     * Return available status
+     *
+     * @return Array
+     */
+    public static function getStatus()
+    {
+        return 
+        [
+            'active' => 'Actif',
+            'not going' => 'Ne vient plus',
+            'dead' => 'Décédé',
+        ];
+    }
+
+    /**
+     * Return duration in hours and minutes
+     *
+     * @return Array
+     */
+    public function getDurationInHoursMinutes()
+    {
+        $duration = $this->average_duration;
+
+        return [
+            'hours' => floor($duration / 60),
+            'minutes' => $duration % 60,
+        ];
     }
 }

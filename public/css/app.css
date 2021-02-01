@@ -11305,7 +11305,7 @@ body {
 }
 
 main {
-  height: 100vh;
+  min-height: 100vh;
   padding: 50px 50px 16px 150px !important;
 }
 
@@ -11427,10 +11427,15 @@ h3 {
   max-height: 250px;
 }
 
-.dataTable tbody tr td:first-child {
-  text-align: center;
-}
-
 .dataTable tbody tr td:first-child i {
   color: #ff0096;
+}
+
+.duration-inputs-container {
+  display: flex;
+  align-items: center;
+}
+
+.duration-inputs-container input {
+  width: 80px;
 }

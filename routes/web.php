@@ -21,7 +21,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::prefix('pets')->group(function () {
     Route::get('/', [App\Http\Controllers\PetsController::class, 'index'])->name('pets');
     Route::get('/new', [App\Http\Controllers\PetsController::class, 'create'])->name('newPet');
-    Route::post('/store', [App\Http\Controllers\PetsController::class, 'store'])->name('storeNewPet');
-    Route::get('/edit', [App\Http\Controllers\PetsController::class, 'edit'])->name('editPet');
+    Route::post('/store', [App\Http\Controllers\PetsController::class, 'store'])->name('storePet');
+    Route::get('/{pet}/edit', [App\Http\Controllers\PetsController::class, 'edit'])->name('editPet');
     Route::put('/update', [App\Http\Controllers\PetsController::class, 'update'])->name('updatePet');
 });
