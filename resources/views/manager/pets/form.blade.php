@@ -10,7 +10,7 @@
             @endif
         </div>
 
-        @include('partials.session-message')
+        @include('manager.partials.session-message')
 
         <form action="{{ isset($pet) ? route('updatePet') : route('storePet') }}" method="POST">
             @csrf

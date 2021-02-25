@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\PetsDataTable;
 use App\Models\Customer;
 use App\Models\Pet;
 use Carbon\Carbon;
@@ -12,24 +11,13 @@ use Illuminate\Support\Str;
 class PetsController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Show pets index
      *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show pets table
-     *
-     * @param PetsDataTable $dataTable
      * @return view
      */
-    public function index(PetsDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('customers.pets.index');
+        return view('manager.pets.index');
     }
     
     /**
@@ -39,7 +27,7 @@ class PetsController extends Controller
      */
     public function create()
     {
-        return view('customers.pets.form', [
+        return view('manager.pets.form', [
             'statusItems' => Pet::getStatus(),
             'customers' => Customer::all(),
         ]);
@@ -72,7 +60,7 @@ class PetsController extends Controller
      */
     public function edit(Pet $pet)
     {
-        return view('customers.pets.form', [
+        return view('manager.pets.form', [
             'pet' => $pet,
             'statusItems' => Pet::getStatus(),
             'customers' => Customer::all(),
@@ -86,7 +74,6 @@ class PetsController extends Controller
      */
     public function update(Request $request)
     {
-        //dd($request->all());
         $pet = Pet::where('uuid', $request->petID);
         $pet->update([
             'customer_id' => $request->customer,

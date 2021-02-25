@@ -35,5 +35,3 @@
         </div>
     </div>
 @endsection
-
-@include('modals')

@@ -5,8 +5,3 @@
  */
 
 require('./bootstrap');
-
-$(document).ready( function () {
-    $().DataTable();
-    $('#pets-table').DataTable();
-} );

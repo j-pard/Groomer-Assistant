@@ -19,7 +19,7 @@ class CreatePetsTable extends Migration
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->date('birthdate')->nullable();
-            $table->enum('status', ['active', 'not going', 'dead'])->default('active');
+            $table->enum('status', ['active', 'not-coming', 'dead'])->default('active');
             $table->integer('average_duration')->nullable();
             $table->longText('remarks')->nullable();
             $table->timestamps();

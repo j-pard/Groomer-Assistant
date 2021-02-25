@@ -7,16 +7,10 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// DataTables
-@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
-@import "~datatables.net-buttons-bs4/css/buttons.bootstrap4.css";
-
 @import 'custom/reset.scss';
 @import 'custom/main.scss';
 @import 'custom/nav.scss';
 @import 'custom/buttons.scss';
 @import 'custom/cards.scss';
 @import 'custom/classes.scss';
-@import 'custom/modals.scss';
-@import 'custom/dataTables.scss';
 @import 'custom/forms.scss';
