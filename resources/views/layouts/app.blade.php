@@ -80,7 +80,7 @@
             <nav id="aside-nav">
                 <x-buttons.nav-button :icon="'fas fa-calendar-alt'" :url="'/'" />
                 <x-buttons.nav-button :icon="'fas fa-paw'" :url="route('pets')" />
-                <x-buttons.nav-button :icon="'fas fa-users'" />
+                <x-buttons.nav-button :icon="'fas fa-users'" :url="route('customers')" />
                 <x-buttons.nav-button :icon="'fas fa-cog'" />
             </nav>
         @endauth

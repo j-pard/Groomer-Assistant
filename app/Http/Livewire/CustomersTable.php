@@ -2,38 +2,42 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Pet;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class PetsTable extends TableComponent
+class CustomersTable extends TableComponent
 {
     use HtmlComponents;
 
-    public $sortField = 'name';
+    public $sortField = 'lastname';
     public $sortDirection = 'asc';
 
     public function query() : Builder
     {
-        return Pet::whereNotNull('id');
+        return Customer::whereNotNull('id');
     }
 
     public function columns() : array
     {
         return [
             
-            Column::make('Nom', 'name')
+            Column::make('Nom', 'lastname')
                 ->searchable()
                 ->sortable(),
-            Column::make('Propriétaire', 'customer.lastname')
+
+            Column::make('Prénom', 'firstname')
                 ->searchable()
-                ->sortable()
-                ->format(function(Pet $model) {
-                    $customer = $model->customer;
-                    return $this->html('<span>' . $customer->lastname . ' ' . $customer->firstname . '</strong>');
-                }),
+                ->sortable(),
+
+            Column::make('Ville', 'city')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('Mobile', 'mobile')
+                ->searchable(),
         ];
     }
 }

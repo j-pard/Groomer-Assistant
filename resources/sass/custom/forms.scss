@@ -2,7 +2,16 @@
     display: flex;
     align-items: center;
 
-    input {
-        width: 80px;
+    div {
+        margin: 0;
+        padding: 0;
+
+        input {
+            width: 80px;
+        }
     }
+}
+
+.form-group, .form-control {
+    margin-bottom: 12px;
 }

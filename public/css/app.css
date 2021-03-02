@@ -11771,6 +11771,16 @@ h3,
   align-items: center;
 }
 
-.duration-inputs-container input {
+.duration-inputs-container div {
+  margin: 0;
+  padding: 0;
+}
+
+.duration-inputs-container div input {
   width: 80px;
+}
+
+.form-group,
+.form-control {
+  margin-bottom: 12px;
 }

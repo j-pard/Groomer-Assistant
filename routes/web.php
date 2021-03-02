@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\PetsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('pets')->group(function () {
-    Route::get('/', [App\Http\Controllers\PetsController::class, 'index'])->name('pets');
-    Route::get('/new', [App\Http\Controllers\PetsController::class, 'create'])->name('newPet');
-    Route::post('/store', [App\Http\Controllers\PetsController::class, 'store'])->name('storePet');
-    Route::get('/{pet}/edit', [App\Http\Controllers\PetsController::class, 'edit'])->name('editPet');
-    Route::put('/update', [App\Http\Controllers\PetsController::class, 'update'])->name('updatePet');
+    Route::get('/', [PetsController::class, 'index'])->name('pets');
+    Route::get('/new', [PetsController::class, 'create'])->name('newPet');
+    Route::post('/store', [PetsController::class, 'store'])->name('storePet');
+    Route::get('/{pet}/edit', [PetsController::class, 'edit'])->name('editPet');
+    Route::put('/update', [PetsController::class, 'update'])->name('updatePet');
+});
+
+Route::prefix('customers')->group(function () {
+    Route::get('/', [CustomersController::class, 'index'])->name('customers');
+    Route::get('/new', [PetsController::class, 'create'])->name('newCustomer');
+    Route::post('/store', [PetsController::class, 'store'])->name('storeCustomer');
+    Route::get('/{pet}/edit', [PetsController::class, 'edit'])->name('editCustomer');
+    Route::put('/update', [PetsController::class, 'update'])->name('updateCustomer');
 });

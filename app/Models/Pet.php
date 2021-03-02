@@ -73,4 +73,15 @@ class Pet extends Model
             'minutes' => $duration % 60,
         ];
     }
+
+    /**
+     * Set the pet's name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucfirst(strtolower($value));
+    }
 }
