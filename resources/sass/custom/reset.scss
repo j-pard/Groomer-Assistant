@@ -1,27 +1,40 @@
 * {
       box-sizing: border-box;
-      outline: none;
+      outline: 0 !important;
+}
+
+*:focus {
+      outline:none !important
 }
 
 html {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+      min-width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
 }
 body {
-      width: 100%;
-      height: 100%;
+      min-width: 100%;
+      min-height: 100%;
 
-      overflow: hidden;
+      overflow-x: hidden;
       background-color: $body-bg;
 }
 
 main {
-      min-height: 100vh;
+      min-height: 90vh;
       padding: 50px 50px 16px 150px !important;
 }
 
 h3 {
       padding: 0;
       margin: 0;
+}
+
+#topBar {
+      z-index: 2;
+}
+
+button:focus {
+      outline: none !important;
+      box-shadow: none !important;
 }

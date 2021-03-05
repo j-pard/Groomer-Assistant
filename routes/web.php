@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,8 @@ Route::prefix('pets')->group(function () {
 
 Route::prefix('customers')->group(function () {
     Route::get('/', [CustomersController::class, 'index'])->name('customers');
-    Route::get('/new', [PetsController::class, 'create'])->name('newCustomer');
-    Route::post('/store', [PetsController::class, 'store'])->name('storeCustomer');
-    Route::get('/{pet}/edit', [PetsController::class, 'edit'])->name('editCustomer');
-    Route::put('/update', [PetsController::class, 'update'])->name('updateCustomer');
+    Route::get('/new', [CustomersController::class, 'create'])->name('newCustomer');
+    Route::post('/store', [CustomersController::class, 'store'])->name('storeCustomer');
+    Route::get('/{customer}/edit', [CustomersController::class, 'edit'])->name('editCustomer');
+    Route::put('/update', [CustomersController::class, 'update'])->name('updateCustomer');
 });

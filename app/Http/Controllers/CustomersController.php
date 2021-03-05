@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CustomersController extends Controller
 {
@@ -24,7 +26,7 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        //
+        return view('manager.customers.form');
     }
 
     /**
@@ -33,7 +35,21 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = Customer::create([
+            'uuid' => Str::uuid(),
+            'lastname' => $request->lastname,
+            'firstname' => $request->firstname,
+            'zip_code' => $request->zip_code,
+            'city' => $request->city,
+            'address' => $request->address,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'secondary_phone' => $request->secondary_phone,
+            'more_info' => $request->more_info,
+        ]);
+
+        return redirect()->route('editCustomer', ['customer' => $customer])
+            ->with('status', 'Nouveau client ajouté.');
     }
 
     /**
@@ -44,7 +60,9 @@ class CustomersController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('manager.customers.form', [
+            'customer' => $customer,
+        ]);
     }
 
     /**
@@ -53,7 +71,19 @@ class CustomersController extends Controller
      */
     public function update(Request $request)
     {
-        //
+        Customer::where('uuid', $request->customerID)->update([
+            'lastname' => $request->lastname,
+            'firstname' => $request->firstname,
+            'zip_code' => $request->zip_code,
+            'city' => $request->city,
+            'address' => $request->address,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'secondary_phone' => $request->secondary_phone,
+            'more_info' => $request->more_info,
+        ]);
+
+        return redirect()->back()->with('status', 'Données mises à jour.');
     }
 
     /**

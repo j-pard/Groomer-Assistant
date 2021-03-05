@@ -23,7 +23,6 @@ class CreateCustomersTable extends Migration
             $table->string('address')->nullable();
             $table->char('country', 2)->default('BE');
             $table->string('email')->nullable();
-            $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
             $table->string('secondary_phone')->nullable();
             $table->json('more_info')->nullable();

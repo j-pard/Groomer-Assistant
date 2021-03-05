@@ -39,7 +39,7 @@ class PetsController extends Controller
      */
     public function store(Request $request)
     {
-        Pet::create([
+        $pet = Pet::create([
             'uuid' => Str::uuid(),
             'customer_id' => $request->customer,
             'name' => $request->name,
@@ -49,7 +49,8 @@ class PetsController extends Controller
             'remarks' => $request->remarks,
         ]);
 
-        return redirect()->route('pets')->with('status', 'Enregistrement de ' . $request->name . ' réussi !');
+        return redirect()->route('editPet', ['pet' => $pet])
+            ->with('status', 'Enregistrement de ' . $request->name . ' réussi !');
     }
 
     /**
@@ -74,8 +75,7 @@ class PetsController extends Controller
      */
     public function update(Request $request)
     {
-        $pet = Pet::where('uuid', $request->petID);
-        $pet->update([
+        Pet::where('uuid', $request->petID)->update([
             'customer_id' => $request->customer,
             'name' => $request->name,
             'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),

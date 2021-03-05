@@ -3,6 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
+            <a class="btn btn-light rounded" href="{{ route('pets') }}"><i class="fas fa-arrow-left h4 mr-4 my-auto text-black-50"></i></a>
             @if (isset($pet))
                 <h2>{{ $pet->name }}</h2>
             @else
@@ -28,7 +29,7 @@
                                     :label="'Nom'"
                                     :name="'name'"
                                     :placeholder="'Entrer un nom'"
-                                    :value="isset($pet) ? $pet->name : ''"
+                                    :value="isset($pet) ? $pet->name : null"
                                     required
                                 />
 
@@ -52,7 +53,7 @@
                                     :label="'Anniversaire'"
                                     :type="'date'"
                                     :name="'birthdate'"
-                                    :value="isset($pet) ? Carbon\Carbon::parse($pet->birthdate)->format('Y-m-d') : ''"
+                                    :value="isset($pet) ? Carbon\Carbon::parse($pet->birthdate)->format('Y-m-d') : null"
                                     required
                                 />
 

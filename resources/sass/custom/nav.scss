@@ -3,10 +3,12 @@
       top: 0;
       left: 0;
       height: 100vh;
-      padding: 150px 30px;
+      padding: 150px 10px;
+
+      background-color: #343a40;
 
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
 }

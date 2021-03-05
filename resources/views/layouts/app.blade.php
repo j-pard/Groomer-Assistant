@@ -30,7 +30,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm bg-dark">
+        <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid px-5">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
@@ -54,7 +54,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->name }}
                                     <i class="fas fa-user ml-2"></i>
                                 </a>
@@ -78,10 +78,24 @@
         </nav>
         @auth    
             <nav id="aside-nav">
-                <x-buttons.nav-button :icon="'fas fa-calendar-alt'" :url="'/'" />
-                <x-buttons.nav-button :icon="'fas fa-paw'" :url="route('pets')" />
-                <x-buttons.nav-button :icon="'fas fa-users'" :url="route('customers')" />
-                <x-buttons.nav-button :icon="'fas fa-cog'" />
+                <x-buttons.nav-button
+                    :icon="'fas fa-calendar-alt'"
+                    :url="route('home')" 
+                    :section="'calendar'"
+                />
+                <x-buttons.nav-button
+                    :icon="'fas fa-paw'"
+                    :url="route('pets')"
+                    :section="'pets'"
+                />
+                <x-buttons.nav-button
+                    :icon="'fas fa-users'"
+                    :url="route('customers')"
+                    :section="'customers'"
+                />
+                <x-buttons.nav-button
+                    :icon="'fas fa-cog'"
+                />
             </nav>
         @endauth
         <div class="row">

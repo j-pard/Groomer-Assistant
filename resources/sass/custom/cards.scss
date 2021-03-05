@@ -1,13 +1,7 @@
 .card {
     .card-header {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-
-        i {
-            color: $pink;
-            transform: scaleX(-1);
-        }
     }
 }
 

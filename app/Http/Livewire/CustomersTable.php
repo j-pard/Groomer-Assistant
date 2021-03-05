@@ -23,6 +23,10 @@ class CustomersTable extends TableComponent
     public function columns() : array
     {
         return [
+            Column::make('')
+                ->format(function(Customer $model) {
+                    return view('manager.customers.partials.menu-row', ['customer' => $model]);
+                }),
             
             Column::make('Nom', 'lastname')
                 ->searchable()

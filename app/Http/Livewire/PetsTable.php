@@ -6,11 +6,12 @@ use App\Models\Pet;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
+use Rappasoft\LaravelLivewireTables\Traits\Options;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class PetsTable extends TableComponent
 {
-    use HtmlComponents;
+    use HtmlComponents, Options;
 
     public $sortField = 'name';
     public $sortDirection = 'asc';
@@ -23,7 +24,11 @@ class PetsTable extends TableComponent
     public function columns() : array
     {
         return [
-            
+            Column::make('')
+                ->format(function(Pet $model) {
+                    return view('manager.pets.partials.menu-row', ['pet' => $model]);
+                }),
+
             Column::make('Nom', 'name')
                 ->searchable()
                 ->sortable(),

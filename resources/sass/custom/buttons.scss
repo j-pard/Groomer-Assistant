@@ -1,11 +1,9 @@
-.btn-circle {
-      width: 60px;
+.btn-nav {
+      width: 40px;
       height: 60px;
-
-      border-radius: 30px;      
-      border: 2px solid $pink;
+      margin: 20px 0
+      ;
       color: white !important;
-      background-color: #343a40;
 
       font-size: 20px !important;
 
@@ -16,7 +14,11 @@
       transition: all .3s;
 }
 
-.btn-circle:hover {
+.btn-nav:hover {
+      color: $pink !important;
+}
+
+.active {
       color: $pink !important;
 }
 
