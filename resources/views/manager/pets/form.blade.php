@@ -25,6 +25,27 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <fieldset>
+                                <div class="form-group">
+                                    <x-forms.radio
+                                        name="genre"
+                                        value="unknown"
+                                        :selected="isset($pet) && $pet->genre === 'unknown'"
+                                        inline
+                                    />
+                                    <x-forms.radio
+                                        name="genre"
+                                        value="male"
+                                        :selected="isset($pet) && $pet->genre === 'male'"
+                                        inline
+                                    />
+                                    <x-forms.radio
+                                        name="genre"
+                                        value="female"
+                                        :selected="isset($pet) && $pet->genre === 'female'"
+                                        inline
+                                    />
+                                </div>
+                                
                                 <x-forms.input
                                     :label="'Nom'"
                                     :name="'name'"

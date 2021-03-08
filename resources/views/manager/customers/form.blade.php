@@ -24,19 +24,38 @@
                 <fieldset>
                     <div class="row">
                         <div class="col-md-6">
-                            <h3>Informations</h3>
+                            <h3 class="mb-3">Informations</h3>
+
+                            <div class="form-group">
+                                <x-forms.radio
+                                name="genre"
+                                value="unknown"
+                                inline
+                                />
+                                <x-forms.radio
+                                    name="genre"
+                                    value="male"
+                                    inline
+                                />
+                                <x-forms.radio
+                                    name="genre"
+                                    value="female"
+                                    inline
+                                />
+                            </div>
+
                             <x-forms.input
-                                :label="'Nom'"
-                                :name="'lastname'"
-                                :placeholder="'Entrer le nom de famille'"
+                                label="Nom"
+                                name="lastname"
+                                placeholder="Entrer le nom de famille"
                                 :value="isset($customer) ? $customer->lastname : null"
                                 required
                             />
 
                             <x-forms.input
-                                :label="'Prénom'"
-                                :name="'firstname'"
-                                :placeholder="'Entrer le prénom'"
+                                label="Prénom"
+                                name="firstname"
+                                placeholder="Entrer le prénom"
                                 :value="isset($customer) ? $customer->firstname : null"
                                 required
                             />
@@ -44,9 +63,9 @@
                             <div class="row">
                                 <div class="col-3">
                                     <x-forms.input
-                                        :label="'Code postal'"
-                                        :name="'zip_code'"
-                                        :placeholder="'0000'"
+                                        label="Code postal"
+                                        name="zip_code"
+                                        placeholder="0000"
                                         :value="isset($customer) ? $customer->zip_code : null"
                                         required
                                     />
@@ -54,9 +73,9 @@
     
                                 <div class="col-9">
                                     <x-forms.input
-                                        :label="'Ville'"
-                                        :name="'city'"
-                                        :placeholder="'Entrer le nom de la ville'"
+                                        label="Ville"
+                                        name="city"
+                                        placeholder="Entrer le nom de la ville"
                                         :value="isset($customer) ? $customer->city : null"
                                         required
                                     />
@@ -64,45 +83,47 @@
                             </div>
 
                             <x-forms.input
-                                :label="'Adresse'"
-                                :name="'address'"
-                                :placeholder="'Entrer l\'adresse'"
+                                label="Adresse"
+                                name="address"
+                                placeholder="Entrer l'adresse"
                                 :value="isset($customer) ? $customer->address : null"
+                            />
+
+                            <h3 class="mt-4 mb-3">Contacts</h3>
+
+                            <x-forms.input
+                                label="Email"
+                                type="email"
+                                name="email"
+                                placeholder="Entrer l'adresse email"
+                                :value="isset($customer) ? $customer->email : null"
+                            />
+    
+                            <x-forms.input
+                                label="Numéro de téléphone"
+                                name="phone"
+                                placeholder="Entrer le numéro"
+                                :value="isset($customer) ? $customer->phone : null"
+                            />
+    
+                            <x-forms.input
+                                label="Numéro alternatif"
+                                name="secondary_phone"
+                                placeholder="Entrer le numéro alternatif"
+                                :value="isset($customer) ? $customer->secondary_phone : null"
                             />
                         </div>
 
                         <div class="col-md-6">
-                            <h3>Contacts</h3>
-                            <x-forms.input
-                                :label="'Email'"
-                                :type="'email'"
-                                :name="'email'"
-                                :placeholder="'Entrer l\'adresse email'"
-                                :value="isset($customer) ? $customer->email : null"
-                            />
-
-                            <x-forms.input
-                                :label="'Numéro de téléphone'"
-                                :name="'phone'"
-                                :placeholder="'Entrer le numéro'"
-                                :value="isset($customer) ? $customer->phone : null"
-                            />
-
-                            <x-forms.input
-                                :label="'Numéro alternatif'"
-                                :name="'secondary_phone'"
-                                :placeholder="'Entrer le numéro alternatif'"
-                                :value="isset($customer) ? $customer->secondary_phone : null"
-                            />
+                            <div class="form-group">
+                                <fieldset>
+                                    <label for="remarksInput">Remarques</label>
+                                    <textarea class="form-control" name="more_info" rows="15">{{ $pet->remarks ?? '' }}</textarea>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <fieldset>
-                            <label for="remarksInput">Remarques</label>
-                            <textarea class="form-control" name="more_info" rows="3">{{ $pet->remarks ?? '' }}</textarea>
-                        </fieldset>
-                    </div>
                 </fieldset>
             </div>
             

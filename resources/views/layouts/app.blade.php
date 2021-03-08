@@ -32,9 +32,11 @@
     <div id="app">
         <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid px-5">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
-                </a>
+                <h1>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
+                    </a>
+                </h1>
 
                 <div class="collapse navbar-collapse d-flex justify-content-end">
                     <!-- Right Side Of Navbar -->
@@ -56,7 +58,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->name }}
-                                    <i class="fas fa-user ml-2"></i>
+                                    <i class="fas fa-user"></i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

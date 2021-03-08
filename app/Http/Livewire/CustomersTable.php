@@ -47,7 +47,7 @@ class CustomersTable extends TableComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Mobile', 'mobile')
+            Column::make('Mobile', 'phone')
                 ->searchable(),
         ];
     }

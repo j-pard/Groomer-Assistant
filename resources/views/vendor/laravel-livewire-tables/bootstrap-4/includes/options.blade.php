@@ -1,17 +1,5 @@
 @if ($paginationEnabled || $searchEnabled)
     <div class="row mb-4">
-        {{-- @if ($paginationEnabled && count($perPageOptions))
-            <div class="col form-inline">
-                <div style="width-content">@lang('laravel-livewire-tables::strings.per_page'): &nbsp;</div>
-
-                <select wire:model="perPage" class="form-control">
-                    @foreach ($perPageOptions as $option)
-                        <option>{{ $option }}</option>
-                    @endforeach
-                </select>
-            </div><!--col-->
-        @endif --}}
-
         @if ($searchEnabled)
             <div class="col">
                 @if ($clearSearchButton)
