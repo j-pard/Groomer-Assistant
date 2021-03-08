@@ -25,7 +25,14 @@ class CustomersTable extends TableComponent
         return [
             Column::make('')
                 ->format(function(Customer $model) {
-                    return view('manager.customers.partials.menu-row', ['customer' => $model]);
+                    return view('manager.partials.menu-row', [
+                        'items' => [
+                            'edit' => [
+                                'icon' => 'fas fa-pen',
+                                'url' => route('editCustomer', ['customer' => $model])
+                            ]
+                        ]
+                    ]);
                 }),
             
             Column::make('Nom', 'lastname')

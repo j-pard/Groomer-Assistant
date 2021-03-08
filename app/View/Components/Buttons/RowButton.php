@@ -4,24 +4,22 @@ namespace App\View\Components\Buttons;
 
 use Illuminate\View\Component;
 
-class Nav extends Component
+class row extends Component
 {
     public string $class;
     public string $url;
     public string $icon;
-    public string $section;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($class = '', $url = '', $icon = '', $section = '')
+    public function __construct($class = '', $url = '', $icon = '')
     {
         $this->class = $class;
         $this->url = $url;
         $this->icon = $icon;
-        $this->section = $section;
     }
 
     /**
@@ -31,6 +29,6 @@ class Nav extends Component
      */
     public function render()
     {
-        return view('components.buttons.nav');
+        return view('components.buttons.row');
     }
 }

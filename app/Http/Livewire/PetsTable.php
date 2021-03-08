@@ -26,7 +26,14 @@ class PetsTable extends TableComponent
         return [
             Column::make('')
                 ->format(function(Pet $model) {
-                    return view('manager.pets.partials.menu-row', ['pet' => $model]);
+                    return view('manager.partials.menu-row', [
+                        'items' => [
+                            'edit' => [
+                                'icon' => 'fas fa-pen',
+                                'url' => route('editPet', ['pet' => $model])
+                            ]
+                        ]
+                    ]);
                 }),
 
             Column::make('Nom', 'name')

@@ -78,22 +78,22 @@
         </nav>
         @auth    
             <nav id="aside-nav">
-                <x-buttons.nav-button
-                    :icon="'fas fa-calendar-alt'"
+                <x-buttons.nav
+                    icon="fas fa-calendar-alt"
                     :url="route('home')" 
-                    :section="'calendar'"
+                    section="calendar"
                 />
-                <x-buttons.nav-button
-                    :icon="'fas fa-paw'"
+                <x-buttons.nav
+                    icon="fas fa-paw"
                     :url="route('pets')"
-                    :section="'pets'"
+                    section="pets"
                 />
-                <x-buttons.nav-button
-                    :icon="'fas fa-users'"
+                <x-buttons.nav
+                    icon="fas fa-users"
                     :url="route('customers')"
-                    :section="'customers'"
+                    section="customers"
                 />
-                <x-buttons.nav-button
+                <x-buttons.nav
                     :icon="'fas fa-cog'"
                 />
             </nav>
