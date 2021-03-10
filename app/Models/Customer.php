@@ -18,6 +18,7 @@ class Customer extends Model
         'uuid',
         'firstname',
         'lastname',
+        'genre',
         'zip_code',
         'state',
         'street',

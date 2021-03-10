@@ -2,22 +2,20 @@
 
 namespace App\View\Components\Forms;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\Component;
 
-class Input extends Component
+class Select extends Component
 {
     public ?string $name = '';
     public ?string $label = '';
-    public ?string $placeholder = '';
-    public ?string $type = '';
     public ?string $class = '';
     public ?string $id = '';
     public bool $required;
     public bool $readonly;
     public bool $disabled;
-    public ?string $value;
-    public ?string $min  = '';
-    public ?string $max  = '';
+    public array $options;
+    public $model;
 
     /**
      * Create a new component instance.
@@ -25,31 +23,25 @@ class Input extends Component
      * @return void
      */
     public function __construct(
+        $model,
+        $options,
         $name = null,
         $label = null,
-        $placeholder = null,
-        $type = 'text',
         $class = null,
         $id = null,
         $required = false,
         $readonly = false,
-        $disabled = false,
-        $value = null,
-        $min = null,
-        $max = null
+        $disabled = false
     ) {
         $this->name = $name;
         $this->label = $label;
-        $this->placeholder = $placeholder;
-        $this->type = $type;
         $this->class = $class;
         $this->id = $id;
         $this->required = $required;
         $this->readonly = $readonly;
         $this->disabled = $disabled;
-        $this->value = $value;
-        $this->min = $min;
-        $this->max = $max;
+        $this->model = $model;
+        $this->options = $options;
     }
 
     /**
@@ -59,6 +51,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('components.forms.input');
+        return view('components.forms.select');
     }
 }

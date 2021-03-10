@@ -23,6 +23,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
+                        <h3 class="mb-3">Informations</h3>
+
                         <div class="form-group">
                             <fieldset>
                                 <div class="form-group">
@@ -30,26 +32,32 @@
                                         name="genre"
                                         value="unknown"
                                         :selected="isset($pet) && $pet->genre === 'unknown'"
+                                        :isIcon="true"
+                                        label="far fa-question-circle"
                                         inline
                                     />
                                     <x-forms.radio
                                         name="genre"
                                         value="male"
                                         :selected="isset($pet) && $pet->genre === 'male'"
+                                        :isIcon="true"
+                                        label="fas fa-mars"
                                         inline
                                     />
                                     <x-forms.radio
                                         name="genre"
                                         value="female"
                                         :selected="isset($pet) && $pet->genre === 'female'"
+                                        :isIcon="true"
+                                        label="fas fa-venus"
                                         inline
                                     />
                                 </div>
                                 
                                 <x-forms.input
-                                    :label="'Nom'"
-                                    :name="'name'"
-                                    :placeholder="'Entrer un nom'"
+                                    label="Nom"
+                                    name="name"
+                                    placeholder="Entrer un nom"
                                     :value="isset($pet) ? $pet->name : null"
                                     required
                                 />
@@ -71,47 +79,54 @@
                             {{-- TODO: Races --}}
             
                                 <x-forms.input
-                                    :label="'Anniversaire'"
-                                    :type="'date'"
-                                    :name="'birthdate'"
+                                    label="Anniversaire"
+                                    type="date"
+                                    name="birthdate"
                                     :value="isset($pet) ? Carbon\Carbon::parse($pet->birthdate)->format('Y-m-d') : null"
                                     required
                                 />
 
-                                <label for="statusInput">Status</label>
-                                <select class="form-control" name="status" id="statusInput" required>
-                                    @php
-                                        foreach ($statusItems as $key => $status) {
-                                            if (isset($pet) && $pet->status === $key) {
-                                                echo('<option value="' . $key . '" selected>' . $status .'</option>');
-                                            } else {
-                                                echo('<option value="' . $key . '">' . $status .'</option>');
-                                            }
-                                        }
-                                    @endphp
-                                </select>
+                                <x-forms.select
+                                    label="Status"
+                                    name="status"
+                                    :model="$pet->status"
+                                    :options='App\Models\Pet::getStatus()'
+                                    required
+                                />
 
-                                <label>Durée moyenne <span class="text-danger ml-1">*</span></label>
-                                <div class="duration-inputs-container">
-                                    <x-forms.input
-                                        :type="'number'"
-                                        :name="'hours'"
-                                        :value="isset($pet) ? $duration['hours'] : 0"
-                                        :placeholder="00"
-                                        :min="0"
-                                        required
-                                    />
-                                    <div class="h4 mx-1">:</div>
-                                    <x-forms.input
-                                        :type="'number'"
-                                        :name="'minutes'"
-                                        :value="isset($pet) ? $duration['minutes'] : 0"
-                                        :placeholder="00"
-                                        :min="0"
-                                        :max="59"
-                                        required
-                                    />
+                                <h3 class="mt-4 mb-3">Détails</h3>
+                                <div class="form-group">
+                                    <label>Durée moyenne <span class="text-danger ml-1">*</span></label>
+                                    <div class="duration-inputs-container">
+                                        <x-forms.input
+                                            type="number"
+                                            name="hours"
+                                            :value="isset($pet) ? $duration['hours'] : 0"
+                                            placeholder="00"
+                                            min="0"
+                                            required
+                                        />
+                                        <div class="h4 mx-1">:</div>
+                                        <x-forms.input
+                                            type="number"
+                                            name="minutes"
+                                            :value="isset($pet) ? $duration['minutes'] : 0"
+                                            placeholder="00"
+                                            min="0"
+                                            max="59"
+                                            required
+                                        />
+                                    </div>
                                 </div>
+
+                                <x-forms.select
+                                    label="Taille"
+                                    name="size"
+                                    :model="$pet->size"
+                                    :options='App\Models\Pet::getSizeOptions()'
+                                    required
+                                />
+                                
                             </fieldset>
                         </div>
                     </div>
@@ -127,12 +142,10 @@
                 </div>
             </div>
             
-            <div class="card-footer text-end">
-                @if (isset($pet))
-                    <button type="submit" class="btn btn--primary">Modifier</button>
-                @else
-                    <button type="submit" class="btn btn--primary">Créer</button>
-                @endif
+            <div class="form-actions-buttons">
+                <button type="submit" class="btn btn--primary btn-circle">
+                    <i class="far fa-save"></i>
+                </button>
             </div>
         </form>
     </div>

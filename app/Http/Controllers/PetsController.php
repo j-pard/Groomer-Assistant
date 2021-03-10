@@ -43,9 +43,11 @@ class PetsController extends Controller
             'uuid' => Str::uuid(),
             'customer_id' => $request->customer,
             'name' => $request->name,
+            'genre' => $request->genre,
             'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
             'status' => $request->status,
             'average_duration' => ($request->hours * 60) + $request->minutes,
+            'size' => $request->size,
             'remarks' => $request->remarks,
         ]);
 
@@ -63,7 +65,6 @@ class PetsController extends Controller
     {
         return view('manager.pets.form', [
             'pet' => $pet,
-            'statusItems' => Pet::getStatus(),
             'customers' => Customer::all(),
             'duration' => $pet->getDurationInHoursMinutes(),
         ]);
@@ -78,9 +79,11 @@ class PetsController extends Controller
         Pet::where('uuid', $request->petID)->update([
             'customer_id' => $request->customer,
             'name' => $request->name,
+            'genre' => $request->genre,
             'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
             'status' => $request->status,
             'average_duration' => ($request->hours * 60) + $request->minutes,
+            'size' => $request->size,
             'remarks' => $request->remarks,
         ]);
 

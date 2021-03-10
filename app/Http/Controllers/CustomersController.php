@@ -39,6 +39,7 @@ class CustomersController extends Controller
             'uuid' => Str::uuid(),
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
+            'genre' => $request->genre,
             'zip_code' => $request->zip_code,
             'city' => $request->city,
             'address' => $request->address,
@@ -74,6 +75,7 @@ class CustomersController extends Controller
         Customer::where('uuid', $request->customerID)->update([
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
+            'genre' => $request->genre,
             'zip_code' => $request->zip_code,
             'city' => $request->city,
             'address' => $request->address,

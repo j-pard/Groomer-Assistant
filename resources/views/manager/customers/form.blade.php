@@ -28,18 +28,21 @@
 
                             <div class="form-group">
                                 <x-forms.radio
-                                name="genre"
-                                value="unknown"
-                                inline
+                                    name="genre"
+                                    value="unknown"
+                                    :selected="isset($customer) && $customer->genre === 'unknown'"
+                                    inline
                                 />
                                 <x-forms.radio
                                     name="genre"
                                     value="male"
+                                    :selected="isset($customer) && $customer->genre === 'male'"
                                     inline
                                 />
                                 <x-forms.radio
                                     name="genre"
                                     value="female"
+                                    :selected="isset($customer) && $customer->genre === 'female'"
                                     inline
                                 />
                             </div>

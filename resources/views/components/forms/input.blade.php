@@ -1,6 +1,6 @@
 <div class="form-group">
     @if (isset($label) && $required)
-        <label for="{{ $name }}">
+        <label for="{{ $id }}">
             {{ $label }}
             <span class="text-danger ml-1">*</span>
         </label>

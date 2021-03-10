@@ -31,3 +31,19 @@
       color: white;
       font-weight: bold;
 }
+
+.form-actions-buttons {
+      z-index: 2;
+      position: fixed;
+      bottom: 40px;
+      right: 60px;
+}
+
+.btn-circle {
+      width: 60px;
+      height: 60px;
+
+      font-size: 30px;
+      line-height: 1.33;
+      border-radius: 30px;
+}
