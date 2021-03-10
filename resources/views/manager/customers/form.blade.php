@@ -130,12 +130,10 @@
                 </fieldset>
             </div>
             
-            <div class="card-footer text-end">
-                @if (isset($customer))
-                    <button type="submit" class="btn btn--primary">Modifier</button>
-                @else
-                    <button type="submit" class="btn btn--primary">Créer</button>
-                @endif
+            <div class="form-actions-buttons">
+                <button type="submit" class="btn btn--primary btn-circle">
+                    <i class="far fa-save"></i>
+                </button>
             </div>
         </form>
     </div>

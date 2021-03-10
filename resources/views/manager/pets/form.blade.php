@@ -89,7 +89,7 @@
                                 <x-forms.select
                                     label="Status"
                                     name="status"
-                                    :model="$pet->status"
+                                    :model="isset($pet) ? $pet->status : ''"
                                     :options='App\Models\Pet::getStatus()'
                                     required
                                 />
@@ -122,7 +122,7 @@
                                 <x-forms.select
                                     label="Taille"
                                     name="size"
-                                    :model="$pet->size"
+                                    :model="isset($pet) ? $pet->size : ''"
                                     :options='App\Models\Pet::getSizeOptions()'
                                     required
                                 />
