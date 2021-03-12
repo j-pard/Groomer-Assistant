@@ -1,7 +1,7 @@
 @if ($paginationEnabled || $searchEnabled)
-    <div class="row mb-4">
+    <div class="row mb-2">
         @if ($searchEnabled)
-            <div class="col">
+            <div class="col-md-6 col-xl-3">
                 @if ($clearSearchButton)
                     <div class="input-group">
                         @endif

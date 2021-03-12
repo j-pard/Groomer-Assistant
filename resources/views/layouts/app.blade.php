@@ -31,14 +31,14 @@
 <body>
     <div id="app">
         <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
-            <div class="container-fluid px-5">
+            <div class="container-fluid px-md-5">
                 <h1>
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
                     </a>
                 </h1>
 
-                <div class="collapse navbar-collapse d-flex justify-content-end">
+                <div class="d-flex justify-content-end">
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

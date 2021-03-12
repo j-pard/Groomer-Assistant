@@ -31,18 +31,24 @@
                                     name="genre"
                                     value="unknown"
                                     :selected="isset($customer) && $customer->genre === 'unknown'"
+                                    :isIcon="true"
+                                    label="far fa-question-circle"
                                     inline
                                 />
                                 <x-forms.radio
                                     name="genre"
                                     value="male"
                                     :selected="isset($customer) && $customer->genre === 'male'"
+                                    :isIcon="true"
+                                    label="fas fa-mars"
                                     inline
                                 />
                                 <x-forms.radio
                                     name="genre"
                                     value="female"
                                     :selected="isset($customer) && $customer->genre === 'female'"
+                                    :isIcon="true"
+                                    label="fas fa-venus"
                                     inline
                                 />
                             </div>
@@ -64,7 +70,7 @@
                             />
 
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <x-forms.input
                                         label="Code postal"
                                         name="zip_code"
@@ -74,7 +80,7 @@
                                     />
                                 </div>
     
-                                <div class="col-9">
+                                <div class="col-md-9">
                                     <x-forms.input
                                         label="Ville"
                                         name="city"
@@ -92,7 +98,7 @@
                                 :value="isset($customer) ? $customer->address : null"
                             />
 
-                            <h3 class="mt-4 mb-3">Contacts</h3>
+                            <h3 class="mt-4 mb-3">Contact</h3>
 
                             <x-forms.input
                                 label="Email"
@@ -118,11 +124,29 @@
                         </div>
 
                         <div class="col-md-6">
+
+                            <h3 class="mb-3">Détails</h3>
                             <div class="form-group">
                                 <fieldset>
                                     <label for="remarksInput">Remarques</label>
-                                    <textarea class="form-control" name="more_info" rows="15">{{ $pet->remarks ?? '' }}</textarea>
+                                    <textarea class="form-control" name="more_info" rows="10">{{ $customer->remarks ?? '' }}</textarea>
                                 </fieldset>
+                            </div>
+
+                            <h3 class="mt-4 mb-3">Animaux</h3>
+                            <div class="form-group">
+                                <ul class="list-group list-unstyled">
+                                    @forelse ($customer->pets as $pet)
+                                        <li class="list-group-item">
+                                            <a class="list-group-item-action text-decoration-none p-2 mr-3" href="{{ route('editPet', ['pet' => $pet]) }}">
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                            <span>{{ $pet->name }}</span>
+                                        </li>
+                                    @empty
+                                        
+                                    @endforelse
+                                </ul>
                             </div>
                         </div>
                     </div>

@@ -132,10 +132,11 @@
                     </div>
 
                     <div class="col-md-6">
+                        <h3 class="mb-3">Détails</h3>
                         <div class="form-group">
                             <fieldset>
                                 <label for="remarksInput">Remarques</label>
-                                <textarea class="form-control" id="remarksInput" name="remarks" rows="12">{{ $pet->remarks ?? '' }}</textarea>
+                                <textarea class="form-control" id="remarksInput" name="remarks" rows="10">{{ $pet->remarks ?? '' }}</textarea>
                             </fieldset>
                         </div>
                     </div>

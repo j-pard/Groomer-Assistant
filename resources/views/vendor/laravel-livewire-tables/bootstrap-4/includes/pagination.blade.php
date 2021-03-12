@@ -1,7 +1,7 @@
 @if ($paginationEnabled)
     <div class="row d-flex align-items-center">
         @if ($paginationEnabled && count($perPageOptions))
-            <div class="col-4 d-flex flex-nowrap align-items-center">
+            <div class="col-md-4 col-xl-2 d-flex flex-nowrap align-items-center">
                 <div style="min-width:max-content">@lang('laravel-livewire-tables::strings.per_page') &nbsp;</div>
 
                 <select wire:model="perPage" class="form-control mb-0">
