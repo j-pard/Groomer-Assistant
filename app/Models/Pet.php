@@ -20,6 +20,8 @@ class Pet extends Model
         'type',
         'name',
         'genre',
+        'main_breed_id',
+        'secondary_breed_id',
         'birthdate',
         'status',
         'average_duration',
@@ -60,6 +62,8 @@ class Pet extends Model
         'dead' => 'Décédé',
     ];
 
+    // Relations
+
     /**
      * Get customer of specified pet.
      *
@@ -69,6 +73,28 @@ class Pet extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    /**
+     * Get main breed of specified pet.
+     *
+     * @return void
+     */
+    public function mainBreed()
+    {
+        return $this->belongsTo(Breed::class, 'main_breed_id');
+    }
+
+    /**
+     * Get secondary breed of specified pet.
+     *
+     * @return void
+     */
+    public function secondaryBreed()
+    {
+        return $this->belongsTo(Breed::class, 'secondary_breed_id');
+    }
+
+    // Methods
 
     /**
      * Return duration in hours and minutes
@@ -104,5 +130,13 @@ class Pet extends Model
     public static function getStatus()
     {
         return self::$status;
+    }
+
+    public static function getBreedsOptions()
+    {
+        $breeds = ['-1' => '---'];
+        $breeds += Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray();
+
+        return $breeds;
     }
 }

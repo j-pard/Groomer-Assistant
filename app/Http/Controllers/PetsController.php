@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Breed;
 use App\Models\Customer;
 use App\Models\Pet;
 use Carbon\Carbon;
@@ -44,6 +45,8 @@ class PetsController extends Controller
             'customer_id' => $request->customer,
             'name' => $request->name,
             'genre' => $request->genre,
+            'main_breed_id' => isset($request->mainBreed) ? $request->mainBreed : null,
+            'second_breed_id' => isset($request->secondBreed) ? $request->secondBreed : null,
             'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
             'status' => $request->status,
             'average_duration' => ($request->hours * 60) + $request->minutes,
@@ -80,6 +83,8 @@ class PetsController extends Controller
             'customer_id' => $request->customer,
             'name' => $request->name,
             'genre' => $request->genre,
+            'main_breed_id' => isset($request->mainBreed) ? $request->mainBreed : null,
+            'second_breed_id' => isset($request->secondBreed) ? $request->secondBreed : null,
             'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
             'status' => $request->status,
             'average_duration' => ($request->hours * 60) + $request->minutes,

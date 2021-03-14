@@ -41,6 +41,8 @@ class Customer extends Model
         'more_info' => 'array',
     ];
 
+    // Relations
+
     /**
      * Get pets of specified customer.
      *
@@ -50,4 +52,6 @@ class Customer extends Model
     {
         return $this->hasMany(Pet::class);
     }
+
+    // Methods
 }

@@ -31,7 +31,7 @@
                                     <x-forms.radio
                                         name="genre"
                                         value="unknown"
-                                        :selected="isset($pet) && $pet->genre === 'unknown'"
+                                        :selected="(isset($pet) && $pet->genre === 'unknown') || !isset($pet)"
                                         :isIcon="true"
                                         label="far fa-question-circle"
                                         inline
@@ -115,6 +115,27 @@
                                             min="0"
                                             max="59"
                                             required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group d-flex flex-nowrap justify-content-between align-items-end">
+                                    <div class="col-md-5">
+                                        <x-forms.select
+                                            label="Race 1"
+                                            name="mainBreed"
+                                            :model="isset($pet) ? ( isset($pet->mainBreed) ? $pet->mainBreed->id : '' ) : ''"
+                                            :options='App\Models\Pet::getBreedsOptions()'
+                                            required
+                                        />
+                                    </div>
+                                    <i class="fas fa-times h1"></i>
+                                    <div class="col-md-5">
+                                        <x-forms.select
+                                            label="Race 2"
+                                            name="secondBreed"
+                                            :model="isset($pet) ? ( isset($pet->secondBreed) ? $pet->secondBreed->id : '' ) : ''"
+                                            :options='App\Models\Pet::getBreedsOptions()'
                                         />
                                     </div>
                                 </div>
