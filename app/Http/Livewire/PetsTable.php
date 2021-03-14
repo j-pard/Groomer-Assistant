@@ -39,12 +39,24 @@ class PetsTable extends TableComponent
             Column::make('Nom', 'name')
                 ->searchable()
                 ->sortable(),
+
+            Column::make('Race(s)', 'main_breed_id')
+            ->searchable()
+            ->sortable()
+            ->format(function(Pet $model) {
+                return $this->html(
+                    '<span>' .
+                    (isset($model->mainBreed) ? ($model->mainBreed->breed) : '-') .
+                    (isset($model->secondBreed) ? ( ' - ' . $model->secondBreed->breed) : '') .
+                    '</span>');
+            }),
+
             Column::make('Propriétaire', 'customer.lastname')
                 ->searchable()
                 ->sortable()
                 ->format(function(Pet $model) {
                     $customer = $model->customer;
-                    return $this->html('<span>' . $customer->lastname . ' ' . $customer->firstname . '</strong>');
+                    return $this->html('<span>' . $customer->lastname . ' ' . $customer->firstname . '</span>');
                 }),
         ];
     }

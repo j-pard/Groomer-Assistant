@@ -31,6 +31,7 @@ class PetsController extends Controller
         return view('manager.pets.form', [
             'statusItems' => Pet::getStatus(),
             'customers' => Customer::all(),
+            'breeds' => [-1 => '---'] + Breed::whereNotNull('breed')->orderBy('breed')->pluck('breed', 'id')->toArray(),
         ]);
     }
 
@@ -45,8 +46,8 @@ class PetsController extends Controller
             'customer_id' => $request->customer,
             'name' => $request->name,
             'genre' => $request->genre,
-            'main_breed_id' => isset($request->mainBreed) ? $request->mainBreed : null,
-            'second_breed_id' => isset($request->secondBreed) ? $request->secondBreed : null,
+            'main_breed_id' => isset($request->mainBreed) && $request->mainBreed != -1 ? $request->mainBreed : Breed::where('breed', 'Inconnu')->first()->id,
+            'second_breed_id' => isset($request->secondBreed) && $request->secondBreed != -1 ? $request->secondBreed : null,
             'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
             'status' => $request->status,
             'average_duration' => ($request->hours * 60) + $request->minutes,
@@ -70,6 +71,7 @@ class PetsController extends Controller
             'pet' => $pet,
             'customers' => Customer::all(),
             'duration' => $pet->getDurationInHoursMinutes(),
+            'breeds' => [-1 => '---'] + Breed::whereNotNull('breed')->orderBy('breed')->pluck('breed', 'id')->toArray(),
         ]);
     }
 
@@ -83,8 +85,8 @@ class PetsController extends Controller
             'customer_id' => $request->customer,
             'name' => $request->name,
             'genre' => $request->genre,
-            'main_breed_id' => isset($request->mainBreed) ? $request->mainBreed : null,
-            'second_breed_id' => isset($request->secondBreed) ? $request->secondBreed : null,
+            'main_breed_id' => isset($request->mainBreed) && $request->mainBreed != -1 ? $request->mainBreed : Breed::where('breed', 'Inconnu')->first()->id,
+            'second_breed_id' => isset($request->secondBreed) && $request->secondBreed != -1 ? $request->secondBreed : null,
             'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
             'status' => $request->status,
             'average_duration' => ($request->hours * 60) + $request->minutes,

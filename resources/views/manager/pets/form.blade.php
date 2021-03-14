@@ -124,8 +124,8 @@
                                         <x-forms.select
                                             label="Race 1"
                                             name="mainBreed"
-                                            :model="isset($pet) ? ( isset($pet->mainBreed) ? $pet->mainBreed->id : '' ) : ''"
-                                            :options='App\Models\Pet::getBreedsOptions()'
+                                            :model="isset($pet) ? ( isset($pet->mainBreed) ? $pet->mainBreed->id : App\Models\Breed::where('breed', 'Inconnu')->first()->id ) : ''"
+                                            :options='$breeds'
                                             required
                                         />
                                     </div>
@@ -135,7 +135,7 @@
                                             label="Race 2"
                                             name="secondBreed"
                                             :model="isset($pet) ? ( isset($pet->secondBreed) ? $pet->secondBreed->id : '' ) : ''"
-                                            :options='App\Models\Pet::getBreedsOptions()'
+                                            :options='$breeds'
                                         />
                                     </div>
                                 </div>

@@ -89,9 +89,9 @@ class Pet extends Model
      *
      * @return void
      */
-    public function secondaryBreed()
+    public function secondBreed()
     {
-        return $this->belongsTo(Breed::class, 'secondary_breed_id');
+        return $this->belongsTo(Breed::class, 'second_breed_id');
     }
 
     // Methods
@@ -130,13 +130,5 @@ class Pet extends Model
     public static function getStatus()
     {
         return self::$status;
-    }
-
-    public static function getBreedsOptions()
-    {
-        $breeds = ['-1' => '---'];
-        $breeds += Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray();
-
-        return $breeds;
     }
 }
