@@ -15,7 +15,7 @@ class Select extends Component
     public bool $readonly;
     public bool $disabled;
     public array $options;
-    public $model;
+    public ?string $model = '';
 
     /**
      * Create a new component instance.
@@ -23,8 +23,8 @@ class Select extends Component
      * @return void
      */
     public function __construct(
-        $model,
         $options,
+        $model = null,
         $name = null,
         $label = null,
         $class = null,

@@ -25,7 +25,7 @@ class CreateCustomersTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('secondary_phone')->nullable();
-            $table->json('more_info')->nullable();
+            $table->longText('more_info')->nullable();
             $table->timestamps();
         });
     }

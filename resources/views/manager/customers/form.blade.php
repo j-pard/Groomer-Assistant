@@ -3,12 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-light rounded" href="{{ route('customers') }}"><i class="fas fa-arrow-left h4 mr-4 my-auto text-black-50"></i></a>
+            <div class="d-flex align-items-center">
+                <a class="btn btn-light rounded" href="{{ route('customers') }}"><i class="fas fa-arrow-left h4 mr-4 my-auto text-black-50"></i></a>
             @if (isset($customer))
-                <h2>{{ $customer->lastname }} {{ $customer->firstname }}</h2>
+                <h2 class="mb-0">{{ $customer->lastname }} {{ $customer->firstname }}</h2>
             @else
-                <h2><span class="text-pink">New</span> customer</h2>
+                <h2 class="mb-0"><span class="text-pink">New</span> customer</h2>
             @endif
+            </div>
         </div>
 
         @include('manager.partials.session-message')
@@ -70,7 +72,7 @@
                             />
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <x-forms.input
                                         label="Code postal"
                                         name="zip_code"
@@ -80,7 +82,7 @@
                                     />
                                 </div>
     
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <x-forms.input
                                         label="Ville"
                                         name="city"
@@ -129,25 +131,32 @@
                             <div class="form-group">
                                 <fieldset>
                                     <label for="remarksInput">Remarques</label>
-                                    <textarea class="form-control" name="more_info" rows="10">{{ $customer->remarks ?? '' }}</textarea>
+                                    <textarea class="form-control" name="more_info" rows="10">{{ $customer->more_info ?? '' }}</textarea>
                                 </fieldset>
                             </div>
 
-                            <h3 class="mt-4 mb-3">Animaux</h3>
-                            <div class="form-group">
-                                <ul class="list-group list-unstyled">
-                                    @forelse ($customer->pets as $pet)
-                                        <li class="list-group-item">
-                                            <a class="list-group-item-action text-decoration-none p-2 mr-3" href="{{ route('editPet', ['pet' => $pet]) }}">
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
-                                            <span>{{ $pet->name }}</span>
-                                        </li>
-                                    @empty
-                                        
-                                    @endforelse
-                                </ul>
-                            </div>
+                            @if (isset($customer))
+                                <h3 class="mt-4 mb-3">
+                                    Animaux
+                                    <a href="#" type="button" class="mx-3" title="Ajouter" data-bs-toggle="modal" data-bs-target="#addPetModal">
+                                        <i class="fas fa-plus-circle text-success"></i>
+                                    </a>
+                                </h3>
+                                <div class="form-group">
+                                    <ul class="list-group list-unstyled">
+                                        @forelse ($customer->pets->sortBy('name') as $pet)
+                                            <li class="list-group-item">
+                                                <a class="list-group-item-action text-decoration-none p-2 mr-3" href="{{ route('editPet', ['pet' => $pet]) }}">
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                                <span>{{ $pet->name }}</span>
+                                            </li>
+                                        @empty
+                                            
+                                        @endforelse
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
@@ -162,4 +171,5 @@
         </form>
     </div>
 
+    @include('manager.customers.partials.modals')
 @endsection

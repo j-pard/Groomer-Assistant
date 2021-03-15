@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -95,5 +96,19 @@ class CustomersController extends Controller
     public function delete()
     {
 
+    }
+
+    /**
+     * Attach specified customer to specified pet
+     *
+     * @param Request $request
+     */
+    public function attachPet(Request $request)
+    {
+        Pet::find($request->petId)->update([
+            'customer_id' => $request->customerId
+        ]);
+
+        return redirect()->back()->with('status', 'Propriétaire ajouté avec succès.');
     }
 }

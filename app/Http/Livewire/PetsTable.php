@@ -56,7 +56,12 @@ class PetsTable extends TableComponent
                 ->sortable()
                 ->format(function(Pet $model) {
                     $customer = $model->customer;
-                    return $this->html('<span>' . $customer->lastname . ' ' . $customer->firstname . '</span>');
+                    
+                    if (isset($customer)) {
+                        return $this->html('<span>' . $customer->lastname . ' ' . $customer->firstname . '</span>');
+                    }
+
+                    return $this->html('<span>-</span>');
                 }),
         ];
     }

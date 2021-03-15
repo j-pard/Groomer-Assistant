@@ -35,4 +35,5 @@ Route::prefix('customers')->group(function () {
     Route::post('/store', [CustomersController::class, 'store'])->name('storeCustomer');
     Route::get('/{customer}/edit', [CustomersController::class, 'edit'])->name('editCustomer');
     Route::put('/update', [CustomersController::class, 'update'])->name('updateCustomer');
+    Route::post('/attach', [CustomersController::class, 'attachPet'])->name('attachPet');
 });

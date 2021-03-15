@@ -30,8 +30,8 @@ class PetsController extends Controller
     {
         return view('manager.pets.form', [
             'statusItems' => Pet::getStatus(),
-            'customers' => Customer::all(),
-            'breeds' => [-1 => '---'] + Breed::whereNotNull('breed')->orderBy('breed')->pluck('breed', 'id')->toArray(),
+            'customers' => Customer::orderBy('lastname')->orderBy('firstname')->get(),
+            'breeds' => [-1 => '---'] + Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray(),
         ]);
     }
 
@@ -69,9 +69,9 @@ class PetsController extends Controller
     {
         return view('manager.pets.form', [
             'pet' => $pet,
-            'customers' => Customer::all(),
+            'customers' => Customer::orderBy('lastname')->orderBy('firstname')->get(),
             'duration' => $pet->getDurationInHoursMinutes(),
-            'breeds' => [-1 => '---'] + Breed::whereNotNull('breed')->orderBy('breed')->pluck('breed', 'id')->toArray(),
+            'breeds' => [-1 => '---'] + Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray(),
         ]);
     }
 

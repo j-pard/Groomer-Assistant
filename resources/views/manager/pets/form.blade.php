@@ -3,12 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-light rounded" href="{{ route('pets') }}"><i class="fas fa-arrow-left h4 mr-4 my-auto text-black-50"></i></a>
-            @if (isset($pet))
-                <h2>{{ $pet->name }}</h2>
-            @else
-                <h2><span class="text-pink">New</span> pet</h2>
-            @endif
+            <div class="d-flex align-items-center">
+                <a class="btn btn-light rounded" href="{{ route('pets') }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
+                @if (isset($pet))
+                    <h2 class="mb-0">{{ $pet->name }}</h2>
+                @else
+                    <h2 class="mb-0"><span class="text-pink">New</span> pet</h2>
+                @endif
+            </div>
         </div>
 
         @include('manager.partials.session-message')
@@ -63,20 +65,19 @@
                                 />
 
                                 <label for="customerInput">Propritéraire</label>
-                                <select class="form-control" name="customer" id="customerInput" required>
+                                <select class="form-control" name="customer" id="customerInput">
                                     @if (isset($pet))
+                                        <option value="" selected>Sélectionner un propriétaire</option>
                                         @foreach ($customers as $customer)
                                             <option value="{{ $customer->id }}" {{ $customer->id === $pet->customer_id ? 'selected' : '' }}>{{ $customer->lastname }} {{ $customer->firstname }}</option>
                                         @endforeach
                                     @else
-                                        <option value="" selected disabled>Sélectionner un propriétaire</option>
+                                        <option value="" >Sélectionner un propriétaire</option>
                                         @foreach ($customers as $customer)
                                             <option value="{{ $customer->id }}">{{ $customer->lastname }} {{ $customer->firstname }}</option>
                                         @endforeach
                                     @endif
                                 </select>
-            
-                            {{-- TODO: Races --}}
             
                                 <x-forms.input
                                     label="Anniversaire"
@@ -101,8 +102,8 @@
                                         <x-forms.input
                                             type="number"
                                             name="hours"
-                                            :value="isset($pet) ? $duration['hours'] : 0"
-                                            placeholder="00"
+                                            :value="isset($pet) ? $duration['hours'] : ''"
+                                            placeholder="0"
                                             min="0"
                                             required
                                         />
@@ -110,7 +111,7 @@
                                         <x-forms.input
                                             type="number"
                                             name="minutes"
-                                            :value="isset($pet) ? $duration['minutes'] : 0"
+                                            :value="isset($pet) ? $duration['minutes'] : ''"
                                             placeholder="00"
                                             min="0"
                                             max="59"
@@ -121,10 +122,11 @@
 
                                 <div class="form-group d-flex flex-nowrap justify-content-between align-items-end">
                                     <div class="col-md-5">
+
                                         <x-forms.select
                                             label="Race 1"
                                             name="mainBreed"
-                                            :model="isset($pet) ? ( isset($pet->mainBreed) ? $pet->mainBreed->id : App\Models\Breed::where('breed', 'Inconnu')->first()->id ) : ''"
+                                            :model="isset($pet) ? $pet->mainBreed->id : App\Models\Breed::where('breed', 'Inconnu')->first()->id"
                                             :options='$breeds'
                                             required
                                         />

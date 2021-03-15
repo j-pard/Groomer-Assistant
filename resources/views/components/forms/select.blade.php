@@ -22,7 +22,7 @@
     >
         @php
             foreach ($options as $key => $value) {
-                if (isset($model) && $model === $key) {
+                if (isset($model) && $model == $key) {
                     echo('<option value="' . $key . '" selected>' . ucfirst($value) .'</option>');
                 } else {
                     echo('<option value="' . $key . '">' . ucfirst($value) .'</option>');
@@ -30,4 +30,5 @@
             }
         @endphp
     </select>
+
 </div>

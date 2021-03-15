@@ -38,7 +38,7 @@ class Customer extends Model
      * @var array
      */
     protected $casts = [
-        'more_info' => 'array',
+        // 
     ];
 
     // Relations

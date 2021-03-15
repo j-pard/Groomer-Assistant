@@ -131,4 +131,14 @@ class Pet extends Model
     {
         return self::$status;
     }
+
+    /**
+     * Return duration in hours and minutes
+     *
+     * @return Array
+     */
+    public static function getOrphansList()
+    {
+        return Pet::whereNull('customer_id')->orderBy('name')->pluck('name', 'id')->toArray();
+    }
 }
