@@ -11676,6 +11676,23 @@ button:focus {
   align-items: center;
 }
 
+.nav-pills {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-pills li {
+  margin: 0 12px;
+}
+
+.nav-pills li button {
+  margin: 0;
+}
+
 .btn-nav {
   width: 40px;
   height: 60px;
@@ -11689,10 +11706,6 @@ button:focus {
 }
 
 .btn-nav:hover {
-  color: #ff0096 !important;
-}
-
-.active {
   color: #ff0096 !important;
 }
 
@@ -11795,6 +11808,15 @@ button:focus {
 
 .width-content {
   min-width: 200px !important;
+}
+
+button .active,
+a .active {
+  color: #ff0096 !important;
+}
+
+.nav-link.active {
+  background-color: #ff0096 !important;
 }
 
 .duration-inputs-container {

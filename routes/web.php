@@ -41,4 +41,5 @@ Route::prefix('customers')->group(function () {
 
 Route::prefix('settings')->group(function () {
     Route::get('/', [SettingsController::class, 'index'])->name('settings');
+    Route::post('/breed', [SettingsController::class, 'getBreed'])->name('getBreed');
 });

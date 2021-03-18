@@ -4933,7 +4933,12 @@ module.exports = {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Include custom Libs
+
+
+if (document.body.getAttribute('data-page')) {
+  __webpack_require__("./resources/js/libs sync recursive ^\\.\\/.*$")("./" + document.body.getAttribute('data-page'));
+}
 
 /***/ }),
 
@@ -4979,6 +4984,35 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+
+/***/ }),
+
+/***/ "./resources/js/libs/fetch-example.js":
+/*!********************************************!*\
+  !*** ./resources/js/libs/fetch-example.js ***!
+  \********************************************/
+/***/ (() => {
+
+var TOKEN = document.getElementsByName('_token')[0].value;
+var URL = document.getElementById('getBreedUrl').value;
+SELECT.addEventListener('change', function () {
+  fetch(URL, {
+    method: 'POST',
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": TOKEN
+    }),
+    body: JSON.stringify({
+      key: value
+    })
+  }).then(function (response) {
+    return response.json();
+  }).then(function (response) {
+    console.log(response);
+  })["catch"](function (error) {
+    console.error(error);
+  });
+});
 
 /***/ }),
 
@@ -29912,6 +29946,39 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+
+/***/ }),
+
+/***/ "./resources/js/libs sync recursive ^\\.\\/.*$":
+/*!******************************************!*\
+  !*** ./resources/js/libs/ sync ^\.\/.*$ ***!
+  \******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./fetch-example": "./resources/js/libs/fetch-example.js",
+	"./fetch-example.js": "./resources/js/libs/fetch-example.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./resources/js/libs sync recursive ^\\.\\/.*$";
 
 /***/ })
 

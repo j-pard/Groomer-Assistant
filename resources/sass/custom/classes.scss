@@ -5,3 +5,13 @@
 .width-content {
     min-width: 200px !important;
 }
+
+button, a {
+    .active {
+        color: $pink !important;
+    }
+}
+
+.nav-link.active {
+    background-color: $pink !important;
+}

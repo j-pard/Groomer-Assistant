@@ -31,7 +31,8 @@ class Select extends Component
         $id = null,
         $required = false,
         $readonly = false,
-        $disabled = false
+        $disabled = false,
+        $searchable = false
     ) {
         $this->name = $name;
         $this->label = $label;
@@ -42,6 +43,7 @@ class Select extends Component
         $this->disabled = $disabled;
         $this->model = $model;
         $this->options = $options;
+        $this->searchable = $searchable;
     }
 
     /**
