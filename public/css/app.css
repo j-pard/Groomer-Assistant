@@ -54,7 +54,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: #212529;
-  background-color: #f8fafc;
+  background-color: #ffffff;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -618,7 +618,7 @@ progress {
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #f8fafc;
+  background-color: #ffffff;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -2635,11 +2635,11 @@ textarea.form-control-lg {
 }
 
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #ffffff, 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
 }
 
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #ffffff, 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
 }
 
 .form-range::-moz-focus-outer {
@@ -4388,8 +4388,8 @@ fieldset:disabled .btn {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #f8fafc;
-  border-color: #dee2e6 #dee2e6 #f8fafc;
+  background-color: #ffffff;
+  border-color: #dee2e6 #dee2e6 #ffffff;
 }
 
 .nav-tabs .dropdown-menu {
@@ -4911,11 +4911,6 @@ fieldset:disabled .btn {
   margin-bottom: -0.5rem;
   margin-left: -0.5rem;
   border-bottom: 0;
-}
-
-.card-header-tabs .nav-link.active {
-  background-color: #fff;
-  border-bottom-color: #fff;
 }
 
 .card-header-pills {
@@ -8163,7 +8158,7 @@ fieldset:disabled .btn {
 }
 
 .bg-body {
-  background-color: #f8fafc !important;
+  background-color: #ffffff !important;
 }
 
 .bg-white {
@@ -11634,7 +11629,7 @@ body {
   min-width: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  background-color: #f8fafc;
+  background-color: #ffffff;
 }
 
 main {
@@ -11642,6 +11637,17 @@ main {
   padding: 20px 20px 16px 90px !important;
 }
 
+main header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0px 8px 16px 8px;
+  border-bottom: 1px solid lightgray;
+}
+
+h2,
+.h2,
 h3,
 .h3 {
   padding: 0;

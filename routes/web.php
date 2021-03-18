@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetsController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,4 +37,8 @@ Route::prefix('customers')->group(function () {
     Route::get('/{customer}/edit', [CustomersController::class, 'edit'])->name('editCustomer');
     Route::put('/update', [CustomersController::class, 'update'])->name('updateCustomer');
     Route::post('/attach', [CustomersController::class, 'attachPet'])->name('attachPet');
+});
+
+Route::prefix('settings')->group(function () {
+    Route::get('/', [SettingsController::class, 'index'])->name('settings');
 });

@@ -97,11 +97,13 @@
                 />
                 <x-buttons.nav
                     :icon="'fas fa-cog'"
+                    :url="route('settings')"
+                    section="settings"
                 />
             </nav>
         @endauth
         <div class="row">
-            <main class="container-fluid bg-light">
+            <main class="container-fluid">
                 @yield('content')
             </main>
         </div>

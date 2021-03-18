@@ -1,5 +1,5 @@
 @if ($paginationEnabled || $searchEnabled)
-    <div class="row mb-2">
+    <div class="row">
         @if ($searchEnabled)
             <div class="col-md-6 col-xl-3">
                 @if ($clearSearchButton)
@@ -9,7 +9,7 @@
                             @if (is_numeric($searchDebounce) && $searchUpdateMethod === 'debounce') wire:model.debounce.{{ $searchDebounce }}ms="search" @endif
                             @if ($searchUpdateMethod === 'lazy') wire:model.lazy="search" @endif
                             @if ($disableSearchOnLoading) wire:loading.attr="disabled" @endif
-                            class="form-control"
+                            class="form-control my-3"
                             type="text"
                             placeholder="{{ __('laravel-livewire-tables::strings.search') }}"
                         />

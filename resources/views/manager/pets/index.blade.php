@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card">
-        <div class="card-header d-flex justify-content-between">
-            <h2><span class="text-pink">P</span>ets</h2>
+    <header>
+        <h2><span class="text-pink">C</span>hiens</h2>
+        <div>
             <a href="{{ route('newPet') }}" class="btn btn--primary">Nouveau</a>
         </div>
-        <div class="card-body">
-            <livewire:pets-table />
-        </div>
+    </header>
+
+    <div>
+        <livewire:pets-table />
     </div>
 
 @endsection
