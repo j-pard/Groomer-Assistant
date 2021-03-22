@@ -26,6 +26,4 @@
             </div>
         </div>
     </div>
-
-    @include('manager.settings.partials.modals')
 @endsection
