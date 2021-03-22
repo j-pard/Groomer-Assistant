@@ -15,7 +15,7 @@ class row extends Component
      *
      * @return void
      */
-    public function __construct($class = '', $url = '', $icon = '')
+    public function __construct($class = '', $url = '#', $icon = '')
     {
         $this->class = $class;
         $this->url = $url;

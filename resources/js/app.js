@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 
-// Include custom Libs
+// Include custom JS
 if (document.body.getAttribute('data-page')) {
-    require('./libs/' + document.body.getAttribute('data-page'));
+    require('./pages/' + document.body.getAttribute('data-page'));
 }

@@ -4933,11 +4933,11 @@ module.exports = {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Include custom Libs
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Include custom JS
 
 
 if (document.body.getAttribute('data-page')) {
-  __webpack_require__("./resources/js/libs sync recursive ^\\.\\/.*$")("./" + document.body.getAttribute('data-page'));
+  __webpack_require__("./resources/js/pages sync recursive ^\\.\\/.*$")("./" + document.body.getAttribute('data-page'));
 }
 
 /***/ }),
@@ -4987,10 +4987,10 @@ __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap
 
 /***/ }),
 
-/***/ "./resources/js/libs/fetch-example.js":
-/*!********************************************!*\
-  !*** ./resources/js/libs/fetch-example.js ***!
-  \********************************************/
+/***/ "./resources/js/pages/fetch-example.js":
+/*!*********************************************!*\
+  !*** ./resources/js/pages/fetch-example.js ***!
+  \*********************************************/
 /***/ (() => {
 
 var TOKEN = document.getElementsByName('_token')[0].value;
@@ -5011,6 +5011,46 @@ SELECT.addEventListener('change', function () {
     console.log(response);
   })["catch"](function (error) {
     console.error(error);
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/pages/settings.js":
+/*!****************************************!*\
+  !*** ./resources/js/pages/settings.js ***!
+  \****************************************/
+/***/ (() => {
+
+// UPDATE
+var TOKEN = document.getElementsByName('_token')[0].value;
+var URL = document.getElementById('breedForm').getAttribute('action');
+var BTNS = document.querySelectorAll('.js-breed-btn');
+BTNS.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    var id = btn.getAttribute('data-breed');
+    var data = {
+      id: id,
+      breed: document.getElementById('breed_' + id).value,
+      size: document.getElementById('size_' + id).value
+    };
+    fetch(URL, {
+      method: 'POST',
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": TOKEN
+      }),
+      body: JSON.stringify(data)
+    }).then(function (response) {
+      return response.json();
+    }).then(function (response) {
+      console.log(response);
+      btn.querySelector('i').classList.toggle('text-pink', false);
+      btn.querySelector('i').classList.toggle('text-green', true);
+    })["catch"](function (error) {
+      console.error(error);
+    });
   });
 });
 
@@ -29949,15 +29989,17 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./resources/js/libs sync recursive ^\\.\\/.*$":
-/*!******************************************!*\
-  !*** ./resources/js/libs/ sync ^\.\/.*$ ***!
-  \******************************************/
+/***/ "./resources/js/pages sync recursive ^\\.\\/.*$":
+/*!*******************************************!*\
+  !*** ./resources/js/pages/ sync ^\.\/.*$ ***!
+  \*******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./fetch-example": "./resources/js/libs/fetch-example.js",
-	"./fetch-example.js": "./resources/js/libs/fetch-example.js"
+	"./fetch-example": "./resources/js/pages/fetch-example.js",
+	"./fetch-example.js": "./resources/js/pages/fetch-example.js",
+	"./settings": "./resources/js/pages/settings.js",
+	"./settings.js": "./resources/js/pages/settings.js"
 };
 
 
@@ -29978,7 +30020,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = "./resources/js/libs sync recursive ^\\.\\/.*$";
+webpackContext.id = "./resources/js/pages sync recursive ^\\.\\/.*$";
 
 /***/ })
 

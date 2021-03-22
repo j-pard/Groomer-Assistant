@@ -28,15 +28,4 @@ class SettingsController extends Controller
             'breeds' => [-1 => '---'] + Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray(),
         ]);
     }
-
-    /**
-     * Return specified breed
-     *
-     * @param Request $request
-     * @return Breed
-     */
-    public function getBreed(Request $request)
-    {
-        return Breed::find($request->breed);
-    }
 }

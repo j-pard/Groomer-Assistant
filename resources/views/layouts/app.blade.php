@@ -28,7 +28,7 @@
     </script>
 
 </head>
-<body data-page="{{ $pageId ?? '' }}">
+<body data-page="{{ $page ?? '' }}">
     <div id="app">
         <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid px-md-5">

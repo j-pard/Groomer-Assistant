@@ -11804,6 +11804,12 @@ button:focus {
 
 .text-pink {
   color: #ff0096;
+  transition: all 0.3s;
+}
+
+.text-green {
+  color: #38c172;
+  transition: all 0.3s;
 }
 
 .width-content {

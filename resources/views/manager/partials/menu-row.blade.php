@@ -2,7 +2,7 @@
     @foreach ($items as $item)
         <x-buttons.row
             icon="{{ $item['icon'] }}"
-            url="{{ $item['url'] }}" 
+            url="{{ $item['url'] }}"
         />
     @endforeach
 </nav>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['page' => 'settings'])
 
 @section('content')
     <header>
@@ -18,7 +18,14 @@
         </div>
 
         <div class="tab-pane fade" id="pills-breeds" role="tabpanel" aria-labelledby="pills-breeds-tab">
-            BREEDS
+            <div>
+                <form id="breedForm" action="{{ route('updateBreed') }}" method="POST">
+                    @csrf
+                    <livewire:breeds-table />
+                </form>
+            </div>
         </div>
     </div>
+
+    @include('manager.settings.partials.modals')
 @endsection

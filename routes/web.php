@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BreedsController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetsController;
@@ -41,5 +42,6 @@ Route::prefix('customers')->group(function () {
 
 Route::prefix('settings')->group(function () {
     Route::get('/', [SettingsController::class, 'index'])->name('settings');
-    Route::post('/breed', [SettingsController::class, 'getBreed'])->name('getBreed');
+    Route::post('/breed', [BreedsController::class, 'get'])->name('getBreed');
+    Route::post('/breed/update', [BreedsController::class, 'update'])->name('updateBreed');
 });
