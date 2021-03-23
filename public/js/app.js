@@ -5016,6 +5016,54 @@ SELECT.addEventListener('change', function () {
 
 /***/ }),
 
+/***/ "./resources/js/pages/home.js":
+/*!************************************!*\
+  !*** ./resources/js/pages/home.js ***!
+  \************************************/
+/***/ (() => {
+
+var customerSelect = document.getElementById('customerSelect');
+var petSelect = document.getElementById('petSelect');
+var getPetsUrl = document.getElementById('getPetsUrl').value;
+var TOKEN = document.getElementsByName('_token')[0].value; // Get pets for specified customer
+
+customerSelect.addEventListener('change', function (e) {
+  e.preventDefault();
+  fetch(getPetsUrl, {
+    method: 'POST',
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": TOKEN
+    }),
+    body: JSON.stringify({
+      customerId: customerSelect.value
+    })
+  }).then(function (response) {
+    return response.json();
+  }).then(function (response) {
+    resetOptions(petSelect);
+    petSelect.disabled = false;
+
+    for (var pet in response) {
+      var newOption = new Option(response[pet], pet);
+      petSelect.add(newOption);
+    }
+  })["catch"](function (error) {
+    console.error(error);
+  });
+});
+
+var resetOptions = function resetOptions(select) {
+  while (select.options.length > 0) {
+    select.remove(0);
+  }
+
+  var newOption = new Option('---', -1);
+  select.add(newOption);
+};
+
+/***/ }),
+
 /***/ "./resources/js/pages/settings.js":
 /*!****************************************!*\
   !*** ./resources/js/pages/settings.js ***!
@@ -29998,6 +30046,8 @@ process.umask = function() { return 0; };
 var map = {
 	"./fetch-example": "./resources/js/pages/fetch-example.js",
 	"./fetch-example.js": "./resources/js/pages/fetch-example.js",
+	"./home": "./resources/js/pages/home.js",
+	"./home.js": "./resources/js/pages/home.js",
 	"./settings": "./resources/js/pages/settings.js",
 	"./settings.js": "./resources/js/pages/settings.js"
 };

@@ -169,6 +169,5 @@
         </div>
     </form>
 
-
     @include('manager.customers.partials.modals')
 @endsection

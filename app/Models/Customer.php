@@ -54,4 +54,16 @@ class Customer extends Model
     }
 
     // Methods
+    public static function getList()
+    {
+        $customers = Customer::select('id', 'firstname', 'lastname', 'phone')->get()
+            ->map(function ($item) {
+                return ['key' => $item->id, 'value' => ucfirst($item->lastname) . ' ' . ucfirst($item->firstname) . (isset($item->phone) ? (' - ' . $item->phone): '')];
+            })
+            ->sortBy('value')
+            ->pluck('value', 'key')
+            ->toArray();
+
+        return [-1 => '---'] + $customers;
+    }
 }

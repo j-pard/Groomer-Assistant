@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::post('/get-pets', [CustomersController::class, 'getPetsOptions'])->name('getPetsOptions');
+
 Route::prefix('pets')->group(function () {
     Route::get('/', [PetsController::class, 'index'])->name('pets');
     Route::get('/new', [PetsController::class, 'create'])->name('newPet');

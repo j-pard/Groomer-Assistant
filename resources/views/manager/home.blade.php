@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['page' => 'home'])
 
 @section('content')
     <h4 class="mb-3">
@@ -6,7 +6,7 @@
     </h4>
 
     <div class="d-flex justify-content-start flex-wrap">
-        <div class="custom-card-m card-more border shadow rounded">
+        <div class="custom-card-m card-more border shadow rounded" type="button" data-bs-toggle="modal" data-bs-target="#newRdvModal">
             <div class="more-btn">+</div>
         </div>
 
@@ -35,3 +35,5 @@
         </div>
     </div>
 @endsection
+
+@include('manager.partials.modals')

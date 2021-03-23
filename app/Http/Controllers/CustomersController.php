@@ -111,4 +111,21 @@ class CustomersController extends Controller
 
         return redirect()->back()->with('status', 'Propriétaire ajouté avec succès.');
     }
+
+    /**
+     * Return related pets as options list
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function getPetsOptions(Request $request)
+    {
+        $customer = Customer::find($request->customerId);
+
+        if (isset($customer)) {
+            return $customer->pets()->orderBy('name')->pluck('name', 'id');
+        }
+
+        return [];
+    }
 }
