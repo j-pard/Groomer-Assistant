@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('manager.home');
+        return view('manager.home', [
+            'appointments' => Appointment::whereBetween('time', [
+                Carbon::now()->startOfDay(),
+                Carbon::now()->endOfDay()
+            ])->get()
+        ]);
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'settings'])
+@extends('manager.layouts.app', ['page' => 'settings'])
 
 @section('content')
     <header>

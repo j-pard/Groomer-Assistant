@@ -11825,6 +11825,12 @@ a .active {
   background-color: #ff0096 !important;
 }
 
+.text-muted {
+  color: gray;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
 .duration-inputs-container {
   display: flex;
   align-items: center;
@@ -11842,6 +11848,18 @@ a .active {
 .form-group,
 .form-control {
   margin-bottom: 12px;
+}
+
+.custom-img-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.default-avatar {
+  display: flex;
+  justify-content: center;
+  font-size: 70px;
+  color: lightgray;
 }
 
 table thead tr th:first-child,

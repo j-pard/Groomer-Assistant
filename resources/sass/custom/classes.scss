@@ -21,3 +21,9 @@ button, a {
 .nav-link.active {
     background-color: $pink !important;
 }
+
+.text-muted {
+    color: gray;
+    font-style: italic;
+    font-size: 0.8rem;
+}

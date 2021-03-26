@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\BreedsController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
@@ -40,6 +41,10 @@ Route::prefix('customers')->group(function () {
     Route::get('/{customer}/edit', [CustomersController::class, 'edit'])->name('editCustomer');
     Route::put('/update', [CustomersController::class, 'update'])->name('updateCustomer');
     Route::post('/attach', [CustomersController::class, 'attachPet'])->name('attachPet');
+});
+
+Route::prefix('appointments')->group(function () {
+    Route::post('/store', [AppointmentsController::class, 'store'])->name('storeAppointment');
 });
 
 Route::prefix('settings')->group(function () {

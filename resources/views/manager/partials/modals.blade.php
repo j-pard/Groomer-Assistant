@@ -1,7 +1,8 @@
+{{-- Create --}}
 <div class="modal fade" id="newRdvModal" tabindex="-1" aria-labelledby="newRdvModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
-            <form action="">
+            <form action="{{ route('storeAppointment') }}" method="POST">
                 @csrf
                 <input type="hidden" id="getPetsUrl" value="{{ route('getPetsOptions') }}">
 
@@ -63,7 +64,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn--primary">Sauver</button>
+                    <button type="submit" class="btn btn--primary">Sauver</button>
                 </div>
             </form>
         </div>

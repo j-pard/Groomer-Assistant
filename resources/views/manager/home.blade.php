@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'home'])
+@extends('manager.layouts.app', ['page' => 'home'])
 
 @section('content')
     <h4 class="mb-3">
@@ -10,29 +10,20 @@
             <div class="more-btn">+</div>
         </div>
 
-        <div class="custom-card-m border shadow rounded" data-toggle="modal" data-target="#petModal">
-            <h5>Leya</h5>
-            <div class="mid">
-                <i class="fas fa-paw"></i>
+        @foreach ($appointments as $appointment)
+            <div class="custom-card-m border shadow rounded" data-toggle="modal" data-target="#petModal">
+                <div class="text-center">
+                    <h5>{{ $appointment->pet->name }}</h5>
+                    <p class="text-muted">{{ $appointment->customer->firstname . ' ' . $appointment->customer->lastname }}</p>
+                </div>
+                <div class="mid">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <div class="tel"><i class="fas fa-phone-alt"></i>
+                    {{ $appointment->customer->phone ?? $appointment->customer->secondary_phone }}
+                </div>
             </div>
-            <div class="tel"><i class="fas fa-phone-alt"></i>0497/29.09.35</div>
-        </div>
-
-        <div class="custom-card-m border shadow rounded" data-toggle="modal" data-target="#petModal">
-            <h5>Cacahuète</h5>
-            <div class="mid">
-                <i class="fas fa-paw"></i>
-            </div>
-            <div class="tel"><i class="fas fa-phone-alt"></i>0471/39.23.01</div>
-        </div>
-
-        <div class="custom-card-m border shadow rounded" data-toggle="modal" data-target="#petModal">
-            <h5>Kiwi</h5>
-            <div class="mid">
-                <i class="fas fa-paw"></i>
-            </div>
-            <div class="tel"><i class="fas fa-phone-alt"></i>0471/39.23.01</div>
-        </div>
+        @endforeach
     </div>
 @endsection
 

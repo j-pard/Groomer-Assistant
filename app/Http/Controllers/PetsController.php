@@ -55,6 +55,9 @@ class PetsController extends Controller
             'remarks' => $request->remarks,
         ]);
 
+        $pet->addFromMediaLibraryRequest($request->avatar)
+            ->toMediaCollection('avatar');
+
         return redirect()->route('editPet', ['pet' => $pet])
             ->with('status', 'Enregistrement de ' . $request->name . ' réussi !');
     }
@@ -81,7 +84,7 @@ class PetsController extends Controller
      */
     public function update(Request $request)
     {
-        Pet::where('uuid', $request->petID)->update([
+        $pet = Pet::where('uuid', $request->petID)->update([
             'customer_id' => $request->customer,
             'name' => $request->name,
             'genre' => $request->genre,

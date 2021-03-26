@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('manager.layouts.app')
 
 @section('content')
     
@@ -95,7 +95,37 @@
                                 required
                             />
 
-                            <h3 class="mt-4 mb-3">Détails</h3>
+                            <h4 class="mt-4 mb-3">Compléments</h4>
+
+                            <div class="form-group d-flex flex-nowrap justify-content-between align-items-end">
+                                <div class="col-md-5">
+                                    <x-forms.select
+                                        label="Race 1"
+                                        name="mainBreed"
+                                        :model="isset($pet) ? $pet->mainBreed->id : App\Models\Breed::where('breed', 'Inconnu')->first()->id"
+                                        :options='$breeds'
+                                        required
+                                    />
+                                </div>
+                                <i class="fas fa-times h1 mx-3 my-auto"></i>
+                                <div class="col-md-5">
+                                    <x-forms.select
+                                        label="Race 2"
+                                        name="secondBreed"
+                                        :model="isset($pet) ? ( isset($pet->secondBreed) ? $pet->secondBreed->id : '' ) : ''"
+                                        :options='$breeds'
+                                    />
+                                </div>
+                            </div>
+
+                            <x-forms.select
+                                label="Taille"
+                                name="size"
+                                :model="isset($pet) ? $pet->size : ''"
+                                :options='App\Models\Pet::getSizeOptions()'
+                                required
+                            />
+
                             <div class="form-group">
                                 <label>Durée moyenne <span class="text-danger ml-1">*</span></label>
                                 <div class="duration-inputs-container">
@@ -119,36 +149,6 @@
                                     />
                                 </div>
                             </div>
-
-                            <div class="form-group d-flex flex-nowrap justify-content-between align-items-end">
-                                <div class="col-md-5">
-
-                                    <x-forms.select
-                                        label="Race 1"
-                                        name="mainBreed"
-                                        :model="isset($pet) ? $pet->mainBreed->id : App\Models\Breed::where('breed', 'Inconnu')->first()->id"
-                                        :options='$breeds'
-                                        required
-                                    />
-                                </div>
-                                <i class="fas fa-times h1"></i>
-                                <div class="col-md-5">
-                                    <x-forms.select
-                                        label="Race 2"
-                                        name="secondBreed"
-                                        :model="isset($pet) ? ( isset($pet->secondBreed) ? $pet->secondBreed->id : '' ) : ''"
-                                        :options='$breeds'
-                                    />
-                                </div>
-                            </div>
-
-                            <x-forms.select
-                                label="Taille"
-                                name="size"
-                                :model="isset($pet) ? $pet->size : ''"
-                                :options='App\Models\Pet::getSizeOptions()'
-                                required
-                            />
                             
                         </fieldset>
                     </div>
@@ -156,12 +156,34 @@
 
                 <div class="col-md-6">
                     <h3 class="mb-3">Détails</h3>
+
+                    {{-- <x-forms.input-image
+                        name="avatar"
+                        :model="isset($pet) ? $pet : ''"
+                    /> --}}
+
                     <div class="form-group">
                         <fieldset>
                             <label for="remarksInput">Remarques</label>
                             <textarea class="form-control" id="remarksInput" name="remarks" rows="10">{{ $pet->remarks ?? '' }}</textarea>
                         </fieldset>
                     </div>
+
+                    @if (isset($pet))
+                        <h3 class="mt-4 mb-3">
+                            Propriétaire
+                        </h3>
+                        <div class="form-group">
+                            <ul class="list-group list-unstyled">
+                                <li class="list-group-item">
+                                    <a class="list-group-item-action text-decoration-none p-2 mr-3" href="{{ route('editCustomer', ['customer' => $pet->customer]) }}">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <span>{{ $pet->customer->firstname . ' ' . $pet->customer->lastname }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
