@@ -78,21 +78,25 @@
                     icon="fas fa-calendar-alt"
                     :url="route('home')" 
                     section="calendar"
+                    :active="Route::currentRouteName() == 'home'"
                 />
                 <x-buttons.nav
                     icon="fas fa-paw"
                     :url="route('pets')"
                     section="pets"
+                    :active="Route::currentRouteName() == 'pets'"
                 />
                 <x-buttons.nav
                     icon="fas fa-users"
                     :url="route('customers')"
                     section="customers"
+                    :active="Route::currentRouteName() == 'customers'"
                 />
                 <x-buttons.nav
                     :icon="'fas fa-cog'"
                     :url="route('settings')"
                     section="settings"
+                    :active="Route::currentRouteName() == 'settings'"
                 />
             </nav>
         @endauth

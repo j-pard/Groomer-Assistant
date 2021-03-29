@@ -11693,11 +11693,15 @@ button:focus {
   margin: 0;
 }
 
+.nav-active {
+  color: #ff0096 !important;
+}
+
 .btn-nav {
   width: 40px;
   height: 60px;
   margin: 20px 0;
-  color: white !important;
+  color: white;
   font-size: 20px !important;
   display: flex !important;
   justify-content: center;
@@ -11706,7 +11710,7 @@ button:focus {
 }
 
 .btn-nav:hover {
-  color: #ff0096 !important;
+  color: #ff0096;
 }
 
 .btn--primary {
