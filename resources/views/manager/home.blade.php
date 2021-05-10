@@ -27,4 +27,4 @@
     </div>
 @endsection
 
-@include('manager.partials.modals')
+@include('manager.partials.appointment-modals')

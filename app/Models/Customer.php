@@ -50,6 +50,16 @@ class Customer extends Model
         return $this->hasMany(Pet::class);
     }
 
+    /**
+     * Get appointments of specified customer.
+     *
+     * @return void
+     */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
     // Methods
     public static function getList()
     {

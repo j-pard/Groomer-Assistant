@@ -96,6 +96,16 @@ class Pet extends Model implements HasMedia
         return $this->belongsTo(Breed::class, 'second_breed_id');
     }
 
+    /**
+     * Get appointments of specified pet.
+     *
+     * @return void
+     */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
     // Methods
 
     /**
