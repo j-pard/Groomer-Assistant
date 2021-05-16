@@ -39,10 +39,12 @@ class AppointmentsController extends Controller
         $appointment = Appointment::find($request->id);
 
         $appointment->update([
-            //
+            'time' => Carbon::parse($request->date . ' ' . $request->time),
+            'notes' => $request->notes,
+            'status' => $request->status,
         ]);
 
-        return redirect()->route('home')
+        return redirect()->back()
             ->with('status', 'Rendez-vous mit à jour.');
     }
 }

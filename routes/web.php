@@ -49,6 +49,7 @@ Route::prefix('groomer')->group(function () {
     
     Route::prefix('appointments')->group(function () {
         Route::post('/store', [AppointmentsController::class, 'store'])->name('storeAppointment');
+        Route::put('/update', [AppointmentsController::class, 'update'])->name('updateAppointment');
     });
     
     Route::prefix('settings')->group(function () {

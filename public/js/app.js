@@ -5023,7 +5023,9 @@ SELECT.addEventListener('change', function () {
 var customerSelect = document.getElementById('customerSelect');
 var petSelect = document.getElementById('petSelect');
 var getPetsUrl = document.getElementById('getPetsUrl').value;
-var TOKEN = document.getElementsByName('_token')[0].value; // Get pets for specified customer
+var TOKEN = document.getElementsByName('_token')[0].value;
+var petBtns = Array.from(document.getElementsByClassName('js-pet-modal'));
+var petModal = document.getElementById('petModal'); // Get pets for specified customer
 
 customerSelect.addEventListener('change', function (e) {
   e.preventDefault();
@@ -5058,7 +5060,46 @@ var resetOptions = function resetOptions(select) {
 
   var newOption = new Option('---', -1);
   select.add(newOption);
-};
+}; // Pet Modal
+
+
+petBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    var data = JSON.parse(btn.querySelector('.js-values').value);
+    document.getElementById('petModalLabel').textContent = data.pet;
+    petModal.querySelector('input[name="id"]').value = data.id;
+    petModal.querySelector('input[name="date"]').value = data.date;
+    petModal.querySelector('input[name="time"]').value = data.hours;
+    petModal.querySelector('input[name="customerName"]').value = data.customer;
+    petModal.querySelector('select[name="status"]').value = data.status;
+    petModal.querySelector('textarea[name="notes"]').value = data.notes;
+    new bootstrap.Modal(petModal).show();
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/pages/pet.js":
+/*!***********************************!*\
+  !*** ./resources/js/pages/pet.js ***!
+  \***********************************/
+/***/ (() => {
+
+var apptBtns = Array.from(document.getElementsByClassName('js-appt-modal'));
+var apptModal = document.getElementById('apptModal'); // Pet Modal
+
+apptBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    apptModal.querySelector('input[name="id"]').value = btn.querySelector('input[name="data-id"]').value;
+    apptModal.querySelector('input[name="date"]').value = btn.querySelector('input[name="data-date"]').value;
+    apptModal.querySelector('input[name="time"]').value = btn.querySelector('input[name="data-time"]').value;
+    apptModal.querySelector('select[name="status"]').value = btn.querySelector('input[name="data-status"]').value;
+    apptModal.querySelector('textarea[name="notes"]').value = btn.querySelector('input[name="data-notes"]').value;
+    new bootstrap.Modal(apptModal).show();
+  });
+});
 
 /***/ }),
 
@@ -12882,6 +12923,8 @@ var map = {
 	"./fetch-example.js": "./resources/js/pages/fetch-example.js",
 	"./home": "./resources/js/pages/home.js",
 	"./home.js": "./resources/js/pages/home.js",
+	"./pet": "./resources/js/pages/pet.js",
+	"./pet.js": "./resources/js/pages/pet.js",
 	"./settings": "./resources/js/pages/settings.js",
 	"./settings.js": "./resources/js/pages/settings.js"
 };

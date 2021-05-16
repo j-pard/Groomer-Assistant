@@ -11,17 +11,45 @@
         </div>
 
         @foreach ($appointments as $appointment)
-            <div class="custom-card-m border shadow rounded" data-toggle="modal" data-target="#petModal">
+            <div class="custom-card-m border shadow rounded js-pet-modal">
                 <div class="text-center">
                     <h5>{{ $appointment->pet->name }}</h5>
                     <p class="text-muted">{{ $appointment->customer->firstname . ' ' . $appointment->customer->lastname }}</p>
                 </div>
                 <div class="mid">
-                    <i class="fas fa-paw"></i>
+                    @switch($appointment->status)
+                        @case('cash')
+                        @case('private')
+                            <i class="fas fa-euro-sign"></i>
+                            @break
+                        @case('payconiq')
+                            <i class="fas fa-qrcode"></i>
+                            @break
+                        @case('bank')
+                            <i class="fas fa-credit-card"></i>
+                            @break
+                        @case('voucher')
+                            <i class="fas fa-percentage"></i>                            
+                            @break
+                        @case('not paid')
+                            <i class="fas fa-exclamation"></i>
+                            @break
+                        @case('cancelled')
+                            <i class="fas fa-user-alt-slash"></i>
+                            @break
+                        @default
+                            <i class="fas fa-paw"></i>
+                    @endswitch
                 </div>
                 <div class="tel"><i class="fas fa-phone-alt"></i>
                     {{ $appointment->customer->phone ?? $appointment->customer->secondary_phone }}
                 </div>
+                <input type="hidden" class="d-none js-values" value="{{ json_encode($appointment->getAttributes() + [
+                    'date' =>  Carbon\Carbon::parse($appointment->time)->format('Y-m-d'),
+                    'hours' => Carbon\Carbon::parse($appointment->time)->format('h:i'),
+                    'customer' => $appointment->customer->firstname . ' ' . $appointment->customer->lastname,
+                    'pet' => $appointment->pet->name,
+                ]) }}">
             </div>
         @endforeach
     </div>

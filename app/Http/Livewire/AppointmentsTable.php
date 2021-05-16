@@ -35,9 +35,13 @@ class AppointmentsTable extends TableComponent
             Column::make('')
             ->format(function(Appointment $model) {
                 return $this->html(
-                    
-                    '<div class="text-center" type="button" data-bs-toggle="modal" data-bs-target="">
+                    '<div class="text-center js-appt-modal" type="button">
                         <i class="fas fa-eye"></i>
+                        <input type="hidden" name="data-id" value="' . $model->id . '">
+                        <input type="hidden" name="data-date" value="' . Carbon::parse($model->time)->format('Y-m-d') . '">
+                        <input type="hidden" name="data-time" value="' . Carbon::parse($model->time)->format('h:i') . '">
+                        <input type="hidden" name="data-status" value="' . $model->status . '">
+                        <input type="hidden" name="data-notes" value="' . $model->notes . '">
                     </div>'
                 );
             }),
@@ -46,20 +50,20 @@ class AppointmentsTable extends TableComponent
                 ->searchable()
                 ->sortable()
                 ->format(function(Appointment $model) {
-                    return Carbon::parse($model->time)->format('m-d-Y h:i');
+                    return Carbon::parse($model->time)->format('d-m-Y h:i');
                 }),
 
             Column::make('Status', 'status')
                 ->sortable()
                 ->format(function(Appointment $model) {
                     switch ($model->status) {
-                        case 'paid':
+                        case 'planned':
                             return $this->html(
-                                '<span class="badge rounded-pill bg-success">Payé</span>'
+                                '<span class="badge rounded-pill bg-secondary">Planifié</span>'
                             );
                             break;
 
-                        case 'not-paid':
+                        case 'not paid':
                             return $this->html(
                                 '<span class="badge rounded-pill bg-danger">Non payé</span>'
                             );
@@ -73,7 +77,7 @@ class AppointmentsTable extends TableComponent
                         
                         default:
                             return $this->html(
-                                '<span class="badge rounded-pill bg-secondary">Planifié</span>'
+                                '<span class="badge rounded-pill bg-success">Payé</span>'
                             );
                             break;
                     }

@@ -1,4 +1,4 @@
-@extends('manager.layouts.app')
+@extends('manager.layouts.app', ['page' => 'pet'])
 
 @section('content')
 
@@ -27,15 +27,15 @@
     @include('manager.partials.session-message')
 
     
-    <form action="{{ isset($pet) ? route('updatePet') : route('storePet') }}" method="POST">
-        @csrf
-        @if (isset($pet))
-            @method('PUT')
-            <input type="hidden" name="petID" value="{{ $pet->uuid }}">
-        @endif
-
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-form" role="tabpanel" aria-labelledby="pills-form-tab">
+    
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-form" role="tabpanel" aria-labelledby="pills-form-tab">
+            <form action="{{ isset($pet) ? route('updatePet') : route('storePet') }}" method="POST">
+                @csrf
+                @if (isset($pet))
+                    @method('PUT')
+                    <input type="hidden" name="petID" value="{{ $pet->uuid }}">
+                @endif
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -201,22 +201,22 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="tab-pane fade" id="pills-dates" role="tabpanel" aria-labelledby="pills-dates-tab">
-                <div class="card-body">
-                    <livewire:appointments-table :pet="$pet" />
+                <div class="form-actions-buttons">
+                    <button type="submit" class="btn btn--primary btn-circle">
+                        <i class="far fa-save"></i>
+                    </button>
                 </div>
-            </div>
-        </div>
-        
-        <div class="form-actions-buttons">
-            <button type="submit" class="btn btn--primary btn-circle">
-                <i class="far fa-save"></i>
-            </button>
+            </form>
         </div>
 
-        @include('manager.partials.appointment-modals')
-    </form>
+        <div class="tab-pane fade" id="pills-dates" role="tabpanel" aria-labelledby="pills-dates-tab">
+            <div class="card-body">
+                <livewire:appointments-table :pet="$pet" />
+            </div>
+        </div>
+    </div>
+        
+
+    @include('manager.pets.partials.appointment-modals')
 
 @endsection

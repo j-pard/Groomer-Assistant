@@ -23,14 +23,17 @@
         @if (isset($value))
             value="{{ $value }}"
         @endif
-        @if ($type === 'number' && isset($min))
+        @if (isset($min))
             min="{{ $min }}"
         @endif
-        @if ($type === 'number' && isset($max))
+        @if (isset($max))
             max="{{ $max }}"
         @endif
         {{ $required ? 'required' : '' }}
         {{ $readonly ? 'readonly' : '' }}
         {{ $disabled ? 'disabled' : '' }}
+        @if (isset($step))
+            step="{{ $step }}"
+        @endif
     >
 </div>

@@ -3,6 +3,9 @@ const petSelect = document.getElementById('petSelect');
 const getPetsUrl = document.getElementById('getPetsUrl').value;
 const TOKEN = document.getElementsByName('_token')[0].value;
 
+const petBtns = Array.from(document.getElementsByClassName('js-pet-modal'));
+const petModal = document.getElementById('petModal');
+
 // Get pets for specified customer
 customerSelect.addEventListener('change', (e) => {
     e.preventDefault();
@@ -41,3 +44,22 @@ const resetOptions = (select) => {
     let newOption = new Option('---', -1);
     select.add(newOption);
 }
+
+// Pet Modal
+petBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        let data = JSON.parse(btn.querySelector('.js-values').value);
+        
+        document.getElementById('petModalLabel').textContent = data.pet;
+        petModal.querySelector('input[name="id"]').value = data.id;
+        petModal.querySelector('input[name="date"]').value = data.date;
+        petModal.querySelector('input[name="time"]').value = data.hours;
+        petModal.querySelector('input[name="customerName"]').value = data.customer;
+        petModal.querySelector('select[name="status"]').value = data.status;
+        petModal.querySelector('textarea[name="notes"]').value = data.notes;
+
+        new bootstrap.Modal(petModal).show();
+    });
+});

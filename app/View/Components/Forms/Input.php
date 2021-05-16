@@ -18,6 +18,7 @@ class Input extends Component
     public ?string $value;
     public ?string $min  = '';
     public ?string $max  = '';
+    public ?string $step  = '';
 
     /**
      * Create a new component instance.
@@ -36,7 +37,8 @@ class Input extends Component
         $disabled = false,
         $value = null,
         $min = null,
-        $max = null
+        $max = null,
+        $step = null
     ) {
         $this->name = $name;
         $this->label = $label;
@@ -50,6 +52,7 @@ class Input extends Component
         $this->value = $value;
         $this->min = $min;
         $this->max = $max;
+        $this->step = $step;
     }
 
     /**

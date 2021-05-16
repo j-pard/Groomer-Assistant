@@ -25,11 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $appointments = Appointment::whereBetween('time', [
+            Carbon::now()->startOfDay(),
+            Carbon::now()->endOfDay()
+        ])->get();
+
         return view('manager.home', [
-            'appointments' => Appointment::whereBetween('time', [
-                Carbon::now()->startOfDay(),
-                Carbon::now()->endOfDay()
-            ])->get()
+            'appointments' => $appointments,
         ]);
     }
 }

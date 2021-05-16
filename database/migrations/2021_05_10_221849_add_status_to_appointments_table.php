@@ -14,7 +14,16 @@ class AddStatusToAppointmentsTable extends Migration
     public function up()
     {
         Schema::table('appointments', function (Blueprint $table) {
-            $table->enum('status', ['planned', 'paid', 'not-paid', 'cancelled'])->after('notes')->default('planned');
+            $table->enum('status', [
+                'planned',
+                'cash',
+                'payconiq',
+                'bank',
+                'private',
+                'voucher',
+                'not paid',
+                'cancelled'
+            ])->after('notes')->default('planned');
         });
     }
 

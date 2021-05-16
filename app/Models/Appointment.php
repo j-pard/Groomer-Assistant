@@ -17,7 +17,43 @@ class Appointment extends Model
         'pet_id',
         'time',
         'notes',
+        'status',
     ];
+
+    /**
+     * Enum values for status
+     *
+     * @var array
+     */
+    protected $status = [
+        0 => 'planned',
+        1 => 'cash',
+        2 => 'payconiq',
+        3 => 'bank',
+        4 => 'private',
+        5 => 'voucher',
+        6 => 'not paid',
+        7 => 'cancelled',
+    ];
+
+    /**
+     * Return status as option key => value
+     *
+     * @var array
+     */
+    public static function getStatusAsOptions()
+    {
+        return [
+            'planned' => 'En attente',
+            'cash' => 'Cash',
+            'payconiq' => 'Payconiq',
+            'bank' => 'Virement',
+            'private' => 'Privé',
+            'voucher' => 'Voucher',
+            'not paid' => 'Non payé',
+            'cancelled' => 'Annulé',
+        ];
+    }
 
     // Relations
 
