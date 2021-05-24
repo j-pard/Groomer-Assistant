@@ -17,7 +17,7 @@ class CustomerAppointmentsTable extends TableComponent
 
     public $sortField = 'time';
     public $sortDirection = 'desc';
-    public $pet;
+    public $customer;
 
     public function mount($customer)
     {
@@ -54,12 +54,9 @@ class CustomerAppointmentsTable extends TableComponent
                     return Carbon::parse($model->time)->format('d-m-Y H:i');
                 }),
 
-            Column::make('Chien')
+            Column::make('Nom', 'pet.name')
                 ->searchable()
-                ->sortable()
-                ->format(function(Appointment $model) {
-                    return $model->pet->name;
-                }),
+                ->sortable(),
 
             Column::make('Status', 'status')
                 ->sortable()

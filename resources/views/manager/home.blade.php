@@ -6,6 +6,7 @@
             Bonjour <span class="text-pink">{{ Auth::user()->name }}</span>, voici tes rendez-vous de la journée.
         </h4>
         <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#calendarModal">
+            <span>{{ $day }}</span>
             <i class="far fa-calendar-alt h4"></i>
         </button>          
     </div>

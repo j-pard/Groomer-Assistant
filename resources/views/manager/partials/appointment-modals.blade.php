@@ -148,20 +148,28 @@
 
 {{-- Date picker --}}
 <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form action="{{ route('updateAppointment') }}" method="POST">
-                @csrf
-                @method('PUT')
+            <form action="{{ route('home') }}" method="GET">
                 <div class="modal-header">
                     <h5 class="modal-title" id="calendarModalLabel">Calendrier</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <x-forms.input
+                                label="Selectionner un jour"
+                                name="day"
+                                type="date"
+                                :value="Carbon\Carbon::parse($day)->format('Y-m-d')"
+                                required
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                     <button type="submit" class="btn btn--primary">Voir</button>
                 </div>
             </form>
