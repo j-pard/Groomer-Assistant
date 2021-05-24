@@ -25,6 +25,12 @@
                             <i class="fas fa-cog text-secondary h4 m-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li>
+                                    <li>
+                                        <a class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#petApptModal">
+                                            <i class="fas fa-calendar-plus text-secondary me-3"></i>Nouveau RDV
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
                                     <a class="dropdown-item js-confirm-delete" role="button" data-pet-id="{{ $pet->id }}">
                                         <i class="fas fa-trash text-secondary me-3"></i>Supprimer
                                     </a>

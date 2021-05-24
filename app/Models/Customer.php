@@ -73,4 +73,20 @@ class Customer extends Model
 
         return [-1 => '---'] + $customers;
     }
+
+    /**
+     * Return pets list as options
+     *
+     * @return array
+     */
+    public function getPetsAsOptions()
+    {
+        return $this->pets
+            ->map(function ($pet) {
+                return ['key' => $pet->id, 'value' => $pet->name];
+            })
+            ->sortBy('value')
+            ->pluck('value', 'key')
+            ->toArray();
+    }
 }

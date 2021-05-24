@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Customer;
 use App\Models\Pet;
 use Carbon\Carbon;
@@ -138,9 +139,10 @@ class CustomersController extends Controller
 
         return redirect()->back()->with('status', 'Propriétaire enlevé avec succès.');
     }
-
+    
     /**
      * Return related pets as options list
+     * Specific method for dynamic appointments
      *
      * @param Request $request
      * @return array

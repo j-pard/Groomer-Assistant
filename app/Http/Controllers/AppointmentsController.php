@@ -26,7 +26,7 @@ class AppointmentsController extends Controller
             'notes' => $request->notes,
         ]);
 
-        return redirect()->route('home')
+        return redirect()->back()
             ->with('status', 'Rendez-vous ajouté.');
     }
 

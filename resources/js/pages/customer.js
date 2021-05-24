@@ -5,6 +5,7 @@ const detachModal = document.getElementById('detachPetModal');
 const deleteBtns = Array.from(document.getElementsByClassName('js-confirm-delete'));
 const deleteModal = document.getElementById('deleteCustomerModal');
 
+// Appointments edit
 apptBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
