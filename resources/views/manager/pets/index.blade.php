@@ -8,6 +8,8 @@
         </div>
     </header>
 
+    @include('manager.partials.session-message')
+    
     <div>
         <livewire:pets-table />
     </div>

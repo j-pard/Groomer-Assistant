@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class CustomersController extends Controller
 {
     /**
-     * Show pets index
+     * Show customers index
      *
      * @return view
      */
@@ -21,17 +21,19 @@ class CustomersController extends Controller
     }
     
     /**
-     * Show pet creation interface
+     * Show customer creation interface
      *
      * @return view
      */
     public function create()
     {
-        return view('manager.customers.form');
+        return view('manager.customers.form', [
+            'customer' => null
+        ]);
     }
 
     /**
-     * Store new pet
+     * Store new customer
      *
      */
     public function store(Request $request)
@@ -55,9 +57,9 @@ class CustomersController extends Controller
     }
 
     /**
-     * Show pet edition interface
+     * Show customer edition interface
      *
-     * @param Pet $pet
+     * @param Customer $customer
      * @return view
      */
     public function edit(Customer $customer)
@@ -68,7 +70,7 @@ class CustomersController extends Controller
     }
 
     /**
-     * Update existing pet
+     * Update existing customer
      *
      */
     public function update(Request $request)
@@ -90,16 +92,24 @@ class CustomersController extends Controller
     }
 
     /**
-     * Delete existing pet
+     * Delete existing customer
      *
      */
-    public function delete()
+    public function delete(Request $request)
     {
+        $customer = Customer::find($request->customerId);
 
+        if ($customer->pets()->count() > 0 || $customer->appointments()->count() > 0) {
+            return redirect()->back()->with('error', 'Suppression impossible, il existe des données pour ce client.');
+        }
+
+        $customer->delete();
+        
+        return redirect()->route('customers')->with('status', 'Suppression réussie !');
     }
 
     /**
-     * Attach specified customer to specified pet
+     * Attach specified pet to specified customer
      *
      * @param Request $request
      */
@@ -110,6 +120,23 @@ class CustomersController extends Controller
         ]);
 
         return redirect()->back()->with('status', 'Propriétaire ajouté avec succès.');
+    }
+
+    /**
+     * Detach specified pet to specified customer
+     *
+     * @param Request $request
+     */
+    public function detachPet(Request $request)
+    {
+        Pet::where([
+            'id' => $request->petId,
+            'customer_id' => $request->customerId,
+        ])->update([
+            'customer_id' => null
+        ]);
+
+        return redirect()->back()->with('status', 'Propriétaire enlevé avec succès.');
     }
 
     /**

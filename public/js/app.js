@@ -4985,6 +4985,48 @@ __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap
 
 /***/ }),
 
+/***/ "./resources/js/pages/customer.js":
+/*!****************************************!*\
+  !*** ./resources/js/pages/customer.js ***!
+  \****************************************/
+/***/ (() => {
+
+var apptBtns = Array.from(document.getElementsByClassName('js-appt-modal'));
+var apptModal = document.getElementById('apptModal');
+var detachBtns = Array.from(document.getElementsByClassName('js-confirm-detach'));
+var detachModal = document.getElementById('detachPetModal');
+var deleteBtns = Array.from(document.getElementsByClassName('js-confirm-delete'));
+var deleteModal = document.getElementById('deleteCustomerModal');
+apptBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    apptModal.querySelector('h5.modal-title').value = btn.querySelector('input[name="data-pet-name"]').value + ' - Détails';
+    apptModal.querySelector('input[name="date"]').value = btn.querySelector('input[name="data-date"]').value;
+    apptModal.querySelector('input[name="time"]').value = btn.querySelector('input[name="data-time"]').value;
+    apptModal.querySelector('select[name="status"]').value = btn.querySelector('input[name="data-status"]').value;
+    apptModal.querySelector('textarea[name="notes"]').value = btn.querySelector('input[name="data-notes"]').value;
+    new bootstrap.Modal(apptModal).show();
+  });
+}); // Pet Modal
+
+detachBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    detachModal.querySelector('input[name="petId"]').value = btn.getAttribute('data-pet-id');
+    new bootstrap.Modal(detachModal).show();
+  });
+}); // Delete Customer Modal
+
+deleteBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    deleteModal.querySelector('input[name="customerId"]').value = btn.getAttribute('data-customer-id');
+    new bootstrap.Modal(deleteModal).show();
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/pages/fetch-example.js":
 /*!*********************************************!*\
   !*** ./resources/js/pages/fetch-example.js ***!
@@ -5087,7 +5129,9 @@ petBtns.forEach(function (btn) {
 /***/ (() => {
 
 var apptBtns = Array.from(document.getElementsByClassName('js-appt-modal'));
-var apptModal = document.getElementById('apptModal'); // Pet Modal
+var apptModal = document.getElementById('apptModal');
+var deleteBtns = Array.from(document.getElementsByClassName('js-confirm-delete'));
+var deleteModal = document.getElementById('deletePetModal'); // Detach Pet Modal
 
 apptBtns.forEach(function (btn) {
   btn.addEventListener('click', function (e) {
@@ -5098,6 +5142,14 @@ apptBtns.forEach(function (btn) {
     apptModal.querySelector('select[name="status"]').value = btn.querySelector('input[name="data-status"]').value;
     apptModal.querySelector('textarea[name="notes"]').value = btn.querySelector('input[name="data-notes"]').value;
     new bootstrap.Modal(apptModal).show();
+  });
+}); // Delete Pet Modal
+
+deleteBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    deleteModal.querySelector('input[name="petId"]').value = btn.getAttribute('data-pet-id');
+    new bootstrap.Modal(deleteModal).show();
   });
 });
 
@@ -12919,6 +12971,8 @@ process.umask = function() { return 0; };
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./customer": "./resources/js/pages/customer.js",
+	"./customer.js": "./resources/js/pages/customer.js",
 	"./fetch-example": "./resources/js/pages/fetch-example.js",
 	"./fetch-example.js": "./resources/js/pages/fetch-example.js",
 	"./home": "./resources/js/pages/home.js",

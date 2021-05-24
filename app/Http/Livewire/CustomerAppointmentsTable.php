@@ -11,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Traits\Options;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class AppointmentsTable extends TableComponent
+class CustomerAppointmentsTable extends TableComponent
 {
     use HtmlComponents, Options;
 
@@ -19,14 +19,14 @@ class AppointmentsTable extends TableComponent
     public $sortDirection = 'desc';
     public $pet;
 
-    public function mount($pet)
+    public function mount($customer)
     {
-        $this->pet = $pet;
+        $this->customer = $customer;
     }
 
     public function query() : Builder
     {
-        return Appointment::where('pet_id', $this->pet->id);
+        return Appointment::where('customer_id', $this->customer->id);
     }
 
     public function columns() : array
@@ -42,6 +42,7 @@ class AppointmentsTable extends TableComponent
                         <input type="hidden" name="data-time" value="' . Carbon::parse($model->time)->format('H:i') . '">
                         <input type="hidden" name="data-status" value="' . $model->status . '">
                         <input type="hidden" name="data-notes" value="' . $model->notes . '">
+                        <input type="hidden" name="data-pet-name" value="' . $model->pet->name . '">
                     </div>'
                 );
             }),
@@ -51,6 +52,13 @@ class AppointmentsTable extends TableComponent
                 ->sortable()
                 ->format(function(Appointment $model) {
                     return Carbon::parse($model->time)->format('d-m-Y H:i');
+                }),
+
+            Column::make('Chien')
+                ->searchable()
+                ->sortable()
+                ->format(function(Appointment $model) {
+                    return $model->pet->name;
                 }),
 
             Column::make('Status', 'status')

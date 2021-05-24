@@ -18,7 +18,7 @@ class AppointmentsController extends Controller
     public function store(Request $request)
     {
         $datetime = $request->date . ' ' . $request->time;
-        //dd($datetime);
+
         Appointment::create([
             'customer_id' => $request->customer,
             'pet_id' => $request->pet,
@@ -37,9 +37,10 @@ class AppointmentsController extends Controller
     public function update(Request $request)
     {
         $appointment = Appointment::find($request->id);
-
+        $datetime = $request->date . ' ' . $request->time;
+        
         $appointment->update([
-            'time' => Carbon::parse($request->date . ' ' . $request->time),
+            'time' => Carbon::createFromFormat('Y-m-d H:i', $datetime, 'Europe/Brussels')->toDateTimeString(),
             'notes' => $request->notes,
             'status' => $request->status,
         ]);

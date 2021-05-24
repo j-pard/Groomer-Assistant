@@ -7,27 +7,38 @@
             <div class="d-flex align-items-center">
                 <a class="btn btn-transparent circle" href="{{ route('pets') }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
                 @if (isset($pet))
-                    <h2 class="mb-0">{{ $pet->name }}</h2>
-                @else
-                    <h2 class="mb-0"><span class="text-pink">New</span> pet</h2>
+                    <h2 class="mb-0 text-nowrap">{{ $pet->name }}</h2>
                 @endif
             </div>
 
-            <ul class="nav nav-pills d-flex justify-content-end" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills d-flex justify-content-end align-items-center" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="pills-form-tab" data-bs-toggle="pill" data-bs-target="#pills-form" type="button" role="tab" aria-controls="pills-form" aria-selected="true">Détails</button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-dates-tab" data-bs-toggle="pill" data-bs-target="#pills-dates" type="button" role="tab" aria-controls="pills-dates" aria-selected="false">Rendez-vous</button>
-                </li>
+                @if (isset($pet))
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-dates-tab" data-bs-toggle="pill" data-bs-target="#pills-dates" type="button" role="tab" aria-controls="pills-dates" aria-selected="false">Rendez-vous</button>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="dropdown d-flex align-items-center">
+                            <i class="fas fa-cog text-secondary h4 m-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item js-confirm-delete" role="button" data-pet-id="{{ $pet->id }}">
+                                        <i class="fas fa-trash text-secondary me-3"></i>Supprimer
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
             </ul>
         </div>
     </header>
 
     @include('manager.partials.session-message')
 
-    
-    
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-form" role="tabpanel" aria-labelledby="pills-form-tab">
             <form action="{{ isset($pet) ? route('updatePet') : route('storePet') }}" method="POST">
@@ -159,6 +170,7 @@
                                                 placeholder="00"
                                                 min="0"
                                                 max="59"
+                                                step="5"
                                                 required
                                             />
                                         </div>
@@ -171,11 +183,6 @@
                         <div class="col-md-6">
                             <h3 class="mb-3">Détails</h3>
         
-                            {{-- <x-forms.input-image
-                                name="avatar"
-                                :model="isset($pet) ? $pet : ''"
-                            /> --}}
-        
                             <div class="form-group">
                                 <fieldset>
                                     <label for="remarksInput">Remarques</label>
@@ -183,7 +190,7 @@
                                 </fieldset>
                             </div>
         
-                            @if (isset($pet))
+                            @if (isset($pet) && isset($pet->customer))
                                 <h3 class="mt-4 mb-3">
                                     Propriétaire
                                 </h3>
@@ -197,6 +204,10 @@
                                         </li>
                                     </ul>
                                 </div>
+                            @elseif (isset($pet))
+                                <h3 class="mt-4 mb-3">
+                                    <i class="fas fa-exclamation-triangle text-warning me-3"></i>Sans collier
+                                </h3>
                             @endif
                         </div>
                     </div>
@@ -209,14 +220,17 @@
             </form>
         </div>
 
-        <div class="tab-pane fade" id="pills-dates" role="tabpanel" aria-labelledby="pills-dates-tab">
-            <div class="card-body">
-                <livewire:appointments-table :pet="$pet" />
+        @if (isset($pet))
+            <div class="tab-pane fade" id="pills-dates" role="tabpanel" aria-labelledby="pills-dates-tab">
+                <div class="card-body">
+                    <livewire:appointments-table :pet="$pet" />
+                </div>
             </div>
-        </div>
+        @endif
     </div>
         
-
-    @include('manager.pets.partials.appointment-modals')
+    @if (isset($pet))
+        @include('manager.pets.partials.modals')
+    @endif
 
 @endsection

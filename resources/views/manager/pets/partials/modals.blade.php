@@ -63,3 +63,30 @@
         </div>
     </div>
 </div>
+
+{{-- Delete Pet Modal --}}
+<div class="modal fade" id="deletePetModal" tabindex="-1" aria-labelledby="deletePetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ route('deletePet') }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="petId" value="">
+
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title text-white" id="deletePetModalLabel">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        Supprimer définitevement l'animal ?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-danger text-light">Supprimer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

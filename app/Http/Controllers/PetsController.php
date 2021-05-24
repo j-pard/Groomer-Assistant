@@ -29,6 +29,7 @@ class PetsController extends Controller
     public function create()
     {
         return view('manager.pets.form', [
+            'pet' => null,
             'statusItems' => Pet::getStatus(),
             'customers' => Customer::orderBy('lastname')->orderBy('firstname')->get(),
             'breeds' => [-1 => '---'] + Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray(),
@@ -54,9 +55,6 @@ class PetsController extends Controller
             'size' => $request->size,
             'remarks' => $request->remarks,
         ]);
-
-        $pet->addFromMediaLibraryRequest($request->avatar)
-            ->toMediaCollection('avatar');
 
         return redirect()->route('editPet', ['pet' => $pet])
             ->with('status', 'Enregistrement de ' . $request->name . ' réussi !');
@@ -104,8 +102,10 @@ class PetsController extends Controller
      * Delete existing pet
      *
      */
-    public function delete()
+    public function delete(Request $request)
     {
+        Pet::find($request->petId)->delete();
 
+        return redirect()->route('pets')->with('status', 'Suppression réussie !');
     }
 }
