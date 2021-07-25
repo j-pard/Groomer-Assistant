@@ -53,7 +53,7 @@ class CustomersController extends Controller
             'more_info' => $request->more_info,
         ]);
 
-        return redirect()->route('editCustomer', ['customer' => $customer])
+        return redirect()->route('customers.edit', ['customer' => $customer])
             ->with('status', 'Nouveau client ajouté.');
     }
 
@@ -106,7 +106,7 @@ class CustomersController extends Controller
 
         $customer->delete();
         
-        return redirect()->route('customers')->with('status', 'Suppression réussie !');
+        return redirect()->route('customers.index')->with('status', 'Suppression réussie !');
     }
 
     /**

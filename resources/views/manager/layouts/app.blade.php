@@ -85,21 +85,21 @@
                 />
                 <x-buttons.nav
                     icon="fas fa-paw"
-                    :url="route('pets')"
+                    :url="route('pets.index')"
                     section="pets"
-                    :active="Route::currentRouteName() == 'pets'"
+                    :active="Str::startsWith(Route::currentRouteName(), 'pets.')"
                 />
                 <x-buttons.nav
                     icon="fas fa-users"
-                    :url="route('customers')"
+                    :url="route('customers.index')"
                     section="customers"
-                    :active="Route::currentRouteName() == 'customers'"
+                    :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
                 />
                 <x-buttons.nav
                     :icon="'fas fa-cog'"
-                    :url="route('settings')"
+                    :url="route('settings.index')"
                     section="settings"
-                    :active="Route::currentRouteName() == 'settings'"
+                    :active="Str::startsWith(Route::currentRouteName(), 'settings.')"
                 />
             </nav>
         @endauth

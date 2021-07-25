@@ -30,7 +30,7 @@ class PetsTable extends TableComponent
                         'items' => [
                             'edit' => [
                                 'icon' => 'fas fa-pen',
-                                'url' => route('editPet', ['pet' => $model])
+                                'url' => route('pets.edit', ['pet' => $model])
                             ]
                         ]
                     ]);

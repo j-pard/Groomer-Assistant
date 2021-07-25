@@ -2,7 +2,7 @@
 <div class="modal fade" id="customerApptModal" tabindex="-1" aria-labelledby="customerApptModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
-            <form action="{{ route('storeAppointment') }}" method="POST">
+            <form action="{{ route('appointments.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="customer" value="{{ $customer->id }}">
 
@@ -75,7 +75,7 @@
 <div class="modal fade" id="apptModal" tabindex="-1" aria-labelledby="apptModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
-            <form action="{{ route('updateAppointment') }}" method="POST">
+            <form action="{{ route('appointments.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="d-none">
@@ -141,7 +141,7 @@
 <div class="modal fade" id="addPetModal" tabindex="-1" aria-labelledby="addPetModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('attachPet') }}" method="post">
+            <form action="{{ route('customers.pets.attach') }}" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addPetModalLabel">Selectionner un animal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -177,7 +177,7 @@
 <div class="modal fade" id="detachPetModal" tabindex="-1" aria-labelledby="detachPetModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('detachPet') }}" method="post">
+            <form action="{{ route('customers.pets.detach') }}" method="post">
                 @csrf
                 <input type="hidden" name="customerId" value="{{ $customer->id }}">
                 <input type="hidden" name="petId" value="">

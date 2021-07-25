@@ -5,7 +5,7 @@
     <header class="row">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-                <a class="btn btn-transparent circle" href="{{ route('pets') }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
+                <a class="btn btn-transparent circle" href="{{ route('pets.index') }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
                 @if (isset($pet))
                     <h2 class="mb-0 text-nowrap">{{ $pet->name }}</h2>
                 @endif
@@ -49,7 +49,7 @@
 
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-form" role="tabpanel" aria-labelledby="pills-form-tab">
-            <form action="{{ isset($pet) ? route('updatePet') : route('storePet') }}" method="POST">
+            <form action="{{ isset($pet) ? route('pets.update') : route('pets.store') }}" method="POST">
                 @csrf
                 @if (isset($pet))
                     @method('PUT')
@@ -205,7 +205,7 @@
                                 <div class="form-group">
                                     <ul class="list-group list-unstyled">
                                         <li class="list-group-item">
-                                            <a class="list-group-item-action text-decoration-none p-2 mr-3" href="{{ route('editCustomer', ['customer' => $pet->customer]) }}">
+                                            <a class="list-group-item-action text-decoration-none p-2 mr-3" href="{{ route('customers.edit', ['customer' => $pet->customer]) }}">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </a>
                                             <span>{{ $pet->customer->firstname . ' ' . $pet->customer->lastname }}</span>

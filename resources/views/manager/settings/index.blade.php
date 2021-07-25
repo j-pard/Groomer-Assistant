@@ -19,7 +19,7 @@
 
         <div class="tab-pane fade" id="pills-breeds" role="tabpanel" aria-labelledby="pills-breeds-tab">
             <div>
-                <form id="breedForm" action="{{ route('updateBreed') }}" method="POST">
+                <form id="breedForm" action="{{ route('settings.breed.update') }}" method="POST">
                     @csrf
                     <livewire:breeds-table />
                 </form>

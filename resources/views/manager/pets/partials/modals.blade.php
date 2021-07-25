@@ -4,7 +4,7 @@
     <div class="modal fade" id="petApptModal" tabindex="-1" aria-labelledby="petApptModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
-                <form action="{{ route('storeAppointment') }}" method="POST">
+                <form action="{{ route('appointments.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="customer" value="{{ $pet->customer->id }}">
                     <input type="hidden" name="pet" value="{{ $pet->id }}">
@@ -78,7 +78,7 @@
     <div class="modal fade" id="apptModal" tabindex="-1" aria-labelledby="apptModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
-                <form action="{{ route('updateAppointment') }}" method="POST">
+                <form action="{{ route('appointments.update') }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="d-none">
@@ -145,7 +145,7 @@
 <div class="modal fade" id="deletePetModal" tabindex="-1" aria-labelledby="deletePetModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('deletePet') }}" method="post">
+            <form action="{{ route('pets.delete') }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="petId" value="">

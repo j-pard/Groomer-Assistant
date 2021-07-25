@@ -56,7 +56,7 @@ class PetsController extends Controller
             'remarks' => $request->remarks,
         ]);
 
-        return redirect()->route('editPet', ['pet' => $pet])
+        return redirect()->route('pets.edit', ['pet' => $pet])
             ->with('status', 'Enregistrement de ' . $request->name . ' réussi !');
     }
 
@@ -106,6 +106,6 @@ class PetsController extends Controller
     {
         Pet::find($request->petId)->delete();
 
-        return redirect()->route('pets')->with('status', 'Suppression réussie !');
+        return redirect()->route('pets.index')->with('status', 'Suppression réussie !');
     }
 }

@@ -29,7 +29,7 @@ class CustomersTable extends TableComponent
                         'items' => [
                             'edit' => [
                                 'icon' => 'fas fa-pen',
-                                'url' => route('editCustomer', ['customer' => $model])
+                                'url' => route('customers.edit', ['customer' => $model])
                             ]
                         ]
                     ]);

@@ -2,7 +2,7 @@
 <div class="modal fade" id="newRdvModal" tabindex="-1" aria-labelledby="newRdvModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
-            <form action="{{ route('storeAppointment') }}" method="POST">
+            <form action="{{ route('appointments.store') }}" method="POST">
                 @csrf
                 <input type="hidden" id="getPetsUrl" value="{{ route('getPetsOptions') }}">
 
@@ -77,7 +77,7 @@
 <div class="modal fade" id="petModal" tabindex="-1" aria-labelledby="petModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
-            <form action="{{ route('updateAppointment') }}" method="POST">
+            <form action="{{ route('appointments.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="d-none">
