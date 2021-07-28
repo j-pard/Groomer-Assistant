@@ -1,9 +1,9 @@
 <div class="form-group">
     <label for="{{ $name }}">{{ $label }}</label>
     <textarea 
-        class="form-control"
-        name="{{ $name }}"
-        id="{{ $id }}"
+        class="form-control {{ $class }}"
+        {{ $name ? 'name="' . $name . '"' : ''}}
+        {{ $id ? 'id="' . $id . '"' : ''}}
         placeholder="{{ $placeholder }}"
         {{ $required ? 'required' : ''}}
         {{ $readonly ? 'readonly' : '' }}

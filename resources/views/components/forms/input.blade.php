@@ -1,10 +1,10 @@
 <div class="form-group">
     <label for="{{ $name }}">{{ $label }}</label>
     <input 
-        class="form-control"
-        type="{{ $type }}"
-        name="{{ $name }}"
-        id="{{ $id }}"
+        class="form-control {{ $class }}"
+        {{ $type ? 'type="' . $type . '"' : ''}}
+        {{ $name ? 'name="' . $name . '"' : ''}}
+        {{ $id ? 'id="' . $id . '"' : ''}}
         placeholder="{{ $placeholder }}"
         {{ $required ? 'required' : ''}}
         {{ $readonly ? 'readonly' : '' }}

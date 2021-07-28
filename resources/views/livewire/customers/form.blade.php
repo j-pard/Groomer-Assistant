@@ -7,28 +7,22 @@
 
                     <div class="form-group">
                         <x-forms.radio
-                            name="genre"
                             value="unknown"
-                            :selected="!isset($customer) || $customer->genre === 'unknown'"
-                            :isIcon="true"
-                            label="far fa-question-circle"
+                            icon="far fa-question-circle"
                             inline
+                            wire="customer.genre"
                         />
                         <x-forms.radio
-                            name="genre"
                             value="male"
-                            :selected="isset($customer) && $customer->genre === 'male'"
-                            :isIcon="true"
-                            label="fas fa-mars"
+                            icon="fas fa-mars"
                             inline
+                            wire="customer.genre"
                         />
                         <x-forms.radio
-                            name="genre"
                             value="female"
-                            :selected="isset($customer) && $customer->genre === 'female'"
-                            :isIcon="true"
-                            label="fas fa-venus"
+                            icon="fas fa-venus"
                             inline
+                            wire="customer.genre"
                         />
                     </div>
 

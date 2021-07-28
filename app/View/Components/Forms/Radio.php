@@ -6,26 +6,21 @@ use Illuminate\View\Component;
 
 class Radio extends Component
 {
-    public string $name;
-    public string $value;
-    public string $label;
-    public bool $inline;
-    public bool $selected;
-    public bool $isIcon;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name = '', $value = '', $label = '', $inline = false, $selected = false, $isIcon = false)
-    {
-        $this->name = $name;
-        $this->value = $value;
-        $this->label = $label;
-        $this->inline = $inline;
-        $this->selected = $selected;
-        $this->isIcon = $isIcon;
-    }
+    public function __construct(
+        public $wire = null,
+        public ?string $name = null,
+        public ?string $value = null,
+        public ?string $label = null,
+        public bool $inline = false,
+        public bool $checked = false,
+        public ?string $icon = null
+    )
+    {}
 
     /**
      * Get the view / contents that represent the component.
