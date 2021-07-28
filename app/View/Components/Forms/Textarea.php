@@ -4,7 +4,7 @@ namespace App\View\Components\Forms;
 
 use Illuminate\View\Component;
 
-class Input extends Component
+class Textarea extends Component
 {
     /**
      * Create a new component instance.
@@ -16,16 +16,14 @@ class Input extends Component
         public ?string $name = null,
         public ?string $label = null,
         public ?string $placeholder = null,
-        public string $type = 'text',
         public ?string $class = null,
         public ?string $id = null,
         public bool $required = false,
         public bool $readonly = false,
         public bool $disabled = false,
         public ?string $value = null,
-        public ?string $min = null,
-        public ?string $max = null,
-        public ?string $step = null,
+        public ?int $cols = null,
+        public ?int $rows = null,
         public ?string $maxlength = null,
     ) {
         if ($this->wire) {
@@ -40,6 +38,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('components.forms.input');
+        return view('components.forms.textarea');
     }
 }

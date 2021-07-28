@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Customers;
 
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Builder;
@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class CustomersTable extends TableComponent
+class Table extends TableComponent
 {
     use HtmlComponents;
 

@@ -15,7 +15,6 @@ class CreatePetsTable extends Migration
     {
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->date('birthdate')->nullable();

@@ -11,7 +11,7 @@
     @include('manager.partials.session-message')
 
     <div>
-        <livewire:customers-table />
+        <livewire:customers.table />
     </div>
 
 

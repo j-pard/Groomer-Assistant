@@ -1,16 +1,15 @@
 <div class="form-group">
     <label for="{{ $name }}">{{ $label }}</label>
-    <input 
+    <textarea 
         class="form-control"
-        type="{{ $type }}"
         name="{{ $name }}"
         id="{{ $id }}"
         placeholder="{{ $placeholder }}"
         {{ $required ? 'required' : ''}}
         {{ $readonly ? 'readonly' : '' }}
         {{ $disabled ? 'disabled' : '' }}
-        {{ $maxlength ? 'maxlength="' . $maxlenght . '"' : ''}}
-        {{ $step ? 'step="' . $step . '"' : ''}}
+        {{ $cols ? 'cols=' . $cols : ''}}
+        {{ $rows ? 'rows=' . $rows : ''}}
 
         @if ($wire)
             wire:model.defer="{{ $wire }}"
@@ -18,6 +17,8 @@
             value="{{ $errors->$name ? old($name) : $value }}"
         @endif
     >
+    </textarea>
+
     @error($name)
         <small class="text-danger">{{ $message }}</small>
     @enderror

@@ -17,7 +17,6 @@ class Pet extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'uuid',
         'customer_id',
         'type',
         'name',

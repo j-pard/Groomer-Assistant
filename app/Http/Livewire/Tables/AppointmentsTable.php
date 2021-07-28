@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Tables;
 
 use App\Models\Appointment;
-use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
@@ -11,22 +10,22 @@ use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Traits\Options;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class CustomerAppointmentsTable extends TableComponent
+class AppointmentsTable extends TableComponent
 {
     use HtmlComponents, Options;
 
     public $sortField = 'time';
     public $sortDirection = 'desc';
-    public $customer;
+    public $pet;
 
-    public function mount($customer)
+    public function mount($pet)
     {
-        $this->customer = $customer;
+        $this->pet = $pet;
     }
 
     public function query() : Builder
     {
-        return Appointment::where('customer_id', $this->customer->id);
+        return Appointment::where('pet_id', $this->pet->id);
     }
 
     public function columns() : array
@@ -42,7 +41,6 @@ class CustomerAppointmentsTable extends TableComponent
                         <input type="hidden" name="data-time" value="' . Carbon::parse($model->time)->format('H:i') . '">
                         <input type="hidden" name="data-status" value="' . $model->status . '">
                         <input type="hidden" name="data-notes" value="' . $model->notes . '">
-                        <input type="hidden" name="data-pet-name" value="' . $model->pet->name . '">
                     </div>'
                 );
             }),
@@ -53,10 +51,6 @@ class CustomerAppointmentsTable extends TableComponent
                 ->format(function(Appointment $model) {
                     return Carbon::parse($model->time)->format('d-m-Y H:i');
                 }),
-
-            Column::make('Nom', 'pet.name')
-                ->searchable()
-                ->sortable(),
 
             Column::make('Status', 'status')
                 ->sortable()

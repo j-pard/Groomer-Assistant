@@ -21,7 +21,7 @@
             <div>
                 <form id="breedForm" action="{{ route('settings.breed.update') }}" method="POST">
                     @csrf
-                    <livewire:breeds-table />
+                    <livewire:tables.breeds-table />
                 </form>
             </div>
         </div>

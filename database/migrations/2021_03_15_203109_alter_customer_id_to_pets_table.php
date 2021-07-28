@@ -19,7 +19,7 @@ class AlterCustomerIdToPetsTable extends Migration
         });
 
         Schema::table('pets', function (Blueprint $table) {
-            $table->unsignedBigInteger('customer_id')->nullable()->after('uuid');
+            $table->unsignedBigInteger('customer_id')->nullable()->after('id');
             $table->foreign('customer_id')->references('id')->on('customers');
         });
     }

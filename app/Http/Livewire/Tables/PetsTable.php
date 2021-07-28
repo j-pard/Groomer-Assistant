@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Tables;
 
 use App\Models\Pet;
 use Illuminate\Database\Eloquent\Builder;

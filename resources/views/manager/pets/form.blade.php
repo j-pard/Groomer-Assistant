@@ -53,7 +53,7 @@
                 @csrf
                 @if (isset($pet))
                     @method('PUT')
-                    <input type="hidden" name="petID" value="{{ $pet->uuid }}">
+                    <input type="hidden" name="petID" value="{{ $pet->id }}">
                 @endif
                 <div class="card-body">
                     <div class="row">
@@ -231,7 +231,7 @@
         @if (isset($pet))
             <div class="tab-pane fade" id="pills-dates" role="tabpanel" aria-labelledby="pills-dates-tab">
                 <div class="card-body">
-                    <livewire:appointments-table :pet="$pet" />
+                    <livewire:tables.appointments-table :pet="$pet" />
                 </div>
             </div>
         @endif

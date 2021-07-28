@@ -29,7 +29,7 @@ class CustomersController extends Controller
     public function create()
     {
         return view('manager.customers.form', [
-            'customer' => null
+            'customer' => new Customer,
         ]);
     }
 
@@ -40,7 +40,6 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
         $customer = Customer::create([
-            'uuid' => Str::uuid(),
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
             'genre' => $request->genre,
@@ -76,7 +75,7 @@ class CustomersController extends Controller
      */
     public function update(Request $request)
     {
-        Customer::where('uuid', $request->customerID)->update([
+        Customer::find($request->customerID)->update([
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
             'genre' => $request->genre,

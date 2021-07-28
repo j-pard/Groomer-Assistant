@@ -15,7 +15,6 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
             $table->string('firstname');
             $table->string('lastname');
             $table->integer('zip_code')->nullable();
@@ -25,7 +24,7 @@ class CreateCustomersTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('secondary_phone')->nullable();
-            $table->longText('more_info')->nullable();
+            $table->text('more_info')->nullable();
             $table->timestamps();
         });
     }

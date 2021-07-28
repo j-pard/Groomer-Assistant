@@ -204,7 +204,7 @@
 <div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="deleteCustomerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('deleteCustomer') }}" method="post">
+            <form action="{{ route('customers.delete') }}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="customerId" value="">

@@ -45,7 +45,7 @@ Route::prefix('groomer')->group(function () {
         Route::post('/store', [CustomersController::class, 'store'])->name('store');
         Route::get('/{customer}/edit', [CustomersController::class, 'edit'])->name('edit');
         Route::put('/update', [CustomersController::class, 'update'])->name('update');
-        Route::delete('/delete', [CustomersController::class, 'delete'])->name('deleteCustomer');
+        Route::delete('/delete', [CustomersController::class, 'delete'])->name('delete');
 
         Route::prefix('pets')->name('pets.')->group(function () {
             Route::post('/attach', [CustomersController::class, 'attachPet'])->name('attach');

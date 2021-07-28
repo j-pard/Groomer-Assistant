@@ -43,7 +43,6 @@ class PetsController extends Controller
     public function store(Request $request)
     {
         $pet = Pet::create([
-            'uuid' => Str::uuid(),
             'customer_id' => $request->customer,
             'name' => $request->name,
             'genre' => $request->genre,
@@ -82,7 +81,7 @@ class PetsController extends Controller
      */
     public function update(Request $request)
     {
-        $pet = Pet::where('uuid', $request->petID)->update([
+        $pet = Pet::find($request->petID)->update([
             'customer_id' => $request->customer,
             'name' => $request->name,
             'genre' => $request->genre,
