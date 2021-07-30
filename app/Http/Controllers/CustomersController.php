@@ -34,29 +34,6 @@ class CustomersController extends Controller
     }
 
     /**
-     * Store new customer
-     *
-     */
-    public function store(Request $request)
-    {
-        $customer = Customer::create([
-            'lastname' => $request->lastname,
-            'firstname' => $request->firstname,
-            'genre' => $request->genre,
-            'zip_code' => $request->zip_code,
-            'city' => $request->city,
-            'address' => $request->address,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'secondary_phone' => $request->secondary_phone,
-            'more_info' => $request->more_info,
-        ]);
-
-        return redirect()->route('customers.edit', ['customer' => $customer])
-            ->with('status', 'Nouveau client ajouté.');
-    }
-
-    /**
      * Show customer edition interface
      *
      * @param Customer $customer
@@ -70,25 +47,16 @@ class CustomersController extends Controller
     }
 
     /**
-     * Update existing customer
+     * Show customer appointments list
      *
+     * @param Customer $customer
+     * @return view
      */
-    public function update(Request $request)
+    public function appointments(Customer $customer)
     {
-        Customer::find($request->customerID)->update([
-            'lastname' => $request->lastname,
-            'firstname' => $request->firstname,
-            'genre' => $request->genre,
-            'zip_code' => $request->zip_code,
-            'city' => $request->city,
-            'address' => $request->address,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'secondary_phone' => $request->secondary_phone,
-            'more_info' => $request->more_info,
+        return view('manager.customers.appointments', [
+            'customer' => $customer,
         ]);
-
-        return redirect()->back()->with('status', 'Données mises à jour.');
     }
 
     /**

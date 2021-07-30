@@ -30,3 +30,9 @@
     font-size: 70px;
     color: lightgray;
 }
+
+.form-control {
+    &.is-invalid {
+        margin-bottom: 0;
+    }
+}

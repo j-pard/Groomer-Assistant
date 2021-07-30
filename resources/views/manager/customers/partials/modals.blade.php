@@ -38,7 +38,7 @@
                             <x-forms.input
                                 label="Propriétaire"
                                 name="customerName"
-                                :value='$pet->customer->lastname . " " . $pet->customer->firstname'
+                                :value='$customer->lastname . " " . $customer->firstname'
                                 disabled
                             />
                             

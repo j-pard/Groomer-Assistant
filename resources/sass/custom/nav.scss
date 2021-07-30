@@ -24,8 +24,9 @@
       li {
             margin: 0 12px;
 
-            button {
+            a:not(.active) {
                   margin: 0;
+                  color: $dark !important;
             }
       }
 }

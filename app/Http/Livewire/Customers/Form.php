@@ -23,7 +23,7 @@ class Form extends Component
             'customer.city' => 'nullable|string|min:2|max:255',
             'customer.address' => 'nullable|string|min:2|max:255',
             // Contact
-            'customer.email' => 'nullable|email|max:255',
+            'customer.email' => 'required|unique:customers,email|email|max:255',
             'customer.phone' => 'nullable|string|max:255',
             'customer.secondary_phone' => 'nullable|string|max:255',
             // Details
@@ -33,7 +33,9 @@ class Form extends Component
 
     public function mount()
     {
-        //
+        if (!$this->customer->exists) {
+            $this->customer->genre = 'unknown';
+        }
     }
 
     public function render()

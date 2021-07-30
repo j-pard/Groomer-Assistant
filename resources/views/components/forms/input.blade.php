@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="{{ $name }}">{{ $label }}</label>
     <input 
-        class="form-control {{ $class }}"
+        class="form-control {{ $class }} @error($name) is-invalid @enderror"
         {{ $type ? 'type="' . $type . '"' : ''}}
         {{ $name ? 'name="' . $name . '"' : ''}}
         {{ $id ? 'id="' . $id . '"' : ''}}

@@ -10,6 +10,7 @@
                             value="unknown"
                             icon="far fa-question-circle"
                             inline
+                            checked
                             wire="customer.genre"
                         />
                         <x-forms.radio
@@ -97,7 +98,7 @@
                         />
                     </fieldset>
 
-                    @if (isset($customer))
+                    @if ($customer->exists)
                         <h3 class="mt-4 mb-3">
                             Animaux
                             <a href="#" type="button" class="mx-3" title="Ajouter" data-bs-toggle="modal" data-bs-target="#addPetModal">

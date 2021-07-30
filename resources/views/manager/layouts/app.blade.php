@@ -26,95 +26,95 @@
 
 </head>
 <body data-page="{{ $page ?? '' }}">
-    <div id="app">
-        <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
-            <div class="container-fluid px-md-5">
-                <h1>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
-                    </a>
-                </h1>
+    <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid px-md-5">
+            <h1>
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
+                </a>
+            </h1>
 
-                <div class="d-flex justify-content-end">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-                            
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                    <i class="fas fa-user"></i>
+            <div class="d-flex justify-content-end">
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
+                        
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                                <i class="fas fa-user"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
-        </nav>
-        @auth    
-            <nav id="aside-nav">
-                <x-buttons.nav
-                    icon="fas fa-calendar-alt"
-                    :url="route('home')" 
-                    section="calendar"
-                    :active="Route::currentRouteName() == 'home'"
-                />
-                <x-buttons.nav
-                    icon="fas fa-paw"
-                    :url="route('pets.index')"
-                    section="pets"
-                    :active="Str::startsWith(Route::currentRouteName(), 'pets.')"
-                />
-                <x-buttons.nav
-                    icon="fas fa-users"
-                    :url="route('customers.index')"
-                    section="customers"
-                    :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
-                />
-                <x-buttons.nav
-                    :icon="'fas fa-cog'"
-                    :url="route('settings.index')"
-                    section="settings"
-                    :active="Str::startsWith(Route::currentRouteName(), 'settings.')"
-                />
-            </nav>
-        @endauth
-        <div class="row">
-            <main class="container-fluid">
-                @yield('content')
-            </main>
         </div>
+    </nav>
+    
+    @auth    
+        <nav id="aside-nav">
+            <x-buttons.nav
+                icon="fas fa-calendar-alt"
+                :url="route('home')" 
+                section="calendar"
+                :active="Route::currentRouteName() == 'home'"
+            />
+            <x-buttons.nav
+                icon="fas fa-paw"
+                :url="route('pets.index')"
+                section="pets"
+                :active="Str::startsWith(Route::currentRouteName(), 'pets.')"
+            />
+            <x-buttons.nav
+                icon="fas fa-users"
+                :url="route('customers.index')"
+                section="customers"
+                :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
+            />
+            <x-buttons.nav
+                :icon="'fas fa-cog'"
+                :url="route('settings.index')"
+                section="settings"
+                :active="Str::startsWith(Route::currentRouteName(), 'settings.')"
+            />
+        </nav>
+    @endauth
 
-        @stack('scripts')
-        @livewireScripts
+    <div class="row">
+        <main class="container-fluid">
+            @yield('content')
+        </main>
     </div>
 
+    
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    @stack('scripts')
+    @livewireScripts
+
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
