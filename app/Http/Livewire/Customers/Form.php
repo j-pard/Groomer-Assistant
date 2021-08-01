@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Customers;
 
 use App\Models\Customer;
+use App\Models\Pet;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -10,6 +11,13 @@ class Form extends Component
 {
     public Customer $customer;
 
+    protected $listeners = ['refreshCustomer' => '$refresh'];
+
+    /**
+     * Valdiation rules
+     *
+     * @return array
+     */
     protected function rules()
     {
         return [
@@ -31,6 +39,10 @@ class Form extends Component
         ];
     }
 
+    /**
+     * Mount the component
+     *
+     */
     public function mount()
     {
         if (!$this->customer->exists) {
@@ -38,15 +50,39 @@ class Form extends Component
         }
     }
 
+    /**
+     * Render the component
+     *
+     * @return view
+     */
     public function render()
     {
         return view('livewire.customers.form');
     }
 
+    /**
+     * Save the model
+     *
+     * @return void
+     */
     public function save()
     {
         $this->validate();
 
         $this->customer->save();
+    }
+
+    /**
+     * Detach specified pet
+     *
+     * @param string $id
+     */
+    public function detach(string $id)
+    {
+        Pet::find($id)->update([
+            'customer_id' => null,
+        ]);
+
+        $this->emit('refreshCustomer');
     }
 }

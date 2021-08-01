@@ -115,9 +115,7 @@
                                             </a>
                                             <span>{{ $pet->name }}</span>
                                         </div>
-                                        <button type="button" class="btn btn-transparent js-confirm-detach" data-pet-id="{{ $pet->id }}">
-                                            <i class="fas fa-times text-danger h5"></i>
-                                        </button>
+                                        <x-buttons.delete id="{{ $pet->id }}" text="Détacher" wire="detach({{ $pet->id }})" />
                                     </li>
                                 @empty
                                     
@@ -127,7 +125,6 @@
                     @endif
                 </div>
             </div>
-
         </fieldset>
     </div>
     

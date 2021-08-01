@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appointment;
 use App\Models\Customer;
 use App\Models\Pet;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CustomersController extends Controller
 {
@@ -88,23 +85,6 @@ class CustomersController extends Controller
         ]);
 
         return redirect()->back()->with('status', 'Propriétaire ajouté avec succès.');
-    }
-
-    /**
-     * Detach specified pet to specified customer
-     *
-     * @param Request $request
-     */
-    public function detachPet(Request $request)
-    {
-        Pet::where([
-            'id' => $request->petId,
-            'customer_id' => $request->customerId,
-        ])->update([
-            'customer_id' => null
-        ]);
-
-        return redirect()->back()->with('status', 'Propriétaire enlevé avec succès.');
     }
     
     /**
