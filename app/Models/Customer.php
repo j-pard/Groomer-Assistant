@@ -51,7 +51,6 @@ class Customer extends Model
     /**
      * Get appointments of specified customer.
      *
-     * @return void
      */
     public function appointments()
     {

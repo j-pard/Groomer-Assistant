@@ -55,37 +55,6 @@ class CustomersController extends Controller
             'customer' => $customer,
         ]);
     }
-
-    /**
-     * Delete existing customer
-     *
-     */
-    public function delete(Request $request)
-    {
-        $customer = Customer::find($request->customerId);
-
-        if ($customer->pets()->count() > 0 || $customer->appointments()->count() > 0) {
-            return redirect()->back()->with('error', 'Suppression impossible, il existe des données pour ce client.');
-        }
-
-        $customer->delete();
-        
-        return redirect()->route('customers.index')->with('status', 'Suppression réussie !');
-    }
-
-    /**
-     * Attach specified pet to specified customer
-     *
-     * @param Request $request
-     */
-    public function attachPet(Request $request)
-    {
-        Pet::find($request->petId)->update([
-            'customer_id' => $request->customerId
-        ]);
-
-        return redirect()->back()->with('status', 'Propriétaire ajouté avec succès.');
-    }
     
     /**
      * Return related pets as options list

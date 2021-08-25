@@ -4971,12 +4971,12 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var tom_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tom-select */ "./node_modules/tom-select/dist/js/tom-select.complete.js");
-/* harmony import */ var tom_select__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tom_select__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _libs_confirmation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/confirmation */ "./resources/js/libs/confirmation.js");
-/* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./libs/form-modal */ "./resources/js/libs/form-modal.js");
-/* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_libs_form_modal__WEBPACK_IMPORTED_MODULE_2__);
-__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+/* harmony import */ var tom_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tom-select */ "./node_modules/tom-select/dist/js/tom-select.complete.js");
+/* harmony import */ var tom_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tom_select__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _libs_confirmation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./libs/confirmation */ "./resources/js/libs/confirmation.js");
+/* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/form-modal */ "./resources/js/libs/form-modal.js");
+/* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_libs_form_modal__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -4988,7 +4988,8 @@ __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap
  */
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // Include custom JS
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.bootstrap = bootstrap__WEBPACK_IMPORTED_MODULE_0__; // Include custom JS
 
 if (document.body.getAttribute('data-page')) {
   __webpack_require__("./resources/js/pages sync recursive ^\\.\\/.*$")("./" + document.body.getAttribute('data-page'));
@@ -5115,11 +5116,7 @@ window.addEventListener('shown.bs.modal', function (event) {
 /***/ (() => {
 
 var apptBtns = Array.from(document.getElementsByClassName('js-appt-modal'));
-var apptModal = document.getElementById('apptModal');
-var detachBtns = Array.from(document.getElementsByClassName('js-confirm-detach'));
-var detachModal = document.getElementById('detachPetModal');
-var deleteBtns = Array.from(document.getElementsByClassName('js-confirm-delete'));
-var deleteModal = document.getElementById('deleteCustomerModal'); // Appointments edit
+var apptModal = document.getElementById('apptModal'); // Appointments edit
 
 apptBtns.forEach(function (btn) {
   btn.addEventListener('click', function (e) {
@@ -5130,22 +5127,6 @@ apptBtns.forEach(function (btn) {
     apptModal.querySelector('select[name="status"]').value = btn.querySelector('input[name="data-status"]').value;
     apptModal.querySelector('textarea[name="notes"]').value = btn.querySelector('input[name="data-notes"]').value;
     new bootstrap.Modal(apptModal).show();
-  });
-}); // Pet Modal
-
-detachBtns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    detachModal.querySelector('input[name="petId"]').value = btn.getAttribute('data-pet-id');
-    new bootstrap.Modal(detachModal).show();
-  });
-}); // Delete Customer Modal
-
-deleteBtns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    deleteModal.querySelector('input[name="customerId"]').value = btn.getAttribute('data-customer-id');
-    new bootstrap.Modal(deleteModal).show();
   });
 });
 

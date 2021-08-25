@@ -8,7 +8,7 @@
         {{ $checked ? 'checked' : ''}}
 
         @if ($wire)
-            wire:model="{{ $wire }}"
+            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
         @endif
     >
     <label class="form-check-label" for="radio{{ $value }}">

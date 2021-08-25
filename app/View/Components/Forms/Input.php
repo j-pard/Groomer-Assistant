@@ -13,6 +13,7 @@ class Input extends Component
      */
     public function __construct(
         public $wire = null,
+        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public ?string $placeholder = null,

@@ -13,6 +13,7 @@ class Radio extends Component
      */
     public function __construct(
         public $wire = null,
+        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $value = null,
         public ?string $label = null,

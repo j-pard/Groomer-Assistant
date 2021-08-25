@@ -1,5 +1,4 @@
-require('bootstrap');
-
+import * as bootstrap from 'bootstrap';
 import TomSelect from 'tom-select';
 import './libs/confirmation';
 import './libs/form-modal';
@@ -12,6 +11,8 @@ import './libs/form-modal';
 
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.bootstrap = bootstrap;
 
 // Include custom JS
 if (document.body.getAttribute('data-page')) {

@@ -4,21 +4,26 @@ namespace App\Http\Livewire\Customers;
 
 use App\Models\Customer;
 use App\Models\Pet;
+use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Form extends Component
 {
     public Customer $customer;
+    public array $orphans = [];
+    public ?int $newPetId = null;
 
     protected $listeners = ['refreshCustomer' => '$refresh'];
 
-    /**
-     * Valdiation rules
-     *
-     * @return array
-     */
-    protected function rules()
+    protected function newPetRules()
+    {
+        return [
+            'newPetId' => 'nullable|numeric',
+        ];
+    }
+
+    protected function customerRules()
     {
         return [
             // Info
@@ -37,6 +42,16 @@ class Form extends Component
             // Details
             'customer.more_info' => 'nullable|string|max:65535',
         ];
+    }
+
+    /**
+     * Valdiation rules
+     *
+     * @return array
+     */
+    protected function rules()
+    {
+        return array_merge($this->newPetRules(), $this->customerRules());
     }
 
     /**
@@ -60,6 +75,13 @@ class Form extends Component
         return view('livewire.customers.form');
     }
 
+    public function loadNewPetModal()
+    {
+        $this->newPetId = null;
+        $this->orphans = Pet::getOrphansList();
+        $this->dispatchBrowserEvent('form-modal-loaded', ['modalId' => 'addPetModal']);
+    }
+
     /**
      * Save the model
      *
@@ -67,7 +89,7 @@ class Form extends Component
      */
     public function save()
     {
-        $this->validate();
+        $this->validate($this->customerRules());
 
         $this->customer->save();
 
@@ -76,8 +98,16 @@ class Form extends Component
         }
     }
 
+    /**
+     * Delete the model
+     *
+     */
     public function deleteCustomer()
     {
+        if ($this->customer->pets()->count() > 0 || $this->customer->appointments()->count() > 0) {
+            return redirect()->back()->with('error', 'Suppression impossible, il existe des données pour ce client.');
+        }
+
         $this->customer->delete();
 
         return redirect()->route('customers.index');
@@ -93,6 +123,24 @@ class Form extends Component
         Pet::find($id)->update([
             'customer_id' => null,
         ]);
+
         $this->customer->load('pets');
+    }
+
+    /**
+     * Attach specified pet
+     *
+     */
+    public function attachPet()
+    {
+        $this->validate($this->newPetRules());
+
+        Pet::find($this->newPetId)->update([
+            'customer_id' => $this->customer->id,
+        ]);
+
+        $this->customer->load('pets');
+
+        $this->dispatchBrowserEvent('form-modal-saved', ['modalId' => 'addPetModal']);
     }
 }

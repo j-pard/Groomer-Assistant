@@ -17,7 +17,7 @@
         {{ $rows ? 'rows=' . $rows : ''}}
 
         @if ($wire)
-            wire:model.defer="{{ $wire }}"
+            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
         @else
             value="{{ $errors->$name ? old($name) : $value }}"
         @endif

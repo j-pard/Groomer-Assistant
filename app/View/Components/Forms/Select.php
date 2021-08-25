@@ -3,47 +3,37 @@
 namespace App\View\Components\Forms;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 class Select extends Component
 {
-    public ?string $name = '';
-    public ?string $label = '';
-    public ?string $class = '';
-    public ?string $id = '';
-    public bool $required;
-    public bool $readonly;
-    public bool $disabled;
-    public array $options;
-    public ?string $model = '';
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
     public function __construct(
-        $options,
-        $model = null,
-        $name = null,
-        $label = null,
-        $class = null,
-        $id = null,
-        $required = false,
-        $readonly = false,
-        $disabled = false,
-        $searchable = false
+        public $wire = null,
+        public string $wireModifier = 'defer',
+        public ?string $name = null,
+        public ?string $label = null,
+        public ?string $placeholder = null,
+        public string $type = 'text',
+        public ?string $class = null,
+        public ?string $id = null,
+        public bool $required = false,
+        public bool $readonly = false,
+        public bool $disabled = false,
+        public ?string $value = null,
+        public ?string $min = null,
+        public ?string $max = null,
+        public ?string $step = null,
+        public array $options = []
     ) {
-        $this->name = $name;
-        $this->label = $label;
-        $this->class = $class;
-        $this->id = $id;
-        $this->required = $required;
-        $this->readonly = $readonly;
-        $this->disabled = $disabled;
-        $this->model = $model;
-        $this->options = $options;
-        $this->searchable = $searchable;
+        if ($this->wire) {
+            $this->name = $this->wire;
+        }
     }
 
     /**
@@ -54,5 +44,16 @@ class Select extends Component
     public function render()
     {
         return view('components.forms.select');
+    }
+
+    /**
+     * Check if the specified value is selected.
+     *
+     * @param  string $key
+     * @return bool
+     */
+    public function isSelected($key): bool
+    {
+        return array_key_exists($key, $this->options);
     }
 }
