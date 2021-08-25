@@ -20,7 +20,7 @@ class Header extends Component
     public function mount(string $backUrl)
     {
         $this->backUrl = $backUrl;
-        $this->title = $this->model->firstname . ' ' . $this->model->lastname;
+        $this->title = $this->model->exists ? $this->model->firstname . ' ' . $this->model->lastname : '';
         $this->navigation = $this->getNavigation();
         $this->menu = $this->getMenuActions();
     }
@@ -40,12 +40,13 @@ class Header extends Component
      */
     private function getNavigation() :array
     {
-        $nav = [
-            'Détails' => route('customers.edit', ['customer' => $this->model]),
-        ];
+        $nav = [];
 
         if ($this->model->exists) {
-            $nav['Rendez-vous'] = route('customers.appointments', ['customer' => $this->model]);
+            $nav = [
+                'Détails' => route('customers.edit', ['customer' => $this->model]),
+                'Rendez-vous'=> route('customers.appointments', ['customer' => $this->model]),
+            ];
         }
 
         return $nav;
@@ -66,17 +67,6 @@ class Header extends Component
                     'icon' => 'fas fa-calendar-plus',
                     'text' => 'Nouveau RDV',
                 ],
-
-                [
-                    'type' => 'divider',
-                ],
-
-                [
-                    'type' => 'action',
-                    'target' => 'deleteCustomer',
-                    'icon' => 'fas fa-trash',
-                    'text' => 'Supprimer',
-                ]
             ];
         }
 

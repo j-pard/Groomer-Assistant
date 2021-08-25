@@ -31,8 +31,8 @@ class Form extends Component
             'customer.city' => 'nullable|string|min:2|max:255',
             'customer.address' => 'nullable|string|min:2|max:255',
             // Contact
-            'customer.email' => 'required|unique:customers,email|email|max:255',
-            'customer.phone' => 'nullable|string|max:255',
+            'customer.email' => 'nullable|unique:customers,email,' . (empty($this->customer->id) ? 'NULL' : $this->customer->id) . '|email|max:255',
+            'customer.phone' => 'required|unique:customers,phone,' . (empty($this->customer->id) ? 'NULL' : $this->customer->id) . '|string|max:255',
             'customer.secondary_phone' => 'nullable|string|max:255',
             // Details
             'customer.more_info' => 'nullable|string|max:65535',
@@ -70,6 +70,17 @@ class Form extends Component
         $this->validate();
 
         $this->customer->save();
+
+        if ($this->customer->wasRecentlyCreated) {
+            $this->emit('refreshCustomer');
+        }
+    }
+
+    public function deleteCustomer()
+    {
+        $this->customer->delete();
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -82,7 +93,6 @@ class Form extends Component
         Pet::find($id)->update([
             'customer_id' => null,
         ]);
-
-        $this->emit('refreshCustomer');
+        $this->customer->load('pets');
     }
 }

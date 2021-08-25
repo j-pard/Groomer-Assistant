@@ -12,9 +12,12 @@ class Delete extends Component
      * @return void
      */
     public function __construct(
+        public string $class = '',
         public string $text = 'Confirmer la suppression ?',
+        public string $button = '',
         public string $method = '',
-        public string $icon = 'fas fa-trash'
+        public string $icon = 'fas fa-trash',
+        public bool $dropdown = false
     )
     {}
 

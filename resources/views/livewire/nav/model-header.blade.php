@@ -3,6 +3,8 @@
         <a class="btn btn-transparent circle" href="{{ $backUrl }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
         @if ($model->exists)
             <h2 class="mb-0 text-nowrap">{{ $title }}</h2>
+        @else
+            <h2 class="mb-0 text-nowrap"><span class="text-pink">N</span>ouveau client</h2>
         @endif
     </div>
 
@@ -32,9 +34,13 @@
                                         @break
 
                                     @case('action')
-                                        <a class="dropdown-item js-confirm-delete" role="button" data-model-id="{{ $model->id }}">
-                                            <i class="{{ $item['icon'] }} text-secondary me-3"></i>{{ $item['text'] }}
-                                        </a>
+                                        <x-buttons.delete
+                                            method="{{ $item['target'] }}" 
+                                            text="{{ $item['text'] }}" 
+                                            button="{{ $item['button'] ?? '' }}"
+                                            icon="{{ $item['icon'] }}"
+                                            dropdown
+                                        />
                                         @break
                                 @endswitch
                             </li>

@@ -10,9 +10,6 @@
 
     @include('manager.partials.session-message')
 
-    <div>
-        <livewire:customers.table />
-    </div>
-
+    <livewire:customers.table />
 
 @endsection

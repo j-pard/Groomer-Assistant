@@ -172,30 +172,3 @@
         </div>
     </div>
 </div>
-
-{{-- Delete Customer Modal --}}
-<div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="deleteCustomerModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="{{ route('customers.delete') }}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" name="customerId" value="">
-
-                <div class="modal-header bg-danger">
-                    <h5 class="modal-title text-white" id="deleteCustomerModalLabel">Confirmation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        Supprimer définitevement le client ?
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-danger text-light">Supprimer</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>

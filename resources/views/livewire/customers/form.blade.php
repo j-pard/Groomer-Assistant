@@ -78,6 +78,7 @@
                         label="Numéro de téléphone"
                         placeholder="Entrer le numéro"
                         wire="customer.phone"
+                        required
                     />
 
                     <x-forms.input
@@ -85,6 +86,19 @@
                         placeholder="Entrer le numéro alternatif"
                         wire="customer.secondary_phone"
                     />
+
+                    <div class="mt-5">
+                        <small>
+                            <a 
+                                role="button"
+                                data-confirm="Le client et son historique seront supprimés définitivement."
+                                data-confirm-action="@this.deleteCustomer()"
+                                class="text-danger"
+                            >
+                                Supprimer le client ?
+                            </a>
+                        </small>
+                    </div>
                 </div>
 
                 <div class="col-md-6">

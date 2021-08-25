@@ -42,7 +42,6 @@ class Customer extends Model
     /**
      * Get pets of specified customer.
      *
-     * @return void
      */
     public function pets()
     {

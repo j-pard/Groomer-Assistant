@@ -2,7 +2,9 @@
     @if (isset($label) && $required)
         <label for="{{ $name }}">
             {{ $label }}
-            <span class="text-danger ml-1">*</span>
+            @if ($required)
+                <span class="text-danger">*</span>
+            @endif
         </label>
     @elseif (isset($label))
         <label for="{{ $id }}">{{ $label }}</label>
