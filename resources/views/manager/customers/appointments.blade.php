@@ -1,7 +1,7 @@
 @extends('manager.layouts.app', ['page' => 'customer'])
 
 @section('content')
-    <livewire:nav.model-header 
+    <livewire:customers.header 
         :model="$customer"
         backUrl="{{ route('customers.index') }}"
     />

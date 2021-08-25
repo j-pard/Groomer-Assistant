@@ -77,7 +77,7 @@ class Form extends Component
      *
      * @param string $id
      */
-    public function detach(string $id)
+    public function detachPet(string $id)
     {
         Pet::find($id)->update([
             'customer_id' => null,

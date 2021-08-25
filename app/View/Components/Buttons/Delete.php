@@ -6,25 +6,17 @@ use Illuminate\View\Component;
 
 class Delete extends Component
 {
-    public string $id;
-    public string $text;
-    public $wire;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
     public function __construct(
-        string $id,
-        string $text = 'Supprimer',
-        $wire = null
+        public string $text = 'Confirmer la suppression ?',
+        public string $method = '',
+        public string $icon = 'fas fa-trash'
     )
-    {
-        $this->id = 'dropBtn' . $id;
-        $this->text = $text;
-        $this->wire = $wire;
-    }
+    {}
 
     /**
      * Get the view / contents that represent the component.

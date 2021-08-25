@@ -173,33 +173,6 @@
     </div>
 </div>
 
-{{-- Detach Pet Modal --}}
-<div class="modal fade" id="detachPetModal" tabindex="-1" aria-labelledby="detachPetModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="{{ route('customers.pets.detach') }}" method="post">
-                @csrf
-                <input type="hidden" name="customerId" value="{{ $customer->id }}">
-                <input type="hidden" name="petId" value="">
-
-                <div class="modal-header bg-danger">
-                    <h5 class="modal-title text-white" id="detachPetModalLabel">Confirmation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        Enlever le lien entre le chien et son propriétaire ?
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-danger text-light">Confirmer</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 {{-- Delete Customer Modal --}}
 <div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="deleteCustomerModalLabel" aria-hidden="true">
     <div class="modal-dialog">

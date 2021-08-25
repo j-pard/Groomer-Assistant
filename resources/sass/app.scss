@@ -1,11 +1,14 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Variables
+// Custom Variables
 @import 'variables';
 
-// Bootstrap
+// Boostrap5
 @import '~bootstrap/scss/bootstrap';
+
+//Tom-select
+@import "~tom-select/dist/css/tom-select.bootstrap5.css";
 
 @import 'custom/reset.scss';
 @import 'custom/main.scss';

@@ -110,6 +110,24 @@
         </main>
     </div>
 
+    <!-- Modals -->
+    <div class="modal modal__popup fade" id="modalConfirmation" tabindex="-1" aria-labelledby="modalConfirmationLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalConfirmationLabel">Confirmation</h2>
+                    <button type="button" class="btn-close btn-icon btn-icon--base btn-icon--dark" data-bs-dismiss="modal" aria-label="Annuler"></button>
+                </div>
+                <div class="modal-body js-confirmation-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn--secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn--danger js-confirmation-button" data-text="Supprimer"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
     <!-- Scripts -->
     @stack('scripts')

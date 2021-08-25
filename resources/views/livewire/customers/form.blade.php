@@ -115,7 +115,7 @@
                                             </a>
                                             <span>{{ $pet->name }}</span>
                                         </div>
-                                        <x-buttons.delete id="{{ $pet->id }}" text="Détacher" wire="detach({{ $pet->id }})" />
+                                        <x-buttons.delete method="detachPet({{ $pet->id }})" />
                                     </li>
                                 @empty
                                     
