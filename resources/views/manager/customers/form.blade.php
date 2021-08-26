@@ -2,15 +2,11 @@
 
 @section('content')
     <livewire:customers.header 
-        :model="$customer"
+        :customer="$customer"
         backUrl="{{ route('customers.index') }}"
     />
 
     @include('manager.partials.session-message')
 
     <livewire:customers.form :customer="$customer" />
-
-    @if ($customer->exists)
-        @include('manager.customers.partials.modals')
-    @endif
 @endsection

@@ -17,12 +17,12 @@ class AppointmentsTable extends TableComponent
     public $sortField = 'time';
     public $sortDirection = 'desc';
     public $customer;
-
+    
     public function mount($customer)
     {
         $this->customer = $customer;
     }
-
+    
     public function query() : Builder
     {
         return Appointment::where('customer_id', $this->customer->id);

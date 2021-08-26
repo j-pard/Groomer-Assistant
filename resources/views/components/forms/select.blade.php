@@ -21,7 +21,9 @@
             value="{{ $errors->$name ? old($name) : $value }}"
         @endif
     >
-        <option value=""></option>
+        @if ($hasEmptyRow)
+            <option value=""></option>
+        @endif
         @forelse($options as $value => $label)
             <option
                 @if(!$wire && $isSelected($value)) selected="selected" @endif

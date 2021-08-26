@@ -18,6 +18,7 @@
                             wire="newPetId"
                             :options="$orphans"
                             required
+                            hasEmptyRow
                         />
                     </div>
                 </div>

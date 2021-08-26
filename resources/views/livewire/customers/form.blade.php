@@ -88,18 +88,20 @@
                             wire="customer.secondary_phone"
                         />
     
-                        <div class="mt-5">
-                            <small>
-                                <a 
-                                    role="button"
-                                    data-confirm="Le client et son historique seront supprimés définitivement."
-                                    data-confirm-action="@this.deleteCustomer()"
-                                    class="text-danger"
-                                >
-                                    Supprimer le client ?
-                                </a>
-                            </small>
-                        </div>
+                        @if ($customer->exists)
+                            <div class="mt-5">
+                                <small>
+                                    <a 
+                                        role="button"
+                                        data-confirm="Le client et son historique seront supprimés définitivement."
+                                        data-confirm-action="@this.deleteCustomer()"
+                                        class="text-danger"
+                                    >
+                                        Supprimer le client ?
+                                    </a>
+                                </small>
+                            </div>
+                        @endif
                     </div>
     
                     <div class="col-md-6">
@@ -116,7 +118,7 @@
                         @if ($customer->exists)
                             <h3 class="mt-4 mb-3">
                                 Chiens
-                                <a href="#" type="button" class="mx-3" title="Ajouter" wire:click="loadNewPetModal">
+                                <a type="button" class="mx-3" title="Ajouter" wire:click="loadNewPetModal">
                                     <i class="fas fa-plus-circle text-success"></i>
                                 </a>
                             </h3>
@@ -149,6 +151,6 @@
     </form>
 
     @if ($customer->exists)
-        @include('livewire.customers.partials.modals')
+        @include('livewire.customers.partials.pet-modal')
     @endif
 </div>
