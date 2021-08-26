@@ -1,4 +1,4 @@
-@extends('manager.layouts.app', ['page' => 'customer'])
+@extends('manager.layouts.app')
 
 @section('content')
     <livewire:customers.header 

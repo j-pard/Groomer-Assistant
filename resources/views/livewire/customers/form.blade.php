@@ -87,21 +87,6 @@
                             placeholder="Entrer le numéro alternatif"
                             wire="customer.secondary_phone"
                         />
-    
-                        @if ($customer->exists)
-                            <div class="mt-5">
-                                <small>
-                                    <a 
-                                        role="button"
-                                        data-confirm="Le client et son historique seront supprimés définitivement."
-                                        data-confirm-action="@this.deleteCustomer()"
-                                        class="text-danger"
-                                    >
-                                        Supprimer le client ?
-                                    </a>
-                                </small>
-                            </div>
-                        @endif
                     </div>
     
                     <div class="col-md-6">

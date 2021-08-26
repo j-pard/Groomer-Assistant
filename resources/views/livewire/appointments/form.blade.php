@@ -1,0 +1,61 @@
+<div>
+    <form wire:submit.prevent="save">
+        <div class="card-body">
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-6">
+                                <x-forms.input
+                                    label="Date"
+                                    type="date"
+                                    wire="date"
+                                    required
+                                />
+                            </div>
+                            <div class="col-6">
+                                <x-forms.input
+                                    label="Heure"
+                                    type="time"
+                                    wire="time"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Propriétaire</label>
+                            <input class="form-control" type="text" value="{{ $customer->lastname . ' ' . $customer->firstname }}" disabled>
+                        </div>
+
+                        <x-forms.select
+                            label="Chien"
+                            wire="appointment.pet_id"
+                            :options="$pets"
+                            required
+                        />
+
+                        <x-forms.textarea
+                            label="Notes"
+                            rows="8"
+                            wire="appointment.notes"
+                        />
+
+                        <div class="col-6">
+                            <x-forms.select
+                                label="Status"
+                                wire="appointment.status"
+                                :options='$status'
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        
+        <div class="form-actions-buttons">
+            <x-buttons.save />
+        </div>
+    </form>
+</div>

@@ -60,5 +60,3 @@
         @endforeach
     </div>
 @endsection
-
-@include('manager.partials.appointment-modals')

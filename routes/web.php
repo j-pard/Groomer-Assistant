@@ -44,6 +44,7 @@ Route::prefix('groomer')->group(function () {
         Route::get('/new', [CustomersController::class, 'create'])->name('create');
         Route::get('/{customer}/edit', [CustomersController::class, 'edit'])->name('edit');
         Route::get('/{customer}/appointments', [CustomersController::class, 'appointments'])->name('appointments');
+        Route::get('/{customer}/appointment', [CustomersController::class, 'appointment'])->name('appointment');
         Route::delete('/delete', [CustomersController::class, 'delete'])->name('delete');
 
         Route::prefix('pets')->name('pets.')->group(function () {
@@ -55,6 +56,7 @@ Route::prefix('groomer')->group(function () {
     Route::prefix('appointments')->name('appointments.')->group(function () {
         Route::post('/store', [AppointmentsController::class, 'store'])->name('store');
         Route::put('/update', [AppointmentsController::class, 'update'])->name('update');
+        Route::get('/{appointment}/edit', [AppointmentsController::class, 'edit'])->name('edit');
     });
     
     Route::prefix('settings')->name('settings.')->group(function () {

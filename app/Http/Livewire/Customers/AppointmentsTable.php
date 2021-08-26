@@ -34,14 +34,10 @@ class AppointmentsTable extends TableComponent
             Column::make('')
             ->format(function(Appointment $model) {
                 return $this->html(
-                    '<div class="text-center js-appt-modal" type="button">
-                        <i class="fas fa-eye"></i>
-                        <input type="hidden" name="data-id" value="' . $model->id . '">
-                        <input type="hidden" name="data-date" value="' . Carbon::parse($model->time)->format('Y-m-d') . '">
-                        <input type="hidden" name="data-time" value="' . Carbon::parse($model->time)->format('H:i') . '">
-                        <input type="hidden" name="data-status" value="' . $model->status . '">
-                        <input type="hidden" name="data-notes" value="' . $model->notes . '">
-                        <input type="hidden" name="data-pet-name" value="' . $model->pet->name . '">
+                    '<div class="text-center">
+                        <a class="text-secondary" href="' . route('appointments.edit', ['appointment' => $model]) . '">
+                            <i class="fas fa-eye"></i>
+                        </a>
                     </div>'
                 );
             }),

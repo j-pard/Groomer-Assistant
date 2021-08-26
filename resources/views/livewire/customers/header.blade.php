@@ -21,16 +21,23 @@
                         <i class="fas fa-cog text-secondary h4 m-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true"></i>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li>
-                                <a type="button" class="dropdown-item" title="Ajouter un rendez-vous" wire:click="loadAppointmentModal">
+                                <a href="{{ route('customers.appointment', ['customer' => $customer]) }}" type="button" class="dropdown-item" title="Ajouter un rendez-vous">
                                     <i class="fas fa-calendar-plus text-secondary me-3"></i>
                                     Nouveau RDV
+                                </a>
+                            </li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li>
+                                <a type="button" class="dropdown-item" title="Supprimer le client" data-confirm="Le client et son historique seront supprimés définitivement." data-confirm-action="@this.deleteCustomer()">
+                                    <i class="fas fa-trash text-secondary me-3"></i>
+                                    Supprimer
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
         </ul>
-
-        @include('livewire.customers.partials.appointment-modal')
     @endif
 </header>

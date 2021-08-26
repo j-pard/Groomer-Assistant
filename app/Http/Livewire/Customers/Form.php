@@ -94,23 +94,8 @@ class Form extends Component
         $this->customer->save();
 
         if ($this->customer->wasRecentlyCreated) {
-            $this->emit('refreshCustomer');
+            return redirect()->route('customers.edit', ['customer' => $this->customer]);
         }
-    }
-
-    /**
-     * Delete the model
-     *
-     */
-    public function deleteCustomer()
-    {
-        if ($this->customer->pets()->count() > 0 || $this->customer->appointments()->count() > 0) {
-            return redirect()->back()->with('error', 'Suppression impossible, il existe des données pour ce client.');
-        }
-
-        $this->customer->delete();
-
-        return redirect()->route('customers.index');
     }
 
     /**

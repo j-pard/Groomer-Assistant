@@ -72,6 +72,25 @@ class Customer extends Model
     }
 
     /**
+     * Return customers list as options
+     *
+     * @return array
+     */
+    public static function getAsOptions()
+    {
+        return Customer::orderBy('lastname')
+            ->orderBy('firstname')
+            ->select('lastname', 'firstname', 'id')
+            ->get()
+            ->map(function ($customer) {
+                return ['key' => $customer->id, 'value' => $customer->lastname . ' ' . $customer->firstname];
+            })
+            ->sortBy('value')
+            ->pluck('value', 'key')
+            ->toArray();
+    }
+
+    /**
      * Return pets list as options
      *
      * @return array

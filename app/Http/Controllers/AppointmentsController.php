@@ -48,4 +48,18 @@ class AppointmentsController extends Controller
         return redirect()->back()
             ->with('status', 'Rendez-vous mit à jour.');
     }
+
+    /**
+     * Edit appointment
+     *
+     * @param Appointment $appointment
+     * @return view
+     */
+    public function edit(Appointment $appointment)
+    {
+        return view('manager.appointments.form', [
+            'appointment' => $appointment,
+            'customer' => $appointment->customer,
+        ]);
+    }
 }
