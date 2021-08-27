@@ -16,7 +16,6 @@ class CreateBreedsTable extends Migration
         Schema::create('breeds', function (Blueprint $table) {
             $table->id();
             $table->string('breed')->unique()->nullable();
-            $table->enum('size', ['dwarf', 'small', 'medium', 'big', 'giant'])->default('medium');
         });
     }
 

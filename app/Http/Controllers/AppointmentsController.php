@@ -3,14 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
-use App\Models\Customer;
-use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class AppointmentsController extends Controller
 {
+    /**
+     * Edit appointment
+     *
+     * @param Appointment $appointment
+     * @return view
+     */
+    public function edit(Appointment $appointment)
+    {
+        return view('manager.appointments.form', [
+            'appointment' => $appointment,
+            'customer' => $appointment->customer,
+        ]);
+    }
+
     /**
      * Store new appointment
      *
@@ -47,19 +58,5 @@ class AppointmentsController extends Controller
 
         return redirect()->back()
             ->with('status', 'Rendez-vous mit à jour.');
-    }
-
-    /**
-     * Edit appointment
-     *
-     * @param Appointment $appointment
-     * @return view
-     */
-    public function edit(Appointment $appointment)
-    {
-        return view('manager.appointments.form', [
-            'appointment' => $appointment,
-            'customer' => $appointment->customer,
-        ]);
     }
 }

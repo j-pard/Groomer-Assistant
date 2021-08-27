@@ -7,7 +7,6 @@ use App\Models\Customer;
 use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class PetsController extends Controller
 {

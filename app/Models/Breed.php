@@ -13,7 +13,6 @@ class Breed extends Model
      */
     protected $fillable = [
         'breed',
-        'size',
     ];
 
     // Relations
@@ -27,6 +26,4 @@ class Breed extends Model
     {
         return $this->hasMany(Pet::class);
     }
-
-    // Methods
 }

@@ -97,7 +97,7 @@
             />
             <x-buttons.nav
                 :icon="'fas fa-cog'"
-                :url="route('settings.index')"
+                :url="route('settings.breeds')"
                 section="settings"
                 :active="Str::startsWith(Route::currentRouteName(), 'settings.')"
             />

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Tables;
+namespace App\Http\Livewire\Settings\Breeds;
 
 use App\Models\Breed;
 use Illuminate\Database\Eloquent\Builder;
@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class BreedsTable extends TableComponent
+class Table extends TableComponent
 {
     use HtmlComponents;
 
@@ -17,7 +17,7 @@ class BreedsTable extends TableComponent
 
     public function query() : Builder
     {
-        return Breed::whereNotNull('id');
+        return Breed::whereNotNull('id')->orderBy('breed');
     }
 
     public function columns() : array
@@ -40,20 +40,6 @@ class BreedsTable extends TableComponent
                         '<div>
                             <input class="form-control my-2" type="text" name="breed" id="breed_' . $model->id . '" value="' . $model->breed . '" min="2" max="100">
                         </div>'
-                    );
-                }),
-
-            Column::make('Taille', 'size')
-                ->sortable()
-                ->format(function (Breed $model) {
-                    return $this->html(
-                        '<select class="form-select my-2" name="size" id="size_' . $model->id . '">
-                            <option value="dwarf" ' . ($model->size == 'dwarf' ? 'selected' : '') . '>Nain</option>
-                            <option value="small" ' . ($model->size == 'small' ? 'selected' : '') . '>Petit</option>
-                            <option value="medium" ' . ($model->size == 'medium' ? 'selected' : '') . '>Moyen</option>
-                            <option value="big" ' . ($model->size == 'big' ? 'selected' : '') . '>Grand</option>
-                            <option value="giant" ' . ($model->size == 'giant' ? 'selected' : '') . '>Géant</option>
-                        </select>'
                     );
                 }),
         ];

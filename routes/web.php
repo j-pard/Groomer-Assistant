@@ -60,11 +60,6 @@ Route::prefix('groomer')->group(function () {
     });
     
     Route::prefix('settings')->name('settings.')->group(function () {
-        Route::get('/', [SettingsController::class, 'index'])->name('index');
-
-        Route::prefix('breed')->name('breed.')->group(function () {
-            Route::post('/breed', [BreedsController::class, 'get'])->name('get');
-            Route::post('/breed/update', [BreedsController::class, 'update'])->name('update');
-        });
+        Route::get('/', [SettingsController::class, 'breeds'])->name('breeds');
     });
 });

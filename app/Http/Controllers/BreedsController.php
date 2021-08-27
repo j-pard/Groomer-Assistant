@@ -8,16 +8,6 @@ use Illuminate\Http\Request;
 class BreedsController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Return specified breed
      *
      * @param Request $request
