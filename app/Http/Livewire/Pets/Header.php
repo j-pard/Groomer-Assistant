@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Customers;
+namespace App\Http\Livewire\Pets;
 
-use App\Models\Customer;
+use App\Models\Pet;
 use Livewire\Component;
 
 class Header extends Component
 {
-    public Customer $customer;
+    public Pet $pet;
 
     public string $backUrl;
     public string $title;
@@ -20,7 +20,7 @@ class Header extends Component
     public function mount(string $backUrl)
     {
         $this->backUrl = $backUrl;
-        $this->title = $this->customer->exists ? $this->customer->firstname . ' ' . $this->customer->lastname : '';
+        $this->title = $this->pet->exists ? $this->pet->name : '';
         $this->navigation = $this->getNavigation();
     }
 
@@ -38,18 +38,18 @@ class Header extends Component
      */
     public function render()
     {
-        return view('livewire.customers.header');
+        return view('livewire.pets.header');
     }
 
     /**
      * Delete the model
      *
      */
-    public function deleteCustomer()
+    public function deletePet()
     {
-        $this->customer->delete();
+        $this->pet->delete();
 
-        return redirect()->route('customers.index');
+        return redirect()->route('pets.index');
     }
     
     /**
@@ -61,10 +61,10 @@ class Header extends Component
     {
         $nav = [];
 
-        if ($this->customer->exists) {
+        if ($this->pet->exists) {
             $nav = [
-                'Détails' => route('customers.edit', ['customer' => $this->customer]),
-                'Rendez-vous'=> route('customers.appointments', ['customer' => $this->customer]),
+                'Détails' => route('pets.edit', ['pet' => $this->pet]),
+                'Rendez-vous'=> route('pets.appointments', ['pet' => $this->pet]),
             ];
         }
 

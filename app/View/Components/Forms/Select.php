@@ -30,7 +30,8 @@ class Select extends Component
         public ?string $max = null,
         public ?string $step = null,
         public array $options = [],
-        public bool $hasEmptyRow = false
+        public bool $hasEmptyRow = false,
+        public bool $useOptionsAsArray = false,
     ) {
         if ($this->wire) {
             $this->name = $this->wire;

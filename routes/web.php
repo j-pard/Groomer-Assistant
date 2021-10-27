@@ -33,10 +33,9 @@ Route::prefix('groomer')->group(function () {
     Route::prefix('pets')->name('pets.')->group(function () {
         Route::get('/', [PetsController::class, 'index'])->name('index');
         Route::get('/new', [PetsController::class, 'create'])->name('create');
-        Route::post('/store', [PetsController::class, 'store'])->name('store');
         Route::get('/{pet}/edit', [PetsController::class, 'edit'])->name('edit');
-        Route::put('/update', [PetsController::class, 'update'])->name('update');
-        Route::delete('/delete', [PetsController::class, 'delete'])->name('delete');
+        Route::get('/{pet}/appointments', [PetsController::class, 'appointments'])->name('appointments');
+        Route::get('/{pet}/appointment', [PetsController::class, 'appointment'])->name('appointment');
     });
     
     Route::prefix('customers')->name('customers.')->group(function () {
@@ -45,7 +44,6 @@ Route::prefix('groomer')->group(function () {
         Route::get('/{customer}/edit', [CustomersController::class, 'edit'])->name('edit');
         Route::get('/{customer}/appointments', [CustomersController::class, 'appointments'])->name('appointments');
         Route::get('/{customer}/appointment', [CustomersController::class, 'appointment'])->name('appointment');
-        Route::delete('/delete', [CustomersController::class, 'delete'])->name('delete');
 
         Route::prefix('pets')->name('pets.')->group(function () {
             Route::post('/attach', [CustomersController::class, 'attachPet'])->name('attach');

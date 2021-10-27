@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Customer;
+use App\Models\Pet;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -67,6 +68,7 @@ class CustomersController extends Controller
         return view('manager.appointments.form', [
             'appointment' => new Appointment,
             'customer' => $customer,
+            'pet' => new Pet,
         ]);
     }
     

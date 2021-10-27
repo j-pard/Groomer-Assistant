@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Appointments;
 
 use App\Models\Appointment;
 use App\Models\Customer;
+use App\Models\Pet;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -11,6 +12,7 @@ class Form extends Component
 {
     public Appointment $appointment;
     public ?Customer $customer;
+    public Pet $pet;
 
     public array $pets;
     public string $date;
@@ -40,7 +42,13 @@ class Form extends Component
     {
         $this->pets = $this->customer->getPetsAsOptions();
         $this->status = Appointment::getStatusAsOptions();
-        $this->appointment->pet_id = $this->appointment->pet_id ?? array_key_first($this->pets);
+
+        if ($this->pet->exists) {
+            $this->appointment->pet_id = $this->pet->id;
+        } else {
+            $this->appointment->pet_id = $this->appointment->pet_id ?? array_key_first($this->pets);
+        }
+        
         $this->appointment->status = $this->appointment->status ?? 'planned';
 
         if ($this->appointment->exists) {

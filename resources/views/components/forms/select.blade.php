@@ -24,17 +24,31 @@
         @if ($hasEmptyRow)
             <option value=""></option>
         @endif
-        @forelse($options as $value => $label)
-            <option
-                @if(!$wire && $isSelected($value)) selected="selected" @endif
-                value="{{ $value }}"
-                wire:="{{ $wire }}"
-            >
-                {{ $label }}
-            </option>
-        @empty
-            <option value="null" disabled></option>
-        @endforelse
+        
+        @if ($useOptionsAsArray)
+            @forelse($options as $option)
+                <option
+                    value="{{ $option['value'] }}"
+                    wire:="{{ $wire }}"
+                >
+                    {{ $option['label'] }}
+                </option>
+            @empty
+                <option value="null" disabled></option>
+            @endforelse
+        @else
+            @forelse($options as $value => $label)
+                <option
+                    @if(!$wire && $isSelected($value)) selected="selected" @endif
+                    value="{{ $value }}"
+                    wire:="{{ $wire }}"
+                >
+                    {{ $label }}
+                </option>
+            @empty
+                <option value="null" disabled></option>
+            @endforelse
+        @endif
     </select>
 
 </div>

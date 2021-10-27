@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Breed;
 use App\Models\Customer;
 use App\Models\Pet;
@@ -28,34 +29,8 @@ class PetsController extends Controller
     public function create()
     {
         return view('manager.pets.form', [
-            'pet' => null,
-            'statusItems' => Pet::getStatus(),
-            'customers' => Customer::orderBy('lastname')->orderBy('firstname')->get(),
-            'breeds' => [-1 => '---'] + Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray(),
+            'pet' => new Pet,
         ]);
-    }
-
-    /**
-     * Store new pet
-     *
-     */
-    public function store(Request $request)
-    {
-        $pet = Pet::create([
-            'customer_id' => $request->customer,
-            'name' => $request->name,
-            'genre' => $request->genre,
-            'main_breed_id' => isset($request->mainBreed) && $request->mainBreed != -1 ? $request->mainBreed : Breed::where('breed', 'Inconnu')->first()->id,
-            'second_breed_id' => isset($request->secondBreed) && $request->secondBreed != -1 ? $request->secondBreed : null,
-            'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
-            'status' => $request->status,
-            'average_duration' => ($request->hours * 60) + $request->minutes,
-            'size' => $request->size,
-            'remarks' => $request->remarks,
-        ]);
-
-        return redirect()->route('pets.edit', ['pet' => $pet])
-            ->with('status', 'Enregistrement de ' . $request->name . ' réussi !');
     }
 
     /**
@@ -68,42 +43,34 @@ class PetsController extends Controller
     {
         return view('manager.pets.form', [
             'pet' => $pet,
-            'customers' => Customer::orderBy('lastname')->orderBy('firstname')->get(),
-            'duration' => $pet->getDurationInHoursMinutes(),
-            'breeds' => [-1 => '---'] + Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray(),
         ]);
     }
 
     /**
-     * Update existing pet
+     * Show pet appointments list
      *
+     * @param Pet $pet
+     * @return view
      */
-    public function update(Request $request)
+    public function appointments(Pet $pet)
     {
-        $pet = Pet::find($request->petID)->update([
-            'customer_id' => $request->customer,
-            'name' => $request->name,
-            'genre' => $request->genre,
-            'main_breed_id' => isset($request->mainBreed) && $request->mainBreed != -1 ? $request->mainBreed : Breed::where('breed', 'Inconnu')->first()->id,
-            'second_breed_id' => isset($request->secondBreed) && $request->secondBreed != -1 ? $request->secondBreed : null,
-            'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
-            'status' => $request->status,
-            'average_duration' => ($request->hours * 60) + $request->minutes,
-            'size' => $request->size,
-            'remarks' => $request->remarks,
+        return view('manager.pets.appointments', [
+            'pet' => $pet,
         ]);
-
-        return redirect()->back()->with('status', 'Mise à jour de ' . $request->name . ' réussie !');
     }
 
     /**
-     * Delete existing pet
+     * Show pet specified appointment
      *
+     * @param Pet $pet
+     * @return view
      */
-    public function delete(Request $request)
+    public function appointment(Pet $pet)
     {
-        Pet::find($request->petId)->delete();
-
-        return redirect()->route('pets.index')->with('status', 'Suppression réussie !');
+        return view('manager.appointments.form', [
+            'appointment' => new Appointment(),
+            'customer' => $pet->customer,
+            'pet' => $pet,
+        ]);
     }
 }

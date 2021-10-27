@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Customers;
 
 use App\Models\Customer;
 use App\Models\Pet;
-use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 

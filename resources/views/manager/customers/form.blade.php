@@ -6,7 +6,5 @@
         backUrl="{{ route('customers.index') }}"
     />
 
-    @include('manager.partials.session-message')
-
     <livewire:customers.form :customer="$customer" />
 @endsection
