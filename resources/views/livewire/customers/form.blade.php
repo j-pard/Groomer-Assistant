@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h3 class="mb-3">Informations</h3>
-    
+                        
                         <div class="form-group">
                             <x-forms.radio
                                 value="unknown"
@@ -27,21 +27,21 @@
                                 wire="customer.genre"
                             />
                         </div>
-    
+                        
                         <x-forms.input
                             label="Nom"
                             placeholder="Entrer le nom de famille"
                             required
                             wire="customer.lastname"
                         />
-    
+                        
                         <x-forms.input
                             label="Prénom"
                             placeholder="Entrer le prénom"
                             required
                             wire="customer.firstname"
                         />
-    
+                        
                         <div class="row">
                             <div class="col-md-4">
                                 <x-forms.input
@@ -50,7 +50,7 @@
                                     wire="customer.zip_code"
                                 />
                             </div>
-    
+                            
                             <div class="col-md-8">
                                 <x-forms.input
                                     label="Ville"
@@ -59,38 +59,38 @@
                                 />
                             </div>
                         </div>
-    
+                        
                         <x-forms.input
                             label="Adresse"
                             placeholder="Entrer l'adresse"
                             wire="customer.address"
                         />
-    
+                        
                         <h3 class="mt-4 mb-3">Contact</h3>
-    
+                        
                         <x-forms.input
                             label="Email"
                             type="email"
                             placeholder="Entrer l'adresse email"
                             wire="customer.email"
                         />
-    
+                        
                         <x-forms.input
                             label="Numéro de téléphone"
                             placeholder="Entrer le numéro"
                             wire="customer.phone"
                             required
                         />
-    
+                        
                         <x-forms.input
                             label="Numéro alternatif"
                             placeholder="Entrer le numéro alternatif"
                             wire="customer.secondary_phone"
                         />
                     </div>
-    
+                    
                     <div class="col-md-6">
-    
+                        
                         <h3 class="mb-3">Détails</h3>
                         <fieldset>
                             <x-forms.textarea
@@ -99,7 +99,7 @@
                                 wire="customer.more_info"
                             />
                         </fieldset>
-    
+                        
                         @if ($customer->exists)
                             <h3 class="mt-4 mb-3">
                                 Chiens

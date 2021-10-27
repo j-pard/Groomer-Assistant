@@ -11,7 +11,7 @@
     @include('manager.partials.session-message')
     
     <div>
-        <livewire:tables.pets-table />
+        <livewire:pets.table />
     </div>
 
 @endsection

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Tables;
+namespace App\Http\Livewire\Pets;
 
 use App\Models\Pet;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Traits\Options;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class PetsTable extends TableComponent
+class Table extends TableComponent
 {
     use HtmlComponents, Options;
 
