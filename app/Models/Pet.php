@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -45,11 +47,11 @@ class Pet extends Model implements HasMedia
      * @var array
      */
     protected static $sizeOptions = [
-        'dwarf' => 'nain',
-        'small' => 'petit',
-        'medium' => 'moyen',
-        'big' => 'grand',
-        'giant' => 'géant',
+        'dwarf' => 'Nain',
+        'small' => 'Petit',
+        'medium' => 'Moyen',
+        'big' => 'Grand',
+        'giant' => 'Géant',
     ];
 
     /**
@@ -63,14 +65,12 @@ class Pet extends Model implements HasMedia
         'dead' => 'Décédé',
     ];
 
-    // Relations
-
     /**
      * Get customer of specified pet.
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function customer()
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
     }
@@ -78,9 +78,9 @@ class Pet extends Model implements HasMedia
     /**
      * Get main breed of specified pet.
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function mainBreed()
+    public function mainBreed(): BelongsTo
     {
         return $this->belongsTo(Breed::class, 'main_breed_id');
     }
@@ -88,9 +88,9 @@ class Pet extends Model implements HasMedia
     /**
      * Get secondary breed of specified pet.
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function secondBreed()
+    public function secondBreed(): BelongsTo
     {
         return $this->belongsTo(Breed::class, 'second_breed_id');
     }
@@ -98,28 +98,11 @@ class Pet extends Model implements HasMedia
     /**
      * Get appointments of specified pet.
      *
-     * @return void
+     * @return HasMany
      */
-    public function appointments()
+    public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class);
-    }
-
-    // Methods
-
-    /**
-     * Return duration in hours and minutes
-     *
-     * @return Array
-     */
-    public function getDurationInHoursMinutes()
-    {
-        $duration = $this->average_duration;
-
-        return [
-            'hours' => floor($duration / 60),
-            'minutes' => $duration % 60,
-        ];
     }
 
     /**
@@ -133,12 +116,37 @@ class Pet extends Model implements HasMedia
         $this->attributes['name'] = ucfirst(strtolower($value));
     }
 
-    public static function getSizeOptions()
+    /**
+     * Return duration in hours and minutes
+     *
+     * @return Array
+     */
+    public function getDurationInHoursMinutes(): array
+    {
+        $duration = $this->average_duration;
+
+        return [
+            'hours' => floor($duration / 60),
+            'minutes' => $duration % 60,
+        ];
+    }
+
+    /**
+     * Return sizes as options list
+     *
+     * @return array
+     */
+    public static function getSizeOptions(): array
     {
         return self::$sizeOptions;
     }
 
-    public static function getStatus()
+    /**
+     * Return status as options list
+     *
+     * @return array
+     */
+    public static function getStatus(): array
     {
         return self::$status;
     }
@@ -148,7 +156,7 @@ class Pet extends Model implements HasMedia
      *
      * @return Array
      */
-    public static function getOrphansList()
+    public static function getOrphansList(): array
     {
         return Pet::whereNull('customer_id')->orderBy('name')->pluck('name', 'id')->toArray();
     }

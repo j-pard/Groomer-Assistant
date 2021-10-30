@@ -4,7 +4,7 @@ namespace App\View\Components\Forms;
 
 use Illuminate\View\Component;
 
-class Input extends Component
+class Datepicker extends Component
 {
     /**
      * Create a new component instance.
@@ -16,8 +16,6 @@ class Input extends Component
         public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
-        public ?string $placeholder = null,
-        public string $type = 'text',
         public ?string $class = null,
         public ?string $id = null,
         public bool $required = false,
@@ -26,8 +24,6 @@ class Input extends Component
         public ?string $value = null,
         public ?string $min = null,
         public ?string $max = null,
-        public ?string $step = null,
-        public ?string $maxlength = null,
     ) {
         $this->name = $this->wire;
     }
@@ -39,6 +35,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('components.forms.input');
+        return view('components.forms.datepicker');
     }
 }

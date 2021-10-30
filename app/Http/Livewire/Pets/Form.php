@@ -14,6 +14,10 @@ class Form extends Component
     public array $breeds;
     public array $customers;
     public $status;
+    public ?string $birthdate;
+    public int $hours = 0;
+    public int $minutes = 0;
+    public array $sizes;
 
     /**
      * Valdiation rules
@@ -23,18 +27,18 @@ class Form extends Component
     protected function rules()
     {
         return [
-            'customer.genre' => [
+            'pet.genre' => [
                 Rule::in(['unknown','female','male']),
             ],
             'pet.name' => 'required|string|min:2|max:255',
             'pet.customer_id' => 'required|numeric',
-            'birthday' => 'nullable|string',
+            'birthdate' => 'nullable|string',
             'pet.status' => 'required|string',
             'pet.main_breed_id' => 'required|numeric',
             'pet.second_breed_id' => 'nullable|numeric',
             'pet.size' => 'required|string',
-            'hours' => 'required|string',
-            'minutes' => 'required|string',
+            'hours' => 'nullable|numeric',
+            'minutes' => 'nullable|numeric',
             'pet.remarks' => 'nullable|string|max:65535',
         ];
     }
@@ -50,15 +54,15 @@ class Form extends Component
         }
 
         $this->breeds = [-1 => '---'] + Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray();
-        $this->customers = Customer::orderBy('firstname')->orderBy('lastname')->get()->map(function ($item) {
-            return [
-                'value' => $item->id,
-                'label' => $item->firstname . ' ' . $item->lastname,
-            ];
-        })
-        ->toArray();
+        $this->customers = Customer::getList();
 
         $this->status = Pet::getStatus();
+        $this->sizes = Pet::getSizeOptions();
+        $this->birthdate = $this->pet->birthdate;
+
+        $duration = $this->pet->getDurationInHoursMinutes();
+        $this->hours = $duration['hours'];
+        $this->minutes = $duration['minutes'];
     }
 
     /**

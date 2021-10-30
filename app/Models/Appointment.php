@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Appointment extends Model
 {
@@ -41,7 +41,7 @@ class Appointment extends Model
      *
      * @var array
      */
-    public static function getStatusAsOptions()
+    public static function getStatusAsOptions(): array
     {
         return [
             'planned' => 'En attente',
@@ -55,14 +55,12 @@ class Appointment extends Model
         ];
     }
 
-    // Relations
-
     /**
      * Get customer of specified appointment.
      *
-     * @return Customer
+     * @return BelongsTo
      */
-    public function customer()
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
     }
@@ -70,9 +68,9 @@ class Appointment extends Model
     /**
      * Get pet of specified appointment.
      *
-     * @return Pet
+     * @return BelongsTo
      */
-    public function pet()
+    public function pet(): BelongsTo
     {
         return $this->belongsTo(Pet::class);
     }

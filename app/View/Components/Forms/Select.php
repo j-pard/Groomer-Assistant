@@ -18,24 +18,15 @@ class Select extends Component
         public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
-        public ?string $placeholder = null,
-        public string $type = 'text',
         public ?string $class = null,
         public ?string $id = null,
         public bool $required = false,
         public bool $readonly = false,
         public bool $disabled = false,
-        public ?string $value = null,
-        public ?string $min = null,
-        public ?string $max = null,
-        public ?string $step = null,
         public array $options = [],
         public bool $hasEmptyRow = false,
-        public bool $useOptionsAsArray = false,
     ) {
-        if ($this->wire) {
-            $this->name = $this->wire;
-        }
+        $this->name = $this->wire;
     }
 
     /**

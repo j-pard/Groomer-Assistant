@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
@@ -37,13 +38,12 @@ class Customer extends Model
         // 
     ];
 
-    // Relations
-
     /**
      * Get pets of specified customer.
      *
+     * @return HasMany
      */
-    public function pets()
+    public function pets(): HasMany
     {
         return $this->hasMany(Pet::class);
     }
@@ -51,14 +51,19 @@ class Customer extends Model
     /**
      * Get appointments of specified customer.
      *
+     * @return HasMany
      */
-    public function appointments()
+    public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class);
     }
 
-    // Methods
-    public static function getList()
+    /**
+     * Return customers list as array
+     *
+     * @return array
+     */
+    public static function getList(): array
     {
         $customers = Customer::select('id', 'firstname', 'lastname', 'phone')->get()
             ->map(function ($item) {
@@ -72,30 +77,11 @@ class Customer extends Model
     }
 
     /**
-     * Return customers list as options
-     *
-     * @return array
-     */
-    public static function getAsOptions()
-    {
-        return Customer::orderBy('lastname')
-            ->orderBy('firstname')
-            ->select('lastname', 'firstname', 'id')
-            ->get()
-            ->map(function ($customer) {
-                return ['key' => $customer->id, 'value' => $customer->lastname . ' ' . $customer->firstname];
-            })
-            ->sortBy('value')
-            ->pluck('value', 'key')
-            ->toArray();
-    }
-
-    /**
      * Return pets list as options
      *
      * @return array
      */
-    public function getPetsAsOptions()
+    public function getPetsAsOptions(): array
     {
         return $this->pets
             ->map(function ($pet) {

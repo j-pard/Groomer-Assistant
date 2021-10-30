@@ -7,21 +7,19 @@
     </label>
     <input 
         class="form-control {{ $class }} @error($name) is-invalid @enderror"
-        {{ $type ? 'type="' . $type . '"' : ''}}
-        {{ $name ? 'name="' . $name . '"' : ''}}
-        {{ $id ? 'id="' . $id . '"' : ''}}
-        placeholder="{{ $placeholder }}"
-        {{ $required ? 'required' : ''}}
-        {{ $readonly ? 'readonly' : '' }}
-        {{ $disabled ? 'disabled' : '' }}
-        {{ $maxlength ? 'maxlength="' . $maxlenght . '"' : ''}}
-        {{ $step ? 'step="' . $step . '"' : ''}}
+        type="{!! $type !!}"
+        name="{!! $name !!}"
+        {!! $placeholder ? 'placeholder="' . $placeholder . '"' : "" !!}
+        {!! $id ? 'id="' . $id . '"' : "" !!}
+        {!! $required ? 'required' : '' !!}
+        {!! $readonly ? 'readonly' : '' !!}
+        {!! $disabled ? 'disabled' : '' !!}
+        {!! $maxlength ? 'maxlength="' . $maxlenght . '"' : '' !!}
+        {!! $step ? 'step="' . $step . '"' : '' !!}
+        {!! $min ? 'min="' . $min . '"' : '' !!}
+        {!! $max ? 'max="' . $max . '"' : '' !!}
 
-        @if ($wire)
-            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
-        @else
-            value="{{ $errors->$name ? old($name) : $value }}"
-        @endif
+        wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
     >
     @error($name)
         <small class="text-danger">{{ $message }}</small>

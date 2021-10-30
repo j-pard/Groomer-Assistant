@@ -38,13 +38,12 @@
                             label="Propriétaire"
                             :options='$customers'
                             required
-                            useOptionsAsArray
                             wire="pet.customer_id"
                         />
 
-                        <x-forms.input
+                        <x-forms.datepicker
                             label="Anniversaire"
-                            wire="birthday"
+                            wire="birthdate"
                         />
 
                         <x-forms.select
@@ -76,7 +75,7 @@
 
                         <x-forms.select
                             label="Taille"
-                            :options='App\Models\Pet::getSizeOptions()'
+                            :options='$sizes'
                             required
                             wire="pet.size"
                         />
@@ -89,7 +88,6 @@
                                     type="number"
                                     placeholder="0"
                                     min="0"
-                                    required
                                     wire="hours"
                                 />
                                 <div class="h4 mx-1">:</div>
@@ -100,7 +98,6 @@
                                     min="0"
                                     max="59"
                                     step="5"
-                                    required
                                     wire="minutes"
                                 />
                             </div>

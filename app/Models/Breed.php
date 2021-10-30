@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Breed extends Model
 {
@@ -18,11 +19,11 @@ class Breed extends Model
     // Relations
 
     /**
-     * Get pets of specified customer.
+     * Get pets of specified breed.
      *
-     * @return void
+     * @return HasMany
      */
-    public function pets()
+    public function pets(): HasMany
     {
         return $this->hasMany(Pet::class);
     }
