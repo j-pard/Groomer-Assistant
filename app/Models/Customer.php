@@ -65,15 +65,17 @@ class Customer extends Model
      */
     public static function getList(): array
     {
-        $customers = Customer::select('id', 'firstname', 'lastname', 'phone')->get()
+        $customers = Customer::select('id', 'firstname', 'lastname', 'phone')
+            ->orderBy('lastname')
+            ->orderBy('firstname')
+            ->get()
             ->map(function ($item) {
                 return ['key' => $item->id, 'value' => ucfirst($item->lastname) . ' ' . ucfirst($item->firstname) . (isset($item->phone) ? (' - ' . $item->phone): '')];
             })
-            ->sortBy('value')
             ->pluck('value', 'key')
             ->toArray();
 
-        return [-1 => '---'] + $customers;
+        return $customers;
     }
 
     /**

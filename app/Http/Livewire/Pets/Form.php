@@ -31,8 +31,8 @@ class Form extends Component
                 Rule::in(['unknown','female','male']),
             ],
             'pet.name' => 'required|string|min:2|max:255',
-            'pet.customer_id' => 'required|numeric',
-            'birthdate' => 'nullable|string',
+            'pet.customer_id' => 'nullable|numeric',
+            'pet.birthdate' => 'nullable|string',
             'pet.status' => 'required|string',
             'pet.main_breed_id' => 'required|numeric',
             'pet.second_breed_id' => 'nullable|numeric',
@@ -49,26 +49,26 @@ class Form extends Component
      */
     public function mount()
     {
-        if (!$this->pet->exists) {
-            $this->pet->genre = 'unknown';
-        }
-
-        $this->breeds = [-1 => '---'] + Breed::all()->sortBy('breed')->pluck('breed', 'id')->toArray();
+        $this->breeds = Breed::getList();
         $this->customers = Customer::getList();
-
         $this->status = Pet::getStatus();
         $this->sizes = Pet::getSizeOptions();
-        $this->birthdate = $this->pet->birthdate;
 
         $duration = $this->pet->getDurationInHoursMinutes();
         $this->hours = $duration['hours'];
         $this->minutes = $duration['minutes'];
+
+        if (!$this->pet->exists) {
+            $this->pet->genre = 'unknown';
+            $this->pet->status = 'active';
+            $this->pet->size = 'medium';
+            $this->pet->main_breed_id = array_search('Inconnu', $this->breeds);
+        }
     }
 
     /**
      * Render the component
      *
-     * @return view
      */
     public function render()
     {
@@ -77,11 +77,11 @@ class Form extends Component
 
     /**
      * Save the model
-     *
-     * @return void
      */
     public function save()
     {
+        $this->pet->average_duration = ($this->hours * 60) + $this->minutes;
+
         $this->validate();
 
         $this->pet->save();

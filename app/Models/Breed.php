@@ -16,8 +16,6 @@ class Breed extends Model
         'breed',
     ];
 
-    // Relations
-
     /**
      * Get pets of specified breed.
      *
@@ -26,5 +24,17 @@ class Breed extends Model
     public function pets(): HasMany
     {
         return $this->hasMany(Pet::class);
+    }
+
+    /**
+     * Return breeds list as array
+     *
+     * @return array
+     */
+    public static function getList(): array
+    {
+        return Breed::orderBy('breed')
+        ->pluck('breed', 'id')
+        ->toArray();
     }
 }

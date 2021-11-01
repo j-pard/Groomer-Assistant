@@ -83,8 +83,6 @@ class Form extends Component
 
     /**
      * Save the model
-     *
-     * @return void
      */
     public function save()
     {

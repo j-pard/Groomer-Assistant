@@ -37,13 +37,13 @@
                         <x-forms.select
                             label="Propriétaire"
                             :options='$customers'
-                            required
+                            hasEmptyRow
                             wire="pet.customer_id"
                         />
 
                         <x-forms.datepicker
                             label="Anniversaire"
-                            wire="birthdate"
+                            wire="pet.birthdate"
                         />
 
                         <x-forms.select
@@ -68,6 +68,7 @@
                                 <x-forms.select
                                     label="Race 2"
                                     :options='$breeds'
+                                    hasEmptyRow
                                     wire="pet.second_breed_id"
                                 />
                             </div>
@@ -81,7 +82,7 @@
                         />
 
                         <div class="form-group">
-                            <label>Durée moyenne <span class="text-danger ml-1">*</span></label>
+                            <label>Durée moyenne</label>
                             <div class="duration-inputs-container">
                                 <x-forms.input
                                     label="Heures"
