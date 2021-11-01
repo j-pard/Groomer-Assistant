@@ -6,9 +6,8 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-6">
-                                <x-forms.input
+                                <x-forms.datepicker
                                     label="Date"
-                                    type="date"
                                     wire="date"
                                     required
                                 />

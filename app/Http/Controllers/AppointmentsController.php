@@ -19,6 +19,7 @@ class AppointmentsController extends Controller
         return view('manager.appointments.form', [
             'appointment' => $appointment,
             'customer' => $appointment->customer,
+            'pet' => $appointment->pet,
         ]);
     }
 

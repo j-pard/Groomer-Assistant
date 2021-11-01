@@ -12,8 +12,9 @@ class Form extends Component
 {
     public Appointment $appointment;
     public ?Customer $customer;
-    public Pet $pet;
+    public ?Pet $pet;
 
+    public array $customers;
     public array $pets;
     public string $date;
     public string $time;
@@ -29,6 +30,7 @@ class Form extends Component
         return [
             'appointment.pet_id' => 'required|numeric',
             'appointment.time' => 'string',
+            'time' => 'string',
             'appointment.notes' => 'string',
             'appointment.status' => 'string',
         ];
@@ -40,6 +42,7 @@ class Form extends Component
      */
     public function mount()
     {
+        $this->customers = Customer::getList();
         $this->pets = $this->customer->getPetsAsOptions();
         $this->status = Appointment::getStatusAsOptions();
 
@@ -49,15 +52,14 @@ class Form extends Component
             $this->appointment->pet_id = $this->appointment->pet_id ?? array_key_first($this->pets);
         }
         
-        $this->appointment->status = $this->appointment->status ?? 'planned';
-
         if ($this->appointment->exists) {
             $time = Carbon::parse($this->appointment->time);
-            $this->date = $time->format('d-m-Y');
+            $this->date = $time->format('Y-m-d');
             $this->time = $time->format('H:i');
         } else {
             $this->date = Carbon::now()->format('d-m-Y');
             $this->time = '08:30';
+            $this->appointment->status = 'planned';
         }
     }
 
@@ -84,7 +86,5 @@ class Form extends Component
         $this->appointment->customer_id = $this->customer->id;
 
         $this->appointment->save();
-
-        return redirect()->route('customers.appointments', ['customer' => $this->customer]);
     }
 }
