@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire\Appointments;
 
+use App\Http\Livewire\Form as LivewireForm;
 use App\Models\Appointment;
 use App\Models\Customer;
 use App\Models\Pet;
 use Carbon\Carbon;
-use Livewire\Component;
 
-class Form extends Component
+class Form extends LivewireForm
 {
     public Appointment $appointment;
     public ?Customer $customer;
@@ -86,5 +86,7 @@ class Form extends Component
         $this->appointment->customer_id = $this->customer->id;
 
         $this->appointment->save();
+
+        $this->showMessage();
     }
 }

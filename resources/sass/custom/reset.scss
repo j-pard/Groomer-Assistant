@@ -19,32 +19,3 @@ body {
       overflow-x: hidden;
       background-color: $body-bg;
 }
-
-main {
-      min-height: 90vh;
-      padding: 20px 20px 16px 90px !important;
-
-      & header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: nowrap;
-
-            padding: 0px 8px 16px 8px;
-            border-bottom: 1px solid lightgray;
-      }
-}
-
-h2, h3 {
-      padding: 0;
-      margin: 0;
-}
-
-#topBar {
-      z-index: 2;
-}
-
-button:focus {
-      outline: none !important;
-      box-shadow: none !important;
-}

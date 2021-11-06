@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Appointments;
 
+use App\Http\Livewire\Form as LivewireForm;
 use Illuminate\Database\Eloquent\Model;
-use Livewire\Component;
 
-class Header extends Component
+class Header extends LivewireForm
 {
     public Model $model;
 

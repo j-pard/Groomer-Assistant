@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Customers;
 
+use App\Http\Livewire\Form as LivewireForm;
 use App\Models\Customer;
 use App\Models\Pet;
 use Illuminate\Validation\Rule;
-use Livewire\Component;
 
-class Form extends Component
+class Form extends LivewireForm
 {
     public Customer $customer;
     public array $orphans = [];
@@ -93,6 +93,8 @@ class Form extends Component
         if ($this->customer->wasRecentlyCreated) {
             return redirect()->route('customers.edit', ['customer' => $this->customer]);
         }
+
+        $this->showMessage();
     }
 
     /**
@@ -107,6 +109,8 @@ class Form extends Component
         ]);
 
         $this->customer->load('pets');
+
+        $this->showMessage();
     }
 
     /**
@@ -124,5 +128,7 @@ class Form extends Component
         $this->customer->load('pets');
 
         $this->dispatchBrowserEvent('form-modal-saved', ['modalId' => 'addPetModal']);
+
+        $this->showMessage();
     }
 }

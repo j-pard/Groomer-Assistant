@@ -4977,6 +4977,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_confirmation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./libs/confirmation */ "./resources/js/libs/confirmation.js");
 /* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/form-modal */ "./resources/js/libs/form-modal.js");
 /* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_libs_form_modal__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _libs_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/toast */ "./resources/js/libs/toast.js");
+
 
 
 
@@ -5109,25 +5111,57 @@ window.addEventListener('shown.bs.modal', function (event) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/customer.js":
-/*!****************************************!*\
-  !*** ./resources/js/pages/customer.js ***!
-  \****************************************/
-/***/ (() => {
+/***/ "./resources/js/libs/toast.js":
+/*!************************************!*\
+  !*** ./resources/js/libs/toast.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var apptBtns = Array.from(document.getElementsByClassName('js-appt-modal'));
-var apptModal = document.getElementById('apptModal'); // Appointments edit
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 
-apptBtns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    apptModal.querySelector('h5.modal-title').value = btn.querySelector('input[name="data-pet-name"]').value + ' - Détails';
-    apptModal.querySelector('input[name="date"]').value = btn.querySelector('input[name="data-date"]').value;
-    apptModal.querySelector('input[name="time"]').value = btn.querySelector('input[name="data-time"]').value;
-    apptModal.querySelector('select[name="status"]').value = btn.querySelector('input[name="data-status"]').value;
-    apptModal.querySelector('textarea[name="notes"]').value = btn.querySelector('input[name="data-notes"]').value;
-    new bootstrap.Modal(apptModal).show();
-  });
+
+window.groomer.showMessage = function (message) {
+  var style = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+  // Create toast element
+  var el = document.createElement('div');
+  el.className = 'toast toast--' + style;
+  el.setAttribute('role', 'alert');
+  el.setAttribute('aria-live', 'assertive');
+  el.setAttribute('aria-atomic', 'true');
+  var body = document.createElement('div');
+  var iconType = style === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+  body.className = 'toast-body';
+  body.innerHTML += '<i class="toast__icon ' + iconType + '"></i>';
+  body.innerHTML += '<span class="w-100">' + message + '</span>';
+  el.appendChild(body);
+  var button = document.createElement('button');
+  button.className = 'btn btn-icon';
+  button.setAttribute('type', 'button');
+  button.setAttribute('data-bs-dismiss', 'toast');
+  button.setAttribute('aria-label', 'Close');
+  button.innerHTML += '<img src="/images/close.svg"/>';
+  body.appendChild(button); // Append the new toast to the toasts container
+
+  document.getElementById('toast-container').appendChild(el); // Show the toast
+
+  var options = {};
+
+  if (style === 'danger') {
+    options.autohide = false;
+  }
+
+  new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Toast(el, options).show();
+};
+
+document.addEventListener('hidden.bs.toast', function (e) {
+  // Delete the toast from the DOM when it is hidden
+  bootstrap__WEBPACK_IMPORTED_MODULE_0__.Toast.getInstance(e.target).dispose();
+  e.target.parentElement.removeChild(e.target);
+}, false);
+window.addEventListener('show-toast', function (e) {
+  window.groomer.showMessage(e.detail.message, e.detail.style);
 });
 
 /***/ }),
@@ -15252,8 +15286,6 @@ var tomSelect=function(el,opts){return new TomSelect(el,opts);}
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./customer": "./resources/js/pages/customer.js",
-	"./customer.js": "./resources/js/pages/customer.js",
 	"./home": "./resources/js/pages/home.js",
 	"./home.js": "./resources/js/pages/home.js",
 	"./pet": "./resources/js/pages/pet.js",
@@ -15416,12 +15448,14 @@ webpackContext.id = "./resources/js/pages sync recursive ^\\.\\/.*$";
 /******/ 			// add "moreModules" to the modules object,
 /******/ 			// then flag all "chunkIds" as loaded and fire callback
 /******/ 			var moduleId, chunkId, i = 0;
-/******/ 			for(moduleId in moreModules) {
-/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
 /******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
 /******/ 			}
-/******/ 			if(runtime) var result = runtime(__webpack_require__);
 /******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
 /******/ 			for(;i < chunkIds.length; i++) {
 /******/ 				chunkId = chunkIds[i];

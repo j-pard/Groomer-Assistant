@@ -110,6 +110,8 @@
         </main>
     </div>
 
+    <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
+
     <!-- Modals -->
     <div class="modal modal__popup fade" id="modalConfirmation" tabindex="-1" aria-labelledby="modalConfirmationLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -133,6 +135,18 @@
     @stack('scripts')
     @livewireScripts
 
+    <script>
+        window.groomer = window.groomer || {};
+    </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    {{-- Toasts --}}
+    @if (session('message_success'))
+        <script>window.groomer.showMessage(@json(session('message_success')))</script>
+    @endif
+    @if (session('message_danger'))
+        <script>window.groomer.showMessage(@json(session('message_danger')), 'danger')</script>
+    @endif
+
 </body>
 </html>

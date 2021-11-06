@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\Pets;
 
+use App\Http\Livewire\Form as LivewireForm;
 use App\Models\Breed;
 use App\Models\Customer;
 use App\Models\Pet;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
-class Form extends Component
+class Form extends LivewireForm
 {
     public Pet $pet;
     public array $breeds;
@@ -89,5 +90,7 @@ class Form extends Component
         if ($this->pet->wasRecentlyCreated) {
             return redirect()->route('pets.edit', ['pet' => $this->pet]);
         }
+
+        $this->showMessage();
     }
 }

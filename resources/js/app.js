@@ -2,6 +2,7 @@ import * as bootstrap from 'bootstrap';
 import TomSelect from 'tom-select';
 import './libs/confirmation';
 import './libs/form-modal';
+import './libs/toast';
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
