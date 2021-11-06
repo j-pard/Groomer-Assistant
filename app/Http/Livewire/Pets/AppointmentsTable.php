@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Customers;
+namespace App\Http\Livewire\Pets;
 
 use App\Models\Appointment;
-use App\Models\Customer;
+use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
@@ -17,7 +17,7 @@ class AppointmentsTable extends TableComponent
 
     public $sortField = 'time';
     public $sortDirection = 'desc';
-    public Customer $customer;
+    public Pet $pet;
     
     public function mount()
     {
@@ -26,7 +26,7 @@ class AppointmentsTable extends TableComponent
     
     public function query() : Builder
     {
-        return Appointment::where('customer_id', $this->customer->id);
+        return Appointment::where('pet_id', $this->pet->id);
     }
 
     public function columns() : array

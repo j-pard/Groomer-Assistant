@@ -1,13 +1,12 @@
 @extends('manager.layouts.app')
 
 @section('content')
-RDV
-    {{-- <livewire:customers.header 
-        :customer="$customer"
-        backUrl="{{ route('customers.index') }}"
+    <livewire:pets.header 
+        :pet="$pet"
+        backUrl="{{ route('pets.index') }}"
     />
 
     @include('manager.partials.session-message')
 
-    <livewire:customers.appointments-table :customer="$customer" /> --}}
+    <livewire:pets.appointments-table :pet="$pet" />
 @endsection
