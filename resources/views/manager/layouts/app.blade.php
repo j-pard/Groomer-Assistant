@@ -123,8 +123,8 @@
                 <div class="modal-body js-confirmation-body">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn--secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn--danger js-confirmation-button" data-text="Supprimer"></button>
+                    <button type="button" class="btn btn-transparent" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-danger js-confirmation-button" data-text="Supprimer"></button>
                 </div>
             </div>
         </div>

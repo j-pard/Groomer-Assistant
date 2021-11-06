@@ -12726,6 +12726,10 @@ fieldset:disabled .btn {
   color: #e3342f;
 }
 
+.btn-danger {
+  color: #ffffff;
+}
+
 .card .card-header {
   display: flex;
   align-items: center;
