@@ -5166,72 +5166,6 @@ window.addEventListener('show-toast', function (e) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/home.js":
-/*!************************************!*\
-  !*** ./resources/js/pages/home.js ***!
-  \************************************/
-/***/ (() => {
-
-var customerSelect = document.getElementById('customerSelect');
-var petSelect = document.getElementById('petSelect');
-var getPetsUrl = document.getElementById('getPetsUrl').value;
-var TOKEN = document.getElementsByName('_token')[0].value;
-var petBtns = Array.from(document.getElementsByClassName('js-pet-modal'));
-var petModal = document.getElementById('petModal'); // Get pets for specified customer
-
-customerSelect.addEventListener('change', function (e) {
-  e.preventDefault();
-  fetch(getPetsUrl, {
-    method: 'POST',
-    headers: new Headers({
-      "Content-Type": "application/json",
-      "X-CSRF-TOKEN": TOKEN
-    }),
-    body: JSON.stringify({
-      customerId: customerSelect.value
-    })
-  }).then(function (response) {
-    return response.json();
-  }).then(function (response) {
-    resetOptions(petSelect);
-    petSelect.disabled = false;
-
-    for (var pet in response) {
-      var newOption = new Option(response[pet], pet);
-      petSelect.add(newOption);
-    }
-  })["catch"](function (error) {
-    console.error(error);
-  });
-});
-
-var resetOptions = function resetOptions(select) {
-  while (select.options.length > 0) {
-    select.remove(0);
-  }
-
-  var newOption = new Option('---', -1);
-  select.add(newOption);
-}; // Pet Modal
-
-
-petBtns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    var data = JSON.parse(btn.querySelector('.js-values').value);
-    document.getElementById('petModalLabel').textContent = data.pet;
-    petModal.querySelector('input[name="id"]').value = data.id;
-    petModal.querySelector('input[name="date"]').value = data.date;
-    petModal.querySelector('input[name="time"]').value = data.hours;
-    petModal.querySelector('input[name="customerName"]').value = data.customer;
-    petModal.querySelector('select[name="status"]').value = data.status;
-    petModal.querySelector('textarea[name="notes"]').value = data.notes;
-    new bootstrap.Modal(petModal).show();
-  });
-});
-
-/***/ }),
-
 /***/ "./resources/js/pages/pet.js":
 /*!***********************************!*\
   !*** ./resources/js/pages/pet.js ***!
@@ -5260,46 +5194,6 @@ deleteBtns.forEach(function (btn) {
     e.preventDefault();
     deleteModal.querySelector('input[name="petId"]').value = btn.getAttribute('data-pet-id');
     new bootstrap.Modal(deleteModal).show();
-  });
-});
-
-/***/ }),
-
-/***/ "./resources/js/pages/settings.js":
-/*!****************************************!*\
-  !*** ./resources/js/pages/settings.js ***!
-  \****************************************/
-/***/ (() => {
-
-// UPDATE
-var TOKEN = document.getElementsByName('_token')[0].value;
-var URL = document.getElementById('breedForm').getAttribute('action');
-var BTNS = document.querySelectorAll('.js-breed-btn');
-BTNS.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    var id = btn.getAttribute('data-breed');
-    var data = {
-      id: id,
-      breed: document.getElementById('breed_' + id).value,
-      size: document.getElementById('size_' + id).value
-    };
-    fetch(URL, {
-      method: 'POST',
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "X-CSRF-TOKEN": TOKEN
-      }),
-      body: JSON.stringify(data)
-    }).then(function (response) {
-      return response.json();
-    }).then(function (response) {
-      console.log(response);
-      btn.querySelector('i').classList.toggle('text-pink', false);
-      btn.querySelector('i').classList.toggle('text-green', true);
-    })["catch"](function (error) {
-      console.error(error);
-    });
   });
 });
 
@@ -15286,12 +15180,8 @@ var tomSelect=function(el,opts){return new TomSelect(el,opts);}
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./home": "./resources/js/pages/home.js",
-	"./home.js": "./resources/js/pages/home.js",
 	"./pet": "./resources/js/pages/pet.js",
-	"./pet.js": "./resources/js/pages/pet.js",
-	"./settings": "./resources/js/pages/settings.js",
-	"./settings.js": "./resources/js/pages/settings.js"
+	"./pet.js": "./resources/js/pages/pet.js"
 };
 
 

@@ -1,10 +1,12 @@
 <div class="form-group">
-    <label for="{{ $name }}">
-        {{ $label }}
-        @if ($required)
-            <span class="text-danger">*</span>
-        @endif
-    </label>
+    @if (isset($label))
+        <label for="{{ $name }}">
+            {{ $label }}
+            @if ($required)
+                <span class="text-danger">*</span>
+            @endif
+        </label>
+    @endif
     <input 
         class="form-control {{ $class }} @error($name) is-invalid @enderror"
         type="date"

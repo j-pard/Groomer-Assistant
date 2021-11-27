@@ -57,7 +57,7 @@ class Form extends LivewireForm
             $this->date = $time->format('Y-m-d');
             $this->time = $time->format('H:i');
         } else {
-            $this->date = Carbon::now()->format('d-m-Y');
+            $this->date = Carbon::now()->format('Y-m-d');
             $this->time = '08:30';
             $this->appointment->status = 'planned';
         }

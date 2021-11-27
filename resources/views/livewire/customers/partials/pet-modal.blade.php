@@ -1,5 +1,5 @@
 {{-- Add Pet Modal --}}
-<div class="modal fade" id="addPetModal" tabindex="-1" aria-labelledby="addPetModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="addPetModal" tabindex="-1" aria-labelledby="addPetModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form wire:submit.prevent="attachPet">

@@ -32,5 +32,7 @@
             <option value="null" disabled></option>
         @endforelse
     </select>
-
+    @error($name)
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
 </div>
