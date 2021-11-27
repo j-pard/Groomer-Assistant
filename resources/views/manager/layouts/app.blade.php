@@ -41,27 +41,20 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                        @endif
-                        
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">Se connecter</a>
                             </li>
                         @endif
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
-                                <i class="fas fa-user"></i>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    document.getElementById('logout-form').submit();">
+                                    Se déconnecter
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -75,6 +68,14 @@
         </div>
     </nav>
     
+    @guest
+        <div class="row">
+            <main class="container-fluid">
+                @yield('login')
+            </main>
+        </div>
+    @endguest
+
     @auth    
         <nav id="aside-nav">
             <x-buttons.nav
@@ -95,58 +96,52 @@
                 section="customers"
                 :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
             />
-            <x-buttons.nav
-                :icon="'fas fa-cog'"
-                :url="route('settings.breeds')"
-                section="settings"
-                :active="Str::startsWith(Route::currentRouteName(), 'settings.')"
-            />
         </nav>
-    @endauth
 
-    <div class="row">
-        <main class="container-fluid">
-            @yield('content')
-        </main>
-    </div>
+        <div class="row">
+            <main class="container-fluid">
+                @yield('content')
+            </main>
+        </div>
 
-    <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
+        <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
 
-    <!-- Modals -->
-    <div class="modal modal__popup fade" id="modalConfirmation" tabindex="-1" aria-labelledby="modalConfirmationLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="modalConfirmationLabel">Confirmation</h2>
-                    <button type="button" class="btn-close btn-icon btn-icon--base btn-icon--dark" data-bs-dismiss="modal" aria-label="Annuler"></button>
-                </div>
-                <div class="modal-body js-confirmation-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-transparent" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-danger js-confirmation-button" data-text="Supprimer"></button>
+        <!-- Modals -->
+        <div class="modal modal__popup fade" id="modalConfirmation" tabindex="-1" aria-labelledby="modalConfirmationLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modalConfirmationLabel">Confirmation</h2>
+                        <button type="button" class="btn-close btn-icon btn-icon--base btn-icon--dark" data-bs-dismiss="modal" aria-label="Annuler"></button>
+                    </div>
+                    <div class="modal-body js-confirmation-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-transparent" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-danger js-confirmation-button" data-text="Supprimer"></button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- Scripts -->
+        @stack('scripts')
+        @livewireScripts
     
-    <!-- Scripts -->
-    @stack('scripts')
-    @livewireScripts
-
-    <script>
-        window.groomer = window.groomer || {};
-    </script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    {{-- Toasts --}}
-    @if (session('message_success'))
-        <script>window.groomer.showMessage(@json(session('message_success')))</script>
-    @endif
-    @if (session('message_danger'))
-        <script>window.groomer.showMessage(@json(session('message_danger')), 'danger')</script>
-    @endif
+        <script>
+            window.groomer = window.groomer || {};
+        </script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    
+        {{-- Toasts --}}
+        @if (session('message_success'))
+            <script>window.groomer.showMessage(@json(session('message_success')))</script>
+        @endif
+        @if (session('message_danger'))
+            <script>window.groomer.showMessage(@json(session('message_danger')), 'danger')</script>
+        @endif
+    @endauth
+    
 
 </body>
 </html>

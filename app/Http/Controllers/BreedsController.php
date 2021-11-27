@@ -7,30 +7,5 @@ use Illuminate\Http\Request;
 
 class BreedsController extends Controller
 {
-    /**
-     * Return specified breed
-     *
-     * @param Request $request
-     * @return Breed
-     */
-    public function get(Request $request)
-    {
-        return Breed::find($request->breed);
-    }
-
-    /**
-     * Update specified Breed
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-        Breed::find($request->id)->update([
-            'breed' => $request->breed,
-            'size' => $request->size,
-        ]);
-
-        return response()->json(['success' => 'success'], 200);
-    }
+    //
 }
