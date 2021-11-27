@@ -7,11 +7,6 @@
             <a href="{{ route('pets.create') }}" class="btn btn--primary">Nouveau</a>
         </div>
     </header>
-
-    @include('manager.partials.session-message')
     
-    <div>
-        <livewire:pets.table />
-    </div>
-
+    <livewire:pets.table />
 @endsection

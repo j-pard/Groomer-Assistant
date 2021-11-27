@@ -8,8 +8,5 @@
         </div>
     </header>
 
-    @include('manager.partials.session-message')
-
     <livewire:customers.table />
-
 @endsection

@@ -117,7 +117,11 @@
                                                 </a>
                                                 <span>{{ $pet->name }}</span>
                                             </div>
-                                            <x-buttons.delete method="detachPet({{ $pet->id }})" icon="fas fa-times" />
+                                            <x-buttons.delete 
+                                                text="Etes-vous certain(e) de vouloir enlever le collier du chien ?" 
+                                                method="detachPet({{ $pet->id }})" 
+                                                icon="fas fa-times" 
+                                            />
                                         </li>
                                     @empty
                                         

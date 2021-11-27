@@ -1,4 +1,4 @@
-@extends('manager.layouts.app', ['page' => 'pet'])
+@extends('manager.layouts.app')
 
 @section('content')
 

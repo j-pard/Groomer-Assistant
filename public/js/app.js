@@ -5166,39 +5166,6 @@ window.addEventListener('show-toast', function (e) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/pet.js":
-/*!***********************************!*\
-  !*** ./resources/js/pages/pet.js ***!
-  \***********************************/
-/***/ (() => {
-
-var apptBtns = Array.from(document.getElementsByClassName('js-appt-modal'));
-var apptModal = document.getElementById('apptModal');
-var deleteBtns = Array.from(document.getElementsByClassName('js-confirm-delete'));
-var deleteModal = document.getElementById('deletePetModal'); // Detach Pet Modal
-
-apptBtns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    apptModal.querySelector('input[name="id"]').value = btn.querySelector('input[name="data-id"]').value;
-    apptModal.querySelector('input[name="date"]').value = btn.querySelector('input[name="data-date"]').value;
-    apptModal.querySelector('input[name="time"]').value = btn.querySelector('input[name="data-time"]').value;
-    apptModal.querySelector('select[name="status"]').value = btn.querySelector('input[name="data-status"]').value;
-    apptModal.querySelector('textarea[name="notes"]').value = btn.querySelector('input[name="data-notes"]').value;
-    new bootstrap.Modal(apptModal).show();
-  });
-}); // Delete Pet Modal
-
-deleteBtns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    deleteModal.querySelector('input[name="petId"]').value = btn.getAttribute('data-pet-id');
-    new bootstrap.Modal(deleteModal).show();
-  });
-});
-
-/***/ }),
-
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.esm.js":
 /*!*********************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.esm.js ***!
@@ -15177,32 +15144,17 @@ var tomSelect=function(el,opts){return new TomSelect(el,opts);}
 /*!*******************************************!*\
   !*** ./resources/js/pages/ sync ^\.\/.*$ ***!
   \*******************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((module) => {
 
-var map = {
-	"./pet": "./resources/js/pages/pet.js",
-	"./pet.js": "./resources/js/pages/pet.js"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
+function webpackEmptyContext(req) {
+	var e = new Error("Cannot find module '" + req + "'");
+	e.code = 'MODULE_NOT_FOUND';
+	throw e;
 }
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "./resources/js/pages sync recursive ^\\.\\/.*$";
+webpackEmptyContext.keys = () => ([]);
+webpackEmptyContext.resolve = webpackEmptyContext;
+webpackEmptyContext.id = "./resources/js/pages sync recursive ^\\.\\/.*$";
+module.exports = webpackEmptyContext;
 
 /***/ })
 
