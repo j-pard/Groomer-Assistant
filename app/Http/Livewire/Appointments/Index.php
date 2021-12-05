@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Appointments;
 use App\Http\Livewire\Form as LivewireForm;
 use App\Models\Appointment;
 use App\Models\Customer;
+use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
@@ -15,7 +16,8 @@ class Index extends LivewireForm
     public array $customers = [];
     public ?string $customer = null;
     public array $pets = [];
-    public ?string $pet = null;
+    public ?string $petId = null;
+    public ?Pet $pet;
     public array $status = [];
 
     public string $date;
@@ -35,7 +37,7 @@ class Index extends LivewireForm
             'appointment.status' => 'required|string',
 
             'customer' => 'nullable|numeric',
-            'pet' => 'nullable|numeric',
+            'petId' => 'nullable|numeric',
             'date' => 'string',
             'time' => 'string',
         ];
@@ -89,7 +91,8 @@ class Index extends LivewireForm
         $this->appointment = Appointment::find($id);
         $this->customer = $this->appointment->customer_id;
         $this->pets = $this->appointment->customer->getPetsAsOptions();
-        $this->pet = $this->appointment->pet_id;
+        $this->petId = $this->appointment->pet_id;
+        $this->pet = Pet::find($this->petId);
         $this->modalTitle = 'Modifier un rendez-vous';
         $this->time = Carbon::parse($this->appointment->time)->format('H:i');
         $this->isUpdating = true;
@@ -108,7 +111,7 @@ class Index extends LivewireForm
     {
         $activeCustomer = Customer::find($value);
         $this->pets = isset($activeCustomer) ? $activeCustomer->getPetsAsOptions() : [];
-        $this->pet = array_key_first($this->pets);
+        $this->petId = array_key_first($this->pets);
     }
 
     public function updatedActiveDate($value)
@@ -126,7 +129,7 @@ class Index extends LivewireForm
     {
         $this->appointment->time = Carbon::parse($this->date . ' ' . $this->time)->format('Y-m-d H:i:s');
         $this->appointment->customer_id = $this->customer;
-        $this->appointment->pet_id = $this->pet;
+        $this->appointment->pet_id = $this->petId;
         $this->validate($this->appointmentRules());
 
         $this->appointment->save();
@@ -170,9 +173,10 @@ class Index extends LivewireForm
         $this->appointment->status = 'planned';
         $this->customer = null;
         $this->pets = [];
-        $this->pet = null;
+        $this->petId = null;
         $this->modalTitle = 'Nouveau rendez-vous';
         $this->isUpdating = false;
         $this->time = '08:30';
+        $this->pet = null;
     }
 }

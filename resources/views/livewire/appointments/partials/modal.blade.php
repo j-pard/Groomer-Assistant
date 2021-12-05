@@ -1,6 +1,6 @@
 <div 
     wire:ignore.self class="modal fade" id="apptModal" tabindex="-1" aria-labelledby="apptModalLabel" aria-hidden="true">
-    <div class="modal-dialog {{ $isUpdating ? 'modal-xl' : '' }}">
+    <div class="modal-dialog {{ ($isUpdating && $pet->has_warning) ? 'modal-xl' : '' }}">
         <div class="modal-content">
             <form wire:submit.prevent="saveAppointment">
                 <div class="modal-header">
@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     <div class="row">
                         {{-- Left column --}}
-                        <div class="{{ $isUpdating ? 'col-md-6' : '' }}">
+                        <div class="{{ ($isUpdating && $pet->has_warning) ? 'col-md-6' : '' }}">
                             <div class="row">
                                 <div class="col-6">
                                     <x-forms.datepicker
@@ -44,7 +44,7 @@
                             <div class="mb-3">
                                 <x-forms.select
                                     label="Chien"
-                                    wire="pet"
+                                    wire="petId"
                                     :options="$pets"
                                     :disabled="$isUpdating"
                                     required
@@ -70,11 +70,11 @@
                         </div>
 
                         {{-- Right column --}}
-                        @if ($isUpdating && $appointment->pet->has_warning)
+                        @if ($isUpdating && $pet->has_warning)
                             <div class="col-md-6 text-end">
                                 <i class="fas fa-exclamation-circle text-pink h1"></i>
 
-                                <p>{{ $appointment->pet->warnings }}</p>
+                                <p>{{ $pet->warnings }}</p>
                             </div>
                         @endif
                     </div>
