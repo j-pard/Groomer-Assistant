@@ -41,6 +41,8 @@ class Form extends LivewireForm
             'hours' => 'nullable|numeric',
             'minutes' => 'nullable|numeric',
             'pet.remarks' => 'nullable|string|max:65535',
+            'pet.has_warning' => 'boolean',
+            'pet.warnings' => 'nullable|string|max:65535',
         ];
     }
 

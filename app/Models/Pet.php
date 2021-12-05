@@ -30,6 +30,8 @@ class Pet extends Model implements HasMedia
         'average_duration',
         'size',
         'remarks',
+        'has_warning',
+        'warnings',
     ];
 
     /**
@@ -38,7 +40,7 @@ class Pet extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
-        //
+        'has_warning' => 'boolean',
     ];
 
     /**

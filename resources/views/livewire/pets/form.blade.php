@@ -106,8 +106,26 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <h3 class="mb-3">Détails</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3>Détails</h3>
+                            <x-forms.checkbox
+                                icon="fas fa-exclamation-circle"
+                                iconClass="h2 text-pink"
+                                
+                                wire="pet.has_warning"
+                                wireModifier="lazy"
+                            />
+                        </div>
                         
+                        <div>
+                            @if ($pet->has_warning)
+                                <x-forms.textarea
+                                    label="Attentions"
+                                    rows="4"
+                                    wire="pet.warnings"
+                                />
+                            @endif
+                        </div>
                         <div class="form-group">
                             <x-forms.textarea
                                 label="Remarques"

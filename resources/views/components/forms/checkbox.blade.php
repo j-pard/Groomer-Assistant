@@ -1,20 +1,20 @@
-<div class="form-check {{ $inline ? 'form-check-inline' : '' }}">
+<div class="form-check d-flex align-items-center ">
     <input 
-        class="form-check-input" 
-        type="radio" 
+        class="form-check-input me-2" 
+        type="checkbox" 
         {{ $name ? 'name="' . $name . '"' : ''}}
-        id="radio{{ $value }}" 
-        value="{{ $value }}" 
+        id="checkbox{{ $name }}" 
         {{ $checked ? 'checked' : ''}}
 
         @if ($wire)
             wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
         @endif
     >
-    <label class="form-check-label" for="radio{{ $value }}">
+
+    <label class="form-check-label d-flex align-items-center" for="checkbox{{ $name }}">
         @if ($icon)
             <i class="{{ $icon }} {{ $iconClass }}"></i>
         @endif
-        {{ $label }}
+        <span>{{ $label }}</span>
     </label>
 </div>

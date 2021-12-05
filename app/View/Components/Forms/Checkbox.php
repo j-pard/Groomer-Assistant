@@ -4,7 +4,7 @@ namespace App\View\Components\Forms;
 
 use Illuminate\View\Component;
 
-class Radio extends Component
+class Checkbox extends Component
 {
     /**
      * Create a new component instance.
@@ -15,14 +15,17 @@ class Radio extends Component
         public $wire = null,
         public string $wireModifier = 'defer',
         public ?string $name = null,
-        public ?string $value = null,
         public ?string $label = null,
         public bool $inline = false,
         public bool $checked = false,
         public ?string $icon = null,
         public string $iconClass = 'h4'
     )
-    {}
+    {
+        if ($this->name == null) {
+            $this->name = $this->wire;
+        }
+    }
 
     /**
      * Get the view / contents that represent the component.
@@ -31,6 +34,6 @@ class Radio extends Component
      */
     public function render()
     {
-        return view('components.forms.radio');
+        return view('components.forms.checkbox');
     }
 }
