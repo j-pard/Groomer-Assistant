@@ -5,11 +5,21 @@
                 Bonjour <span class="text-pink">{{ Auth::user()->name }}</span>, voici tes rendez-vous de la journée.
             </h4>
 
-            <x-forms.datepicker
-                class="my-1"
-                wire="activeDate"
-                wireModifier="lazy"
-            />
+            <div class="d-flex justify-content-around align-items-center">
+                <button class="btn btn-transparent mb-2" wire:click="previousDay">
+                    <i class="fas fa-backward"></i>
+                </button>
+
+                <x-forms.datepicker
+                    class="my-1"
+                    wire="activeDate"
+                    wireModifier="lazy"
+                />
+
+                <button class="btn btn-transparent mb-2" wire:click="nextDay">
+                    <i class="fas fa-forward"></i>
+                </button>
+            </div>
             
         </div>
 

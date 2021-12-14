@@ -83,11 +83,17 @@
                 <div class="modal-footer d-flex justify-content-between">
                     <div>
                         @if ($isUpdating)
-                            <button type="button" class="btn btn-danger" wire:click="deleteAppt({{ $appointment->id }})">Supprimer</button>
+                            <x-buttons.delete 
+                                text="Etes-vous certain(e) de vouloir supprimer ce rendez-vous ?" 
+                                method="deleteAppt({{ $appointment->id }})" 
+                                icon="" 
+                                button="Supprimer"
+                                class="w-auto"
+                            />
                         @endif
                     </div>
                     <div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Fermer</button>
                         <button type="submit" class="btn btn-success text-light">{{ $isUpdating ? 'Sauver' : 'Ajouter' }}</button>
                     </div>
                 </div>

@@ -159,6 +159,20 @@ class Index extends LivewireForm
         $this->showMessage('Rendez-vous supprimé');
     }
 
+    public function previousDay()
+    {
+        $this->date = Carbon::parse($this->activeDate)->subDay()->startOfDay()->format('Y-m-d');
+        $this->activeDate = $this->date;
+        $this->loadAppointments();
+    }
+
+    public function nextDay()
+    {
+        $this->date = Carbon::parse($this->activeDate)->addDay()->startOfDay()->format('Y-m-d');
+        $this->activeDate = $this->date;
+        $this->loadAppointments();
+    }
+
     private function loadAppointments()
     {
         $this->appointments = Appointment::whereBetween('time', [
