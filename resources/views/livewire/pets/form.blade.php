@@ -108,9 +108,9 @@
                     <div class="col-md-6">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h3>Détails</h3>
-                            <x-forms.checkbox
+                            <x-forms.toggle
                                 icon="fas fa-exclamation-circle"
-                                iconClass="h2 text-pink"
+                                iconClass="h2 {{ $pet->has_warning ? 'text-pink' : 'text-gray' }}"
                                 
                                 wire="pet.has_warning"
                                 wireModifier="lazy"

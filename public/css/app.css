@@ -12803,6 +12803,11 @@ fieldset:disabled .btn {
   transition: all 0.3s;
 }
 
+.text-gray {
+  color: gray;
+  transition: all 0.3s;
+}
+
 .text-green {
   color: #38c172;
   transition: all 0.3s;
