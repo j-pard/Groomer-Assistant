@@ -65,6 +65,7 @@ class Header extends Component
             $nav = [
                 'Détails' => route('pets.edit', ['pet' => $this->pet]),
                 'Rendez-vous'=> route('pets.appointments', ['pet' => $this->pet]),
+                'Fiches'=> route('pets.sheets', ['pet' => $this->pet]),
             ];
         }
 

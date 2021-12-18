@@ -73,4 +73,17 @@ class PetsController extends Controller
             'pet' => $pet,
         ]);
     }
+
+    /**
+     * Show pet sheets
+     *
+     * @param Pet $pet
+     * @return view
+     */
+    public function sheets(Pet $pet)
+    {
+        return view('manager.pets.sheets', [
+            'pet' => $pet,
+        ]);
+    }
 }
