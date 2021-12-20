@@ -1,5 +1,6 @@
 <div>
-    <form wire:submit.prevent="save">
+    <form wire:submit.prevent="save" autocorrect="off" autocapitalize="off" autocomplete="off">
+        <button type="submit" onclick="return false;" style="display:none;"></button>
         <div class="card-body">
             <fieldset>
                 <div class="row">

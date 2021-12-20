@@ -3,10 +3,7 @@
 namespace App\Http\Livewire\Pets;
 
 use App\Http\Livewire\Form as LivewireForm;
-use App\Models\Breed;
-use App\Models\Customer;
 use App\Models\Pet;
-use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 
 class SheetsForm extends LivewireForm
@@ -15,9 +12,20 @@ class SheetsForm extends LivewireForm
 
     public Pet $pet;
 
-    public $sheets;
+    public array $sheets = [];
     public $sheet;
 
+    protected $listeners = ['refreshSheets' => '$refresh'];
+
+    /**
+     * Mount the component
+     *
+     */
+    public function mount()
+    {
+        $this->sheets = $this->loadMedia();
+    }
+    
     /**
      * Valdiation rules
      *
@@ -28,15 +36,6 @@ class SheetsForm extends LivewireForm
         return [
             'sheet' => 'image|mimes:jpg,jpeg|max:7168', // 7mb
         ];
-    }
-
-    /**
-     * Mount the component
-     *
-     */
-    public function mount()
-    {
-        //
     }
 
     /**
@@ -54,9 +53,23 @@ class SheetsForm extends LivewireForm
     public function save()
     {
         $this->validate();
-dd($this->sheet);
-        $this->sheet->save();
 
-        $this->showMessage();
+        $this->pet
+            ->addMedia($this->sheet)
+            ->toMediaCollection('sheets');
+            
+        $this->emit('refreshSheets');
+    }
+
+    private function loadMedia()
+    {
+        $sheets = [];
+
+        $mediaCollection = $this->pet->getMedia('sheets');
+        foreach ($mediaCollection as $media) {
+            $sheets[] = $media->getUrl();
+        }
+
+        return $sheets;
     }
 }
