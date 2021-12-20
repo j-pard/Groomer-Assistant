@@ -1,4 +1,4 @@
-@extends('manager.layouts.app')
+@extends('manager.layouts.app');
 
 @section('content')
     <livewire:pets.header 
