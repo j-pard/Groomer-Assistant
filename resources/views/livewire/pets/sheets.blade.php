@@ -14,10 +14,10 @@
                     </div>
                 </div>
 
-                <div class="row d-flex justify-content-around">
+                <div class="row d-flex align-items-center">
                     @foreach ($sheets as $_sheet)
                         <div class="col-12 col-md-5 col-lg-4 col-xl-3">
-                            <img src="{{ $_sheet }}" class="rounded img-fluid" data-bs-toggle="modal" data-bs-target="#sheet{{ $loop->iteration }}">
+                            <img src="{{ $_sheet }}" class="rounded img-fluid shadow" data-bs-toggle="modal" data-bs-target="#sheet{{ $loop->iteration }}">
                         </div>
 
                         <div class="modal" tabindex="-1" id="sheet{{ $loop->iteration }}">
