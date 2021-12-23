@@ -66,6 +66,7 @@ class Form extends LivewireForm
             $this->pet->status = 'active';
             $this->pet->size = 'medium';
             $this->pet->main_breed_id = array_search('Inconnu', $this->breeds);
+            $this->pet->has_warning = false;
         }
     }
 
