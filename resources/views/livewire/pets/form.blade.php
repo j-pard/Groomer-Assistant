@@ -14,18 +14,21 @@
                                 inline
                                 checked
                                 wire="pet.genre"
+                                name="gender"
                             />
                             <x-forms.radio
                                 value="male"
                                 icon="fas fa-mars"
                                 inline
                                 wire="pet.genre"
+                                name="gender"
                             />
                             <x-forms.radio
                                 value="female"
                                 icon="fas fa-venus"
                                 inline
                                 wire="pet.genre"
+                                name="gender"
                             />
                         </div>
                         
