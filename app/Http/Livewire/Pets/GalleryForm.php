@@ -12,7 +12,7 @@ class GalleryForm extends LivewireForm
 
     public Pet $pet;
 
-    public array $medias = [];
+    public $medias;
     public $media;
 
     protected $listeners = ['refreshGallery' => '$refresh'];
@@ -23,7 +23,7 @@ class GalleryForm extends LivewireForm
      */
     public function mount()
     {
-        $this->medias = $this->loadMedia();
+        $this->medias = $this->pet->getMedia();
     }
     
     /**
@@ -67,7 +67,7 @@ class GalleryForm extends LivewireForm
 
         $mediaCollection = $this->pet->getMedia();
         foreach ($mediaCollection as $media) {
-            $medias[] = $media->getFullUrl();
+            $medias[] = $media->getPath();
         }
 
         return $medias;
