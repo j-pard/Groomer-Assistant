@@ -32,7 +32,7 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::get('/{pet}/edit', [PetsController::class, 'edit'])->name('edit');
         Route::get('/{pet}/appointments', [PetsController::class, 'appointments'])->name('appointments');
         Route::get('/{pet}/appointment', [PetsController::class, 'appointment'])->name('appointment');
-        Route::get('/{pet}/sheets', [PetsController::class, 'sheets'])->name('sheets');
+        Route::get('/{pet}/gallery', [PetsController::class, 'gallery'])->name('gallery');
         
     });
     

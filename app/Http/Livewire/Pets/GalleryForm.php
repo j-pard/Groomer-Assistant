@@ -6,16 +6,16 @@ use App\Http\Livewire\Form as LivewireForm;
 use App\Models\Pet;
 use Livewire\WithFileUploads;
 
-class SheetsForm extends LivewireForm
+class GalleryForm extends LivewireForm
 {
     use WithFileUploads;
 
     public Pet $pet;
 
-    public array $sheets = [];
-    public $sheet;
+    public array $medias = [];
+    public $media;
 
-    protected $listeners = ['refreshSheets' => '$refresh'];
+    protected $listeners = ['refreshGallery' => '$refresh'];
 
     /**
      * Mount the component
@@ -23,7 +23,7 @@ class SheetsForm extends LivewireForm
      */
     public function mount()
     {
-        $this->sheets = $this->loadMedia();
+        $this->medias = $this->loadMedia();
     }
     
     /**
@@ -34,7 +34,7 @@ class SheetsForm extends LivewireForm
     protected function rules()
     {
         return [
-            'sheet' => 'image|mimes:jpg,jpeg|max:7168', // 7mb
+            'media' => 'image|mimes:jpg,jpeg|max:7168', // 7mb
         ];
     }
 
@@ -44,7 +44,7 @@ class SheetsForm extends LivewireForm
      */
     public function render()
     {
-        return view('livewire.pets.sheets');
+        return view('livewire.pets.gallery');
     }
 
     /**
@@ -55,21 +55,21 @@ class SheetsForm extends LivewireForm
         $this->validate();
 
         $this->pet
-            ->addMedia($this->sheet)
-            ->toMediaCollection('sheets');
+            ->addMedia($this->media)
+            ->toMediaCollection();
             
-        $this->emit('refreshSheets');
+        $this->emit('refreshGallery');
     }
 
     private function loadMedia()
     {
-        $sheets = [];
+        $medias = [];
 
-        $mediaCollection = $this->pet->getMedia('sheets');
+        $mediaCollection = $this->pet->getMedia();
         foreach ($mediaCollection as $media) {
-            $sheets[] = $media->getUrl();
+            $medias[] = $media->getUrl();
         }
 
-        return $sheets;
+        return $medias;
     }
 }

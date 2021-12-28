@@ -6,5 +6,5 @@
         backUrl="{{ route('pets.index') }}"
     />
     
-    <livewire:pets.sheets-form :pet="$pet" />
+    <livewire:pets.gallery-form :pet="$pet" />
 @endsection

@@ -8,19 +8,19 @@
                     <div class="col-12 col-lg-6">
                         <x-forms.file-upload
                             accept=".jpg, .jpeg"
-                            wire="sheet"
+                            wire="media"
                             wireModifier="defer"
                         />
                     </div>
                 </div>
 
                 <div class="row d-flex align-items-center">
-                    @foreach ($sheets as $_sheet)
+                    @foreach ($medias as $_media)
                         <div class="col-12 col-md-5 col-lg-4 col-xl-3">
-                            <img src="{{ $_sheet }}" class="rounded img-fluid shadow" data-bs-toggle="modal" data-bs-target="#sheet{{ $loop->iteration }}">
+                            <img src="{{ $_media }}" class="rounded img-fluid shadow" data-bs-toggle="modal" data-bs-target="#media{{ $loop->iteration }}">
                         </div>
 
-                        <div class="modal" tabindex="-1" id="sheet{{ $loop->iteration }}">
+                        <div class="modal" tabindex="-1" id="media{{ $loop->iteration }}">
                             <div class="modal-dialog modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -30,7 +30,7 @@
                                     <div class="modal-body">
                                         <div class="container-fluid">
                                             <div class="col-12 d-flex justify-content-center">
-                                                <img src="{{ $_sheet }}" class="img-fluid">
+                                                <img src="{{ $_media }}" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>

@@ -75,14 +75,14 @@ class PetsController extends Controller
     }
 
     /**
-     * Show pet sheets
+     * Show pet gallery
      *
      * @param Pet $pet
      * @return view
      */
-    public function sheets(Pet $pet)
+    public function gallery(Pet $pet)
     {
-        return view('manager.pets.sheets', [
+        return view('manager.pets.gallery', [
             'pet' => $pet,
         ]);
     }
