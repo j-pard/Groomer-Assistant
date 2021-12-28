@@ -67,7 +67,7 @@ class GalleryForm extends LivewireForm
 
         $mediaCollection = $this->pet->getMedia();
         foreach ($mediaCollection as $media) {
-            $medias[] = $media->getUrl();
+            $medias[] = $media->getFullUrl();
         }
 
         return $medias;
