@@ -1,10 +1,20 @@
 * {
       box-sizing: border-box;
-      outline: 0 !important;
 }
 
-*:focus {
-      outline:none !important
+*, *:focus {
+      outline: 0 !important;
+      outline: none !important;
+      -webkit-appearance: none !important;
+}
+
+*:focus{
+      border-width: 0px !important;
+      outline:0; /* I have also tried outline:none */
+      -webkit-appearance:none !important;
+      box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      -webkit-box-shadow: none !important;
 }
 
 html {
