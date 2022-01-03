@@ -30,7 +30,7 @@ class Form extends LivewireForm
                 Rule::in(['unknown','female','male']),
             ],
             'customer.lastname' => 'required|string|min:2|max:255',
-            'customer.firstname' => 'required|string|min:2|max:255',
+            'customer.firstname' => 'nullable|string|min:2|max:255',
             'customer.zip_code' => 'nullable|numeric|digits_between:4,6',
             'customer.city' => 'nullable|string|min:2|max:255',
             'customer.address' => 'nullable|string|min:2|max:255',

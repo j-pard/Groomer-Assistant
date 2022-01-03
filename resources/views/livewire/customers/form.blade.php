@@ -42,7 +42,6 @@
                         <x-forms.input
                             label="Prénom"
                             placeholder="Entrer le prénom"
-                            required
                             wire="customer.firstname"
                         />
                         
@@ -73,13 +72,6 @@
                         <h3 class="mt-4 mb-3">Contact</h3>
                         
                         <x-forms.input
-                            label="Email"
-                            type="email"
-                            placeholder="Entrer l'adresse email"
-                            wire="customer.email"
-                        />
-                        
-                        <x-forms.input
                             label="Numéro de téléphone"
                             placeholder="Entrer le numéro"
                             wire="customer.phone"
@@ -90,6 +82,13 @@
                             label="Numéro alternatif"
                             placeholder="Entrer le numéro alternatif"
                             wire="customer.secondary_phone"
+                        />
+
+                        <x-forms.input
+                            label="Email"
+                            type="email"
+                            placeholder="Entrer l'adresse email"
+                            wire="customer.email"
                         />
                     </div>
                     
