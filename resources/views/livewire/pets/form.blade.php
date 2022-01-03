@@ -45,17 +45,23 @@
                             wire="pet.customer_id"
                         />
 
-                        <x-forms.datepicker
-                            label="Anniversaire"
-                            wire="pet.birthdate"
-                        />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <x-forms.input
+                                    label="Année de naissance"
+                                    wire="pet.birthdate"
+                                />
+                            </div>
 
-                        <x-forms.select
-                            label="Status"
-                            :options='$status'
-                            wire="pet.status"
-                            required
-                        />
+                            <div class="col-md-6">
+                                <x-forms.select
+                                    label="Status"
+                                    :options='$status'
+                                    wire="pet.status"
+                                    required
+                                />
+                            </div>
+                        </div>
 
                         <h4 class="mt-4 mb-3">Compléments</h4>
                         <div class="form-group d-flex flex-nowrap justify-content-between align-items-end">
@@ -78,12 +84,16 @@
                             </div>
                         </div>
 
-                        <x-forms.select
-                            label="Taille"
-                            :options='$sizes'
-                            required
-                            wire="pet.size"
-                        />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <x-forms.select
+                                    label="Taille"
+                                    :options='$sizes'
+                                    required
+                                    wire="pet.size"
+                                />
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label>Durée moyenne</label>
