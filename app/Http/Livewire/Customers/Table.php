@@ -4,51 +4,50 @@ namespace App\Http\Livewire\Customers;
 
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\TableComponent;
-use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class Table
+class Table extends DataTableComponent
 {
-    // use HtmlComponents;
+    // Default sorting
+    public string $defaultSortColumn = 'lastname';
+    public string $defaultSortDirection = 'asc';
 
-    // public $sortField = 'lastname';
-    // public $sortDirection = 'asc';
+    public bool $showPerPage = false;
+    public array $perPageAccepted = [25];
 
-    // public function query() : Builder
-    // {
-    //     return Customer::whereNotNull('id');
-    // }
+    public function query(): Builder
+    {
+        return Customer::query();
+    }
+    
+    public function columns(): array
+    {
+        return [
+            Column::make('Nom', 'lastname')
+                ->sortable()
+                ->searchable(),
+                
+            Column::make('Prénom', 'firstname')
+                ->sortable()
+                ->searchable(),
 
-    // public function columns() : array
-    // {
-    //     return [
-    //         Column::make('')
-    //             ->format(function(Customer $model) {
-    //                 return view('manager.partials.menu-row', [
-    //                     'items' => [
-    //                         'edit' => [
-    //                             'icon' => 'fas fa-pen',
-    //                             'url' => route('customers.edit', ['customer' => $model])
-    //                         ]
-    //                     ]
-    //                 ]);
-    //             }),
-            
-    //         Column::make('Nom', 'lastname')
-    //             ->searchable()
-    //             ->sortable(),
+            Column::make('Ville', 'city')
+                ->searchable()
+                ->sortable(),
 
-    //         Column::make('Prénom', 'firstname')
-    //             ->searchable()
-    //             ->sortable(),
+            Column::make('Mobile', 'phone')
+                ->searchable(),
 
-    //         Column::make('Ville', 'city')
-    //             ->searchable()
-    //             ->sortable(),
-
-    //         Column::make('Mobile', 'phone')
-    //             ->searchable(),
-    //     ];
-    // }
+            Column::make('', 'id')
+                ->searchable()
+                ->format(function($id) {
+                    return '
+                        <a href="' . route('customers.edit', ['customer' => $id]) . '" class="btn btn-outline-secondary btn-sm mx-2">Editer</a>
+                        <a href="' . route('customers.appointments', ['customer' => $id]) . '" class="btn btn-outline-info btn-sm mx-2">Rendez-vous</a>
+                    ';
+                })
+                ->asHtml(),
+        ];
+    }
 }

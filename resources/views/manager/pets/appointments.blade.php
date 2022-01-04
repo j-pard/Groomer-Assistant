@@ -1,10 +1,14 @@
 @extends('manager.layouts.app')
 
 @section('content')
-    <livewire:pets.header 
-        :pet="$pet"
-        backUrl="{{ route('pets.index') }}"
-    />
+    <div class="mb-2">
+        <livewire:pets.header 
+            :pet="$pet"
+            backUrl="{{ route('pets.edit', ['pet' => $pet]) }}"
+        />
+    </div>
 
-    {{-- <livewire:pets.appointments-table :pet="$pet" /> --}}
+    <div class="table-container">
+        <livewire:pets.appointments-table :pet="$pet" />
+    </div>
 @endsection

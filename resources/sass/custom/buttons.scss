@@ -27,6 +27,12 @@
       }
 }
 
+.btn-outline-info {
+      &:hover {
+            color: white !important;
+      }
+}
+
 .form-actions-buttons {
       z-index: 2;
       position: fixed;

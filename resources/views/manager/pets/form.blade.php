@@ -3,8 +3,8 @@
 @section('content')
 
     <livewire:pets.header 
-    :pet="$pet"
-    backUrl="{{ route('pets.index') }}"
+        :pet="$pet"
+        backUrl="{{ route('pets.index') }}"
     />
 
     <livewire:pets.form :pet="$pet" />

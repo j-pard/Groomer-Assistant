@@ -8,7 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
-class PetsTable extends DataTableComponent
+class Table extends DataTableComponent
 {
     // Default sorting
     public string $defaultSortColumn = 'name';
@@ -16,6 +16,9 @@ class PetsTable extends DataTableComponent
 
     // Default filters
     public array $filters = ['status' => 'active'];
+
+    public bool $showPerPage = false;
+    public array $perPageAccepted = [25];
 
     public function query(): Builder
     {
@@ -64,22 +67,25 @@ class PetsTable extends DataTableComponent
             Column::make('', 'id')
                 ->searchable()
                 ->format(function($id) {
-                    return '<a href="' . route('pets.edit', ['pet' => $id]) . '" class="btn btn-outline-secondary btn-sm mx-2">Editer</a>';
+                    return '
+                        <a href="' . route('pets.edit', ['pet' => $id]) . '" class="btn btn-outline-secondary btn-sm mx-2">Editer</a>
+                        <a href="' . route('pets.appointments', ['pet' => $id]) . '" class="btn btn-outline-info btn-sm mx-2">Rendez-vous</a>
+                    ';
                 })
                 ->asHtml(),
         ];
     }
 
     public function filters(): array
-{
-    return [
-        'status' => Filter::make('Status')
-            ->select([
-                '' => 'Tous',
-                'active' => 'Actifs',
-                'not-coming' => 'Ne viennent plus',
-                'dead' => 'Décédés',
-            ]),
-    ];
-}
+    {
+        return [
+            'status' => Filter::make('Status')
+                ->select([
+                    '' => 'Tous',
+                    'active' => 'Actifs',
+                    'not-coming' => 'Ne viennent plus',
+                    'dead' => 'Décédés',
+                ]),
+        ];
+    }   
 }

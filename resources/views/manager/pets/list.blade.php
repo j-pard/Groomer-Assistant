@@ -9,6 +9,6 @@
     </header>
     
     <div class="table-container">
-        <livewire:pets.pets-table />
+        <livewire:pets.table />
     </div>
 @endsection

@@ -1,10 +1,14 @@
 @extends('manager.layouts.app')
 
 @section('content')
-    <livewire:customers.header 
-        :customer="$customer"
-        backUrl="{{ route('customers.index') }}"
-    />
+    <div class="mb-2">
+        <livewire:customers.header 
+            :customer="$customer"
+            backUrl="{{ route('customers.edit', ['customer' => $customer]) }}"
+        />
+    </div>
 
-    {{-- <livewire:customers.appointments-table :customer="$customer" /> --}}
+    <div class="table-container">
+        <livewire:customers.appointments-table :customer="$customer" />
+    </div>
 @endsection
