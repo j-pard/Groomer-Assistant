@@ -10,12 +10,17 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class PetsTable extends DataTableComponent
 {
+    // Default sorting
     public string $defaultSortColumn = 'name';
     public string $defaultSortDirection = 'asc';
 
+    // Default filters
+    public array $filters = ['status' => 'active'];
+
     public function query(): Builder
     {
-        return Pet::query();
+        return Pet::query()
+            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
     }
     
     public function columns(): array
@@ -46,18 +51,19 @@ class PetsTable extends DataTableComponent
                 ->format(function($value) {
                     switch ($value) {
                         case 'not-coming':
-                            return 'Ne vient plus';
+                            return '<span class="badge rounded-pill bg-secondary">Ne vient plus</span>';
                             break;
 
                         case 'dead':
-                            return 'Décédé';
+                            return '<span class="badge rounded-pill bg-dark">Décédé</span>';
                             break;
                         
                         default:
-                            return 'Actif';
+                            return '<span class="badge rounded-pill bg-info">Actif</span>';
                             break;
                     }
-                }),
+                })
+                ->asHtml(),
 
             Column::make('', 'id')
                 ->searchable()
@@ -67,4 +73,17 @@ class PetsTable extends DataTableComponent
                 ->asHtml(),
         ];
     }
+
+    public function filters(): array
+{
+    return [
+        'status' => Filter::make('Status')
+            ->select([
+                '' => 'Tous',
+                'active' => 'Actifs',
+                'not-coming' => 'Ne viennent plus',
+                'dead' => 'Décédés',
+            ]),
+    ];
+}
 }

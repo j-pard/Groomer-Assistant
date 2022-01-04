@@ -7,9 +7,7 @@
 // Boostrap5
 @import '~bootstrap/scss/bootstrap';
 
-//Tom-select
-@import "~tom-select/dist/css/tom-select.bootstrap5.css";
-
+@import 'custom/badges.scss';
 @import 'custom/buttons.scss';
 @import 'custom/cards.scss';
 @import 'custom/classes.scss';

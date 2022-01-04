@@ -1,5 +1,4 @@
 import * as bootstrap from 'bootstrap';
-import TomSelect from 'tom-select';
 import './libs/confirmation';
 import './libs/form-modal';
 import './libs/toast';

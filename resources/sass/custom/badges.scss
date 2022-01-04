@@ -1,0 +1,9 @@
+.bg--primary {
+      background-color: $pink;
+      color: white;
+
+      &:hover {
+            color: white;
+            font-weight: bold;
+      }
+}
