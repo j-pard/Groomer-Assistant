@@ -6,5 +6,5 @@
         backUrl="{{ route('customers.index') }}"
     />
 
-    <livewire:customers.appointments-table :customer="$customer" />
+    {{-- <livewire:customers.appointments-table :customer="$customer" /> --}}
 @endsection

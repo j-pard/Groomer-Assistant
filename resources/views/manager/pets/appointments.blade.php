@@ -6,5 +6,5 @@
         backUrl="{{ route('pets.index') }}"
     />
 
-    <livewire:pets.appointments-table :pet="$pet" />
+    {{-- <livewire:pets.appointments-table :pet="$pet" /> --}}
 @endsection

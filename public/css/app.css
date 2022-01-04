@@ -12967,11 +12967,8 @@ body {
   background-color: #ffffff;
 }
 
-table thead tr th:first-child,
-table tbody tr td:first-child {
-  width: 60px;
-  min-width: 60px;
-  max-width: 60px;
+table tbody tr td {
+  vertical-align: middle;
 }
 
 .toast {

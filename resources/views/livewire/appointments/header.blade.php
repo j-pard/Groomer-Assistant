@@ -15,7 +15,7 @@
                         <i class="fas fa-cog text-secondary h4 m-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true"></i>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li>
-                                <a type="button" class="dropdown-item" title="Supprimer le rendez-vous" data-confirm="Le sera supprimé définitivement." data-confirm-action="@this.deleteAppointment()">
+                                <a type="button" class="dropdown-item" title="Supprimer le rendez-vous" data-confirm="Le rendez-vous sera supprimé définitivement." data-confirm-action="@this.deleteAppointment()">
                                     <i class="fas fa-trash text-secondary me-3"></i>
                                     Supprimer
                                 </a>
