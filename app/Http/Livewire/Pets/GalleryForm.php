@@ -23,7 +23,7 @@ class GalleryForm extends LivewireForm
      */
     public function mount()
     {
-        $this->medias = $this->pet->getMedia();
+        //
     }
     
     /**
@@ -54,22 +54,6 @@ class GalleryForm extends LivewireForm
     {
         $this->validate();
 
-        $this->pet
-            ->addMedia($this->media)
-            ->toMediaCollection();
-            
         $this->emit('refreshGallery');
-    }
-
-    private function loadMedia()
-    {
-        $medias = [];
-
-        $mediaCollection = $this->pet->getMedia();
-        foreach ($mediaCollection as $media) {
-            $medias[] = $media->getPath();
-        }
-
-        return $medias;
     }
 }
