@@ -12408,6 +12408,11 @@ a .active {
   margin-bottom: 0;
 }
 
+.form-check-input:checked {
+  background-color: rgba(255, 0, 150, 0.75);
+  border-color: #ff0096;
+}
+
 main {
   min-height: 90vh;
   padding: 20px 20px 16px 90px !important;
@@ -12495,6 +12500,16 @@ button:focus {
   -webkit-box-shadow: none !important;
 }
 
+input:focus,
+select:focus {
+  border-color: #ff0096 !important;
+  outline: 0;
+  -webkit-appearance: none !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 150, 0.75) !important;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 150, 0.75) !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 150, 0.75) !important;
+}
+
 html {
   min-width: 100%;
   min-height: 100%;
@@ -12510,6 +12525,16 @@ body {
 
 table tbody tr td {
   vertical-align: middle;
+}
+
+.table-container input:focus,
+.table-container select:focus {
+  border-color: #3490dc !important;
+  outline: 0;
+  -webkit-appearance: none !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #3490dc !important;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #3490dc !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #3490dc !important;
 }
 
 .toast {

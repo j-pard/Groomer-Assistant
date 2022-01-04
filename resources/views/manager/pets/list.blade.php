@@ -8,7 +8,7 @@
         </div>
     </header>
     
-    <div>
+    <div class="table-container">
         <livewire:pets.pets-table />
     </div>
 @endsection

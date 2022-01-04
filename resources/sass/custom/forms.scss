@@ -36,3 +36,8 @@
         margin-bottom: 0;
     }
 }
+
+.form-check-input:checked {
+    background-color: $pink-75;
+    border-color: $pink;
+}

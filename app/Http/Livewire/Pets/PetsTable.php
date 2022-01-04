@@ -31,19 +31,15 @@ class PetsTable extends DataTableComponent
                 ->searchable(),
 
             Column::make('Race', 'mainBreed.breed')
-                ->sortable()
                 ->searchable(),
 
             Column::make('Croisement', 'secondBreed.breed')
-                ->sortable()
                 ->searchable(),
 
             Column::make('Propiétaire', 'customer.lastname')
-                ->sortable()
                 ->searchable(),
                 
             Column::make('Propiétaire', 'customer.firstname')
-                ->sortable()
                 ->searchable(),
 
             Column::make('Status', 'status')
