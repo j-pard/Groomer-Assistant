@@ -64,6 +64,9 @@ class AppointmentsTable extends DataTableComponent
                 })
                 ->asHtml(),
 
+            Column::make('Prix €', 'price')
+                ->sortable(),
+
             Column::make('', 'id')
                 ->searchable()
                 ->format(function($id) {

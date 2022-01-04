@@ -58,13 +58,22 @@
                             />
         
                             @if ($isUpdating)
-                                <div class="mb-3">
-                                    <x-forms.select
-                                        label="Status"
-                                        wire="appointment.status"
-                                        :options="$status"
-                                        required
-                                    />
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <x-forms.select
+                                            label="Status"
+                                            wire="appointment.status"
+                                            :options='$status'
+                                            required
+                                        />
+                                    </div>
+        
+                                    <div class="col-6">
+                                        <x-forms.price
+                                            label="Prix"
+                                            wire="appointment.price"
+                                        />
+                                    </div>
                                 </div>
                             @endif
                         </div>

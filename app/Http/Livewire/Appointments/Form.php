@@ -30,6 +30,7 @@ class Form extends LivewireForm
         return [
             'appointment.pet_id' => 'required|numeric',
             'appointment.time' => 'string',
+            'appointment.price' => 'nullable|numeric|min:0',
             'time' => 'string',
             'appointment.notes' => 'string',
             'appointment.status' => 'string',

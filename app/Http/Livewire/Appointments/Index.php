@@ -33,6 +33,7 @@ class Index extends LivewireForm
             'appointment.customer_id' => 'required|string',
             'appointment.pet_id' => 'required|string',
             'appointment.time' => 'required|string',
+            'appointment.price' => 'nullable|numeric|min:0',
             'appointment.notes' => 'nullable|string',
             'appointment.status' => 'required|string',
 

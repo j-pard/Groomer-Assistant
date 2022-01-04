@@ -41,13 +41,22 @@
                             wire="appointment.notes"
                         />
 
-                        <div class="col-6">
-                            <x-forms.select
-                                label="Status"
-                                wire="appointment.status"
-                                :options='$status'
-                                required
-                            />
+                        <div class="row">
+                            <div class="col-6">
+                                <x-forms.select
+                                    label="Status"
+                                    wire="appointment.status"
+                                    :options='$status'
+                                    required
+                                />
+                            </div>
+
+                            <div class="col-6">
+                                <x-forms.price
+                                    label="Prix"
+                                    wire="appointment.price"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
