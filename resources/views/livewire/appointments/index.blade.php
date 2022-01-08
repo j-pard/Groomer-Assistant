@@ -54,8 +54,9 @@
                                 <i class="fas fa-paw"></i>
                         @endswitch
                     </div>
-                    <div class="tel"><i class="fas fa-phone-alt"></i>
-                        {{ $appointment->customer->phone ?? $appointment->customer->secondary_phone }}
+                    <div class="tel d-flex justify-content-between align-items-center">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>{{ $appointment->customer->phone ?? $appointment->customer->secondary_phone }}</span>
                     </div>
                 </div>
             @endforeach

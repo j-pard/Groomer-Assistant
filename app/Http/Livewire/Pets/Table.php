@@ -64,13 +64,14 @@ class Table extends DataTableComponent
                 })
                 ->asHtml(),
 
-            Column::make('', 'id')
+            Column::make('Actions', 'id')
+                ->addClass('text-center')
                 ->searchable()
                 ->format(function($id) {
-                    return '
+                    return '<div class="actions-container">
                         <a href="' . route('pets.edit', ['pet' => $id]) . '" class="btn btn-outline-secondary btn-sm mx-2">Editer</a>
-                        <a href="' . route('pets.appointments', ['pet' => $id]) . '" class="btn btn-outline-info btn-sm mx-2">Rendez-vous</a>
-                    ';
+                        <a href="' . route('pets.appointments', ['pet' => $id]) . '" class="btn btn-outline-info btn-sm mx-2">RDV</a>
+                    </div>';
                 })
                 ->asHtml(),
         ];

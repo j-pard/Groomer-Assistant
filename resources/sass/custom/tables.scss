@@ -1,21 +1,30 @@
 table {
     tbody {
         tr {
-            td:first-child,
-            tr:first-child {
+            td:first-child, tr:first-child {
                 max-width: auto;
+                padding-left: 1rem;
             }
+
             td {
                 vertical-align: middle;
+                white-space: nowrap;
+            }
+
+            tr:last-child, td:last-child {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                flex-wrap: nowrap;
+                padding-right: 1rem
             }
         }
     }
 }
 
 .table-container {
-    margin: 3rem;
-    padding: 1rem;
-    border-radius: 10px;
+    margin: auto;
+    padding: 0;
 
     input:focus, select:focus {
         border-width: 1px !important;
@@ -25,5 +34,17 @@ table {
         box-shadow: none !important;
         -moz-box-shadow: none !important;
         -webkit-box-shadow: none !important;
+    }
+}
+
+.actions-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+@media screen and (min-width: 720px) {
+    .table-container {
+        margin: 2rem 3rem;
+        padding: 1rem;
     }
 }

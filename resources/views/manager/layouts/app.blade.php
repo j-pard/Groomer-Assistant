@@ -39,7 +39,6 @@
             <div class="d-flex justify-content-end">
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -47,21 +46,23 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item me-3">
-                            <a class="nav-link text-white" href="#">{{ Auth::user()->name }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"
-                            >
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                        <li class="nav-item d-flex">
+                            <a class="nav-link text-white me-3" href="#">{{ Auth::user()->name }}</a>
+                            <div>
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"
+                                >
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                            </li>
                         </li>
                     @endguest
+                    <!-- Authentication Links -->
                 </ul>
             </div>
         </div>
