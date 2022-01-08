@@ -1,16 +1,7 @@
 main {
     min-height: 90vh;
-    padding: 20px 20px 16px 90px !important;
-
-    & header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: nowrap;
-
-        padding: 0px 8px 16px 8px;
-        border-bottom: 1px solid lightgray;
-    }
+    padding: 10px 12px !important;
+    margin-bottom: 5rem;
 }
 
 h2, h3 {
@@ -25,4 +16,21 @@ h2, h3 {
 button:focus {
     outline: none !important;
     box-shadow: none !important;
+}
+
+
+@media screen and (min-width: 720px) {
+    main {
+        padding: 20px 20px 16px 90px !important;
+    
+        & header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+    
+            padding: 0px 8px 16px 8px;
+            border-bottom: 1px solid lightgray;
+        }
+    }
 }

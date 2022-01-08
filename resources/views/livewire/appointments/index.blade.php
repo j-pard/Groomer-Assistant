@@ -1,11 +1,7 @@
 <div>
     <form wire:submit.prevent="save">
-        <div class="d-flex justify-content-between align-items-center px-2 mb-3">
-            <h4 class="">
-                Bonjour <span class="text-pink">{{ Auth::user()->name }}</span>, voici tes rendez-vous de la journée.
-            </h4>
-
-            <div class="d-flex justify-content-around align-items-center">
+        <div class="row">
+            <div id="calendar-input" class="d-flex align-items-center">
                 <button class="btn btn-transparent mb-2" wire:click="previousDay">
                     <i class="fas fa-backward"></i>
                 </button>
@@ -20,16 +16,15 @@
                     <i class="fas fa-forward"></i>
                 </button>
             </div>
-            
         </div>
 
-        <div class="d-flex justify-content-start flex-wrap">
-            <div class="custom-card-m card-more border shadow rounded" type="button" wire:click="loadNewApptModal">
+        <div class="row justify-content-center justify-content-md-start">
+            <div class="col-5 col-md-4 col-lg-3 col-xl-2 custom-card-m card-more border shadow rounded" type="button" wire:click="loadNewApptModal">
                 <div class="more-btn">+</div>
             </div>
-    
+
             @foreach ($appointments as $appointment)
-                <div class="custom-card-m border shadow rounded" type="button" wire:click="loadApptModal({{ $appointment->id }})">
+                <div class="col-5 col-md-4 col-lg-3 col-xl-2 custom-card-m border shadow rounded" type="button" wire:click="loadApptModal({{ $appointment->id }})">
                     <div class="text-center">
                         <h5>{{ $appointment->pet->name }}</h5>
                         <p class="text-muted">{{ $appointment->customer->firstname . ' ' . $appointment->customer->lastname }}</p>

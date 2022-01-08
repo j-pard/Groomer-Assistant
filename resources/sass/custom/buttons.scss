@@ -68,3 +68,15 @@
 .btn-danger {
       color: $white;
 }
+
+@media screen and (min-width: 0px) and (max-width: 720px) {
+      #calendar-input { 
+            justify-content: center !important; 
+      }
+}
+
+@media screen and (min-width: 720px) {
+      #calendar-input { 
+            justify-content: end !important; 
+      }
+}

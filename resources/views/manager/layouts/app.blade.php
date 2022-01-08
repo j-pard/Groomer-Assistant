@@ -47,22 +47,19 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ Auth::user()->name }}
+                        <li class="nav-item me-3">
+                            <a class="nav-link text-white" href="#">{{ Auth::user()->name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"
+                            >
+                                <i class="fas fa-sign-out-alt"></i>
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    Se déconnecter
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     @endguest
                 </ul>
@@ -79,7 +76,7 @@
     @endguest
 
     @auth    
-        <nav id="aside-nav">
+        <nav id="aside-nav" class="nav-bg-dark">
             <x-buttons.nav
                 icon="fas fa-calendar-alt"
                 :url="route('home')" 
@@ -100,11 +97,30 @@
             />
         </nav>
 
-        <div class="row">
-            <main class="container-fluid">
-                @yield('content')
-            </main>
-        </div>
+        <main class="container-fluid">
+            @yield('content')
+        </main>
+
+        <nav id="mobile-nav" class="nav-bg-dark">
+            <x-buttons.nav
+                icon="fas fa-calendar-alt"
+                :url="route('home')" 
+                section="calendar"
+                :active="Route::currentRouteName() == 'home'"
+            />
+            <x-buttons.nav
+                icon="fas fa-paw"
+                :url="route('pets.index')"
+                section="pets"
+                :active="Str::startsWith(Route::currentRouteName(), 'pets.')"
+            />
+            <x-buttons.nav
+                icon="fas fa-users"
+                :url="route('customers.index')"
+                section="customers"
+                :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
+            />
+        </nav>
 
         <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
 
