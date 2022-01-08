@@ -12527,8 +12527,19 @@ body {
   background-color: #ffffff;
 }
 
+table tbody tr td:first-child,
+table tbody tr tr:first-child {
+  max-width: auto;
+}
+
 table tbody tr td {
   vertical-align: middle;
+}
+
+.table-container {
+  margin: 3rem;
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .table-container input:focus,

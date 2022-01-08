@@ -1,6 +1,10 @@
 table {
     tbody {
         tr {
+            td:first-child,
+            tr:first-child {
+                max-width: auto;
+            }
             td {
                 vertical-align: middle;
             }
@@ -9,6 +13,10 @@ table {
 }
 
 .table-container {
+    margin: 3rem;
+    padding: 1rem;
+    border-radius: 10px;
+
     input:focus, select:focus {
         border-width: 1px !important;
         border-color: #ced4da !important;
