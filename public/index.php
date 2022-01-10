@@ -16,14 +16,8 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (config('app.env') === 'local' ) {
-    if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
-        require __DIR__.'/../storage/framework/maintenance.php';
-    }
-} else {
-    if (file_exists(__DIR__.'/../groomer/storage/framework/maintenance.php')) {
-        require __DIR__.'/../groomer/storage/framework/maintenance.php';
-    }
+if (file_exists(__DIR__.'/../groomer/storage/framework/maintenance.php')) {
+    require __DIR__.'/../groomer/storage/framework/maintenance.php';
 }
 
 /*
@@ -37,11 +31,7 @@ if (config('app.env') === 'local' ) {
 |
 */
 
-if (config('app.env') === 'local' ) {
-    require __DIR__.'/../vendor/autoload.php';
-} else {
-    require __DIR__.'/../groomer/vendor/autoload.php';
-}
+require __DIR__.'/../groomer/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -54,11 +44,7 @@ if (config('app.env') === 'local' ) {
 |
 */
 
-if (config('app.env') === 'local' ) {
-    $app = require_once __DIR__.'/../bootstrap/app.php';
-} else {
-    $app = require_once __DIR__.'/../groomer/bootstrap/app.php';
-}
+$app = require_once __DIR__.'/../groomer/bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
 
