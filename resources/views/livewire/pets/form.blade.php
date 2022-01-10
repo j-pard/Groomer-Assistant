@@ -3,8 +3,8 @@
         <button type="submit" onclick="return false;" style="display:none;"></button>
         <div class="card-body">
             <fieldset>
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row justify-content-between">
+                    <div class="col-md-6 col-lg-5">
                         <h3 class="mb-3">Informations</h3>
                         
                         <div class="form-group">

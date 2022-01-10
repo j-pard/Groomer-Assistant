@@ -1,9 +1,9 @@
-@media screen and (min-width: 0px) and (max-width: 720px) {
+@media screen and (min-width: 0px) and (max-width: 768px) {
       #aside-nav { display: none !important; }
       #mobile-nav { display: flex !important; }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 768px) {
       #aside-nav { display: flex !important; }
       #mobile-nav { display: none !important; }
 }
@@ -32,6 +32,7 @@
       bottom: 0;
       left: 0;
       padding: 0 1rem;
+      z-index: 9;
 
       flex-direction: row;
       justify-content: space-around;

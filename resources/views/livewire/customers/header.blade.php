@@ -1,15 +1,17 @@
-<header>
-    <div class="d-flex justify-content-between align-items-center">
-        <a class="btn btn-transparent circle" href="{{ $backUrl }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
-        @if ($customer->exists)
-            <h2 class="mb-0 text-nowrap">{{ $title }}</h2>
-        @else
-            <h2 class="mb-0 text-nowrap"><span class="text-pink">N</span>ouveau client</h2>
-        @endif
+<header class="row">
+    <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center">
+            <a class="btn btn-transparent circle" href="{{ $backUrl }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
+            @if ($customer->exists)
+                <h2 class="mb-0 text-nowrap">{{ $title }}</h2>
+            @else
+                <h2 class="mb-0 text-nowrap"><span class="text-pink">N</span>ouveau client</h2>
+            @endif
+        </div>
     </div>
-
-    @if ($customer->exists)
-        <ul class="nav nav-pills d-flex justify-content-end align-items-center" id="pills-tab">
+    <div class="col-12 col-md-6">
+        @if ($customer->exists)
+        <ul class="nav nav-pills d-flex justify-content-start justify-content-md-end align-items-center" id="pills-tab">
             @foreach ($navigation as $nav => $route)
                 <li class="nav-item">
                     <a href="{{ $route }}" class="nav-link {{ Request::url() == $route ? 'active' : '' }}">{{ $nav }}</a>
@@ -40,4 +42,9 @@
             </li>
         </ul>
     @endif
+    </div>
+
+    
+
+    
 </header>

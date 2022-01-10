@@ -12243,10 +12243,10 @@ fieldset:disabled .btn {
 }
 
 .form-actions-buttons {
-  z-index: 2;
+  z-index: 99;
   position: fixed;
-  bottom: 40px;
-  right: 80px;
+  bottom: 70px;
+  right: 10px;
 }
 
 .btn-circle {
@@ -12275,15 +12275,24 @@ fieldset:disabled .btn {
   color: #ffffff;
 }
 
-@media screen and (min-width: 0px) and (max-width: 720px) {
+#save-btn {
+  z-index: 99;
+}
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
   #calendar-input {
     justify-content: center !important;
   }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 768px) {
   #calendar-input {
     justify-content: end !important;
+  }
+
+  .form-actions-buttons {
+    bottom: 40px;
+    right: 80px;
   }
 }
 
@@ -12431,14 +12440,10 @@ a .active {
 main {
   min-height: 90vh;
   padding: 10px 12px !important;
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
 }
 
 main header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
   padding: 0px 8px 16px 8px;
   border-bottom: 1px solid lightgray;
 }
@@ -12460,13 +12465,13 @@ button:focus {
   box-shadow: none !important;
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 768px) {
   main {
     padding: 20px 20px 16px 90px !important;
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 720px) {
+@media screen and (min-width: 0px) and (max-width: 768px) {
   #aside-nav {
     display: none !important;
   }
@@ -12476,7 +12481,7 @@ button:focus {
   }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 768px) {
   #aside-nav {
     display: flex !important;
   }
@@ -12509,6 +12514,7 @@ button:focus {
   bottom: 0;
   left: 0;
   padding: 0 1rem;
+  z-index: 9;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -12570,7 +12576,8 @@ button:focus {
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   border-color: #ff0096 !important;
   outline: 0;
   -webkit-appearance: none !important;
@@ -12633,7 +12640,7 @@ table tbody tr td:last-child {
   flex-wrap: nowrap;
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 768px) {
   .table-container {
     margin: 2rem 3rem;
     padding: 1rem;

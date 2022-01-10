@@ -17,7 +17,7 @@
       -webkit-box-shadow: none !important;
 }
 
-input:focus, select:focus {
+input:focus, select:focus, textarea:focus {
       border-color: $pink !important;
       outline: 0;
       -webkit-appearance: none !important;
