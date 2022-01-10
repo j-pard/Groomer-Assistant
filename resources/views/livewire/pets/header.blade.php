@@ -12,7 +12,7 @@
 
     <div class="col-12 col-md-6">
         @if ($pet->exists)
-            <ul class="nav nav-pills d-flex justify-content-end align-items-center" id="pills-tab">
+            <ul class="nav nav-pills d-flex justify-content-start justify-content-md-end align-items-center" id="pills-tab">
                 @foreach ($navigation as $nav => $route)
                     <li class="nav-item">
                         <a href="{{ $route }}" class="nav-link {{ Request::url() == $route ? 'active' : '' }}">{{ $nav }}</a>
