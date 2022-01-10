@@ -54,8 +54,11 @@
                                 <i class="fas fa-paw"></i>
                         @endswitch
                     </div>
+                    <div class="row">
+                        <span class="text-muted">{{ Carbon\Carbon::parse($appointment->time)->format('H:i') }}</span>
+                    </div>
                     <div class="tel d-flex justify-content-between align-items-center">
-                        <i class="fas fa-phone-alt"></i>
+                        <i class="fas fa-phone-alt me-2"></i>
                         <span>{{ $appointment->customer->phone ?? $appointment->customer->secondary_phone }}</span>
                     </div>
                 </div>
