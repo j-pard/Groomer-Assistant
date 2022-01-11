@@ -6197,7 +6197,7 @@ fieldset:disabled .btn {
   max-width: 100%;
   font-size: 0.875rem;
   pointer-events: auto;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0px 24px 24px -16px rgba(36, 51, 57, 0.22);

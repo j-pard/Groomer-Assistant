@@ -8,7 +8,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row {{ ($isUpdating && $pet->has_warning) ? 'justify-content-between' : '' }}">
                         {{-- Left column --}}
                         <div class="{{ ($isUpdating && $pet->has_warning) ? 'col-md-6' : '' }}">
                             <div class="row">
@@ -80,7 +80,7 @@
 
                         {{-- Right column --}}
                         @if ($isUpdating && $pet->has_warning)
-                            <div class="col-md-6 text-end">
+                            <div class="col-md-5">
                                 <i class="fas fa-exclamation-circle text-pink h1"></i>
 
                                 <p>{{ $pet->warnings }}</p>

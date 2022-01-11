@@ -12,7 +12,7 @@ use Livewire\Component;
 class Form extends LivewireForm
 {
     public Pet $pet;
-    public array $breeds;
+    public array $breeds = [];
     public array $customers;
     public $status;
     public ?string $birthdate;
@@ -52,7 +52,6 @@ class Form extends LivewireForm
      */
     public function mount()
     {
-        $this->breeds = Breed::getList();
         $this->customers = Customer::getList();
         $this->status = Pet::getStatus();
         $this->sizes = Pet::getSizeOptions();
@@ -62,6 +61,7 @@ class Form extends LivewireForm
         $this->minutes = $duration['minutes'];
 
         if (!$this->pet->exists) {
+            $this->breeds = Breed::getList();
             $this->pet->genre = 'unknown';
             $this->pet->status = 'active';
             $this->pet->size = 'medium';
