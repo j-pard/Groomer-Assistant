@@ -35,7 +35,7 @@ class GalleryForm extends LivewireForm
     protected function rules()
     {
         return [
-            'media' => 'image|mimes:jpg,jpeg|max:7168', // 7mb
+            'media' => 'image|mimes:jpg,jpeg|max:12288', // 12mb
         ];
     }
 
