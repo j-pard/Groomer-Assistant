@@ -12610,6 +12610,14 @@ table tbody tr td {
   white-space: nowrap;
 }
 
+table tbody tr td a {
+  color: #343a40;
+}
+
+table tbody tr td a:focus {
+  color: #ff0096;
+}
+
 table tbody tr tr:last-child,
 table tbody tr td:last-child {
   display: flex;

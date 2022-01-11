@@ -31,7 +31,8 @@ class Table extends DataTableComponent
         return [
             Column::make('Nom', 'name')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->linkTo(fn($value, $column, $row) => route('pets.edit', ['pet' => $row])),
 
             Column::make('Race', 'mainBreed.breed')
                 ->searchable(),

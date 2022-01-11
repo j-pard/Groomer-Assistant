@@ -9,6 +9,14 @@ table {
             td {
                 vertical-align: middle;
                 white-space: nowrap;
+
+                a {
+                    color: $dark;
+                }
+
+                a:focus {
+                    color: $pink;
+                }
             }
 
             tr:last-child, td:last-child {

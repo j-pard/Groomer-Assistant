@@ -20,17 +20,19 @@ class Table extends DataTableComponent
     {
         return Customer::query();
     }
-    
+
     public function columns(): array
     {
         return [
             Column::make('Nom', 'lastname')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->linkTo(fn($value, $column, $row) => route('customers.edit', ['customer' => $row])),
                 
             Column::make('Prénom', 'firstname')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->linkTo(fn($value, $column, $row) => route('customers.edit', ['customer' => $row])),
 
             Column::make('Ville', 'city')
                 ->searchable()
