@@ -17,6 +17,7 @@
 
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Upload</button>
     </div>
+    <div class="text-pink" wire:loading wire:target="{{ $wire }}">Uploading...</div>
     @error($name)
         <small class="text-danger">{{ $message }}</small>
     @enderror

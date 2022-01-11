@@ -16,26 +16,8 @@
 
                 <div class="row d-flex align-items-center">
                     @foreach ($medias as $_media)
-                        <div class="col-12 col-md-5 col-lg-4 col-xl-3">
-                            <img src="{{ $_media }}" class="rounded img-fluid shadow" data-bs-toggle="modal" data-bs-target="#media{{ $loop->iteration }}">
-                        </div>
-
-                        <div class="modal" tabindex="-1" id="media{{ $loop->iteration }}">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    
-                                    <div class="modal-body">
-                                        <div class="container-fluid">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <img src="{{ $_media }}" class="img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-12 col-md-5 col-lg-4 col-xl-3 my-1">
+                            <img src="{{ $_media }}" class="rounded img-fluid shadow">
                         </div>
                     @endforeach
                 </div>

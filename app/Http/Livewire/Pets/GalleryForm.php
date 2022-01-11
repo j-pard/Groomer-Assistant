@@ -13,9 +13,10 @@ class GalleryForm extends LivewireForm
     public Pet $pet;
 
     public $medias;
+    public array $urls = [];
     public $media;
 
-    protected $listeners = ['refreshGallery' => '$refresh'];
+    protected $listeners = ['refreshGallery'];
 
     /**
      * Mount the component
@@ -23,7 +24,7 @@ class GalleryForm extends LivewireForm
      */
     public function mount()
     {
-        //
+        $this->medias = $this->getMediaUrls();
     }
     
     /**
@@ -54,6 +55,24 @@ class GalleryForm extends LivewireForm
     {
         $this->validate();
 
+        $this->pet->addMedia($this->media)->toMediaCollection('gallery');
+        $this->medias = $this->getMediaUrls();
+
         $this->emit('refreshGallery');
+    }
+
+    private function getMediaUrls()
+    {
+        $medias = $this->pet->getMedia('gallery');
+        $urls = [];
+        foreach ($medias as $media) {
+            $urls[] = $media->getUrl();
+        }
+        return $urls;
+    }
+
+    public function refreshGallery()
+    {
+        return redirect()->route('pets.gallery', ['pet' => $this->pet]);
     }
 }
