@@ -1,6 +1,7 @@
 import * as bootstrap from 'bootstrap';
 import './libs/confirmation';
 import './libs/form-modal';
+import './libs/overlay';
 import './libs/toast';
 
 /**

@@ -1,5 +1,5 @@
 <header class="row">
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-5">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
                 <a class="btn btn-transparent circle" href="{{ $backUrl }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
@@ -39,11 +39,11 @@
 
     </div>
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-7 mx-0 px-0">
         @if ($pet->exists)
-            <ul class="nav nav-pills d-flex justify-content-start justify-content-md-end align-items-center" id="pills-tab">
+            <ul class="nav nav-pills d-flex justify-content-center justify-content-md-end align-items-center px-0 mx-0" id="pills-tab">
                 @foreach ($navigation as $nav => $route)
-                    <li class="nav-item">
+                    <li class="nav-item mx-1">
                         <a href="{{ $route }}" class="nav-link {{ Request::url() == $route ? 'active' : '' }}">{{ $nav }}</a>
                     </li>
                 @endforeach

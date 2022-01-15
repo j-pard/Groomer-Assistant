@@ -12397,6 +12397,40 @@ a .active {
   font-size: 0.8rem;
 }
 
+.overlay-images {
+  position: relative;
+}
+
+.overlay-images .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  border-bottom-left-radius: 100px;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  transition: all 0.3s;
+}
+
+.overlay-images .overlay--hide {
+  display: none;
+}
+
+.overlay-images .overlay--show {
+  display: block;
+}
+
+.overlay-images .overlay button {
+  position: absolute;
+  top: 22px;
+  right: 15px;
+}
+
+.overlay-images .overlay button i {
+  font-size: 24px;
+}
+
 .duration-inputs-container {
   display: flex;
   align-items: center;

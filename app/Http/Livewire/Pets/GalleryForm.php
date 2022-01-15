@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pets;
 use App\Http\Livewire\Form as LivewireForm;
 use App\Models\Pet;
 use Livewire\WithFileUploads;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class GalleryForm extends LivewireForm
 {
@@ -14,7 +15,7 @@ class GalleryForm extends LivewireForm
 
     public $medias;
     public array $urls = [];
-    public $media;
+    public $uploadedFiles = [];
 
     protected $listeners = ['refreshGallery'];
 
@@ -35,7 +36,7 @@ class GalleryForm extends LivewireForm
     protected function rules()
     {
         return [
-            'media' => 'image|mimes:jpg,jpeg|max:12288', // 12mb
+            'uploadedFiles.*' => 'image|mimes:jpg,jpeg|max:12288', // 12mb
         ];
     }
 
@@ -55,7 +56,9 @@ class GalleryForm extends LivewireForm
     {
         $this->validate();
 
-        $this->pet->addMedia($this->media)->toMediaCollection('gallery');
+        foreach ($this->uploadedFiles as $media) {
+            $this->pet->addMedia($media)->toMediaCollection('gallery');
+        }
         $this->medias = $this->getMediaUrls();
 
         $this->emit('refreshGallery');
@@ -66,7 +69,7 @@ class GalleryForm extends LivewireForm
         $medias = $this->pet->getMedia('gallery');
         $urls = [];
         foreach ($medias as $media) {
-            $urls[] = $media->getUrl();
+            $urls[$media->file_name] = $media->getUrl();
         }
         return $urls;
     }
@@ -74,5 +77,15 @@ class GalleryForm extends LivewireForm
     public function refreshGallery()
     {
         return redirect()->route('pets.gallery', ['pet' => $this->pet]);
+    }
+
+    public function deleteMedia($fileName)
+    {
+        Media::where([
+            'model_id' => $this->pet->id,
+            'file_name' => $fileName,
+        ])->delete();
+
+        $this->emit('refreshGallery');
     }
 }

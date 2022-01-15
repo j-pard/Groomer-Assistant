@@ -32,3 +32,38 @@ button, a {
     font-style: italic;
     font-size: 0.8rem;
 }
+
+.overlay-images {
+    position: relative;
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        border-bottom-left-radius: 100px;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 2;
+
+        transition: all .3s;
+
+        &--hide {
+            display: none;
+        }
+
+        &--show {
+            display: block;
+        }
+
+        button {
+            position: absolute;
+            top: 22px;
+            right: 15px;
+
+            i {
+                font-size: 24px;
+            }
+        }
+    }
+}

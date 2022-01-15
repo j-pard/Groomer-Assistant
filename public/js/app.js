@@ -4975,7 +4975,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_confirmation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/confirmation */ "./resources/js/libs/confirmation.js");
 /* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./libs/form-modal */ "./resources/js/libs/form-modal.js");
 /* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_libs_form_modal__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _libs_toast__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/toast */ "./resources/js/libs/toast.js");
+/* harmony import */ var _libs_overlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/overlay */ "./resources/js/libs/overlay.js");
+/* harmony import */ var _libs_overlay__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_libs_overlay__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _libs_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/toast */ "./resources/js/libs/toast.js");
+
 
 
 
@@ -5104,6 +5107,30 @@ window.addEventListener('shown.bs.modal', function (event) {
   if (firstInputField !== null) {
     firstInputField.focus();
   }
+});
+
+/***/ }),
+
+/***/ "./resources/js/libs/overlay.js":
+/*!**************************************!*\
+  !*** ./resources/js/libs/overlay.js ***!
+  \**************************************/
+/***/ (() => {
+
+var overlayContainers = Array.from(document.querySelectorAll('div.overlay-images'));
+var overlays = Array.from(document.querySelectorAll('div.overlay'));
+overlayContainers.forEach(function (container) {
+  container.addEventListener('click', function (event) {
+    event.stopPropagation();
+    var el = container.querySelector('.overlay');
+    el.classList.toggle('overlay--show');
+    el.classList.toggle('overlay--hide');
+  });
+});
+overlays.forEach(function (overlay) {
+  overlay.addEventListener('click', function (event) {
+    event.stopPropagation();
+  });
 });
 
 /***/ }),

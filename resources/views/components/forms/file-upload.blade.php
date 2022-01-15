@@ -11,6 +11,7 @@
             {!! $readonly ? 'readonly' : '' !!}
             {!! $disabled ? 'disabled' : '' !!}
             {!! $accept ? 'accept="' . $accept . '"' : "" !!}
+            multiple
 
             wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
         >
