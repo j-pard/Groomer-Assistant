@@ -1,0 +1,72 @@
+@media screen and (min-width: 0px) and (max-width: 768px) {
+      #aside-nav { display: none !important; }
+      #mobile-nav { display: flex !important; }
+}
+
+@media screen and (min-width: 768px) {
+      #aside-nav { display: flex !important; }
+      #mobile-nav { display: none !important; }
+}
+
+.nav-bg-dark {
+      background-color: #343a40;
+}
+
+#aside-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      padding: 150px 10px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+}
+
+#mobile-nav {
+      width: 100%;
+      height: auto;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      padding: 0 1rem;
+      z-index: 9;
+
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: nowrap;
+
+      div {
+            max-width: fit-content;
+            margin: 0;
+
+            a {
+                  margin: 0;
+            }
+      }
+}
+
+.nav-pills {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      li {
+            margin: 0 12px;
+
+            a:not(.active) {
+                  margin: 0;
+                  color: $dark !important;
+            }
+      }
+}
+
+.nav-active {
+      color: $pink !important;
+}

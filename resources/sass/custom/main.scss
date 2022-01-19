@@ -1,0 +1,31 @@
+main {
+    min-height: 90vh;
+    padding: 10px 12px !important;
+    margin-bottom: 6rem;
+
+    & header {
+        padding: 0px 8px 16px 8px;
+        border-bottom: 1px solid lightgray;
+    }
+}
+
+h2, h3 {
+    padding: 0;
+    margin: 0;
+}
+
+#topBar {
+    z-index: 2;
+}
+
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+@media screen and (min-width: 768px) {
+    main {
+        padding: 20px 20px 16px 90px !important;
+    }
+}

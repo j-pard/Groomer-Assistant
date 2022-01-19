@@ -1,0 +1,41 @@
+* {
+      box-sizing: border-box;
+}
+
+*, *:focus {
+      outline: 0 !important;
+      outline: none !important;
+      -webkit-appearance: none !important;
+}
+
+*:focus {
+      border-width: 0px !important;
+      outline:0; /* I have also tried outline:none */
+      -webkit-appearance:none !important;
+      box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+}
+
+input:focus, select:focus, textarea:focus {
+      border-color: $pink !important;
+      outline: 0;
+      -webkit-appearance: none !important;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $pink-75 !important;
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $pink-75 !important;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $pink-75 !important;
+}
+
+html {
+      min-width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+}
+body {
+      min-width: 100%;
+      min-height: 100%;
+
+      overflow-x: hidden;
+      background-color: $body-bg;
+      padding-right: 0 !important
+}

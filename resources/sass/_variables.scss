@@ -1,0 +1,45 @@
+// Body
+$body-bg: #ffffff;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$cyan: #6cb2eb;
+$dark: #343a40;
+$green: #38c172;
+$indigo: #6574cd;
+$orange: #f6993f;
+$pink: #ff0096;
+$pink-75: rgba(255, 0, 150, 0.75);
+$purple: #9561e2;
+$red: #e3342f;
+$teal: #4dc0b5;
+$white: #ffffff;
+$yellow: #ffed4a;
+
+$success:       $green;
+$info:          $blue;
+$warning:       $orange;
+$danger:        $red;
+
+
+$box-shadow:                  0px 24px 24px -16px rgba(36, 51, 57, .22);
+
+// TOASTS
+$toast-max-width:                   350px;
+$toast-padding-x:                   .75rem;
+$toast-padding-y:                   .5rem;
+$toast-font-size:                   .875rem;
+$toast-color:                       null;
+$toast-background-color:            rgba($white, .95);
+$toast-border-width:                1px;
+$toast-border-color:                rgba(0, 0, 0, .1);
+$toast-border-radius:               5px;
+$toast-box-shadow:                  $box-shadow;
+
+$toast-header-background-color:     rgba($white, .85);
+$toast-header-border-color:         rgba(0, 0, 0, .05);

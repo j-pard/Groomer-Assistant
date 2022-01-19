@@ -1,0 +1,69 @@
+.text-pink {
+    color: $pink;
+    transition: all .3s;
+}
+
+.text-gray {
+    color: gray;
+    transition: all .3s;
+}
+
+.text-green {
+    color: $green;
+    transition: all .3s;
+}
+
+.width-content {
+    min-width: 200px !important;
+}
+
+button, a {
+    .active {
+        color: $pink !important;
+    }
+}
+
+.nav-link.active {
+    background-color: $pink !important;
+}
+
+.text-muted {
+    color: gray;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.overlay-images {
+    position: relative;
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        border-bottom-left-radius: 100px;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 2;
+
+        transition: all .3s;
+
+        &--hide {
+            display: none;
+        }
+
+        &--show {
+            display: block;
+        }
+
+        button {
+            position: absolute;
+            top: 22px;
+            right: 15px;
+
+            i {
+                font-size: 24px;
+            }
+        }
+    }
+}

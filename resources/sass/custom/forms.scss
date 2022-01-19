@@ -1,0 +1,43 @@
+.duration-inputs-container {
+    display: flex;
+    align-items: center;
+
+    div {
+        margin: 0;
+        padding: 0;
+
+        input {
+            width: 80px;
+        }
+    }
+}
+
+.form-group, .form-control {
+    margin-bottom: 12px;
+}
+
+.custom-img-container {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.default-avatar {
+    display: flex;
+    justify-content: center;
+
+    font-size: 70px;
+    color: lightgray;
+}
+
+.form-control {
+    &.is-invalid {
+        margin-bottom: 0;
+    }
+}
+
+.form-check-input:checked {
+    background-color: $pink-75;
+    border-color: $pink;
+}

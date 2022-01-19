@@ -1,0 +1,91 @@
+.btn-nav {
+      width: 40px;
+      height: 60px;
+      margin: 20px 0;
+      color: white;
+
+      font-size: 20px !important;
+
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+
+      transition: all .3s;
+
+      &:hover {
+            color: $pink;
+      }
+}
+
+.btn--primary {
+      background-color: $pink;
+      color: white;
+
+      &:hover {
+            color: white;
+            font-weight: bold;
+      }
+}
+
+.btn-outline-info {
+      &:hover {
+            color: white !important;
+      }
+}
+
+.form-actions-buttons {
+      z-index: 99;
+      position: fixed;
+      bottom: 70px;
+      right: 10px;
+}
+
+.btn-circle {
+      width: 60px;
+      height: 60px;
+
+      font-size: 30px;
+      line-height: 1.33;
+      border-radius: 30px;
+}
+
+.btn-delete {
+      width: 30px;
+      height: 30px;
+      color: $danger;
+
+      font-size: 20px !important;
+
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+            color: $danger;
+      }
+}
+
+.btn-danger {
+      color: $white;
+}
+
+#save-btn {
+      z-index: 99;
+}
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
+      #calendar-input { 
+            justify-content: center !important; 
+      }
+}
+
+@media screen and (min-width: 768px) {
+      #calendar-input { 
+            justify-content: end !important; 
+      }
+
+      .form-actions-buttons {
+            bottom: 40px;
+            right: 80px;
+      }
+}

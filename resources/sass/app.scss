@@ -1,0 +1,19 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Custom Variables
+@import 'variables';
+
+// Boostrap5
+@import '~bootstrap/scss/bootstrap';
+
+@import 'custom/badges.scss';
+@import 'custom/buttons.scss';
+@import 'custom/cards.scss';
+@import 'custom/classes.scss';
+@import 'custom/forms.scss';
+@import 'custom/main.scss';
+@import 'custom/nav.scss';
+@import 'custom/reset.scss';
+@import 'custom/tables.scss';
+@import 'custom/toasts.scss';

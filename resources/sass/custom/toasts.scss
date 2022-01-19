@@ -1,0 +1,46 @@
+.toast{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-right: .5rem;
+
+    &-container{
+        z-index: 999;
+    }
+
+    &-body{
+        display: flex;
+        align-items: center;
+        justify-content: stretch;
+        line-height: 1.6;
+        font-size: 1rem;
+        
+        .btn-icon{
+            color: $dark;
+            justify-self: flex-end !important;
+        }
+    }
+
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__icon {
+        margin-right: .5rem;
+        font-size: 1.8rem;
+    }
+    &--success{
+        border-left: 6px solid $success;
+
+        .toast__icon{
+            color: $success;
+        }
+    }
+    &--danger{
+        border-left: 6px solid $danger;
+
+        .toast__icon{
+            color: $danger;
+        }
+    }
+}
