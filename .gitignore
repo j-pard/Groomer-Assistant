@@ -3,6 +3,7 @@
 /public/storage
 /public/index.php
 /storage/*.key
+/storage/*
 /vendor
 .env
 .env.backup
