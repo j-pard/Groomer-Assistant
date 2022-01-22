@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Customer;
 use App\Models\Pet;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class CustomersController extends Controller
 {
@@ -14,7 +14,7 @@ class CustomersController extends Controller
      *
      * @return view
      */
-    public function index()
+    public function index(): View
     {
         return view('manager.customers.list');
     }
@@ -24,7 +24,7 @@ class CustomersController extends Controller
      *
      * @return view
      */
-    public function create()
+    public function create(): View
     {
         return view('manager.customers.form', [
             'customer' => new Customer,
@@ -37,7 +37,7 @@ class CustomersController extends Controller
      * @param Customer $customer
      * @return view
      */
-    public function edit(Customer $customer)
+    public function edit(Customer $customer): View
     {
         return view('manager.customers.form', [
             'customer' => $customer,
@@ -50,7 +50,7 @@ class CustomersController extends Controller
      * @param Customer $customer
      * @return view
      */
-    public function appointments(Customer $customer)
+    public function appointments(Customer $customer): View
     {
         return view('manager.customers.appointments', [
             'customer' => $customer,
@@ -63,7 +63,7 @@ class CustomersController extends Controller
      * @param Customer $customer
      * @return view
      */
-    public function appointment(Customer $customer)
+    public function appointment(Customer $customer): View
     {
         return view('manager.appointments.form', [
             'appointment' => new Appointment,

@@ -48,8 +48,6 @@ Route::middleware([Authenticate::class])->group(function () {
     });
     
     Route::prefix('appointments')->name('appointments.')->group(function () {
-        Route::post('store', [AppointmentsController::class, 'store'])->name('store');
-        Route::put('update', [AppointmentsController::class, 'update'])->name('update');
         Route::get('{appointment}/edit', [AppointmentsController::class, 'edit'])->name('edit');
     });
 

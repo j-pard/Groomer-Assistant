@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
-use App\Models\Breed;
-use App\Models\Customer;
 use App\Models\Pet;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class PetsController extends Controller
 {
     /**
      * Show pets index
      *
-     * @return view
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('manager.pets.list');
     }
@@ -24,9 +21,9 @@ class PetsController extends Controller
     /**
      * Show pet creation interface
      *
-     * @return view
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('manager.pets.form', [
             'pet' => new Pet,
@@ -37,9 +34,9 @@ class PetsController extends Controller
      * Show pet edition interface
      *
      * @param Pet $pet
-     * @return view
+     * @return View
      */
-    public function edit(Pet $pet)
+    public function edit(Pet $pet): View
     {
         return view('manager.pets.form', [
             'pet' => $pet,
@@ -50,9 +47,9 @@ class PetsController extends Controller
      * Show pet appointments list
      *
      * @param Pet $pet
-     * @return view
+     * @return View
      */
-    public function appointments(Pet $pet)
+    public function appointments(Pet $pet): View
     {
         return view('manager.pets.appointments', [
             'pet' => $pet,
@@ -63,9 +60,9 @@ class PetsController extends Controller
      * Show pet specified appointment
      *
      * @param Pet $pet
-     * @return view
+     * @return View
      */
-    public function appointment(Pet $pet)
+    public function appointment(Pet $pet): View
     {
         return view('manager.appointments.form', [
             'appointment' => new Appointment(),
@@ -78,9 +75,9 @@ class PetsController extends Controller
      * Show pet gallery
      *
      * @param Pet $pet
-     * @return view
+     * @return View
      */
-    public function gallery(Pet $pet)
+    public function gallery(Pet $pet): View
     {
         return view('manager.pets.gallery', [
             'pet' => $pet,
