@@ -38,6 +38,13 @@ class Appointment extends Model
     ];
 
     /**
+     * Enum values for TVA status
+     *
+     * @var array
+     */
+    public static $tvaStatus = ['cash', 'payconiq', 'bank', 'voucher'];
+
+    /**
      * Return status as option key => value
      *
      * @var array

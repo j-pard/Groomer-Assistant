@@ -9,7 +9,7 @@
     @endif
     <input 
         class="form-control {{ $class }} @error($name) is-invalid @enderror"
-        type="date"
+        type="{!! $type !!}"
         name="{!! $name !!}"
         {!! $id ? 'id="' . $id . '"' : "" !!}
         {!! $required ? 'required' : '' !!}

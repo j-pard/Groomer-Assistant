@@ -10,21 +10,27 @@
             <span class="input-group-text">€</span>
         </div>
 
-        <input 
-            class="form-control {{ $class }} @error($name) is-invalid @enderror"
-            type="number"
-            name="{!! $name !!}"
-            {!! $placeholder ? 'placeholder="' . $placeholder . '"' : "" !!}
-            {!! $id ? 'id="' . $id . '"' : "" !!}
-            {!! $required ? 'required' : '' !!}
-            {!! $readonly ? 'readonly' : '' !!}
-            {!! $disabled ? 'disabled' : '' !!}
-            step="0.05"
-            min="0"
-            {!! $max ? 'max="' . $max . '"' : '' !!}
+        <div>
+            <input 
+                class="form-control {{ $class }} @error($name) is-invalid @enderror"
+                type="number"
+                name="{!! $name !!}"
+                {!! $placeholder ? 'placeholder="' . $placeholder . '"' : "" !!}
+                {!! $id ? 'id="' . $id . '"' : "" !!}
+                {!! $required ? 'required' : '' !!}
+                {!! $readonly ? 'readonly' : '' !!}
+                {!! $disabled ? 'disabled' : '' !!}
+                step="0.05"
+                min="0"
+                {!! $max ? 'max="' . $max . '"' : '' !!}
 
-            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
-        >
+                wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
+            >
+
+            @if (isset($help))
+                <small class="text-muted">{!! $help !!}</small>
+            @endif
+        </div>
     </div>
     
     @error($name)

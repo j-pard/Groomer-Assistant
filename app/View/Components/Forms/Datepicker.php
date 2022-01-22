@@ -24,6 +24,7 @@ class Datepicker extends Component
         public ?string $value = null,
         public ?string $min = null,
         public ?string $max = null,
+        public string $type = 'date'
     ) {
         $this->name = $this->wire;
     }

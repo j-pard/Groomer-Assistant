@@ -23,6 +23,7 @@ class Price extends Component
         public bool $readonly = false,
         public bool $disabled = false,
         public ?string $max = null,
+        public ?string $help = null
     ) {
         $this->name = $this->wire;
     }
