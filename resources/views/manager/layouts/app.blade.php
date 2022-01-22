@@ -81,20 +81,22 @@
             <x-buttons.nav
                 icon="fas fa-calendar-alt"
                 :url="route('home')" 
-                section="calendar"
                 :active="Route::currentRouteName() == 'home'"
             />
             <x-buttons.nav
                 icon="fas fa-paw"
                 :url="route('pets.index')"
-                section="pets"
                 :active="Str::startsWith(Route::currentRouteName(), 'pets.')"
             />
             <x-buttons.nav
                 icon="fas fa-users"
                 :url="route('customers.index')"
-                section="customers"
                 :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
+            />
+            <x-buttons.nav
+                icon="fas fa-coins"
+                :url="route('accounting.index')"
+                :active="Str::startsWith(Route::currentRouteName(), 'accounting.')"
             />
         </nav>
 
@@ -105,21 +107,23 @@
         <nav id="mobile-nav" class="nav-bg-dark">
             <x-buttons.nav
                 icon="fas fa-calendar-alt"
-                :url="route('home')" 
-                section="calendar"
+                :url="route('home')"
                 :active="Route::currentRouteName() == 'home'"
             />
             <x-buttons.nav
                 icon="fas fa-paw"
                 :url="route('pets.index')"
-                section="pets"
                 :active="Str::startsWith(Route::currentRouteName(), 'pets.')"
             />
             <x-buttons.nav
                 icon="fas fa-users"
                 :url="route('customers.index')"
-                section="customers"
                 :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
+            />
+            <x-buttons.nav
+                icon="fas fa-coins"
+                :url="route('accounting.index')"
+                :active="Str::startsWith(Route::currentRouteName(), 'accounting.')"
             />
         </nav>
 

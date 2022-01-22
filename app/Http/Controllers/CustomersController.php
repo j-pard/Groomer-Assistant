@@ -71,22 +71,4 @@ class CustomersController extends Controller
             'pet' => new Pet,
         ]);
     }
-    
-    /**
-     * Return related pets as options list
-     * Specific method for dynamic appointments
-     *
-     * @param Request $request
-     * @return array
-     */
-    public function getPetsOptions(Request $request)
-    {
-        $customer = Customer::find($request->customerId);
-
-        if (isset($customer)) {
-            return $customer->pets()->orderBy('name')->pluck('name', 'id');
-        }
-
-        return [];
-    }
 }

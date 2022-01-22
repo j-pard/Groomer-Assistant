@@ -17,12 +17,11 @@ class Nav extends Component
      *
      * @return void
      */
-    public function __construct($class = '', $url = '', $icon = '', $section = '', $active = false)
+    public function __construct($class = '', $url = '', $icon = '', $active = false)
     {
         $this->class = $class;
         $this->url = $url;
         $this->icon = $icon;
-        $this->section = $section;
         $this->active = $active;
     }
 
