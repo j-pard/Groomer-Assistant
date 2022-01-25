@@ -23,10 +23,10 @@
             />
 
             <x-forms.price
-                label="Avant TVA"
+                label="Franchise"
                 wire="remaining"
                 class="mb-0"
-                help="{{ $totalOfYearCount }} chiens"
+                help="{{ $totalOfYearCount }} chiens sur l'année"
             />
 
             <div id="calendar-input" class="d-flex align-items-center mt-2">

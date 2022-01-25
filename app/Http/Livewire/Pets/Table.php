@@ -26,6 +26,11 @@ class Table extends DataTableComponent
             ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
     }
     
+    public function setTableClass(): ?string
+    {
+        return 'table custom-table';
+    }
+
     public function columns(): array
     {
         return [

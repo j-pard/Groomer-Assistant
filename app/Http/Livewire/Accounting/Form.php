@@ -8,12 +8,15 @@ use App\Models\Customer;
 use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class Form extends LivewireForm
 {
     public string $date;
     public string $activeMonth;
     public Collection $appointments;
+    public array $availableStatus;
+    public array $offStatus;
 
     // Header values
     public string $tva;
@@ -34,6 +37,8 @@ class Form extends LivewireForm
         $this->date = Carbon::now()->format('Y-m');
         $this->activeMonth = $this->date;
         $this->appointments = $this->getMonthAppointments();
+        $this->availableStatus = Appointment::getStatusAsOptions();
+        $this->offStatus = ['bank', 'payconiq', 'cancelled'];
         $this->makeCounts();
     }
 
@@ -95,7 +100,22 @@ class Form extends LivewireForm
         $start = Carbon::parse($this->activeMonth)->firstOfMonth()->format('Y-m-d H:i:s');
         $end = Carbon::parse($this->activeMonth)->endOfMonth()->format('Y-m-d H:i:s');
 
-        return Appointment::whereBetween('time', [$start, $end])->orderBy('time')->get();
+        return Appointment::whereBetween('appointments.time', [$start, $end])
+            ->join('pets', 'appointments.pet_id', '=', 'pets.id')
+            ->join('customers', 'appointments.customer_id', '=', 'customers.id')
+            ->select(
+                'appointments.id',
+                'appointments.time',
+                'appointments.price',
+                'appointments.pet_id',
+                'appointments.customer_id',
+                'appointments.status',
+                'pets.name AS pet_name',
+                'customers.lastname AS customer_lastname',
+                DB::raw('DATE_FORMAT(appointments.time, "%d %b %H:%i") as formatted_date')
+                )
+            ->orderBy('appointments.time')
+            ->get();
     }
 
     private function makeCounts()

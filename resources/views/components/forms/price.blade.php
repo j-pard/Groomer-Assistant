@@ -10,28 +10,25 @@
             <span class="input-group-text">€</span>
         </div>
 
-        <div>
-            <input 
-                class="form-control {{ $class }} @error($name) is-invalid @enderror"
-                type="number"
-                name="{!! $name !!}"
-                {!! $placeholder ? 'placeholder="' . $placeholder . '"' : "" !!}
-                {!! $id ? 'id="' . $id . '"' : "" !!}
-                {!! $required ? 'required' : '' !!}
-                {!! $readonly ? 'readonly' : '' !!}
-                {!! $disabled ? 'disabled' : '' !!}
-                step="0.05"
-                min="0"
-                {!! $max ? 'max="' . $max . '"' : '' !!}
+        <input 
+            class="form-control {{ $class }} @error($name) is-invalid @enderror"
+            type="number"
+            name="{!! $name !!}"
+            {!! $placeholder ? 'placeholder="' . $placeholder . '"' : "" !!}
+            {!! $id ? 'id="' . $id . '"' : "" !!}
+            {!! $required ? 'required' : '' !!}
+            {!! $readonly ? 'readonly' : '' !!}
+            {!! $disabled ? 'disabled' : '' !!}
+            step="0.05"
+            min="0"
+            {!! $max ? 'max="' . $max . '"' : '' !!}
 
-                wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
-            >
-
-            @if (isset($help))
-                <small class="text-muted">{!! $help !!}</small>
-            @endif
-        </div>
+            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
+        >
     </div>
+    @if (isset($help))
+        <small class="text-muted">{!! $help !!}</small>
+    @endif
     
     @error($name)
         <small class="text-danger">{{ $message }}</small>

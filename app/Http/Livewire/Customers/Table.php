@@ -21,6 +21,11 @@ class Table extends DataTableComponent
         return Customer::query();
     }
 
+    public function setTableClass(): ?string
+    {
+        return 'table custom-table';
+    }
+
     public function columns(): array
     {
         return [

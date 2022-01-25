@@ -32,8 +32,10 @@
                     <div class="mid">
                         @switch($appointment->status)
                             @case('cash')
-                            @case('private')
                                 <i class="fas fa-euro-sign"></i>
+                                @break
+                            @case('private')
+                                <i class="fab fa-product-hunt"></i>
                                 @break
                             @case('payconiq')
                                 <i class="fas fa-qrcode"></i>

@@ -12431,6 +12431,10 @@ a .active {
   font-size: 24px;
 }
 
+.line-through {
+  text-decoration: line-through;
+}
+
 .duration-inputs-container {
   display: flex;
   align-items: center;
@@ -12634,27 +12638,27 @@ body {
   padding-right: 0 !important;
 }
 
-table tbody tr td:first-child,
-table tbody tr tr:first-child {
+table.custom-table tbody tr td:first-child,
+table.custom-table tbody tr tr:first-child {
   max-width: auto;
   padding-left: 1rem;
 }
 
-table tbody tr td {
+table.custom-table tbody tr td {
   vertical-align: middle;
   white-space: nowrap;
 }
 
-table tbody tr td a {
+table.custom-table tbody tr td a {
   color: #343a40;
 }
 
-table tbody tr td a:focus {
+table.custom-table tbody tr td a:focus {
   color: #ff0096;
 }
 
-table tbody tr tr:last-child,
-table tbody tr td:last-child {
+table.custom-table tbody tr tr:last-child,
+table.custom-table tbody tr td:last-child {
   display: flex;
   justify-content: end;
   align-items: center;
