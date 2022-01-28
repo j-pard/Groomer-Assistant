@@ -19,6 +19,7 @@ class Select extends Component
         public ?string $name = null,
         public ?string $label = null,
         public ?string $class = null,
+        public ?string $classContainer = null,
         public ?string $id = null,
         public bool $required = false,
         public bool $readonly = false,

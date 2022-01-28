@@ -4,8 +4,6 @@ namespace App\Http\Livewire\Accounting;
 
 use App\Http\Livewire\Form as LivewireForm;
 use App\Models\Appointment;
-use App\Models\Customer;
-use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +13,8 @@ class Form extends LivewireForm
     public string $date;
     public string $activeMonth;
     public Collection $appointments;
+    public array $appts;
+    public array $apptsToUpdate = [];
     public array $availableStatus;
     public array $offStatus;
 
@@ -28,11 +28,7 @@ class Form extends LivewireForm
     public string $remaining;
     public string $totalOfYearCount;
 
-    // Modal
-    public ?Appointment $appointment;
-    public string $customerName;
-    public string $petName;
-    public string $modalTitle;
+    protected $listeners = ['apptUpdated' => 'apptUpdated'];
 
     /**
      * Mount the component
@@ -46,42 +42,6 @@ class Form extends LivewireForm
         $this->availableStatus = Appointment::getStatusAsOptions();
         $this->offStatus = ['bank', 'payconiq', 'cancelled'];
         $this->makeCounts();
-        $this->resetAppointment();
-    }
-
-    /**
-     * Valdiation rules
-     *
-     * @return array
-     */
-    protected function appointmentRules()
-    {
-        return [
-            'appointment.pet_id' => 'required|numeric',
-            'appointment.time' => 'string',
-            'appointment.price' => 'nullable|numeric|min:0',
-            'date' => 'string',
-            'time' => 'string',
-            'appointment.notes' => 'string|nullable',
-            'appointment.status' => 'string',
-        ];
-    }
-
-    /**
-     * Valdiation rules
-     *
-     * @return array
-     */
-    protected function headerRules()
-    {
-        return [
-            'tva' => 'required|numeric',
-            'htva' => 'required|numeric',
-            'cumulated' => 'required|numeric',
-            'remaining' => 'required|numeric',
-            'activeMonth' => 'required|date',
-            'date' => 'string',
-        ];
     }
 
     /**
@@ -91,7 +51,15 @@ class Form extends LivewireForm
      */
     protected function rules()
     {
-        return array_merge($this->appointmentRules(), $this->headerRules());
+        return [
+            'tva' => 'required|numeric',
+            'htva' => 'required|numeric',
+            'cumulated' => 'required|numeric',
+            'remaining' => 'required|numeric',
+            'activeMonth' => 'required|date',
+            'date' => 'string',
+            'appts.*.status' => 'string',
+        ];
     }
 
     /**
@@ -111,24 +79,24 @@ class Form extends LivewireForm
      */
     public function save()
     {
+        $apptsToPersist = $this->appointments->whereIn('id', array_keys($this->apptsToUpdate));
+        foreach ($apptsToPersist as $appointment) {
+            $appointment->update([
+                'status' => $this->apptsToUpdate[$appointment->id]
+            ]);
+        }
+        
         $this->showMessage();
     }
 
-    /**
-     * Save the model
-     *
-     * @return void
-     */
-    public function saveAppointment()
+    public function apptUpdated($event)
     {
-        $this->validate($this->appointmentRules());
-
-        $this->appointment->save();
-        $this->appointments = $this->getMonthAppointments();
-        $this->makeCounts();
-
-        $this->dispatchBrowserEvent('form-modal-saved', ['modalId' => 'apptModal']);
-        $this->showMessage('Rendez-vous supprimé');
+        // Update appointment in array
+        $this->appts[$event['target']]['status'] = $event['status'];
+        // Add appointment to array that need to be persisted
+        $this->apptsToUpdate[$event['target']] = $event['status'];
+        // Update count
+        $this->makeCounts(collect($this->appts));
     }
 
     /**
@@ -156,48 +124,6 @@ class Form extends LivewireForm
     }
 
     /**
-     * Load Appointment for modal
-     *
-     * @param string $id
-     */
-    public function loadAppointment(string $id)
-    {
-        $this->appointment = Appointment::where('appointments.id', $id)
-            ->join('pets', 'appointments.pet_id', '=', 'pets.id')
-            ->join('customers', 'appointments.customer_id', '=', 'customers.id')
-            ->select(
-                'appointments.id',
-                'appointments.time',
-                'appointments.price',
-                'appointments.pet_id',
-                'appointments.customer_id',
-                'appointments.status',
-                'appointments.notes',
-            )
-            ->first();
-
-        $time = Carbon::parse($this->appointment->time);
-        $this->date = $time->format('Y-m-d');
-        $this->time = $time->format('H:i');
-        $this->customerName = Customer::find($this->appointment->customer_id)->getFullName();
-        $this->petName = $this->appointment->pet->name;
-
-        $this->dispatchBrowserEvent('form-modal-loaded', ['modalId' => 'apptModal']);
-    }
-
-    /**
-     * Reset modal variables
-     *
-     */
-    public function resetAppointment()
-    {
-        $this->appointment = new Appointment();
-        $this->customerName = '';
-        $this->petName = '';
-        $this->modalTitle = '';
-    }
-
-    /**
      * Return collection of all appointments of specified month
      *
      * @return Collection
@@ -207,7 +133,7 @@ class Form extends LivewireForm
         $start = Carbon::parse($this->activeMonth)->firstOfMonth()->format('Y-m-d H:i:s');
         $end = Carbon::parse($this->activeMonth)->endOfMonth()->format('Y-m-d H:i:s');
 
-        return Appointment::whereBetween('appointments.time', [$start, $end])
+        $appointments = Appointment::whereBetween('appointments.time', [$start, $end])
             ->join('pets', 'appointments.pet_id', '=', 'pets.id')
             ->join('customers', 'appointments.customer_id', '=', 'customers.id')
             ->select(
@@ -223,19 +149,29 @@ class Form extends LivewireForm
                 )
             ->orderBy('appointments.time')
             ->get();
+
+        foreach ($appointments as $item) {
+            $this->appts[$item->id] = $item->toArray();
+        }
+
+        return $appointments;
     }
 
     /**
      * Make counts of all appointments of specified month
      *
      */
-    private function makeCounts()
+    private function makeCounts($source = null)
     {
-        $tvaQuery = $this->appointments->whereIn('status', Appointment::$tvaStatus);
+        if ($source === null) {
+            $source = $this->appointments;
+        }
+
+        $tvaQuery = $source->whereIn('status', Appointment::$tvaStatus);
         $this->tva = (clone $tvaQuery)->sum('price');
         $this->tvaCount = (clone $tvaQuery)->count();
 
-        $htvaQuery = $this->appointments->where('status', 'private');
+        $htvaQuery = $source->where('status', 'private');
         $this->htva = (clone $htvaQuery)->sum('price');
         $this->htvaCount = (clone $htvaQuery)->count();
 

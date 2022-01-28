@@ -1,5 +1,7 @@
 <div>
-    <form wire:submit.prevent="save" autocorrect="off" autocapitalize="off" autocomplete="off">
+    <form wire:submit.prevent="save" autocorrect="off" autocapitalize="off" autocomplete="off"
+    x-data="{isShowing: true}"
+    >
         <button type="submit" onclick="return false;" style="display:none;"></button>
         
         @include('livewire.accounting.partials.header')
@@ -14,28 +16,39 @@
                         <th scope="col">Client</th>
                         <th scope="col">Prix</th>
                         <th scope="col">Status</th>
-                        <th scope="col"><p class="text-end m-0 p-0">Actions</p></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($appointments as $_appointment)
-                        <tr wire:ignore class="{!! ((!isset($_appointment->price) || $_appointment->price == '') && $_appointment->status != 'cancelled') ? 'table-danger' : '' !!} {{ in_array($_appointment->status, $offStatus) ? 'table-secondary disabled' : '' }}">
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $_appointment->formatted_date }}</td>
-                            <td>{{ $_appointment->pet_name }}</td>
-                            <td>{{ $_appointment->customer_lastname }}</td>
-                            <td class="{{ $_appointment->status == 'cancelled' ? 'line-through' : ''}}">
-                                @if ($_appointment->status == 'cancelled')
-                                    {{ isset($_appointment->price) ? $_appointment->price . ' €' : '' }}
+                    @forelse ($appts as $key => $appt)
+                        <tr class="{!! ((!isset($appt['price']) || $appt['price'] == '') && $appt['status'] != 'cancelled') ? 'table-danger' : '' !!}">
+                            <th class="py-3" scope="row">{{ $loop->iteration }}</th>
+                            <td class="py-3">{{ $appt['formatted_date'] }}</td>
+                            <td class="py-3">{{ $appt['pet_name'] }}</td>
+                            <td class="py-3">{{ $appt['customer_lastname'] }}</td>
+                            <td class="py-3 {{ $appt['status'] == 'cancelled' ? 'line-through' : ''}}">
+                                @if ($appt['status'] == 'cancelled')
+                                    {!! isset($appt['price']) ? $appt['price'] . ' €' : '&mdash;' !!}
                                 @else
-                                    {!! (!isset($_appointment->price) || $_appointment->price == '') ? '<i class="fas fa-exclamation-triangle text-danger mt-1"></i>' : $_appointment->price . ' €' !!}
+                                    {!! (!isset($appt['price']) || $appt['price'] == '') ? '<i class="fas fa-exclamation-triangle text-danger mt-1"></i>' : $appt['price'] . ' €' !!}
                                 @endif
                             </td>
-                            <td>{{ $availableStatus[$_appointment->status] }}</td>
-                            <td class="text-end">
-                                <span class="mx-2" wire:key="{{ $_appointment->id }}" wire:click="loadAppointment('{{ $_appointment->id }}')">
-                                    <i class="fas fa-eye"></i>
-                                </span>
+                            <td>
+                                <div class="col-md-6">
+                                    <x-forms.select
+                                        class="mb-0"
+                                        classContainer="mb-0"
+                                        wire="appts.{{$key}}.status"
+                                        :options="$availableStatus"
+                                        wiremodifier="lazy"
+                                        :disabled="in_array($appt['status'], $offStatus)"
+                                        x-on:change="
+                                            $wire.emit('apptUpdated', {
+                                                target: {{ $key }},
+                                                status: this.event.target.value
+                                            })
+                                        "
+                                    />
+                                </div>
                             </td>
                         </tr>
                     @empty
@@ -49,6 +62,4 @@
             <x-buttons.save />
         </div>
     </form>
-
-    @include('livewire.accounting.partials.modal')
 </div>

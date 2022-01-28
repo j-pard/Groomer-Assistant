@@ -1,13 +1,15 @@
-<div class="form-group">
-    <label for="{{ $name }}">
-        {{ $label }}
-        @if ($label && $required)
-            <span class="text-danger">*</span>
-        @endif
-    </label>
+<div class="form-group {!! $classContainer !!}">
+    @if ($label)
+        <label for="{{ $name }}">
+            {{ $label }}
+            @if ($label && $required)
+                <span class="text-danger">*</span>
+            @endif
+        </label>
+    @endif
 
     <select 
-        class="form-control {{ $class }} @error($name) is-invalid @enderror"
+        {!! $attributes->merge(['class' => "form-control " . $class]) !!}
         name="{!! $name !!}"
         {!! $id ? 'id="' . $id . '"' : "" !!}
         {!! $required ? 'required' : '' !!}
