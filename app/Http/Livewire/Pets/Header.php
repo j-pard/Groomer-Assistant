@@ -29,7 +29,7 @@ class Header extends Component
         return [
             'date' => 'string',
             'time' => 'string',
-            'appointment.notes' => 'string',
+            'appointment.notes' => 'string|nullable',
         ];
     }
 

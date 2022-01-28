@@ -18,25 +18,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($appointments as $appointment)
-                        <tr class="{!! ((!isset($appointment->price) || $appointment->price == '') && $appointment->status != 'cancelled') ? 'table-danger' : '' !!} {{ in_array($appointment->status, $offStatus) ? 'table-secondary disabled' : '' }}">
+                    @forelse ($appointments as $_appointment)
+                        <tr wire:ignore class="{!! ((!isset($_appointment->price) || $_appointment->price == '') && $_appointment->status != 'cancelled') ? 'table-danger' : '' !!} {{ in_array($_appointment->status, $offStatus) ? 'table-secondary disabled' : '' }}">
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $appointment->formatted_date }}</td>
-                            <td>{{ $appointment->pet_name }}</td>
-                            <td>{{ $appointment->customer_lastname }}</td>
-                            <td class="{{ $appointment->status == 'cancelled' ? 'line-through' : ''}}">
-                                @if ($appointment->status == 'cancelled')
-                                    {{ isset($appointment->price) ? $appointment->price . ' €' : '' }}
+                            <td>{{ $_appointment->formatted_date }}</td>
+                            <td>{{ $_appointment->pet_name }}</td>
+                            <td>{{ $_appointment->customer_lastname }}</td>
+                            <td class="{{ $_appointment->status == 'cancelled' ? 'line-through' : ''}}">
+                                @if ($_appointment->status == 'cancelled')
+                                    {{ isset($_appointment->price) ? $_appointment->price . ' €' : '' }}
                                 @else
-                                    {!! (!isset($appointment->price) || $appointment->price == '') ? '<i class="fas fa-exclamation-triangle text-danger mt-1"></i>' : $appointment->price . ' €' !!}
+                                    {!! (!isset($_appointment->price) || $_appointment->price == '') ? '<i class="fas fa-exclamation-triangle text-danger mt-1"></i>' : $_appointment->price . ' €' !!}
                                 @endif
                             </td>
-                            <td>{{ $availableStatus[$appointment->status] }}</td>
-                            @if (in_array($appointment->status, $offStatus))
-                                <td class="text-end"></td>
-                            @else
-                                <td class="text-end">+ + +</td>
-                            @endif
+                            <td>{{ $availableStatus[$_appointment->status] }}</td>
+                            <td class="text-end">
+                                <span class="mx-2" wire:key="{{ $appointment->id }}" wire:click="loadAppointment('{{ $_appointment->id }}')">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </td>
                         </tr>
                     @empty
                         <tr></tr>
@@ -49,4 +49,6 @@
             <x-buttons.save />
         </div>
     </form>
+
+    @include('livewire.accounting.partials.modal')
 </div>

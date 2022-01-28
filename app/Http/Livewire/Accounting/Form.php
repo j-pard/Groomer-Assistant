@@ -28,6 +28,12 @@ class Form extends LivewireForm
     public string $remaining;
     public string $totalOfYearCount;
 
+    // Modal
+    public ?Appointment $appointment;
+    public string $customerName;
+    public string $petName;
+    public string $modalTitle;
+
     /**
      * Mount the component
      *
@@ -40,6 +46,7 @@ class Form extends LivewireForm
         $this->availableStatus = Appointment::getStatusAsOptions();
         $this->offStatus = ['bank', 'payconiq', 'cancelled'];
         $this->makeCounts();
+        $this->resetAppointment();
     }
 
     /**
@@ -47,7 +54,26 @@ class Form extends LivewireForm
      *
      * @return array
      */
-    protected function rules()
+    protected function appointmentRules()
+    {
+        return [
+            'appointment.pet_id' => 'required|numeric',
+            'appointment.time' => 'string',
+            'appointment.price' => 'nullable|numeric|min:0',
+            'date' => 'string',
+            'time' => 'string',
+            'appointment.notes' => 'string|nullable',
+            'appointment.status' => 'string',
+            'appointment.force_cash' => 'boolean',
+        ];
+    }
+
+    /**
+     * Valdiation rules
+     *
+     * @return array
+     */
+    protected function headerRules()
     {
         return [
             'tva' => 'required|numeric',
@@ -57,6 +83,16 @@ class Form extends LivewireForm
             'activeMonth' => 'required|date',
             'date' => 'string',
         ];
+    }
+
+    /**
+     * Valdiation rules
+     *
+     * @return array
+     */
+    protected function rules()
+    {
+        return array_merge($this->appointmentRules(), $this->headerRules());
     }
 
     /**
@@ -79,6 +115,10 @@ class Form extends LivewireForm
         $this->showMessage();
     }
 
+    /**
+     * Load previous month as $activeMonth
+     *
+     */
     public function previousMonth()
     {
         $this->date = Carbon::parse($this->activeMonth)->subMonth()->format('Y-m');
@@ -87,6 +127,10 @@ class Form extends LivewireForm
         $this->makeCounts();
     }
 
+    /**
+     * Load next month as $activeMonth
+     *
+     */
     public function nextMonth()
     {
         $this->date = Carbon::parse($this->activeMonth)->addMonth()->format('Y-m');
@@ -95,7 +139,53 @@ class Form extends LivewireForm
         $this->makeCounts();
     }
 
-    private function getMonthAppointments()
+    /**
+     * Load Appointment for modal
+     *
+     * @param string $id
+     */
+    public function loadAppointment(string $id)
+    {
+        $this->appointment = Appointment::where('appointments.id', $id)
+            ->join('pets', 'appointments.pet_id', '=', 'pets.id')
+            ->join('customers', 'appointments.customer_id', '=', 'customers.id')
+            ->select(
+                'appointments.id',
+                'appointments.time',
+                'appointments.price',
+                'appointments.pet_id',
+                'appointments.customer_id',
+                'appointments.status'
+            )
+            ->first();
+
+        $time = Carbon::parse($this->appointment->time);
+        $this->date = $time->format('Y-m-d');
+        $this->time = $time->format('H:i');
+        $this->customerName = Customer::find($this->appointment->customer_id)->getFullName();
+        $this->petName = $this->appointment->pet->name;
+
+        $this->dispatchBrowserEvent('form-modal-loaded', ['modalId' => 'apptModal']);
+    }
+
+    /**
+     * Reset modal variables
+     *
+     */
+    public function resetAppointment()
+    {
+        $this->appointment = new Appointment();
+        $this->customerName = '';
+        $this->petName = '';
+        $this->modalTitle = '';
+    }
+
+    /**
+     * Return collection of all appointments of specified month
+     *
+     * @return Collection
+     */
+    private function getMonthAppointments(): Collection
     {
         $start = Carbon::parse($this->activeMonth)->firstOfMonth()->format('Y-m-d H:i:s');
         $end = Carbon::parse($this->activeMonth)->endOfMonth()->format('Y-m-d H:i:s');
@@ -118,6 +208,10 @@ class Form extends LivewireForm
             ->get();
     }
 
+    /**
+     * Make counts of all appointments of specified month
+     *
+     */
     private function makeCounts()
     {
         $tvaQuery = $this->appointments->whereIn('status', Appointment::$tvaStatus);

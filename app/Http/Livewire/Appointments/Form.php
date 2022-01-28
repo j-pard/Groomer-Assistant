@@ -32,7 +32,7 @@ class Form extends LivewireForm
             'appointment.time' => 'string',
             'appointment.price' => 'nullable|numeric|min:0',
             'time' => 'string',
-            'appointment.notes' => 'string',
+            'appointment.notes' => 'string|nullable',
             'appointment.status' => 'string',
         ];
     }

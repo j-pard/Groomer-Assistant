@@ -70,7 +70,7 @@ class Customer extends Model
             ->orderBy('firstname')
             ->get()
             ->map(function ($item) {
-                return ['key' => $item->id, 'value' => ucfirst($item->lastname) . ' ' . ucfirst($item->firstname) . (isset($item->phone) ? (' - ' . $item->phone): '')];
+                return ['key' => $item->id, 'value' => $item->getFullName()];
             })
             ->pluck('value', 'key')
             ->toArray();
@@ -92,5 +92,15 @@ class Customer extends Model
             ->sortBy('value')
             ->pluck('value', 'key')
             ->toArray();
+    }
+
+    /**
+     * Return full name and phone number of current customer
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return ucfirst($this->lastname) . ' ' . ucfirst($this->firstname) . (isset($this->phone) ? (' - ' . $this->phone): '');
     }
 }
