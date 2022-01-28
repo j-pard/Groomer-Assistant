@@ -33,7 +33,7 @@
                             </td>
                             <td>{{ $availableStatus[$_appointment->status] }}</td>
                             <td class="text-end">
-                                <span class="mx-2" wire:key="{{ $appointment->id }}" wire:click="loadAppointment('{{ $_appointment->id }}')">
+                                <span class="mx-2" wire:key="{{ $_appointment->id }}" wire:click="loadAppointment('{{ $_appointment->id }}')">
                                     <i class="fas fa-eye"></i>
                                 </span>
                             </td>

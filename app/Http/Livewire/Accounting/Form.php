@@ -64,7 +64,6 @@ class Form extends LivewireForm
             'time' => 'string',
             'appointment.notes' => 'string|nullable',
             'appointment.status' => 'string',
-            'appointment.force_cash' => 'boolean',
         ];
     }
 
@@ -106,13 +105,30 @@ class Form extends LivewireForm
     }
 
     /**
-     * Save the model
+     * Save the table
      *
      * @return void
      */
     public function save()
     {
         $this->showMessage();
+    }
+
+    /**
+     * Save the model
+     *
+     * @return void
+     */
+    public function saveAppointment()
+    {
+        $this->validate($this->appointmentRules());
+
+        $this->appointment->save();
+        $this->appointments = $this->getMonthAppointments();
+        $this->makeCounts();
+
+        $this->dispatchBrowserEvent('form-modal-saved', ['modalId' => 'apptModal']);
+        $this->showMessage('Rendez-vous supprimé');
     }
 
     /**
@@ -155,7 +171,8 @@ class Form extends LivewireForm
                 'appointments.price',
                 'appointments.pet_id',
                 'appointments.customer_id',
-                'appointments.status'
+                'appointments.status',
+                'appointments.notes',
             )
             ->first();
 

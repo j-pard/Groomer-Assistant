@@ -51,7 +51,6 @@
                         label="Notes"
                         rows="4"
                         wire="appointment.notes"
-                        disabled
                     />
 
                     <div class="row mb-3">
@@ -60,7 +59,6 @@
                                 label="Status"
                                 wire="appointment.status"
                                 :options='$availableStatus'
-                                disabled
                             />
                         </div>
 
@@ -68,7 +66,6 @@
                             <x-forms.price
                                 label="Prix"
                                 wire="appointment.price"
-                                disabled
                             />
                         </div>
                     </div>
@@ -85,7 +82,8 @@
                         />
                     </div>
                     <div>
-                        <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success text-light">Sauver</button>
                     </div>
                 </div>
             </form>
