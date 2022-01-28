@@ -8,7 +8,7 @@
         <div class="modal-content">
             <form wire:submit.prevent="saveAppointment">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addPetModalLabel">{{ $modalTitle }}</h5>
+                    <h5 class="modal-title" id="addPetModalLabel">Rendez-vous</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -51,6 +51,7 @@
                         label="Notes"
                         rows="4"
                         wire="appointment.notes"
+                        disabled
                     />
 
                     <div class="row mb-3">
@@ -59,6 +60,7 @@
                                 label="Status"
                                 wire="appointment.status"
                                 :options='$availableStatus'
+                                disabled
                             />
                         </div>
 
@@ -66,25 +68,11 @@
                             <x-forms.price
                                 label="Prix"
                                 wire="appointment.price"
+                                disabled
                             />
                         </div>
                     </div>
 
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <div>
-                        <x-buttons.delete 
-                            text="Etes-vous certain(e) de vouloir supprimer ce rendez-vous ?" 
-                            method="deleteAppt('{{ $appointment->id }}')" 
-                            icon="" 
-                            button="Supprimer"
-                            class="w-auto"
-                        />
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-success text-light">Sauver</button>
-                    </div>
                 </div>
             </form>
         </div>

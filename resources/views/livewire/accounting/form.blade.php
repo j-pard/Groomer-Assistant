@@ -16,6 +16,7 @@
                         <th scope="col">Client</th>
                         <th scope="col">Prix</th>
                         <th scope="col">Status</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,8 +24,16 @@
                         <tr class="{!! ((!isset($appt['price']) || $appt['price'] == '') && $appt['status'] != 'cancelled') ? 'table-danger' : '' !!}">
                             <th class="py-3" scope="row">{{ $loop->iteration }}</th>
                             <td class="py-3">{{ $appt['formatted_date'] }}</td>
-                            <td class="py-3">{{ $appt['pet_name'] }}</td>
-                            <td class="py-3">{{ $appt['customer_lastname'] }}</td>
+                            <td class="py-3">
+                                <a class="text-dark" href="{{ route('pets.edit', ['pet' => $appt['pet_id']]) }}" target="_blank">
+                                    {{ $appt['pet_name'] }}
+                                </a>
+                            </td>
+                            <td class="py-3">
+                                <a class="text-dark" href="{{ route('customers.edit', ['customer' => $appt['customer_id']]) }}" target="_blank">
+                                    {{ $appt['customer_lastname'] }}
+                                </a>
+                            </td>
                             <td class="py-3 {{ $appt['status'] == 'cancelled' ? 'line-through' : ''}}">
                                 @if ($appt['status'] == 'cancelled')
                                     {!! isset($appt['price']) ? $appt['price'] . ' €' : '&mdash;' !!}
@@ -33,22 +42,25 @@
                                 @endif
                             </td>
                             <td>
-                                <div class="col-md-6">
-                                    <x-forms.select
-                                        class="mb-0"
-                                        classContainer="mb-0"
-                                        wire="appts.{{$key}}.status"
-                                        :options="$availableStatus"
-                                        wiremodifier="lazy"
-                                        :disabled="in_array($appt['status'], $offStatus)"
-                                        x-on:change="
-                                            $wire.emit('apptUpdated', {
-                                                target: {{ $key }},
-                                                status: this.event.target.value
-                                            })
-                                        "
-                                    />
-                                </div>
+                                <x-forms.select
+                                    class="mb-0"
+                                    classContainer="mb-0"
+                                    wire="appts.{{$key}}.status"
+                                    :options="$availableStatus"
+                                    wiremodifier="lazy"
+                                    :disabled="in_array($appt['status'], $offStatus)"
+                                    x-on:change="
+                                        $wire.emit('apptUpdated', {
+                                            target: {{ $key }},
+                                            status: this.event.target.value
+                                        })
+                                    "
+                                />
+                            </td>
+                            <td class="py-3 text-center">
+                                <span role="button" class="mx-2 text-secondary" wire:key="{{ $key }}" wire:click="loadAppointment('{{ $key }}')">
+                                    <i class="fas fa-eye"></i>
+                                </span>
                             </td>
                         </tr>
                     @empty
@@ -62,4 +74,6 @@
             <x-buttons.save />
         </div>
     </form>
+
+    @include('livewire.accounting.partials.modal')
 </div>
