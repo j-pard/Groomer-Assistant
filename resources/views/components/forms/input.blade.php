@@ -5,6 +5,7 @@
             <span class="text-danger">*</span>
         @endif
     </label>
+
     <input 
         class="form-control {{ $class }} @error($name) is-invalid @enderror"
         type="{!! $type !!}"
@@ -15,9 +16,9 @@
         {!! $readonly ? 'readonly' : '' !!}
         {!! $disabled ? 'disabled' : '' !!}
         {!! $maxlength ? 'maxlength="' . $maxlenght . '"' : '' !!}
-        {!! $step ? 'step="' . $step . '"' : '' !!}
-        {!! $min ? 'min="' . $min . '"' : '' !!}
-        {!! $max ? 'max="' . $max . '"' : '' !!}
+        {!! isset($step) ? 'step="' . $step . '"' : '' !!}
+        {!! isset($min) ? 'min="' . $min . '"' : '' !!}
+        {!! isset($max) ? 'max="' . $max . '"' : '' !!}
 
         wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
     >

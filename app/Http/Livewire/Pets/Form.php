@@ -7,7 +7,6 @@ use App\Models\Breed;
 use App\Models\Customer;
 use App\Models\Pet;
 use Illuminate\Validation\Rule;
-use Livewire\Component;
 
 class Form extends LivewireForm
 {
@@ -57,8 +56,8 @@ class Form extends LivewireForm
         $this->sizes = Pet::getSizeOptions();
 
         $duration = $this->pet->getDurationInHoursMinutes();
-        $this->hours = $duration['hours'];
-        $this->minutes = $duration['minutes'];
+        $this->hours = intval($duration['hours']);
+        $this->minutes = intval($duration['minutes']);
 
         if (!$this->pet->exists) {
             $this->breeds = Breed::getList();
@@ -84,7 +83,7 @@ class Form extends LivewireForm
      */
     public function save()
     {
-        $this->pet->average_duration = ($this->hours * 60) + $this->minutes;
+        $this->pet->average_duration = intval($this->hours * 60) + intval($this->minutes);
 
         $this->validate();
 
