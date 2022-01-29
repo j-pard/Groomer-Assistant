@@ -12302,12 +12302,10 @@ fieldset:disabled .btn {
 }
 
 .custom-card-m {
-  width: 180px !important;
+  width: 170px !important;
   height: 250px;
   padding: 12px 8px;
-  margin: 12px;
-  cursor: -webkit-grab;
-  cursor: grab;
+  margin: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

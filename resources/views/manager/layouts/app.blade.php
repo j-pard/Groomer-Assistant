@@ -120,11 +120,6 @@
                 :url="route('customers.index')"
                 :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
             />
-            <x-buttons.nav
-                icon="fas fa-coins"
-                :url="route('accounting.index')"
-                :active="Str::startsWith(Route::currentRouteName(), 'accounting.')"
-            />
         </nav>
 
         <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
