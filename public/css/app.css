@@ -12438,6 +12438,17 @@ a .active {
   text-decoration: line-through;
 }
 
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 2;
+  padding: 12px 5% 0 auto;
+}
+
 .duration-inputs-container {
   display: flex;
   align-items: center;

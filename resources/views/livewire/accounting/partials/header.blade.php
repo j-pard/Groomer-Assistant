@@ -1,4 +1,4 @@
-<header>
+<header id="sticky-header">
     <div class="row">
         <div class="d-flex justify-content-around align-items-center">
             <x-forms.price
