@@ -9,7 +9,6 @@ class Nav extends Component
     public string $class;
     public string $url;
     public string $icon;
-    public string $section;
     public bool $active;
 
     /**
