@@ -13,6 +13,11 @@
     transition: all .3s;
 }
 
+.text-transparent {
+    color: $body-bg;
+    opacity: 0;
+}
+
 .width-content {
     min-width: 200px !important;
 }

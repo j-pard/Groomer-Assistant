@@ -12376,6 +12376,11 @@ fieldset:disabled .btn {
   transition: all 0.3s;
 }
 
+.text-transparent {
+  color: #ffffff;
+  opacity: 0;
+}
+
 .width-content {
   min-width: 200px !important;
 }

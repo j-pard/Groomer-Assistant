@@ -1,6 +1,6 @@
 <div>
     <form wire:submit.prevent="save" autocorrect="off" autocapitalize="off" autocomplete="off"
-    x-data="{isShowing: true}"
+        x-data="{}"
     >
         <button type="submit" onclick="return false;" style="display:none;"></button>
         
@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                     @forelse ($appts as $key => $appt)
-                        <tr class="{!! ((!isset($appt['price']) || $appt['price'] == '') && $appt['status'] != 'cancelled') ? 'table-danger' : '' !!}">
+                        <tr x-data="{isDirty_{{$key}}: false}">
                             <th class="py-3" scope="row">{{ $loop->iteration }}</th>
                             <td class="py-3">{{ $appt['formatted_date'] }}</td>
                             <td class="py-3">
@@ -50,6 +50,7 @@
                                     wiremodifier="lazy"
                                     :disabled="in_array($appt['status'], $offStatus)"
                                     x-on:change="
+                                        isDirty_{{$key}} = true;
                                         $wire.emit('apptUpdated', {
                                             target: {{ $key }},
                                             status: this.event.target.value
@@ -57,7 +58,14 @@
                                     "
                                 />
                             </td>
-                            <td class="py-3 text-center">
+                            <td class="py-3 text-end">
+                                <span class="text-success" x-init="{isDirty_{{$key}} = false}" x-show="isDirty_{{$key}}" x-transition>
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                {{-- Used to prevent column wiggle --}}
+                                <span class="text-transparent" x-show="!isDirty_{{$key}}" x-transition>
+                                    <i class="fas fa-check"></i>
+                                </span>
                                 <span role="button" class="mx-2 text-secondary" wire:key="{{ $key }}" wire:click="loadAppointment('{{ $key }}')">
                                     <i class="fas fa-eye"></i>
                                 </span>
