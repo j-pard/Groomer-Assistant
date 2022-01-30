@@ -118,7 +118,7 @@
                                                 <a class="list-group-item-action text-decoration-none p-2 mr-3" href="{{ route('pets.edit', ['pet' => $pet]) }}">
                                                     <i class="fas fa-external-link-alt"></i>
                                                 </a>
-                                                <span>{{ $pet->name }}</span>
+                                                <span>{!! $pet->getName() !!}</span>
                                             </div>
                                             <x-buttons.delete 
                                                 text="Etes-vous certain(e) de vouloir enlever le collier du chien ?" 

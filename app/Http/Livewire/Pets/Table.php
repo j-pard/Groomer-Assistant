@@ -15,7 +15,7 @@ class Table extends DataTableComponent
     public string $defaultSortDirection = 'asc';
 
     // Default filters
-    public array $filters = ['status' => 'active'];
+    // public array $filters = ['status' => 'active'];
 
     public bool $showPerPage = false;
     public array $perPageAccepted = [25];
@@ -55,6 +55,10 @@ class Table extends DataTableComponent
                 ->sortable()
                 ->format(function($value) {
                     switch ($value) {
+                        case 'private':
+                            return '<span class="badge rounded-pill bg-success">Privé</span>';
+                            break;
+
                         case 'not-coming':
                             return '<span class="badge rounded-pill bg-secondary">Ne vient plus</span>';
                             break;
@@ -90,6 +94,7 @@ class Table extends DataTableComponent
                 ->select([
                     '' => 'Tous',
                     'active' => 'Actifs',
+                    'private' => 'Privés',
                     'not-coming' => 'Ne viennent plus',
                     'dead' => 'Décédés',
                 ]),

@@ -26,7 +26,7 @@
             @foreach ($appointments as $appointment)
                 <div class="col-5 col-md-4 col-lg-3 col-xl-2 custom-card-m border shadow rounded" type="button" wire:click="loadApptModal({{ $appointment->id }})">
                     <div class="text-center">
-                        <h5>{{ $appointment->pet->name }}</h5>
+                        <h5>{!! $appointment->pet->getName() !!}</h5>
                         <p class="text-muted">{{ $appointment->customer->firstname . ' ' . $appointment->customer->lastname }}</p>
                     </div>
                     <div class="mid">

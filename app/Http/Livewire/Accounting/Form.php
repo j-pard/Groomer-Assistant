@@ -215,6 +215,7 @@ class Form extends LivewireForm
                 'appointments.customer_id',
                 'appointments.status',
                 'pets.name AS pet_name',
+                'pets.status AS pet_status',
                 'customers.lastname AS customer_lastname',
                 DB::raw('DATE_FORMAT(appointments.time, "%d %b %H:%i") as formatted_date')
                 )

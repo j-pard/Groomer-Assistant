@@ -59,13 +59,14 @@
                                 />
                             </td>
                             <td class="py-3 text-end">
-                                <span class="text-success" x-init="{isDirty_{{$key}} = false}" x-show="isDirty_{{$key}}" x-transition>
-                                    <i class="fas fa-check"></i>
+                                <span class="text-success" x-init="{isDirty_{{$key}} = false}" x-show="isDirty_{{$key}}">
+                                    <i class="fas fa-sync"></i>
                                 </span>
-                                {{-- Used to prevent column wiggle --}}
-                                <span class="text-transparent" x-show="!isDirty_{{$key}}" x-transition>
-                                    <i class="fas fa-check"></i>
-                                </span>
+
+                                @if ($appt['pet_status'] == 'private')
+                                    <i class="fab fa-product-hunt text-secondary ms-2"></i>
+                                @endif
+
                                 <span role="button" class="mx-2 text-secondary" wire:key="{{ $key }}" wire:click="loadAppointment('{{ $key }}')">
                                     <i class="fas fa-eye"></i>
                                 </span>

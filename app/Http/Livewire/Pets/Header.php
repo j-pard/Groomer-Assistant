@@ -10,7 +10,6 @@ class Header extends Component
     public Pet $pet;
 
     public string $backUrl;
-    public string $title;
     public array $navigation;
     public array $menu;
 
@@ -20,7 +19,6 @@ class Header extends Component
     public function mount(string $backUrl)
     {
         $this->backUrl = $backUrl;
-        $this->title = $this->pet->exists ? $this->pet->name : '';
         $this->navigation = $this->getNavigation();
     }
 

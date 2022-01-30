@@ -61,8 +61,9 @@ class Pet extends Model implements HasMedia
      *
      * @var array
      */
-    protected static $status = [
+    public static $status = [
         'active' => 'Actif',
+        'private' => 'Privé',
         'not-coming' => 'Ne vient plus',
         'dead' => 'Décédé',
     ];
@@ -116,6 +117,16 @@ class Pet extends Model implements HasMedia
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = ucfirst(strtolower($value));
+    }
+
+    /**
+     * Get the pet's name.
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->status === 'private' ? $this->name . ' <i class="fab fa-product-hunt ms-1 text-secondary"></i>' : $this->name;
     }
 
     /**

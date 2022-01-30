@@ -4,7 +4,7 @@
             <div class="d-flex align-items-center">
                 <a class="btn btn-transparent circle" href="{{ $backUrl }}"><i class="fas fa-arrow-left h4 my-auto text-black-50"></i></a>
                 @if ($pet->exists)
-                    <h2 class="mb-0 text-nowrap">{{ $pet->name }}</h2>
+                    <h2 class="mb-0 text-nowrap">{!! $pet->getName() !!}</h2>
                 @else
                     <h2 class="mb-0 text-nowrap"><span class="text-pink">N</span>ouveau chien</h2>
                 @endif

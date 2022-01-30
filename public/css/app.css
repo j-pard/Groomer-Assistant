@@ -12449,6 +12449,10 @@ a .active {
   padding: 12px 5% 0 auto;
 }
 
+.width-16px {
+  width: 16px;
+}
+
 .duration-inputs-container {
   display: flex;
   align-items: center;
