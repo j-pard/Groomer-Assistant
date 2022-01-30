@@ -75,8 +75,6 @@ class Customer extends Model
             ->pluck('value', 'key')
             ->toArray();
 
-        sort($customers);
-
         return $customers;
     }
 
