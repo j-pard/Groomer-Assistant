@@ -96,6 +96,8 @@ class Form extends LivewireForm
             ]);
         }
 
+        $this->appointments = $this->getMonthAppointments();
+
         $this->showMessage();
     }
 

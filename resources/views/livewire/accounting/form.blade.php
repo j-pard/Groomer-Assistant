@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                     @forelse ($appts as $key => $appt)
-                        <tr x-data="{isDirty_{{$key}}: false}">
+                        <tr>
                             <th class="py-3" scope="row">{{ $loop->iteration }}</th>
                             <td class="py-3">{{ $appt['formatted_date'] }}</td>
                             <td class="py-3">
@@ -50,7 +50,6 @@
                                     wiremodifier="lazy"
                                     :disabled="in_array($appt['status'], $offStatus)"
                                     x-on:change="
-                                        isDirty_{{$key}} = true;
                                         $wire.emit('apptUpdated', {
                                             target: {{ $key }},
                                             status: this.event.target.value
@@ -59,7 +58,7 @@
                                 />
                             </td>
                             <td class="py-3 text-end">
-                                <span class="text-success" x-init="{isDirty_{{$key}} = false}" x-show="isDirty_{{$key}}">
+                                <span class="text-success {{ array_key_exists($key, $apptsToUpdate) ? '' : 'd-none' }}">
                                     <i class="fas fa-sync"></i>
                                 </span>
 
