@@ -28,7 +28,7 @@
                                     />
                                 </div>
                             </div>
-        
+
                             <div class="mb-3">
                                 <x-forms.select
                                     label="Client"
@@ -40,7 +40,7 @@
                                     wireModifier="lazy"
                                 />
                             </div>
-        
+
                             <div class="mb-3">
                                 <x-forms.select
                                     label="Chien"
@@ -48,6 +48,7 @@
                                     :options="$pets"
                                     :disabled="$isUpdating"
                                     required
+                                    wireModifier="lazy"
                                 />
                             </div>
         

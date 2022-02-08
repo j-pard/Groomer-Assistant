@@ -51,16 +51,42 @@ class Appointment extends Model
      */
     public static function getStatusAsOptions(): array
     {
-        return [
-            'planned' => 'En attente',
-            'cash' => 'Cash',
-            'payconiq' => 'Payconiq',
-            'bank' => 'Virement',
-            'private' => 'Privé',
-            'voucher' => 'Voucher',
-            'not paid' => 'Non payé',
-            'cancelled' => 'Annulé',
+        $array = [
+            [
+                'value' => 'planned',
+                'label' => 'En attente',
+            ],
+            [
+                'value' => 'cash',
+                'label' => 'Cash',
+            ],
+            [
+                'value' => 'payconiq',
+                'label' => 'Payconiq',
+            ],
+            [
+                'value' => 'bank',
+                'label' => 'Virement',
+            ],
+            [
+                'value' => 'private',
+                'label' => 'Privé',
+            ],
+            [
+                'value' => 'voucher',
+                'label' => 'Voucher',
+            ],
+            [
+                'value' => 'not paid',
+                'label' => 'Non payé',
+            ],
+            [
+                'value' => 'cancelled',
+                'label' => 'Annulé',
+            ],
         ];
+
+        return $array;
     }
 
     /**

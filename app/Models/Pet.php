@@ -49,11 +49,26 @@ class Pet extends Model implements HasMedia
      * @var array
      */
     protected static $sizeOptions = [
-        'dwarf' => 'Nain',
-        'small' => 'Petit',
-        'medium' => 'Moyen',
-        'big' => 'Grand',
-        'giant' => 'Géant',
+        [
+            'value' => 'dwarf',
+            'label' => 'Nain',
+        ],
+        [
+            'value' => 'small',
+            'label' => 'Petit',
+        ],
+        [
+            'value' => 'medium',
+            'label' => 'Moyen',
+        ],
+        [
+            'value' => 'big',
+            'label' => 'Grand',
+        ],
+        [
+            'value' => 'giant',
+            'label' => 'Géant',
+        ],
     ];
 
     /**
@@ -62,10 +77,22 @@ class Pet extends Model implements HasMedia
      * @var array
      */
     public static $status = [
-        'active' => 'Actif',
-        'private' => 'Privé',
-        'not-coming' => 'Ne vient plus',
-        'dead' => 'Décédé',
+        [
+            'value' => 'active',
+            'label' => 'Actif',
+        ],
+        [
+            'value' => 'private',
+            'label' => 'Privé',
+        ],
+        [
+            'value' => 'not-coming',
+            'label' => 'Ne vient plus',
+        ],
+        [
+            'value' => 'dead',
+            'label' => 'Décédé',
+        ],
     ];
 
     /**
@@ -171,6 +198,15 @@ class Pet extends Model implements HasMedia
      */
     public static function getOrphansList(): array
     {
-        return Pet::whereNull('customer_id')->orderBy('name')->pluck('name', 'id')->toArray();
+        return Pet::whereNull('customer_id')
+            ->orderBy('name')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'value' => $item->id, 
+                    'label' => $item->name,
+                ];
+            })
+            ->toArray();
     }
 }

@@ -22,14 +22,12 @@
             <option value=""></option>
         @endif
 
-        @forelse($options as $value => $label)
-            <option
-                @if(!$wire && $isSelected($value)) selected="selected" @endif
-                value="{{ $value }}"
-                wire:="{{ $wire }}"
-            >
-                {{ $label }}
-            </option>
+        @forelse($options as $option)
+        <option
+        @if(!$wire && $isSelected($option['value'])) selected="selected" @endif
+            value="{{ $option['value'] }}"
+            wire:key="{{ "$id-" . $option['value'] }}"
+        >{{ $option['label'] }}</option>
         @empty
             <option value="null" disabled></option>
         @endforelse

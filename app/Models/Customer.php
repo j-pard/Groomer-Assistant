@@ -70,9 +70,11 @@ class Customer extends Model
             ->orderBy('firstname')
             ->get()
             ->map(function ($item) {
-                return ['key' => $item->id, 'value' => $item->getFullName()];
+                return [
+                    'value' => $item->id, 
+                    'label' => $item->getFullName(),
+                ];
             })
-            ->pluck('value', 'key')
             ->toArray();
 
         return $customers;
@@ -85,12 +87,15 @@ class Customer extends Model
      */
     public function getPetsAsOptions(): array
     {
-        return $this->pets
+        return $this->pets()->orderBy('name')
+            ->select('id', 'customer_id', 'name')
+            ->get()
             ->map(function ($pet) {
-                return ['key' => $pet->id, 'value' => $pet->name];
+                return [
+                    'value' => $pet->id, 
+                    'label' => $pet->name,
+                ];
             })
-            ->sortBy('value')
-            ->pluck('value', 'key')
             ->toArray();
     }
 

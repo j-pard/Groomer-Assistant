@@ -68,16 +68,17 @@
                             <div class="col-md-5">
                                 <x-forms.select
                                     label="Race 1"
-                                    :options='App\Models\Breed::getList()'
+                                    :options='$breeds'
                                     wire="pet.main_breed_id"
                                     required
+                                    hasEmptyRow
                                 />
                             </div>
                             <i class="fas fa-times h1 mx-3 my-auto"></i>
                             <div class="col-md-5">
                                 <x-forms.select
                                     label="Race 2"
-                                    :options='App\Models\Breed::getList()'
+                                    :options='$breeds'
                                     hasEmptyRow
                                     wire="pet.second_breed_id"
                                 />

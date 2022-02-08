@@ -112,7 +112,7 @@ class Index extends LivewireForm
     {
         $activeCustomer = Customer::find($value);
         $this->pets = isset($activeCustomer) ? $activeCustomer->getPetsAsOptions() : [];
-        $this->petId = array_key_first($this->pets);
+        $this->petId = count($this->pets) > 0 ? $this->pets[0]['value'] : 0;
     }
 
     public function updatedActiveDate($value)

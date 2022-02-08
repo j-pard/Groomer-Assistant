@@ -34,7 +34,13 @@ class Breed extends Model
     public static function getList(): array
     {
         return Breed::orderBy('breed')
-        ->pluck('breed', 'id')
+        ->get()
+        ->map(function ($item) {
+            return [
+                'value' => $item->id, 
+                'label' => $item->breed,
+            ];
+        })
         ->toArray();
     }
 }

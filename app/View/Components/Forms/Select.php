@@ -2,11 +2,12 @@
 
 namespace App\View\Components\Forms;
 
+use App\View\Component as ViewComponent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
-class Select extends Component
+class Select extends ViewComponent
 {
     /**
      * Create a new component instance.
@@ -20,7 +21,6 @@ class Select extends Component
         public ?string $label = null,
         public ?string $class = null,
         public ?string $classContainer = null,
-        public ?string $id = null,
         public bool $required = false,
         public bool $readonly = false,
         public bool $disabled = false,
@@ -48,6 +48,6 @@ class Select extends Component
      */
     public function isSelected($key): bool
     {
-        return array_key_exists($key, $this->options);
+        return in_array($key, Arr::wrap($this->value));
     }
 }
