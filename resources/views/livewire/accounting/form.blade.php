@@ -20,6 +20,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $appts = collect($appts)->sortBy('time');
+                    @endphp
                     @forelse ($appts as $key => $appt)
                         <tr>
                             <th class="py-3" scope="row">{{ $loop->iteration }}</th>
