@@ -45,6 +45,13 @@ class Appointment extends Model
     public static $tvaStatus = ['cash', 'payconiq', 'bank', 'voucher'];
 
     /**
+     * Enum values for Bank status
+     *
+     * @var array
+     */
+    public static $bankStatus = ['payconiq', 'bank'];
+
+    /**
      * Return status as option key => value
      *
      * @var array

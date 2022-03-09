@@ -51,7 +51,7 @@
                                     wire="appts.{{$key}}.status"
                                     :options="$availableStatus"
                                     wiremodifier="lazy"
-                                    :disabled="in_array($appt['status'], $offStatus)"
+                                    :disabled="in_array($appt['status'], $offStatus) && !array_key_exists($key, $apptsToUpdate)"
                                     x-on:change="
                                         $wire.emit('apptUpdated', {
                                             target: {{ $key }},

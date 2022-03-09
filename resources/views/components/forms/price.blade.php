@@ -27,7 +27,7 @@
         >
     </div>
     @if (isset($help))
-        <small class="text-muted">{!! $help !!}</small>
+        <small class="text-muted ps-2">{!! $help !!}</small>
     @endif
     
     @error($name)

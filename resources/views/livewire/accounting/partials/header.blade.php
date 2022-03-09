@@ -6,6 +6,15 @@
                 wire="tva"
                 class="mb-0"
                 help="{{ $tvaCount }} chiens"
+                disabled
+            />
+
+            <x-forms.price
+                label="Voie électronique"
+                wire="bank"
+                class="mb-0"
+                help="{{ $bankCount }} chiens"
+                disabled
             />
 
             <x-forms.price
@@ -13,6 +22,7 @@
                 wire="htva"
                 class="mb-0"
                 help="{{ $htvaCount }} chiens"
+                disabled
             />
 
             <x-forms.price
@@ -20,6 +30,7 @@
                 wire="cumulated"
                 class="mb-0"
                 help="{{ $cumulatedCount }} chiens"
+                disabled
             />
 
             <x-forms.price
@@ -27,6 +38,7 @@
                 wire="remaining"
                 class="mb-0"
                 help="{{ $totalOfYearCount }} chiens sur l'année"
+                disabled
             />
 
             <div id="calendar-input" class="d-flex align-items-center mt-2">

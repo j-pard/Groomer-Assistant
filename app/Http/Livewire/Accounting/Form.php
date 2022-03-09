@@ -21,9 +21,11 @@ class Form extends LivewireForm
 
     // Header values
     public string $tva;
+    public string $bank;
     public string $htva;
     public string $cumulated;
     public string $tvaCount;
+    public string $bankCount;
     public string $htvaCount;
     public string $cumulatedCount;
     public string $remaining;
@@ -157,8 +159,9 @@ class Form extends LivewireForm
      * Load Appointment for modal
      *
      * @param string $id
+     * @return void
      */
-    public function loadAppointment(string $id)
+    public function loadAppointment(string $id): void
     {
         $this->appointment = Appointment::where('appointments.id', $id)
             ->join('pets', 'appointments.pet_id', '=', 'pets.id')
@@ -186,8 +189,9 @@ class Form extends LivewireForm
     /**
      * Reset modal variables
      *
+     * @return void
      */
-    public function resetAppointment()
+    public function resetAppointment(): void
     {
         $this->appointment = new Appointment();
         $this->customerName = '';
@@ -234,8 +238,10 @@ class Form extends LivewireForm
     /**
      * Make counts of all appointments of specified month
      *
+     * @param Collection|null $source
+     * @return void
      */
-    private function makeCounts($source = null)
+    private function makeCounts(?Collection $source = null): void
     {
         if ($source === null) {
             $source = $this->appointments;
@@ -244,6 +250,10 @@ class Form extends LivewireForm
         $tvaQuery = $source->whereIn('status', Appointment::$tvaStatus);
         $this->tva = (clone $tvaQuery)->sum('price');
         $this->tvaCount = (clone $tvaQuery)->count();
+
+        $bankQuery = $source->whereIn('status', Appointment::$bankStatus);
+        $this->bank = (clone $bankQuery)->sum('price');
+        $this->bankCount = (clone $bankQuery)->count();
 
         $htvaQuery = $source->where('status', 'private');
         $this->htva = (clone $htvaQuery)->sum('price');
@@ -260,7 +270,12 @@ class Form extends LivewireForm
         $this->totalOfYearCount = (clone $totalOfYearQuery)->whereNotIn('status', ['cancelled'])->count();
     }
 
-    private function clearArrays()
+    /**
+     * Clear arrays of appointments
+     *
+     * @return void
+     */
+    private function clearArrays(): void
     {
         $this->appts = [];
         $this->apptsToUpdate = [];
