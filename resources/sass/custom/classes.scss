@@ -81,14 +81,10 @@ button, a {
     text-decoration: line-through;
 }
 
-/* The sticky class is added to the header with JS when it reaches its scroll position */
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: $body-bg;
-    z-index: 2;
-    padding: 12px 5% 0 auto;
+.scrollable-content {
+    height: auto;
+    max-height: 75vh !important;
+    overflow-y: scroll;
 }
 
 .width-16px {
