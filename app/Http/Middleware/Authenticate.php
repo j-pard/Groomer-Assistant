@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\App;
 
 class Authenticate extends Middleware
 {
@@ -14,6 +16,8 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+        Carbon::setLocale(App::getLocale());
+
         if (! $request->expectsJson()) {
             return route('login');
         }

@@ -22,8 +22,18 @@
                 <tbody>
                     @php
                         $appts = collect($appts)->sortBy('time');
+                        $dateSeparator = null;
                     @endphp
                     @forelse ($appts as $key => $appt)
+                        @php
+                            $date = Carbon\Carbon::parse($appt['time']);
+                        @endphp
+                        @if ($dateSeparator != $date->format('d F'))
+                            <tr class="bg-gray h5">
+                                <td class="px-3" colspan="7">{{ ucfirst($date->translatedFormat('l jS F')) }}</td>
+                            </tr>
+                        @endif
+
                         <tr>
                             <th class="py-3" scope="row">{{ $loop->iteration }}</th>
                             <td class="py-3">{{ $appt['formatted_date'] }}</td>
@@ -74,6 +84,10 @@
                                 </span>
                             </td>
                         </tr>
+
+                        @php
+                            $dateSeparator = Carbon\Carbon::parse($appt['time'])->format('d F');
+                        @endphp
                     @empty
                         <tr></tr>
                     @endforelse
