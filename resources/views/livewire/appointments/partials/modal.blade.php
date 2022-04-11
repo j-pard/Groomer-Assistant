@@ -29,7 +29,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="row d-flex align-items-center mb-3">
                                 <x-forms.select
                                     label="Client"
                                     wire="customer"
@@ -38,10 +38,19 @@
                                     :disabled="$isUpdating"
                                     hasEmptyRow
                                     wireModifier="lazy"
+                                    classContainer="col"
                                 />
+
+                                @if ($isUpdating)
+                                    <div class="col-1">
+                                        <a href="{{ route('customers.edit', ['customer' => $customer]) }}" class="btn btn--secondary ms-0 ps-0">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
 
-                            <div class="mb-3">
+                            <div class="row d-flex align-items-center mb-3">
                                 <x-forms.select
                                     label="Chien"
                                     wire="petId"
@@ -49,7 +58,16 @@
                                     :disabled="$isUpdating"
                                     required
                                     wireModifier="lazy"
+                                    classContainer="col"
                                 />
+
+                                @if ($isUpdating)
+                                    <div class="col-1">
+                                        <a href="{{ route('pets.edit', ['pet' => $petId]) }}" class="btn btn--secondary ms-0 ps-0">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
         
                             <x-forms.textarea
