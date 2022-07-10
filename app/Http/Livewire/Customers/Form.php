@@ -38,6 +38,7 @@ class Form extends LivewireForm
             'customer.email' => 'nullable|unique:customers,email,' . (empty($this->customer->id) ? 'NULL' : $this->customer->id) . '|email|max:255',
             'customer.phone' => 'required|unique:customers,phone,' . (empty($this->customer->id) ? 'NULL' : $this->customer->id) . '|string|max:255',
             'customer.secondary_phone' => 'nullable|string|max:255',
+            'customer.has_reminder' => 'boolean',
             // Details
             'customer.more_info' => 'nullable|string|max:65535',
         ];

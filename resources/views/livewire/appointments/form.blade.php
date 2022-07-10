@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <label>Propriétaire</label>
-                            <input class="form-control" type="text" value="{{ $customer->lastname . ' ' . $customer->firstname }}" disabled>
+                            <input class="form-control" type="text" value="{{ $customer->getFullName() }}" disabled>
                         </div>
 
                         <x-forms.select

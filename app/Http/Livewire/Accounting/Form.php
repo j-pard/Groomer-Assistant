@@ -180,7 +180,7 @@ class Form extends LivewireForm
         $time = Carbon::parse($this->appointment->time);
         $this->date = $time->format('Y-m-d');
         $this->time = $time->format('H:i');
-        $this->customerName = Customer::find($this->appointment->customer_id)->getFullName();
+        $this->customerName = Customer::find($this->appointment->customer_id)->getFullName(true);
         $this->petName = $this->appointment->pet->name;
 
         $this->dispatchBrowserEvent('form-modal-loaded', ['modalId' => 'apptModal']);

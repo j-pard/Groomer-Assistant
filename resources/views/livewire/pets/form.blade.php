@@ -159,7 +159,7 @@
                                         <a class="list-group-item-action text-decoration-none p-2 mr-3" href="{{ route('customers.edit', ['customer' => $pet->customer]) }}">
                                             <i class="fas fa-external-link-alt"></i>
                                         </a>
-                                        <span>{{ $pet->customer->firstname . ' ' . $pet->customer->lastname }}</span>
+                                        <span>{{ $pet->customer->getFullName() }}</span>
                                     </li>
                                 </ul>
                             </div>

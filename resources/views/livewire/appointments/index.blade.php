@@ -27,7 +27,7 @@
                 <div class="col-5 col-md-4 col-lg-3 col-xl-2 custom-card-m border shadow rounded" type="button" wire:click="loadApptModal({{ $appointment->id }})">
                     <div class="text-center">
                         <h5>{!! $appointment->pet->getName() !!}</h5>
-                        <p class="text-muted">{{ $appointment->customer->firstname . ' ' . $appointment->customer->lastname }}</p>
+                        <p class="text-muted">{!! $appointment->customer->getFullName() . ($appointment->customer->has_reminder ? '<i class="fas fa-envelope text-pink ms-2" title="Envoyer un message de rappel"></i>' : '') !!}</p>
                     </div>
                     <div class="mid">
                         @switch($appointment->status)

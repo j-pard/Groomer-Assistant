@@ -1,4 +1,4 @@
-<div class="form-check d-flex align-items-center ">
+<div class="form-check d-flex align-items-center">
     <input 
         class="form-check-input me-2" 
         type="checkbox" 
@@ -11,7 +11,7 @@
         @endif
     >
 
-    <label class="form-check-label d-flex align-items-center" for="checkbox{{ $name }}">
+    <label class="form-check-label d-flex align-items-center mt-2" for="checkbox{{ $name }}">
         @if ($icon)
             <i class="{{ $icon }} {{ $iconClass }}"></i>
         @endif

@@ -27,6 +27,7 @@ class Customer extends Model
         'phone',
         'secondary_phone',
         'more_info',
+        'has_reminder',
     ];
 
     /**
@@ -35,7 +36,7 @@ class Customer extends Model
      * @var array
      */
     protected $casts = [
-        // 
+        'has_reminder' => 'boolean',
     ];
 
     /**
@@ -72,7 +73,7 @@ class Customer extends Model
             ->map(function ($item) {
                 return [
                     'value' => $item->id, 
-                    'label' => $item->getFullName(),
+                    'label' => $item->getFullName(true),
                 ];
             })
             ->toArray();
@@ -102,10 +103,17 @@ class Customer extends Model
     /**
      * Return full name and phone number of current customer
      *
+     * @param boolean $withPhone
      * @return string
      */
-    public function getFullName(): string
+    public function getFullName(bool $withPhone = false): string
     {
-        return ucfirst($this->lastname) . ' ' . ucfirst($this->firstname) . (isset($this->phone) ? (' - ' . $this->phone): '');
+        $name = ucfirst($this->lastname) . ' ' . ucfirst($this->firstname);
+
+        if ($withPhone && isset($this->phone)) {
+            return $name . (' - ' . $this->phone);
+        }
+
+        return $name;
     }
 }

@@ -20,7 +20,7 @@ class Header extends Component
     public function mount(string $backUrl)
     {
         $this->backUrl = $backUrl;
-        $this->title = $this->customer->exists ? $this->customer->firstname . ' ' . $this->customer->lastname : '';
+        $this->title = $this->customer->exists ? $this->customer->getFullName() : '';
         $this->navigation = $this->getNavigation();
     }
 

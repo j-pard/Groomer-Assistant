@@ -90,6 +90,13 @@
                             placeholder="Entrer l'adresse email"
                             wire="customer.email"
                         />
+
+                        <div class="mb-3">
+                            <x-forms.checkbox
+                                label="Envoyer un message de rappel"
+                                wire="customer.has_reminder"
+                            />
+                        </div>
                     </div>
                     
                     <div class="col-md-6">

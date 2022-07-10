@@ -46,6 +46,17 @@ class Table extends DataTableComponent
             Column::make('Mobile', 'phone')
                 ->searchable(),
 
+            Column::make('Info', 'has_reminder')
+                ->searchable()
+                ->format(function($has_reminder) {
+                    if ($has_reminder) {
+                        return '<div class="actions-container">
+                                <i class="fas fa-envelope" title="Envoyer un message de rappel"></i>
+                            </div>';
+                    }
+                })
+                ->asHtml(),
+
             Column::make('Actions', 'id')
                 ->addClass('text-center')
                 ->searchable()
