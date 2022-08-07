@@ -51,6 +51,7 @@
                                     label="Code postal"
                                     placeholder="0000"
                                     wire="customer.zip_code"
+                                    type="numeric"
                                 />
                             </div>
                             
@@ -75,6 +76,7 @@
                             label="Numéro de téléphone"
                             placeholder="Entrer le numéro"
                             wire="customer.phone"
+                            type="tel"
                             required
                         />
                         
@@ -82,6 +84,7 @@
                             label="Numéro alternatif"
                             placeholder="Entrer le numéro alternatif"
                             wire="customer.secondary_phone"
+                            type="tel"
                         />
 
                         <x-forms.input

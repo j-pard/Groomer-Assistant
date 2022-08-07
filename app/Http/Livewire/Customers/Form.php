@@ -15,6 +15,18 @@ class Form extends LivewireForm
 
     protected $listeners = ['refreshCustomer' => '$refresh'];
 
+    /**
+     * Mount the component
+     *
+     */
+    public function mount()
+    {
+        if (!$this->customer->exists) {
+            $this->customer->genre = 'unknown';
+            $this->customer->has_reminder = false;
+        }
+    }
+
     protected function newPetRules()
     {
         return [
@@ -55,17 +67,6 @@ class Form extends LivewireForm
     }
 
     /**
-     * Mount the component
-     *
-     */
-    public function mount()
-    {
-        if (!$this->customer->exists) {
-            $this->customer->genre = 'unknown';
-        }
-    }
-
-    /**
      * Render the component
      *
      * @return view
@@ -87,6 +88,11 @@ class Form extends LivewireForm
      */
     public function save()
     {
+        $this->customer->email = trim($this->customer->email);
+        if ($this->customer->email == '') {
+            $this->customer->email = null;
+        }
+
         $this->validate($this->customerRules());
 
         $this->customer->save();
