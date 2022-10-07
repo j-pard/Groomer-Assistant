@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Appointments;
 
 use App\Http\Livewire\Form as LivewireForm;
 use App\Models\Appointment;
-use App\Models\Customer;
 use App\Models\Pet;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -70,7 +69,6 @@ class Index extends LivewireForm
 
         $this->loadAppointments();
         $this->pets = $this->getAllPetsAsOptions();
-        $this->petId = $this->pets[0]['value'] ?? null;
         $this->status = Appointment::getStatusAsOptions();
     }
 
@@ -88,7 +86,6 @@ class Index extends LivewireForm
     {
         $this->appointment = Appointment::find($id);
         $this->customer = $this->appointment->customer_id;
-        $this->pets = $this->appointment->customer->getPetsAsOptions();
         $this->petId = $this->appointment->pet_id;
         $this->pet = Pet::find($this->petId);
         $this->modalTitle = 'Modifier un rendez-vous';
@@ -101,15 +98,9 @@ class Index extends LivewireForm
     public function loadNewApptModal()
     {
         $this->resetFields();
+        $this->petId = $this->pets[0]['value'] ?? null;
 
         $this->dispatchBrowserEvent('form-modal-loaded', ['modalId' => 'apptModal']);
-    }
-
-    public function updatedCustomer($value)
-    {
-        $activeCustomer = Customer::find($value);
-        $this->pets = isset($activeCustomer) ? $activeCustomer->getPetsAsOptions() : [];
-        $this->petId = count($this->pets) > 0 ? $this->pets[0]['value'] : 0;
     }
 
     public function updatedActiveDate($value)
@@ -200,6 +191,7 @@ class Index extends LivewireForm
                 'pets.name',
                 'customers.firstname AS customer_firstname',
                 'customers.lastname AS customer_lastname',
+                'customers.phone AS customer_phone',
             )
             ->leftJoin('customers', 'customers.id', '=', 'pets.customer_id')
             ->orderBy('pets.name')
@@ -207,7 +199,7 @@ class Index extends LivewireForm
             ->map(function ($pet) {
                 return [
                     'value' => $pet->id, 
-                    'label' => $pet->name . ' - ' . $pet->customer_lastname . ' ' . $pet->customer_firstname,
+                    'label' => $pet->name . ' - ' . $pet->customer_lastname . ' ' . $pet->customer_firstname . ' - ' . $pet->customer_phone,
                 ];
             })
             ->toArray();

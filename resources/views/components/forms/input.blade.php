@@ -19,6 +19,7 @@
         {!! isset($step) ? 'step="' . $step . '"' : '' !!}
         {!! isset($min) ? 'min="' . $min . '"' : '' !!}
         {!! isset($max) ? 'max="' . $max . '"' : '' !!}
+        {!! isset($value) ? 'value="' . $value . '"' : '' !!}
 
         wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
     >
