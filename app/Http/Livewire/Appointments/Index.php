@@ -13,8 +13,6 @@ class Index extends LivewireForm
 {
     public Collection $appointments;
     public ?Appointment $appointment = null;
-    public array $customers = [];
-    public ?string $customer = null;
     public array $pets = [];
     public ?string $petId = null;
     public ?Pet $pet;
@@ -26,11 +24,9 @@ class Index extends LivewireForm
     public string $modalTitle;
     public bool $isUpdating = false;
 
-
     protected function appointmentRules()
     {
         return [
-            'appointment.customer_id' => 'required|string',
             'appointment.pet_id' => 'required|string',
             'appointment.time' => 'required|string',
             'appointment.price' => 'nullable|numeric|min:0',
@@ -73,7 +69,8 @@ class Index extends LivewireForm
         $this->activeDate = $this->date;
 
         $this->loadAppointments();
-        $this->customers = Customer::getList();
+        $this->pets = $this->getAllPetsAsOptions();
+        $this->petId = $this->pets[0]['value'] ?? null;
         $this->status = Appointment::getStatusAsOptions();
     }
 
@@ -129,7 +126,8 @@ class Index extends LivewireForm
     public function saveAppointment()
     {
         $this->appointment->time = Carbon::parse($this->date . ' ' . $this->time)->format('Y-m-d H:i:s');
-        $this->appointment->customer_id = $this->customer;
+        $this->pet = Pet::findOrFail($this->petId);
+        $this->appointment->customer_id = $this->pet->customer_id;
         $this->appointment->pet_id = $this->petId;
         $this->validate($this->appointmentRules());
 
@@ -187,11 +185,31 @@ class Index extends LivewireForm
         $this->appointment = new Appointment;
         $this->appointment->status = 'planned';
         $this->customer = null;
-        $this->pets = [];
         $this->petId = null;
         $this->modalTitle = 'Nouveau rendez-vous';
         $this->isUpdating = false;
         $this->time = '08:30';
         $this->pet = null;
+    }
+
+    private function getAllPetsAsOptions()
+    {
+        return Pet::select(
+                'pets.id',
+                'pets.customer_id',
+                'pets.name',
+                'customers.firstname AS customer_firstname',
+                'customers.lastname AS customer_lastname',
+            )
+            ->leftJoin('customers', 'customers.id', '=', 'pets.customer_id')
+            ->orderBy('pets.name')
+            ->get()
+            ->map(function ($pet) {
+                return [
+                    'value' => $pet->id, 
+                    'label' => $pet->name . ' - ' . $pet->customer_lastname . ' ' . $pet->customer_firstname,
+                ];
+            })
+            ->toArray();
     }
 }

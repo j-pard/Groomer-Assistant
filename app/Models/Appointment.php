@@ -38,6 +38,13 @@ class Appointment extends Model
     ];
 
     /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['customer', 'pet'];
+
+    /**
      * Enum values for TVA status
      *
      * @var array

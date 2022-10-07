@@ -31,27 +31,6 @@
 
                             <div class="row d-flex align-items-center mb-3">
                                 <x-forms.select
-                                    label="Client"
-                                    wire="customer"
-                                    :options="$customers"
-                                    required
-                                    :disabled="$isUpdating"
-                                    hasEmptyRow
-                                    wireModifier="lazy"
-                                    classContainer="col"
-                                />
-
-                                @if ($isUpdating)
-                                    <div class="col-1">
-                                        <a href="{{ route('customers.edit', ['customer' => $customer]) }}" class="btn btn--secondary ms-0 ps-0">
-                                            <i class="fas fa-external-link-alt"></i>
-                                        </a>
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="row d-flex align-items-center mb-3">
-                                <x-forms.select
                                     label="Chien"
                                     wire="petId"
                                     :options="$pets"
@@ -63,19 +42,19 @@
 
                                 @if ($isUpdating)
                                     <div class="col-1">
-                                        <a href="{{ route('pets.edit', ['pet' => $petId]) }}" class="btn btn--secondary ms-0 ps-0">
+                                        <a href="{{ route('pets.edit', ['pet' => $petId]) }}" class="btn btn--secondary ms-0 ps-0" target="_blank">
                                             <i class="fas fa-external-link-alt"></i>
                                         </a>
                                     </div>
                                 @endif
                             </div>
-        
+
                             <x-forms.textarea
                                 label="Notes"
                                 rows="4"
                                 wire="appointment.notes"
                             />
-        
+
                             @if ($isUpdating)
                                 <div class="row mb-3">
                                     <div class="col-6">
@@ -86,7 +65,7 @@
                                             required
                                         />
                                     </div>
-        
+
                                     <div class="col-6">
                                         <x-forms.price
                                             label="Prix"
