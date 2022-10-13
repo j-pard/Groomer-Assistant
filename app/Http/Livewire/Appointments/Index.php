@@ -23,39 +23,6 @@ class Index extends LivewireForm
     public string $modalTitle;
     public bool $isUpdating = false;
 
-    protected function appointmentRules()
-    {
-        return [
-            'appointment.pet_id' => 'required|string',
-            'appointment.time' => 'required|string',
-            'appointment.price' => 'nullable|numeric|min:0',
-            'appointment.notes' => 'nullable|string',
-            'appointment.status' => 'required|string',
-
-            'customer' => 'nullable|numeric',
-            'petId' => 'nullable|numeric',
-            'date' => 'string',
-            'time' => 'string',
-        ];
-    }
-
-    protected function globalRules()
-    {
-        return [
-            'activeDate' => 'string',
-        ];
-    }
-
-    /**
-     * Valdiation rules
-     *
-     * @return array
-     */
-    protected function rules()
-    {
-        return array_merge($this->appointmentRules(), $this->globalRules());
-    }
-
     /**
      * Mount the component
      *
@@ -80,6 +47,38 @@ class Index extends LivewireForm
     public function render()
     {
         return view('livewire.appointments.index');
+    }
+    
+    protected function appointmentRules()
+    {
+        return [
+            'appointment.pet_id' => 'required|string',
+            'appointment.time' => 'required|string',
+            'appointment.price' => 'nullable|numeric|min:0',
+            'appointment.notes' => 'nullable|string',
+            'appointment.status' => 'required|string',
+
+            'petId' => 'nullable|numeric',
+            'date' => 'string',
+            'time' => 'string',
+        ];
+    }
+
+    protected function globalRules()
+    {
+        return [
+            'activeDate' => 'string',
+        ];
+    }
+
+    /**
+     * Valdiation rules
+     *
+     * @return array
+     */
+    protected function rules()
+    {
+        return array_merge($this->appointmentRules(), $this->globalRules());
     }
 
     public function loadApptModal($id)

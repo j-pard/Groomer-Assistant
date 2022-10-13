@@ -42,7 +42,7 @@
 
                                 @if ($isUpdating)
                                     <div class="col-1">
-                                        <a href="{{ route('pets.edit', ['pet' => $petId]) }}" class="btn btn--secondary ms-0 ps-0" target="_blank">
+                                        <a href="{{ route('pets.appointments', ['pet' => $petId]) }}" class="btn btn--secondary ms-0 ps-0" target="_blank">
                                             <i class="fas fa-external-link-alt"></i>
                                         </a>
                                     </div>
