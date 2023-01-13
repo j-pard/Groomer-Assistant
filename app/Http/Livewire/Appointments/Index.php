@@ -84,7 +84,6 @@ class Index extends LivewireForm
     public function loadApptModal($id)
     {
         $this->appointment = Appointment::find($id);
-        $this->customer = $this->appointment->customer_id;
         $this->petId = $this->appointment->pet_id;
         $this->pet = Pet::find($this->petId);
         $this->modalTitle = 'Modifier un rendez-vous';
@@ -174,7 +173,6 @@ class Index extends LivewireForm
     {
         $this->appointment = new Appointment;
         $this->appointment->status = 'planned';
-        $this->customer = null;
         $this->petId = null;
         $this->modalTitle = 'Nouveau rendez-vous';
         $this->isUpdating = false;
