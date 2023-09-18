@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Pet;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class Table extends DataTableComponent
 {
+    protected $model = Pet::class;
+
     // Default sorting
-    public string $defaultSortColumn = 'name';
+    public ?string $defaultSortColumn = 'name';
     public string $defaultSortDirection = 'asc';
 
     // Default filters
@@ -20,10 +22,18 @@ class Table extends DataTableComponent
     public bool $showPerPage = false;
     public array $perPageAccepted = [25];
 
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id')
+            ->setTableRowUrl(function($row) {
+                return route('pets.edit', $row);
+            });
+    }
+    
     public function query(): Builder
     {
         return Pet::query()
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
+            ->when($this->getAppliedFilterWithValue('status'), fn ($query, $status) => $query->where('status', $status));
     }
     
     public function setTableClass(): ?string
@@ -36,8 +46,7 @@ class Table extends DataTableComponent
         return [
             Column::make('Nom', 'name')
                 ->sortable()
-                ->searchable()
-                ->linkTo(fn($value, $column, $row) => route('pets.edit', ['pet' => $row])),
+                ->searchable(),
 
             Column::make('Race', 'mainBreed.breed')
                 ->searchable(),
@@ -72,10 +81,10 @@ class Table extends DataTableComponent
                             break;
                     }
                 })
-                ->asHtml(),
+                ->html(),
 
             Column::make('Actions', 'id')
-                ->addClass('text-center')
+                // ->addClass('text-center')
                 ->searchable()
                 ->format(function($id) {
                     return '<div class="actions-container">
@@ -83,15 +92,15 @@ class Table extends DataTableComponent
                         <a href="' . route('pets.appointments', ['pet' => $id]) . '" class="btn btn-outline-info btn-sm mx-2">RDV</a>
                     </div>';
                 })
-                ->asHtml(),
+                ->html(),
         ];
     }
 
     public function filters(): array
     {
         return [
-            'status' => Filter::make('Status')
-                ->select([
+            SelectFilter::make('Status')
+                ->options([
                     '' => 'Tous',
                     'active' => 'Actifs',
                     'private' => 'Privés',

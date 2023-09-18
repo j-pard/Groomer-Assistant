@@ -8,29 +8,35 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Pet;
 use Carbon\Carbon;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class AppointmentsTable extends DataTableComponent
 {
     public Pet $pet;
+
+    protected $model = Appointment::class;
     
     // Default sorting
-    public string $defaultSortColumn = 'time';
+    public ?string $defaultSortColumn = 'time';
     public string $defaultSortDirection = 'desc';
 
     public bool $showPerPage = false;
     public array $perPageAccepted = [25];
 
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id');
+    }
+    
     public function query(): Builder
     {
         return Appointment::where('pet_id', $this->pet->id)
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
+            ->when($this->getAppliedFilterWithValue('status'), fn ($query, $status) => $query->where('status', $status));
     }
     
     public function columns(): array
     {
         return [
-
 
             Column::make('Date', 'time')
                 ->searchable()
@@ -38,7 +44,6 @@ class AppointmentsTable extends DataTableComponent
                 ->format(function($value) {
                     return Carbon::parse($value)->format('d-m-Y H:i');
                 }),
-
 
             Column::make('Status', 'status')
                 ->sortable()
@@ -61,7 +66,7 @@ class AppointmentsTable extends DataTableComponent
                             break;
                     }
                 })
-                ->asHtml(),
+                ->html(),
 
             Column::make('Prix', 'price')
                 ->sortable()
@@ -76,15 +81,15 @@ class AppointmentsTable extends DataTableComponent
                 ->format(function($id) {
                     return '<a href="' . route('appointments.edit', ['appointment' => $id]) . '" class="btn btn-outline-secondary btn-sm mx-2">Editer</a>';
                 })
-                ->asHtml(),
+                ->html(),
         ];
     }
 
     public function filters(): array
     {
         return [
-            'status' => Filter::make('Status')
-                ->select([
+            SelectFilter::make('Status')
+                ->options([
                     '' => 'Tous',
                     'planned' => 'Planifiés',
                     'not paid' => 'Non payés',

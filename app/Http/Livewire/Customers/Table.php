@@ -9,13 +9,23 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class Table extends DataTableComponent
 {
+    protected $model = Customer::class;
+
     // Default sorting
-    public string $defaultSortColumn = 'lastname';
+    public ?string $defaultSortColumn = 'lastname';
     public string $defaultSortDirection = 'asc';
 
     public bool $showPerPage = false;
     public array $perPageAccepted = [25];
 
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id')
+            ->setTableRowUrl(function($row) {
+                return route('customers.edit', $row);
+            });
+    }
+    
     public function query(): Builder
     {
         return Customer::query();
@@ -31,13 +41,11 @@ class Table extends DataTableComponent
         return [
             Column::make('Nom', 'lastname')
                 ->sortable()
-                ->searchable()
-                ->linkTo(fn($value, $column, $row) => route('customers.edit', ['customer' => $row])),
+                ->searchable(),
                 
             Column::make('Prénom', 'firstname')
                 ->sortable()
-                ->searchable()
-                ->linkTo(fn($value, $column, $row) => route('customers.edit', ['customer' => $row])),
+                ->searchable(),
 
             Column::make('Ville', 'city')
                 ->searchable()
@@ -55,10 +63,10 @@ class Table extends DataTableComponent
                             </div>';
                     }
                 })
-                ->asHtml(),
+                ->html(),
 
             Column::make('Actions', 'id')
-                ->addClass('text-center')
+                // ->addClass('text-center')
                 ->searchable()
                 ->format(function($id) {
                     return '<div class="actions-container">
@@ -66,7 +74,7 @@ class Table extends DataTableComponent
                         <a href="' . route('customers.appointments', ['customer' => $id]) . '" class="btn btn-outline-info btn-sm mx-2">RDV</a>
                     </div>';
                 })
-                ->asHtml(),
+                ->html(),
         ];
     }
 }

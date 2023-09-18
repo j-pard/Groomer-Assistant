@@ -8,23 +8,33 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Carbon\Carbon;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class AppointmentsTable extends DataTableComponent
 {
     public Customer $customer;
+
+    protected $model = Appointment::class;
     
     // Default sorting
-    public string $defaultSortColumn = 'time';
+    public ?string $defaultSortColumn = 'time';
     public string $defaultSortDirection = 'desc';
 
     public bool $showPerPage = false;
     public array $perPageAccepted = [25];
 
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id')
+            ->setTableRowUrl(function($row) {
+                return route('appointments.edit', $row);
+            });
+    }
+    
     public function query(): Builder
     {
         return Appointment::where('customer_id', $this->customer->id)
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
+            ->when($this->getAppliedFilterWithValue('status'), fn ($query, $status) => $query->where('status', $status));
     }
     
     public function columns(): array
@@ -62,7 +72,7 @@ class AppointmentsTable extends DataTableComponent
                             break;
                     }
                 })
-                ->asHtml(),
+                ->html(),
 
             Column::make('Prix €', 'price')
                 ->sortable(),
@@ -72,15 +82,15 @@ class AppointmentsTable extends DataTableComponent
                 ->format(function($id) {
                     return '<a href="' . route('appointments.edit', ['appointment' => $id]) . '" class="btn btn-outline-secondary btn-sm mx-2">Editer</a>';
                 })
-                ->asHtml(),
+                ->html(),
         ];
     }
 
     public function filters(): array
     {
         return [
-            'status' => Filter::make('Status')
-                ->select([
+            SelectFilter::make('Status')
+                ->options([
                     '' => 'Tous',
                     'planned' => 'Planifiés',
                     'not paid' => 'Non payés',
