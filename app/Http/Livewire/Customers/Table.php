@@ -9,8 +9,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class Table extends DataTableComponent
 {
-    protected $model = Customer::class;
-
     // Default sorting
     public ?string $defaultSortColumn = 'lastname';
     public string $defaultSortDirection = 'asc';
@@ -26,7 +24,7 @@ class Table extends DataTableComponent
             });
     }
     
-    public function query(): Builder
+    public function builder(): Builder
     {
         return Customer::query();
     }

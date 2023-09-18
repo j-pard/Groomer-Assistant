@@ -10,8 +10,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class Table extends DataTableComponent
 {
-    protected $model = Pet::class;
-
     // Default sorting
     public ?string $defaultSortColumn = 'name';
     public string $defaultSortDirection = 'asc';
@@ -30,7 +28,7 @@ class Table extends DataTableComponent
             });
     }
     
-    public function query(): Builder
+    public function builder(): Builder
     {
         return Pet::query()
             ->when($this->getAppliedFilterWithValue('status'), fn ($query, $status) => $query->where('status', $status));

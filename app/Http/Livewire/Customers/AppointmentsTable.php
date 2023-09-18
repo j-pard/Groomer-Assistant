@@ -13,8 +13,6 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 class AppointmentsTable extends DataTableComponent
 {
     public Customer $customer;
-
-    protected $model = Appointment::class;
     
     // Default sorting
     public ?string $defaultSortColumn = 'time';
@@ -31,9 +29,9 @@ class AppointmentsTable extends DataTableComponent
             });
     }
     
-    public function query(): Builder
+    public function builder(): Builder
     {
-        return Appointment::where('customer_id', $this->customer->id)
+        return Appointment::where('appointments.customer_id', $this->customer->id)
             ->when($this->getAppliedFilterWithValue('status'), fn ($query, $status) => $query->where('status', $status));
     }
     
