@@ -209,4 +209,45 @@ class Pet extends Model implements HasMedia
             })
             ->toArray();
     }
+
+    public function formatOldDetails()
+    {
+        $newDetails = '';
+        $lineJump = '
+';
+        $emptyRow = '
+
+';
+
+        if ($this->remarks !== null) {
+            $newDetails .= '# Remarques';
+            $newDetails .= $lineJump;
+            $newDetails .= $this->remarks;
+        }
+
+        if ($this->warnings !== null) {
+            if ($newDetails != '') {
+                $newDetails .= $emptyRow;
+            }
+            $newDetails .= '# Attention';
+            $newDetails .= $lineJump;
+            $newDetails .= $this->warnings;
+        }
+
+        if ($this->customer->more_info !== null) {
+            if ($newDetails != '') {
+                $newDetails .= $emptyRow;
+            }
+            $newDetails .= '# Client';
+            $newDetails .= $lineJump;
+            $newDetails .= $this->customer->more_info;
+        }
+
+        $newDetails = trim($newDetails);
+        if ($newDetails === '' || strlen($newDetails) == 0) {
+            return null;
+        }
+
+        return $newDetails;
+    }
 }
