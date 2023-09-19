@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-abstract class DogSizes
+abstract class DogSizes extends Enum
 {
     public const DWARF = 'dwarf';
     public const SMALL = 'small';
@@ -13,10 +13,10 @@ abstract class DogSizes
     /**
      * Get the text of the size.
      *
-     * @param int $size
+     * @param string $size
      * @return string
      */
-    public static function getText(int $size): string
+    public static function getText(string $size): string
     {
         switch ($size) {
             case self::DWARF:
@@ -32,37 +32,5 @@ abstract class DogSizes
             default:
                 return '';
         }
-    }
-
-    /**
-     * Get all sizes.
-     *
-     * @return array
-     */
-    public static function all(): array
-    {
-        return [
-            self::DWARF,
-            self::SMALL,
-            self::MEDIUM,
-            self::BIG,
-            self::GIANT,
-        ];
-    }
-
-    /**
-     * Pluck size as text by id.
-     *
-     * @return array
-     */
-    public static function pluckAll(): array
-    {
-        $sizes = [];
-
-        foreach (self::all() as $size) {
-            $sizes[$size] = self::getText($size);
-        }
-
-        return $sizes;
     }
 }

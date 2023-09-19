@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-abstract class DogStatus
+abstract class DogStatus extends Enum
 {
     public const ACTIVE = 'active';
     public const PRIVATE = 'private';
@@ -45,36 +45,5 @@ abstract class DogStatus
             self::DEAD => 'danger',
             default => 'success',
         };
-    }
-
-    /**
-     * Get all status.
-     *
-     * @return array
-     */
-    public static function all(): array
-    {
-        return [
-            self::ACTIVE,
-            self::PRIVATE,
-            self::NOT_COMING,
-            self::DEAD,
-        ];
-    }
-
-    /**
-     * Pluck status as text by id.
-     *
-     * @return array
-     */
-    public static function pluckAll(): array
-    {
-        $statuses = [];
-
-        foreach (self::all() as $status) {
-            $statuses[$status] = self::getText($status);
-        }
-
-        return $statuses;
     }
 }
