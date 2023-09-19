@@ -1,0 +1,50 @@
+.bg-guest {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      background-color: $body-guest-bg;
+}
+
+#login-container {
+      margin: 8vh auto;
+      width: 90%;
+      max-width: 1400px;
+      height: 80vh;
+      background-color: #fff;
+
+      .head {
+            margin-bottom: 5rem;
+
+            h1 {
+                  font-size: 3rem;
+                  font-weight: bold;
+            }
+
+            h2 {
+                  font-size: 1.2rem;
+                  font-weight: bold;
+            }
+      }
+
+      #form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+      }
+
+      #logo-container {
+            background-image: url('/images/login.png');
+            background-color: $body-guest-bg;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+      }
+}
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
+      #login-container { 
+            height: 100vh;
+      }
+}

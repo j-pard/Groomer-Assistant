@@ -26,56 +26,52 @@
     @livewireStyles
 
 </head>
-<body data-page="{{ $page ?? '' }}">
-    <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="container-fluid px-md-5">
-            <h1>
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
-                </a>
-            </h1>
-
-            <div class="d-flex justify-content-end">
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    @guest
-                        @if (Route::has('login'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Se connecter</a>
-                            </li>
-                        @endif
-                    @else
-                        <li class="nav-item d-flex">
-                            <a class="nav-link text-white me-3" href="#">{{ Auth::user()->name }}</a>
-                            <div>
-                                <a class="nav-link" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"
-                                >
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                            </li>
-                        </li>
-                    @endguest
-                    <!-- Authentication Links -->
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
+<body data-page="{{ $page ?? '' }}" @guest class="bg-guest" @endguest>
     @guest
-        <div class="row">
-            <main class="container-fluid">
-                @yield('login')
-            </main>
-        </div>
+        @yield('login')
     @endguest
 
-    @auth    
+    @auth
+        <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid px-md-5">
+                <h1>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
+                    </a>
+                </h1>
+
+                <div class="d-flex justify-content-end">
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">Se connecter</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item d-flex">
+                                <a class="nav-link text-white me-3" href="#">{{ Auth::user()->name }}</a>
+                                <div>
+                                    <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"
+                                    >
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                                </li>
+                            </li>
+                        @endguest
+                        <!-- Authentication Links -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <nav id="aside-nav" class="nav-bg-dark">
             <x-buttons.nav
                 icon="fas fa-calendar-alt"
