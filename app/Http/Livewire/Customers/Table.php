@@ -9,11 +9,8 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class Table extends DataTableComponent
 {
-    // Default sorting
     public ?string $defaultSortColumn = 'lastname';
     public string $defaultSortDirection = 'asc';
-
-    public bool $showPerPage = false;
     public array $perPageAccepted = [25];
 
     public function configure(): void

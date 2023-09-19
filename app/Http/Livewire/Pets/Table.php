@@ -10,14 +10,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class Table extends DataTableComponent
 {
-    // Default sorting
     public ?string $defaultSortColumn = 'name';
     public string $defaultSortDirection = 'asc';
-
-    // Default filters
-    // public array $filters = ['status' => 'active'];
-
-    public bool $showPerPage = false;
     public array $perPageAccepted = [25];
 
     public function configure(): void

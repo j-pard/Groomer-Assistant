@@ -122,5 +122,4 @@ class Appointment extends Model
     {
         return $this->belongsTo(Pet::class);
     }
-
 }

@@ -13,12 +13,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 class AppointmentsTable extends DataTableComponent
 {
     public Pet $pet;
-    
-    // Default sorting
     public ?string $defaultSortColumn = 'time';
     public string $defaultSortDirection = 'desc';
-
-    public bool $showPerPage = false;
     public array $perPageAccepted = [25];
 
     public function configure(): void

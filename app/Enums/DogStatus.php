@@ -41,8 +41,8 @@ abstract class DogStatus extends Enum
     {
         return match ($status) {
             self::NOT_COMING => 'secondary',
-            self::PRIVATE => 'warning',
-            self::DEAD => 'danger',
+            self::PRIVATE => 'primary',
+            self::DEAD => 'dark',
             default => 'success',
         };
     }

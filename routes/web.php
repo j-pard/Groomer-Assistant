@@ -25,6 +25,10 @@ Auth::routes(['register' => false]);
 Route::middleware([Authenticate::class])->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('home');
     
+    Route::prefix('dogs')->name('dogs.')->group(function () {
+        Route::view('/', 'manager.dogs.list');
+    });
+
     Route::prefix('pets')->name('pets.')->group(function () {
         Route::get('', [PetsController::class, 'index'])->name('index');
         Route::get('new', [PetsController::class, 'create'])->name('create');
