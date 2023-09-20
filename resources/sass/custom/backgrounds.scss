@@ -1,0 +1,45 @@
+.bg {
+    &--dark {
+        &-900 {
+            background-color: $dark900;
+        }
+    
+        &-700 {
+            background-color: $dark700;
+        }
+    
+        &-500 {
+            background-color: $dark500;
+        }
+    
+        &-300 {
+            background-color: $dark300;
+        }
+    }
+
+    &--light {
+        &-50 {
+            background-color: $light50;
+        }
+    
+        &-100 {
+            background-color: $light100;
+        }
+    
+        &-200 {
+            background-color: $light200;
+        }
+    
+        &-300 {
+            background-color: $light300;
+        }
+    }
+
+    &--quartz {
+        background-color: $quartz;
+    }
+
+    &--copper {
+        background-color: $copper;
+    }
+}

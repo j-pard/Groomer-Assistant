@@ -111,4 +111,9 @@ class Dog extends Model
             'minutes' => $duration % 60,
         ];
     }
+
+    public function getAvatarAttribute(): string
+    {
+        return strtoupper(substr($this->name, 0, 1) . substr($this->owner_name ?? '', 0, 1));
+    }
 }

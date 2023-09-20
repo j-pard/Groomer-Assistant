@@ -30,6 +30,7 @@ html {
       min-width: 100%;
       min-height: 100%;
       overflow-x: hidden;
+      background-color: $dark900;
 }
 body {
       min-width: 100%;
@@ -37,5 +38,16 @@ body {
 
       overflow-x: hidden;
       background-color: $body-bg;
-      padding-right: 0 !important
+      padding-right: 0 !important;
+      background-color: $dark900;
+}
+
+h2, h3 {
+      padding: 0;
+      margin: 0;
+}
+
+button:focus {
+      outline: none !important;
+      box-shadow: none !important;
 }

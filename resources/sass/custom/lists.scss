@@ -1,0 +1,13 @@
+.list-element  {
+    display: flex;
+    justify-content: space-between;
+    background-color: $dark700;
+    border-radius: 5px;
+
+    box-shadow: 2px 2px 2px $dark500;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: 2px 2px 6px $dark300;
+    }
+}
