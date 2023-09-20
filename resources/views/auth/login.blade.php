@@ -6,8 +6,8 @@
             <div id="form-container" class="col-md-6 p-4">
                 <div>
                     <div class="head">
-                        <h1><span class="text-primary">G</span>roomer <span class="text-primary">A</span>ssistant</h1>
-                        <h2>Le meilleur moyen de prédire le futur c’est de le créer</h2>
+                        <h1><span class="text--copper">G</span>roomer <span class="text--copper">A</span>ssistant</h1>
+                        <h2 class="ms-1">Le meilleur moyen de prédire le futur c’est de le créer</h2>
                     </div>
 
                     <form method="POST" action="{{ route('login') }}">
@@ -37,14 +37,14 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                <label class="form-check-label" for="remember">
+                                <label class="form-check-label text-light" for="remember">
                                     Se souvenir de moi
                                 </label>
                             </div>
                         </div>
 
                         <div class="my-5">
-                            <button type="submit" class="text-white btn btn-primary w-100 mx-2">
+                            <button type="submit" class="text-white btn btn-primary--copper w-100 mx-2">
                                 Se connecter
                             </button>
                         </div>
@@ -52,7 +52,7 @@
                 </div>
 
                 @if (Route::has('password.request'))
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                    <a class="btn btn-link text--quartz" href="{{ route('password.request') }}">
                         Mot de passe oublié ?
                     </a>
                 @endif

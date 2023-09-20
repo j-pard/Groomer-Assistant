@@ -3,15 +3,15 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      background-color: $body-guest-bg;
+      background-color: $dark900;
 }
 
 #login-container {
       margin: 8vh auto;
       width: 90%;
-      max-width: 1400px;
+      max-width: 1440px;
       height: 80vh;
-      background-color: #fff;
+      background-color: $dark700;
 
       .head {
             margin-bottom: 5rem;
@@ -19,11 +19,13 @@
             h1 {
                   font-size: 3rem;
                   font-weight: bold;
+                  color: $light100;
             }
 
             h2 {
                   font-size: 1.2rem;
                   font-weight: bold;
+                  color: $light300;
             }
       }
 
@@ -36,7 +38,7 @@
 
       #logo-container {
             background-image: url('/images/login.png');
-            background-color: $body-guest-bg;
+            background-color: $dark700;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;

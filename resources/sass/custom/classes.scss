@@ -18,6 +18,22 @@
     opacity: 0;
 }
 
+.text--copper {
+    color: $copper;
+}
+
+.text--light-copper {
+    color: $light-copper;
+}
+
+.text--quartz {
+    color: $quartz;
+
+    &:hover {
+        color: $ghost;
+    }
+}
+
 .width-content {
     min-width: 200px !important;
 }
