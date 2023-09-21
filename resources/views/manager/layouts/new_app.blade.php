@@ -39,12 +39,12 @@
                 </div>
                 <div class="dropdown">
                     <div class="dropdown-toggle--no-arrow d-flex align-items-center me-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-circle-user text--light-200 h1 m-0"></i>
+                        <i class="fa-solid fa-circle-user text--light-200 hoverable h1 m-0"></i>
                     </div>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fas fa-sign-out-alt"></i> Se déconnecter
+                                <i class="fas fa-sign-out-altr"></i> Se déconnecter
                             </a>
                         </li>
                     </ul>

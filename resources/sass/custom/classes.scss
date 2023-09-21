@@ -71,6 +71,14 @@ button, a {
     width: 16px;
 }
 
+.hoverable {
+    transition: color .3s ease;
+    
+    &:hover {
+        color: $ecru;
+    }
+}
+
 .avatar {
     border-radius: 50px;
     width: 50px;
@@ -80,13 +88,13 @@ button, a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 1.5rem;
+    color: $copper;
     cursor: pointer;
+    transition: color .3s ease;
 
     &:hover {
-        color: $light200;
-        font-weight: bold;
-        border: 2px solid $quartz;
+        color: $ecru;
     }
 }

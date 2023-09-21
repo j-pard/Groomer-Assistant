@@ -12203,6 +12203,13 @@ button .active, a .active {
   width: 16px;
 }
 
+.hoverable {
+  transition: color 0.3s ease;
+}
+.hoverable:hover {
+  color: #e1bb80;
+}
+
 .avatar {
   border-radius: 50px;
   width: 50px;
@@ -12212,14 +12219,14 @@ button .active, a .active {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 1.5rem;
+  color: #c97c5d;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 .avatar:hover {
-  color: #eeeeee;
-  font-weight: bold;
-  border: 2px solid #a7a2a9;
+  color: #e1bb80;
 }
 
 .duration-inputs-container {

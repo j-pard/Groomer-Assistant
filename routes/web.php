@@ -27,8 +27,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('home');
     
     Route::prefix('dogs')->name('dogs.')->group(function () {
-        Route::view('/', 'manager.dogs.table');
-        Route::get('list', [DogsController::class, 'list'])->name('index');
+        Route::get('', [DogsController::class, 'list'])->name('index');
     });
 
     Route::prefix('pets')->name('pets.')->group(function () {
