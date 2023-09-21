@@ -5,6 +5,7 @@ namespace App\Livewire\Dogs;
 use App\Models\Dog;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -34,7 +35,7 @@ class Table extends Component
     public function render(): View
     {
         return view('livewire.dogs.table', [
-            'dogs' => $this->getDogsQuery()->paginate(10),
+            'dogs' => $this->getDogsQuery(),
         ]);
     }
 
@@ -61,9 +62,9 @@ class Table extends Component
     /**
      * Generate dogs query with search parameters.
      *
-     * @return Builder
+     * @return LengthAwarePaginator
      */
-    private function getDogsQuery(): Builder
+    private function getDogsQuery(): LengthAwarePaginator
     {
         return Dog::query()
             ->with('mainBreed', 'secondBreed')
@@ -83,6 +84,7 @@ class Table extends Component
                     });
             })
             ->orderBy('name', 'ASC')
-            ->orderBy('owner_name', 'ASC');
+            ->orderBy('owner_name', 'ASC')
+            ->paginate(10);
     }
 }
