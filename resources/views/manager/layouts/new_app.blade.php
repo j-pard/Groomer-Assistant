@@ -22,8 +22,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') . '?' . time()}}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/126bbe9047.js" crossorigin="anonymous"></script>
-    <!-- The "defer" attribute is important to make sure Alpine waits for Livewire to load first. -->
-    @livewireStyles
 
 </head>
 <body data-page="{{ $page ?? '' }}" @guest class="bg-guest" @endguest>
@@ -107,7 +105,6 @@
 
         {{-- Scripts --}}
         @stack('scripts')
-        @livewireScripts
         <script>
             window.groomer = window.groomer || {};
         </script>

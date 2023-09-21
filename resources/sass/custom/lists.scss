@@ -11,3 +11,65 @@
         box-shadow: 2px 2px 6px $dark300;
     }
 }
+
+.searchbar {
+    max-width: 400px;
+
+    input {
+        background-color: $dark700;
+        color: $quartz;
+        border-color: $dark900;
+
+        &:focus {
+            background-color: $dark500;
+            color: $quartz;
+        }
+
+        &::placeholder {
+            color: $dark300;
+        }
+    }
+
+    .input-group-text {
+        background-color: $dark700;
+        color: $quartz;
+        border-color: $dark900;
+        
+        &.clearable {
+            cursor: pointer;
+        }
+    }
+
+    .clearable {
+        cursor: pointer;
+        transition: color .3s ease;
+        
+        &:hover {
+            color: $ecru;
+        }
+    }
+}
+
+.livewire-custom-pagination {
+    .page-item {
+        font-size: 1.5rem;
+        background-color: $dark900;
+        padding: 4px 8px;
+
+        .page-link {
+            color: $copper;
+            font-weight: bold;
+            transition: color .3s ease;
+        
+            &:hover {
+                color: $ecru;
+            }
+        }
+    }
+
+    .page-item.disabled {
+        .page-link {
+            color: $quartz;
+        }
+    }
+}

@@ -1,16 +1,27 @@
-@extends('manager.layouts.new_app')
+<div>
+    <div class="list-heading">
+        <div class="input-group searchbar px-3 px-md-2">
+            <input type="text" wire:model.live.debounce.500ms="search" class="form-control mb-0 search-input" placeholder="Akinator n'a qu'à bien se tenir ...">
+            <span class="input-group-text">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            <span class="input-group-text clearable" wire:click="clearSearch">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+        </div>
+    </div>
 
-@section('content')
-    <div class="d-flex flex-column py-4">
+    <div class="d-flex flex-column pt-3 pb-1 mb-1">
         @foreach ($dogs as $dog)
-            <div class="list-element mx-2 my-1 py-2 px-1 px-sm-3">
+            <div class="list-element mx-2 my-1 py-2 px-1 px-sm-3" data-id="{{ $dog->id }}">
                 <div class="d-flex flex-row">
                     <div class="d-flex flex-row align-items-center">
                         <div class="avatar mx-2 mx-sm-4">{{ $dog->avatar }}</div>
                     </div>
                     <div class="d-flex flex-column">
                         <div>{{ $dog->name }}</div>
-                        <em class="text--quartz">{{ $dog->owner_name }}</em>
+                        <span class="text--quartz">{{ $dog->owner_name }}</span>
+                        <em class="text--quartz">{{ $dog->owner_phone }}</em>
                     </div>
                 </div>
                 <div class="d-flex flex-column text-end justify-content-between">
@@ -27,6 +38,6 @@
     </div>
 
     <div class="mb-5 pb-5 px-2">
-        {{ $dogs->onEachSide(1)->links() }}
+        {{ $dogs->links() }}
     </div>
-@endsection
+</div>

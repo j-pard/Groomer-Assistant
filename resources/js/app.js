@@ -1,5 +1,4 @@
 import * as bootstrap from 'bootstrap';
-import Alpine from 'alpinejs'
 import './libs/confirmation';
 import './libs/form-modal';
 import './libs/overlay';
@@ -15,14 +14,6 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.bootstrap = bootstrap;
-
-window.Alpine = Alpine;
-Alpine.start();
-
-// Include custom JS
-if (document.body.getAttribute('data-page')) {
-    require('./pages/' + document.body.getAttribute('data-page'));
-}
 
 // Remove .loading from body after content loaded
 document.addEventListener('DOMContentLoaded', function() {

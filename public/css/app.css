@@ -12510,6 +12510,57 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   box-shadow: 2px 2px 6px #3e3e42;
 }
 
+.searchbar {
+  max-width: 400px;
+}
+.searchbar input {
+  background-color: #252526;
+  color: #a7a2a9;
+  border-color: #1e1e1e;
+}
+.searchbar input:focus {
+  background-color: #2d2d30;
+  color: #a7a2a9;
+}
+.searchbar input::-moz-placeholder {
+  color: #3e3e42;
+}
+.searchbar input::placeholder {
+  color: #3e3e42;
+}
+.searchbar .input-group-text {
+  background-color: #252526;
+  color: #a7a2a9;
+  border-color: #1e1e1e;
+}
+.searchbar .input-group-text.clearable {
+  cursor: pointer;
+}
+.searchbar .clearable {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.searchbar .clearable:hover {
+  color: #e1bb80;
+}
+
+.livewire-custom-pagination .page-item {
+  font-size: 1.5rem;
+  background-color: #1e1e1e;
+  padding: 4px 8px;
+}
+.livewire-custom-pagination .page-item .page-link {
+  color: #c97c5d;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.livewire-custom-pagination .page-item .page-link:hover {
+  color: #e1bb80;
+}
+.livewire-custom-pagination .page-item.disabled .page-link {
+  color: #a7a2a9;
+}
+
 #bottom-nav {
   position: fixed;
   bottom: 2rem;
