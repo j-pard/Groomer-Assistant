@@ -33,7 +33,12 @@
                 </div>
 
                 <div class="d-flex flex-column text-end justify-content-between col-md-4">
-                    <div>{{ $dog->mainBreed->breed . ($dog->second_breed_id !== null ? '  /  ' . $dog->secondBreed->breed : '') }}</div>
+                    <div class="cell-mobile">
+                        <div>{{ $dog->mainBreed->breed }}</div>
+                    </div>
+                    <div class="cell-desktop">
+                        <div>{{ $dog->mainBreed->breed . ($dog->second_breed_id !== null ? '  /  ' . $dog->secondBreed->breed : '') }}</div>
+                    </div>
                     <div class="d-flex justify-content-end flex-no-wrap">
                         @if ($dog->second_breed_id !== null)
                             <span class="badge rounded-pill bg--quartz me-2">Croisé</span>

@@ -84,8 +84,10 @@
         border-radius: 50px;
         height: 1rem;
         width: 150px;
+        max-width: 100%;
 
         &-lg {
+            max-width: 100%;
             width: 300px;
         }
     }

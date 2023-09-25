@@ -12574,8 +12574,10 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   border-radius: 50px;
   height: 1rem;
   width: 150px;
+  max-width: 100%;
 }
 .skeleton .skeleton-cell-lg {
+  max-width: 100%;
   width: 300px;
 }
 .skeleton .skeleton-searchbar {
