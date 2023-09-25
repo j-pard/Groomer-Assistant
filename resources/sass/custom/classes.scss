@@ -89,10 +89,16 @@ button, a {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: $copper;
+    text-align: center;
     cursor: pointer;
     transition: color .3s ease;
+
+    a {
+        color: $copper;
+        text-decoration: none;
+    }
 
     &:hover {
         color: $ecru;

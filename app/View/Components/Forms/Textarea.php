@@ -13,7 +13,6 @@ class Textarea extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public ?string $placeholder = null,
@@ -27,9 +26,7 @@ class Textarea extends Component
         public ?int $rows = null,
         public ?string $maxlength = null,
     ) {
-        if ($this->wire) {
-            $this->name = $this->wire;
-        }
+        $this->name = $this->name ?: $this->wire;
     }
 
     /**

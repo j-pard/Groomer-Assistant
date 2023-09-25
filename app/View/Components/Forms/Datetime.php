@@ -13,7 +13,6 @@ class Datetime extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public ?string $class = null,
@@ -25,7 +24,7 @@ class Datetime extends Component
         public ?string $min = null,
         public ?string $max = null
     ) {
-        $this->name = $this->wire;
+        $this->name = $this->name ?: $this->wire;
     }
 
     /**

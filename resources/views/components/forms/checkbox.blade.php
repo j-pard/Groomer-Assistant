@@ -6,9 +6,7 @@
         id="checkbox{{ $name }}" 
         {{ $checked ? 'checked' : ''}}
 
-        @if ($wire)
-            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
-        @endif
+        wire:model="{{ $wire }}"
     >
 
     <label class="form-check-label d-flex align-items-center mt-2" for="checkbox{{ $name }}">
@@ -17,4 +15,10 @@
         @endif
         <span>{{ $label }}</span>
     </label>
+
+    @error($name)
+        <div class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+    @enderror
 </div>

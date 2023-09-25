@@ -13,7 +13,6 @@ class Radio extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $value = null,
         public ?string $label = null,
@@ -22,7 +21,9 @@ class Radio extends Component
         public ?string $icon = null,
         public string $iconClass = 'h4'
     )
-    {}
+    {
+        $this->name = $this->name ?: $this->wire;
+    }
 
     /**
      * Get the view / contents that represent the component.

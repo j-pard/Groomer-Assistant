@@ -13,7 +13,6 @@ class Checkbox extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public bool $inline = false,
@@ -22,9 +21,7 @@ class Checkbox extends Component
         public string $iconClass = 'h4'
     )
     {
-        if ($this->name == null) {
-            $this->name = $this->wire;
-        }
+        $this->name = $this->name ?: $this->wire;
     }
 
     /**

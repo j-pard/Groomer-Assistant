@@ -2,7 +2,7 @@
     <label for="{{ $name }}">
         {{ $label }}
         @if ($required)
-            <span class="text-danger">*</span>
+            <span class="text--copper">*</span>
         @endif
     </label>
     <div class="input-group">
@@ -23,14 +23,17 @@
             min="0"
             {!! $max ? 'max="' . $max . '"' : '' !!}
 
-            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
+            wire:model="{{ $wire }}"
         >
     </div>
+
     @if (isset($help))
         <small class="text-muted ps-2">{!! $help !!}</small>
     @endif
     
     @error($name)
-        <small class="text-danger">{{ $message }}</small>
+        <div class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
     @enderror
 </div>

@@ -16,23 +16,24 @@
         {!! $readonly ? 'readonly' : '' !!}
         {!! $disabled ? 'disabled' : '' !!}
 
-        wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
+        wire:model="{{ $wire }}"
     >
         @if ($hasEmptyRow)
             <option value=""></option>
         @endif
 
         @forelse($options as $option)
-        <option
-        @if(!$wire && $isSelected($option['value'])) selected="selected" @endif
-            value="{{ $option['value'] }}"
-            wire:key="{{ "$id-" . $option['value'] }}"
-        >{{ $option['label'] }}</option>
+            <option value="{{ $option['value'] }}" wire:key="{{ "$id-" . $option['value'] }}">
+                {{ $option['label'] }}
+            </option>
         @empty
             <option value="null" disabled></option>
         @endforelse
     </select>
+
     @error($name)
-        <small class="text-danger">{{ $message }}</small>
+        <div class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
     @enderror
 </div>

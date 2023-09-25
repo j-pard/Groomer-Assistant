@@ -7,14 +7,19 @@
         value="{{ $value }}" 
         {{ $checked ? 'checked' : ''}}
 
-        @if ($wire)
-            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
-        @endif
+        wire:model="{{ $wire }}"
     >
+
     <label class="form-check-label" for="radio{{ $value }}">
         @if ($icon)
             <i class="{{ $icon }} {{ $iconClass }}"></i>
         @endif
         {{ $label }}
     </label>
+
+    @error($name)
+        <div class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+    @enderror
 </div>

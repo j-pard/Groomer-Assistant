@@ -99,6 +99,6 @@ class Table extends Component
     {
         $params['rows'] = $this->perPage;
 
-        return view('livewire.placeholders.skeleton', $params);
+        return view('livewire.placeholders.table-skeleton', $params);
     }
 }

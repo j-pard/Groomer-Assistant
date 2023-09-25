@@ -13,13 +13,17 @@
             {!! $accept ? 'accept="' . $accept . '"' : "" !!}
             multiple
 
-            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
+            wire:model="{{ $wire }}"
         >
 
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Upload</button>
     </div>
-    <div class="text-pink" wire:loading wire:target="{{ $wire }}">Uploading...</div>
+
+    <div class="text--copper" wire:loading wire:target="{{ $wire }}">Uploading...</div>
+
     @error($name)
-        <small class="text-danger">{{ $message }}</small>
+        <div class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
     @enderror
 </div>

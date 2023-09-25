@@ -12220,44 +12220,21 @@ button .active, a .active {
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #c97c5d;
+  text-align: center;
   cursor: pointer;
   transition: color 0.3s ease;
+}
+.avatar a {
+  color: #c97c5d;
+  text-decoration: none;
 }
 .avatar:hover {
   color: #e1bb80;
 }
 .avatar-skeleton {
   background-color: #3e3e42;
-}
-
-.duration-inputs-container {
-  display: flex;
-  align-items: center;
-}
-.duration-inputs-container div {
-  margin: 0;
-  padding: 0;
-}
-.duration-inputs-container div input {
-  width: 80px;
-}
-
-.form-group, .form-control {
-  margin-bottom: 12px;
-}
-
-.custom-img-container img {
-  max-width: 100%;
-  height: auto;
-}
-
-.default-avatar {
-  display: flex;
-  justify-content: center;
-  font-size: 70px;
-  color: lightgray;
 }
 
 .form-control.is-invalid {
@@ -12267,6 +12244,17 @@ button .active, a .active {
 .form-check-input:checked {
   background-color: #c97c5d;
   border-color: #c97c5d;
+}
+
+.form-container {
+  background-color: #252526;
+  background: linear-gradient(90deg, #252526 0%, #2d2d30 100%);
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #2d2d30;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .bg-guest {

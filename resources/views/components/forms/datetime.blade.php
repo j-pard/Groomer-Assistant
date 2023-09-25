@@ -2,9 +2,10 @@
     <label for="{{ $name }}">
         {{ $label }}
         @if ($required)
-            <span class="text-danger">*</span>
+            <span class="text--copper">*</span>
         @endif
     </label>
+
     <input 
         class="form-control {{ $class }} @error($name) is-invalid @enderror"
         type="datetime-local"
@@ -16,9 +17,12 @@
         {!! $min ? 'min="' . $min . '"' : '' !!}
         {!! $max ? 'max="' . $max . '"' : '' !!}
 
-        wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
+        wire:model="{{ $wire }}"
     >
+    
     @error($name)
-        <small class="text-danger">{{ $message }}</small>
+        <div class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
     @enderror
 </div>

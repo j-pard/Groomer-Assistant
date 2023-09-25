@@ -2,7 +2,7 @@
     <label for="{{ $name }}">
         {{ $label }}
         @if ($required)
-            <span class="text-danger">*</span>
+            <span class="text--copper">*</span>
         @endif
     </label>
     <textarea 
@@ -16,15 +16,13 @@
         {{ $cols ? 'cols=' . $cols : ''}}
         {{ $rows ? 'rows=' . $rows : ''}}
 
-        @if ($wire)
-            wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
-        @else
-            value="{{ $errors->$name ? old($name) : $value }}"
-        @endif
+        wire:model="{{ $wire }}"
     >
     </textarea>
 
     @error($name)
-        <small class="text-danger">{{ $message }}</small>
+        <div class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
     @enderror
 </div>
