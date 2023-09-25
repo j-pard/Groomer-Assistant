@@ -12565,6 +12565,10 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   color: #a7a2a9;
 }
 
+.skeleton {
+  width: 100%;
+  opacity: 50%;
+}
 .skeleton .skeleton-cell {
   background-color: #3e3e42;
   border-radius: 50px;

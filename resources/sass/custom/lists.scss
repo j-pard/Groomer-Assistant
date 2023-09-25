@@ -61,7 +61,7 @@
             color: $copper;
             font-weight: bold;
             transition: color .3s ease;
-        
+
             &:hover {
                 color: $ecru;
             }
@@ -76,6 +76,9 @@
 }
 
 .skeleton {
+    width: 100%;
+    opacity: 50%;
+
     .skeleton-cell {
         background-color: $dark300;
         border-radius: 50px;
