@@ -12561,6 +12561,22 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   color: #a7a2a9;
 }
 
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .cell-desktop {
+    display: none !important;
+  }
+  .cell-mobile {
+    display: block !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .cell-desktop {
+    display: block !important;
+  }
+  .cell-mobile {
+    display: none !important;
+  }
+}
 #bottom-nav {
   position: fixed;
   bottom: 2rem;

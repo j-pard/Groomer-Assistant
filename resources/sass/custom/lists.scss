@@ -73,3 +73,13 @@
         }
     }
 }
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
+    .cell-desktop { display: none !important; }
+    .cell-mobile { display: block !important; }
+}
+
+@media screen and (min-width: 768px) {
+    .cell-desktop { display: block !important; }
+    .cell-mobile { display: none !important; }
+}
