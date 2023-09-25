@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Dog extends Model
 {
@@ -73,6 +74,16 @@ class Dog extends Model
     public function secondBreed(): BelongsTo
     {
         return $this->belongsTo(Breed::class, 'second_breed_id');
+    }
+
+    /**
+     * Get the dogs's most recent appointment.
+     * 
+     * @return HasOne
+     */
+    public function latestAppointment(): HasOne
+    {
+        return $this->hasOne(Appointment::class)->ofMany('time', 'max');
     }
 
     /**

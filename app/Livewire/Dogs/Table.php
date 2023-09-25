@@ -14,6 +14,7 @@ class Table extends Component
     use WithPagination;
 
     public ?string $search = null;
+    protected int $perPage = 10;
 
     /**
      * Define rules.
@@ -67,7 +68,7 @@ class Table extends Component
     private function getDogsQuery(): LengthAwarePaginator
     {
         return Dog::query()
-            ->with('mainBreed', 'secondBreed')
+            ->with('mainBreed', 'secondBreed', 'latestAppointment')
             ->when($this->search !== null, function (Builder $query) {
                 $query->where('name', 'LIKE', '%' . $this->search . '%')
                     ->orWhere('owner_name', 'LIKE', '%' . $this->search . '%')
@@ -85,6 +86,19 @@ class Table extends Component
             })
             ->orderBy('name', 'ASC')
             ->orderBy('owner_name', 'ASC')
-            ->paginate(10);
+            ->paginate($this->perPage);
+    }
+
+    /**
+     * Display skeleton during component loading.
+     *
+     * @param array $params
+     * @return View
+     */
+    public function placeholder(array $params = []): View
+    {
+        $params['rows'] = $this->perPage;
+
+        return view('livewire.placeholders.skeleton', $params);
     }
 }

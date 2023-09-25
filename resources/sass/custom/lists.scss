@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     background-color: $dark700;
+    background: linear-gradient(90deg, $dark700 0%, $dark500 100%);
     border-radius: 5px;
 
     box-shadow: 2px 2px 2px $dark500;
@@ -74,12 +75,40 @@
     }
 }
 
+.skeleton {
+    .skeleton-cell {
+        background-color: $dark300;
+        border-radius: 50px;
+        height: 1rem;
+        width: 150px;
+
+        &-lg {
+            width: 300px;
+        }
+    }
+
+    .skeleton-searchbar {
+        width: 100%;
+        max-width: 400px;
+        height: 2.5rem;
+        background-color: $dark500;
+    }
+
+    .skeleton-pagination {
+        height: 1.5rem;
+        width: 70%;
+        background-color: $dark500;
+    }
+}
+
 @media screen and (min-width: 0px) and (max-width: 768px) {
     .cell-desktop { display: none !important; }
+    .cell-desktop-flex { display: none !important; }
     .cell-mobile { display: block !important; }
 }
 
 @media screen and (min-width: 768px) {
     .cell-desktop { display: block !important; }
+    .cell-desktop-flex { display: flex !important; }
     .cell-mobile { display: none !important; }
 }

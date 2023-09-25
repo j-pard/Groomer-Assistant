@@ -28,7 +28,7 @@
                 <div class="cell-desktop col-md-3">
                     <div class="d-flex flex-column">
                         <div class="text--quartz"><i class="fa-solid fa-phone text--copper me-2"></i>{{ $dog->owner_phone }}</div>
-                        <div class="text--quartz"><i class="fa-solid fa-calendar-day text--copper me-2"></i>{{ $dog->updated_at->format('d-m-Y') }}</div>
+                        <div class="text--quartz"><i class="fa-solid fa-calendar-day text--copper me-2"></i>{{ $dog->latestAppointment !== null ? Carbon\Carbon::parse($dog->latestAppointment->time)->format('d-m-Y') : '' }}</div>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
                         @endif
                         <span class="badge rounded-pill {{ 'bg-' . App\Enums\DogStatus::getColor($dog->status) }}">{{ App\Enums\DogStatus::getText($dog->status) }}</span>
                     </div>
-                    <div><em class="text--quartz cell-mobile">{{ $dog->updated_at->format('d-m-Y') }}</em></div>
+                    <div><em class="text--quartz cell-mobile">{{ $dog->latestAppointment !== null ? Carbon\Carbon::parse($dog->latestAppointment->time)->format('d-m-Y') : '' }}</em></div>
                 </div>
             </div>
         @endforeach

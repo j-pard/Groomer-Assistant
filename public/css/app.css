@@ -12228,6 +12228,9 @@ button .active, a .active {
 .avatar:hover {
   color: #e1bb80;
 }
+.avatar-skeleton {
+  background-color: #3e3e42;
+}
 
 .duration-inputs-container {
   display: flex;
@@ -12502,6 +12505,7 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   display: flex;
   justify-content: space-between;
   background-color: #252526;
+  background: linear-gradient(90deg, #252526 0%, #2d2d30 100%);
   border-radius: 5px;
   box-shadow: 2px 2px 2px #2d2d30;
   transition: box-shadow 0.3s ease;
@@ -12561,8 +12565,32 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   color: #a7a2a9;
 }
 
+.skeleton .skeleton-cell {
+  background-color: #3e3e42;
+  border-radius: 50px;
+  height: 1rem;
+  width: 150px;
+}
+.skeleton .skeleton-cell-lg {
+  width: 300px;
+}
+.skeleton .skeleton-searchbar {
+  width: 100%;
+  max-width: 400px;
+  height: 2.5rem;
+  background-color: #2d2d30;
+}
+.skeleton .skeleton-pagination {
+  height: 1.5rem;
+  width: 70%;
+  background-color: #2d2d30;
+}
+
 @media screen and (min-width: 0px) and (max-width: 768px) {
   .cell-desktop {
+    display: none !important;
+  }
+  .cell-desktop-flex {
     display: none !important;
   }
   .cell-mobile {
@@ -12572,6 +12600,9 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
 @media screen and (min-width: 768px) {
   .cell-desktop {
     display: block !important;
+  }
+  .cell-desktop-flex {
+    display: flex !important;
   }
   .cell-mobile {
     display: none !important;
