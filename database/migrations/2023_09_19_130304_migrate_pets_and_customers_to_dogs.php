@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Pet::with('customer')->each(function (Pet $pet) {
-            Dog::create([
+            $dog = Dog::create([
                 'average_duration' => $pet->average_duration,
                 'birthdate' => $pet->birthdate,
                 'details' => $pet->formatOldDetails(),
@@ -34,6 +34,17 @@ return new class extends Migration
                 'second_breed_id' => $pet->second_breed_id,
                 'size' => $pet->size,
                 'status' => $pet->status === 'not-coming' ? DogStatus::NOT_COMING : $pet->status,
+            ]);
+
+            // Migrate appointments
+            $pet->appointments()->update([
+                'dog_id' => $dog->id,
+            ]);
+
+            // Migrate medias
+            $pet->media()->update([
+                'model_type' => 'App\Models\Dog',
+                'model_id' => $dog->id,
             ]);
         });
     }
