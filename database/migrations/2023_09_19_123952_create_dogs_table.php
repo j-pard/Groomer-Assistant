@@ -37,7 +37,7 @@ return new class extends Migration
             // Owner details
             $table->string('owner_name', 100);
             $table->string('owner_phone', 50);
-            $table->string('owner_secondary_phone', 50)->nullable();
+            $table->string('owner_secondary_phone', 100)->nullable();
             $table->string('owner_email', 100)->nullable();
             $table->string('owner_address', 255)->nullable();
             $table->integer('owner_zip_code', 20)->nullable();

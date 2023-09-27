@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountingController;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\DogsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetsController;
 use App\Http\Middleware\Authenticate;
@@ -27,6 +28,9 @@ Route::middleware([Authenticate::class])->group(function () {
     
     Route::prefix('dogs')->name('dogs.')->group(function () {
         Route::view('', 'manager.dogs.table')->name('index');
+        Route::prefix('{dog}')->group(function () {
+            Route::get('', [DogsController::class, 'show'])->name('show');
+        });
     });
 
     Route::prefix('pets')->name('pets.')->group(function () {

@@ -118,8 +118,8 @@ class Dog extends Model
         $duration = $this->average_duration;
 
         return [
-            'hours' => floor($duration / 60),
-            'minutes' => $duration % 60,
+            'hours' => intval(floor($duration / 60)),
+            'minutes' => intval($duration % 60),
         ];
     }
 

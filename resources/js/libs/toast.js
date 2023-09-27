@@ -35,12 +35,14 @@ window.groomer.showMessage = function (message, style = 'success') {
     (new Toast(el, options)).show();
 }
 
+// Delete the toast from the DOM when it is hidden.
 document.addEventListener('hidden.bs.toast', (e) => {
-    // Delete the toast from the DOM when it is hidden
     Toast.getInstance(e.target).dispose();
     e.target.parentElement.removeChild(e.target);
 }, false);
 
+// Display the toast on event.
 window.addEventListener('show-toast', e => {
-    window.groomer.showMessage(e.detail.message, e.detail.style);
+    const eData = e.detail[0];
+    window.groomer.showMessage(eData?.message, eData?.style);
 });

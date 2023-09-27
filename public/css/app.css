@@ -12251,12 +12251,20 @@ button .active, a .active {
   background: linear-gradient(90deg, #252526 0%, #2d2d30 100%);
   border-radius: 5px;
   box-shadow: 2px 2px 2px #2d2d30;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
+.dirty-spinner {
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .bg-guest {
   display: flex;
   flex-direction: row;
@@ -12625,6 +12633,16 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   background-color: #eeeeee;
 }
 
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  #bottom-nav {
+    bottom: 1rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  #bottom-nav {
+    bottom: 2rem;
+  }
+}
 .text-pink {
   color: #ff0096;
 }

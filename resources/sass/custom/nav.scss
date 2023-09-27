@@ -22,5 +22,12 @@
                   background-color: $light200;
             }
       }
+}
 
+@media screen and (min-width: 0px) and (max-width: 768px) {
+      #bottom-nav { bottom: 1rem; }
+}
+
+@media screen and (min-width: 768px) {
+      #bottom-nav { bottom: 2rem; }
 }

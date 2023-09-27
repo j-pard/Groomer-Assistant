@@ -5269,13 +5269,17 @@ window.groomer.showMessage = function (message) {
   }
   new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Toast(el, options).show();
 };
+
+// Delete the toast from the DOM when it is hidden.
 document.addEventListener('hidden.bs.toast', function (e) {
-  // Delete the toast from the DOM when it is hidden
   bootstrap__WEBPACK_IMPORTED_MODULE_0__.Toast.getInstance(e.target).dispose();
   e.target.parentElement.removeChild(e.target);
 }, false);
+
+// Display the toast on event.
 window.addEventListener('show-toast', function (e) {
-  window.groomer.showMessage(e.detail.message, e.detail.style);
+  var eData = e.detail[0];
+  window.groomer.showMessage(eData === null || eData === void 0 ? void 0 : eData.message, eData === null || eData === void 0 ? void 0 : eData.style);
 });
 
 /***/ }),

@@ -7,10 +7,11 @@
         value="{{ $value }}" 
         {{ $checked ? 'checked' : ''}}
 
-        wire:model="{{ $wire }}"
+        wire:model.live="{{ $wire }}"
     >
 
     <label class="form-check-label" for="radio{{ $value }}">
+        <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
         @if ($icon)
             <i class="{{ $icon }} {{ $iconClass }}"></i>
         @endif

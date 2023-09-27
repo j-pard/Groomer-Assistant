@@ -54,7 +54,7 @@ class Form extends LivewireForm
         $this->customers = Customer::getList();
         $this->status = Pet::getStatus();
         $this->sizes = Pet::getSizeOptions();
-        $this->breeds = Breed::getList();
+        $this->breeds = Breed::getAsOptions();
 
         $duration = $this->pet->getDurationInHoursMinutes();
         $this->hours = intval($duration['hours']);

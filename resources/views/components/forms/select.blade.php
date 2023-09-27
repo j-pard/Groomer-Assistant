@@ -1,39 +1,42 @@
 <div class="form-group {!! $classContainer !!}">
-    @if ($label)
-        <label for="{{ $name }}">
-            {{ $label }}
-            @if ($label && $required)
-                <span class="text-danger">*</span>
+    <div class="form-floating mb-4">
+        <select 
+            {!! $attributes->merge(['class' => "form-control " . $class]) !!}
+            name="{!! $name !!}"
+            {!! $id ? 'id="' . $id . '"' : "" !!}
+            {!! $required ? 'required' : '' !!}
+            {!! $readonly ? 'readonly' : '' !!}
+            {!! $disabled ? 'disabled' : '' !!}
+
+            wire:model.live="{{ $wire }}"
+        >
+            @if ($hasEmptyRow)
+                <option value=""></option>
             @endif
-        </label>
-    @endif
 
-    <select 
-        {!! $attributes->merge(['class' => "form-control " . $class]) !!}
-        name="{!! $name !!}"
-        {!! $id ? 'id="' . $id . '"' : "" !!}
-        {!! $required ? 'required' : '' !!}
-        {!! $readonly ? 'readonly' : '' !!}
-        {!! $disabled ? 'disabled' : '' !!}
+            @forelse($options as $option)
+                <option value="{{ $option['value'] }}" wire:key="{{ "$id-" . $option['value'] }}">
+                    {{ $option['label'] }}
+                </option>
+            @empty
+                <option value="null" disabled></option>
+            @endforelse
+        </select>
 
-        wire:model="{{ $wire }}"
-    >
-        @if ($hasEmptyRow)
-            <option value=""></option>
+        @if ($label)
+            <label for="{{ $name }}">
+                <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+                {{ $label }}
+                @if ($label && $required)
+                    <span class="text--copper">*</span>
+                @endif
+            </label>
         @endif
 
-        @forelse($options as $option)
-            <option value="{{ $option['value'] }}" wire:key="{{ "$id-" . $option['value'] }}">
-                {{ $option['label'] }}
-            </option>
-        @empty
-            <option value="null" disabled></option>
-        @endforelse
-    </select>
-
-    @error($name)
-        <div class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </div>
-    @enderror
+        @error($name)
+            <div class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+        @enderror
+    </div>
 </div>

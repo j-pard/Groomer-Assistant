@@ -15,10 +15,11 @@
             {!! isset($max) ? 'max="' . $max . '"' : '' !!}
             {!! isset($value) ? 'value="' . $value . '"' : '' !!}
 
-            wire:model="{{ $wire }}"
+            wire:model.live="{{ $wire }}"
         >
 
         <label for="{{ $name }}">
+            <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
             {{ $label }}
             @if ($required)
                 <span class="text--copper">*</span>

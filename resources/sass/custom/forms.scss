@@ -1,36 +1,3 @@
-.duration-inputs-container {
-    display: flex;
-    align-items: center;
-
-    div {
-        margin: 0;
-        padding: 0;
-
-        input {
-            width: 80px;
-        }
-    }
-}
-
-.form-group, .form-control {
-    margin-bottom: 12px;
-}
-
-.custom-img-container {
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-.default-avatar {
-    display: flex;
-    justify-content: center;
-
-    font-size: 70px;
-    color: lightgray;
-}
-
 .form-control {
     &.is-invalid {
         margin-bottom: 0;
@@ -40,4 +7,24 @@
 .form-check-input:checked {
     background-color: $copper;
     border-color: $copper;
+}
+
+.form-container {
+    background-color: $dark700;
+    background: linear-gradient(90deg, $dark700 0%, $dark500 100%);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px $dark500;
+}
+
+.dirty-spinner {
+    animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
