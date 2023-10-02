@@ -30,6 +30,7 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::view('', 'manager.dogs.table')->name('index');
         Route::prefix('{dog}')->group(function () {
             Route::get('', [DogsController::class, 'show'])->name('show');
+            Route::get('timeline', [DogsController::class, 'timeline'])->name('timeline');
         });
     });
 

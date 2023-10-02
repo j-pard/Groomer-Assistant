@@ -1,9 +1,11 @@
 <div class="skeleton">
-    <div class="list-heading">
-        <div class="input-group searchbar px-3 px-md-2">
-            <div class="skeleton-cell skeleton-searchbar"></div>
+    @if ($search)
+        <div class="list-heading">
+            <div class="input-group searchbar px-3 px-md-2">
+                <div class="skeleton-cell skeleton-searchbar"></div>
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="d-flex flex-column pt-3 pb-1 mb-1">
         @for ($i = 0; $i < $rows; $i++)

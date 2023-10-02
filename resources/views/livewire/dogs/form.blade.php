@@ -41,25 +41,6 @@
                 <div class="row">
                     <x-forms.select
                         classContainer="col-md-6"
-                        label="Race"
-                        wire="main_breed_id"
-                        :options="$breeds"
-                        hasEmptyRow
-                        required
-                    />
-
-                    <x-forms.select
-                        classContainer="col-md-6"
-                        label="Croisement"
-                        wire="second_breed_id"
-                        :options="$breeds"
-                        hasEmptyRow
-                    />
-                </div>
-
-                <div class="row">
-                    <x-forms.select
-                        classContainer="col-md-6"
                         label="Taille"
                         :options='$sizes'
                         wire="size"
@@ -72,6 +53,29 @@
                         :options='$statuses'
                         wire="status"
                         required
+                    />
+                </div>
+
+                <div class="row align-items-center">
+                    <x-forms.select
+                        classContainer="col-md-6"
+                        label="Race"
+                        wire="main_breed_id"
+                        :options="$breeds"
+                        hasEmptyRow
+                        required
+                    />
+
+                    <div class="col text-center mb-2 cell-desktop">
+                        <i class="fa-solid fa-shuffle text--quartz h5"></i>
+                    </div>
+
+                    <x-forms.select
+                        classContainer="col-md-5"
+                        label="Croisement"
+                        wire="second_breed_id"
+                        :options="$breeds"
+                        hasEmptyRow
                     />
                 </div>
             </div>

@@ -98,6 +98,7 @@ class Table extends Component
     public function placeholder(array $params = []): View
     {
         $params['rows'] = $this->perPage;
+        $params['search'] = true;
 
         return view('livewire.placeholders.table-skeleton', $params);
     }

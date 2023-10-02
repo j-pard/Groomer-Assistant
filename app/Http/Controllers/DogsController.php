@@ -18,4 +18,16 @@ class DogsController extends Controller
             'dog' => $dog,
         ]);
     }
+
+    /**
+     * Show dog timeline.
+     *
+     * @return View
+     */
+    public function timeline(Dog $dog): View
+    {
+        return view('manager.dogs.timeline', [
+            'dog' => $dog,
+        ]);
+    }
 }

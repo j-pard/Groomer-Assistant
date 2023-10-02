@@ -53,17 +53,17 @@
                 @if (isset($secondNav))
                     <div id="secondary-nav" class="d-flex justify-content-around align-items-center px-4">
                         <div class="my-2 mx-3">
-                            <a href="" class="nav-item" {{ Route::currentRouteName() === 'dogs.show' ? 'active' : '' }}>
+                            <a href="{{ route('dogs.show', ['dog' => $dog->id]) }}" class="nav-item" {{ Route::currentRouteName() === 'dogs.show' ? 'active' : '' }}>
                                 Détails
                             </a>
                         </div>
                         <div class="my-2 mx-3">
-                            <a href="" class="nav-item" {{ Route::currentRouteName(), 'dogs.appointments' ? 'active' : '' }}>
+                            <a href="{{ route('dogs.timeline', ['dog' => $dog->id]) }}" class="nav-item" {{ Route::currentRouteName() === 'dogs.timeline' ? 'active' : '' }}>
                                 Rdv
                             </a>
                         </div>
                         <div class="my-2 mx-3">
-                            <a href="" class="nav-item" {{ Route::currentRouteName(), 'dogs.gallery' ? 'active' : '' }}>
+                            <a href="" class="nav-item" {{ Route::currentRouteName() === 'dogs.gallery' ? 'active' : '' }}>
                                 Gallerie
                             </a>
                         </div>
@@ -95,6 +95,11 @@
             </nav>
 
             <main>
+                @php
+                    // Define local for Carbon
+                    Carbon\Carbon::setLocale('fr');
+                @endphp
+
                 @yield('content')
             </main>
             
