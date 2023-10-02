@@ -40,7 +40,7 @@ return new class extends Migration
             $table->string('owner_secondary_phone', 100)->nullable();
             $table->string('owner_email', 100)->nullable();
             $table->string('owner_address', 255)->nullable();
-            $table->integer('owner_zip_code', 20)->nullable();
+            $table->integer('owner_zip_code')->nullable();
             $table->string('owner_city', 100)->nullable();
             $table->boolean('owner_has_reminder')->default(false);
             
