@@ -5227,6 +5227,8 @@ var setNavOffset = function setNavOffset() {
   }
   navbar.style.cursor = 'default';
 };
+
+// Hide navbar when scrolling down. Open it when scrolling up.
 window.onscroll = function () {
   var currentScrollPos = window.scrollY;
   if (prevScrollPos > currentScrollPos) {
@@ -5242,7 +5244,9 @@ window.onscroll = function () {
   }
   prevScrollPos = currentScrollPos;
 };
-navbar.addEventListener('click', function (e) {
+
+// Re-open the nav when clicking on it.
+navbar.addEventListener('click', function () {
   setNavOffset();
 });
 

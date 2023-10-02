@@ -15,9 +15,10 @@ const setNavOffset = () => {
     navbar.style.cursor = 'default';
 }
 
+// Hide navbar when scrolling down. Open it when scrolling up.
 window.onscroll = function() {
     const currentScrollPos = window.scrollY;
-    
+
     if (prevScrollPos > currentScrollPos) {
         setNavOffset();
     } else {
@@ -33,6 +34,7 @@ window.onscroll = function() {
     prevScrollPos = currentScrollPos;
 }
 
-navbar.addEventListener('click', (e) => {
+// Re-open the nav when clicking on it.
+navbar.addEventListener('click', () => {
     setNavOffset();
 })
