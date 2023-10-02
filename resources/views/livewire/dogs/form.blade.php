@@ -171,6 +171,7 @@
                 </div>
 
                 <x-forms.textarea
+                    label="Remarques"
                     rows="10"
                     wire="details"
                 />

@@ -3,9 +3,11 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      background-color: $light200;
-      border-radius: 50px;
+      background-color: $light300;
+      border-radius: 50px !important;
       z-index: 4;
+      overflow: hidden;
+      transition: bottom 0.3s;
 
       .nav-item {
             color: $dark300;
@@ -15,12 +17,33 @@
             }
 
             &[active] {
+                  color: $copper;
+            }
+      }
+}
+
+#primary-nav {
+      border-top-left-radius: 25px !important;
+      border-top-right-radius: 25px !important;
+      background-color: $light200;
+      
+      .nav-item {
+            &[active] {
                   padding: 0.3rem;
                   color: $copper;
                   border: 2px solid $copper;
-                  border-radius: 50%;
+                  border-radius: 50px;
                   background-color: $light200;
             }
+      }
+}
+
+#secondary-nav {
+      background-color: $light300;
+
+      .nav-item {
+            text-decoration: none;
+            font-weight: bold;
       }
 }
 

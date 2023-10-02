@@ -49,26 +49,48 @@
                 </div>
             </header>
 
-            <nav id="bottom-nav" class="d-flex justify-content-between align-items-center px-3 py-1">
-                <div class="my-2 mx-3 h3">
-                    <a href="" class="nav-item" {{ Route::currentRouteName() === 'home' ? 'active' : '' }}>
-                        <i class="fa-solid fa-house p-1"></i>
-                    </a>
-                </div>
-                <div class="text--dark-700 my-2 mx-3 h3">
-                    <a href="" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'appointments.')? 'active' : '' }}>
-                        <i class="fa-solid fa-calendar-days p-1"></i>
-                    </a>
-                </div>
-                <div class="text--dark-700 my-2 mx-3 h3">
-                    <a href="{{ route('dogs.index') }}" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'dogs.')? 'active' : '' }}>
-                        <i class="fa-solid fa-paw p-1"></i>
-                    </a>
-                </div>
-                <div class="my-2 mx-3 h3">
-                    <a href="" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'accounting.') ? 'active' : '' }}>
-                        <i class="fa-solid fa-coins p-1"></i>
-                    </a>
+            <nav id="bottom-nav">
+                @if (isset($secondNav))
+                    <div id="secondary-nav" class="d-flex justify-content-around align-items-center px-4">
+                        <div class="my-2 mx-3">
+                            <a href="" class="nav-item" {{ Route::currentRouteName() === 'dogs.show' ? 'active' : '' }}>
+                                Détails
+                            </a>
+                        </div>
+                        <div class="my-2 mx-3">
+                            <a href="" class="nav-item" {{ Route::currentRouteName(), 'dogs.appointments' ? 'active' : '' }}>
+                                Rdv
+                            </a>
+                        </div>
+                        <div class="my-2 mx-3">
+                            <a href="" class="nav-item" {{ Route::currentRouteName(), 'dogs.gallery' ? 'active' : '' }}>
+                                Gallerie
+                            </a>
+                        </div>
+                    </div>
+                @endif
+
+                <div id="primary-nav" class="d-flex justify-content-between align-items-center px-3 py-1">
+                    <div class="text--dark-700 my-2 mx-3 h3">
+                        <a href="" class="nav-item" {{ Route::currentRouteName() === 'home' ? 'active' : '' }}>
+                            <i class="fa-solid fa-house p-1"></i>
+                        </a>
+                    </div>
+                    <div class="text--dark-700 my-2 mx-3 h3">
+                        <a href="" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'appointments.')? 'active' : '' }}>
+                            <i class="fa-solid fa-calendar-days p-1"></i>
+                        </a>
+                    </div>
+                    <div class="text--dark-700 my-2 mx-3 h3">
+                        <a href="{{ route('dogs.index') }}" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'dogs.')? 'active' : '' }}>
+                            <i class="fa-solid fa-paw p-1"></i>
+                        </a>
+                    </div>
+                    <div class="my-2 mx-3 h3">
+                        <a href="" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'accounting.') ? 'active' : '' }}>
+                            <i class="fa-solid fa-coins p-1"></i>
+                        </a>
+                    </div>
                 </div>
             </nav>
 

@@ -5076,9 +5076,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_confirmation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/confirmation */ "./resources/js/libs/confirmation.js");
 /* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./libs/form-modal */ "./resources/js/libs/form-modal.js");
 /* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_libs_form_modal__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _libs_overlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/overlay */ "./resources/js/libs/overlay.js");
-/* harmony import */ var _libs_overlay__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_libs_overlay__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _libs_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/toast */ "./resources/js/libs/toast.js");
+/* harmony import */ var _libs_nav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/nav */ "./resources/js/libs/nav.js");
+/* harmony import */ var _libs_nav__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_libs_nav__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _libs_overlay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/overlay */ "./resources/js/libs/overlay.js");
+/* harmony import */ var _libs_overlay__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_libs_overlay__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _libs_toast__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./libs/toast */ "./resources/js/libs/toast.js");
+
 
 
 
@@ -5200,6 +5203,36 @@ window.addEventListener('shown.bs.modal', function (event) {
     firstInputField.focus();
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/libs/nav.js":
+/*!**********************************!*\
+  !*** ./resources/js/libs/nav.js ***!
+  \**********************************/
+/***/ (() => {
+
+// Hide navbar on scroll down.
+var prevScrollPos = window.scrollY;
+var navbar = document.getElementById('bottom-nav');
+
+// Function to check the screen width and apply the style accordingly.
+var setNavOffset = function setNavOffset() {
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    navbar.style.bottom = '1rem';
+  } else {
+    navbar.style.bottom = '2rem';
+  }
+};
+window.onscroll = function () {
+  var currentScrollPos = window.scrollY;
+  if (prevScrollPos > currentScrollPos) {
+    setNavOffset();
+  } else {
+    navbar.style.bottom = '-90px';
+  }
+  prevScrollPos = currentScrollPos;
+};
 
 /***/ }),
 

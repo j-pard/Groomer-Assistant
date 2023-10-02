@@ -12615,9 +12615,11 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #eeeeee;
-  border-radius: 50px;
+  background-color: #e0e0e0;
+  border-radius: 50px !important;
   z-index: 4;
+  overflow: hidden;
+  transition: bottom 0.3s;
 }
 #bottom-nav .nav-item {
   color: #3e3e42;
@@ -12626,11 +12628,28 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   color: #e1bb80;
 }
 #bottom-nav .nav-item[active] {
+  color: #c97c5d;
+}
+
+#primary-nav {
+  border-top-left-radius: 25px !important;
+  border-top-right-radius: 25px !important;
+  background-color: #eeeeee;
+}
+#primary-nav .nav-item[active] {
   padding: 0.3rem;
   color: #c97c5d;
   border: 2px solid #c97c5d;
-  border-radius: 50%;
+  border-radius: 50px;
   background-color: #eeeeee;
+}
+
+#secondary-nav {
+  background-color: #e0e0e0;
+}
+#secondary-nav .nav-item {
+  text-decoration: none;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 0px) and (max-width: 768px) {
