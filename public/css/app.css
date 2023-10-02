@@ -12441,8 +12441,13 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
   font-size: 1rem;
 }
 .toast-body .btn-icon {
-  color: #343a40;
   justify-self: flex-end !important;
+  font-size: 1.3rem;
+  color: #3e3e42;
+  transition: all 0.3s;
+}
+.toast-body .btn-icon:hover {
+  color: #252526;
 }
 .toast__wrapper {
   display: flex;

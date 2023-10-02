@@ -20,7 +20,7 @@ window.groomer.showMessage = function (message, style = 'success') {
     button.setAttribute('type', 'button');
     button.setAttribute('data-bs-dismiss', 'toast');
     button.setAttribute('aria-label', 'Close');
-    button.innerHTML += '<img src="/images/close.svg"/>';
+    button.innerHTML += '<i class="fa-solid fa-xmark"></i>';
     body.appendChild(button);
 
     // Append the new toast to the toasts container

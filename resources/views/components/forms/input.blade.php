@@ -15,7 +15,7 @@
             {!! isset($max) ? 'max="' . $max . '"' : '' !!}
             {!! isset($value) ? 'value="' . $value . '"' : '' !!}
 
-            wire:model.live="{{ $wire }}"
+            wire:model.live.debounce.500ms="{{ $wire }}"
         >
 
         <label for="{{ $name }}">

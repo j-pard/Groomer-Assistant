@@ -9,6 +9,7 @@ use App\Models\Dog;
 use App\Traits\Livewire\WithToast;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -175,10 +176,14 @@ class Form extends Component
             $name => Arr::get($this->rules(), $name, 'required|string'),
         ]);
         
-        $this->dog->update([
-            $name => $value,
-        ]);
+        try {
+            $this->dog->update([
+                $name => $value,
+            ]);
+        } catch (\Throwable $th) {
+            Log::error($th);
 
-        $this->showSuccessMessage();
+            $this->showErrorMessage();
+        }
     }
 }

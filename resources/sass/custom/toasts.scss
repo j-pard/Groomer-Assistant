@@ -3,24 +3,30 @@
     padding-bottom: .5rem;
     padding-right: .5rem;
 
-    &-container{
+    &-container {
         z-index: 999;
     }
 
-    &-body{
+    &-body {
         display: flex;
         align-items: center;
         justify-content: stretch;
         line-height: 1.6;
         font-size: 1rem;
         
-        .btn-icon{
-            color: $dark;
+        .btn-icon {
             justify-self: flex-end !important;
+            font-size: 1.3rem;
+            color: $dark300;
+            transition: all .3s;
+
+            &:hover {
+                color: $dark700;
+            }
         }
     }
 
-    &__wrapper{
+    &__wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -29,17 +35,17 @@
         margin-right: .5rem;
         font-size: 1.8rem;
     }
-    &--success{
+    &--success {
         border-left: 6px solid $success;
 
-        .toast__icon{
+        .toast__icon {
             color: $success;
         }
     }
-    &--danger{
+    &--danger {
         border-left: 6px solid $danger;
 
-        .toast__icon{
+        .toast__icon {
             color: $danger;
         }
     }

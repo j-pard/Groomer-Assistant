@@ -17,7 +17,7 @@
         {{ $cols ? 'cols=' . $cols : ''}}
         {{ $rows ? 'rows=' . $rows : ''}}
 
-        wire:model.live="{{ $wire }}"
+        wire:model.live.debounce.1000ms="{{ $wire }}"
     >
     </textarea>
 
