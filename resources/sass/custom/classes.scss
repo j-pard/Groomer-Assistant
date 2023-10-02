@@ -98,10 +98,10 @@ button, a {
     a {
         color: $copper;
         text-decoration: none;
-    }
 
-    &:hover {
-        color: $ecru;
+        &:hover {
+            color: $ecru;
+        }
     }
 
     &-skeleton {

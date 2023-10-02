@@ -12230,7 +12230,7 @@ button .active, a .active {
   color: #c97c5d;
   text-decoration: none;
 }
-.avatar:hover {
+.avatar a:hover {
   color: #e1bb80;
 }
 .avatar-skeleton {
