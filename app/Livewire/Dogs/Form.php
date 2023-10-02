@@ -73,11 +73,7 @@ class Form extends Component
         $this->has_warning = $this->dog->has_warning;
         $this->main_breed_id = $this->dog->main_breed_id;
         $this->second_breed_id = $this->dog->second_breed_id;
-
-        // Duration
-        $duration = $this->dog->getDurationInHoursMinutes();
-        $this->hours = $duration['hours'];
-        $this->minutes = $duration['minutes'];
+        $this->formatDuration();
 
         // Owner
         $this->owner_name = $this->dog->owner_name;
@@ -177,13 +173,39 @@ class Form extends Component
         ]);
         
         try {
-            $this->dog->update([
-                $name => $value,
-            ]);
+            switch ($name) {
+                case 'hours':
+                case 'minutes':
+                    // Update duration
+                    $this->dog->update([
+                        'average_duration' => intval($this->hours * 60) + intval($this->minutes),
+                    ]);
+
+                    $this->formatDuration();
+                    break;
+                
+                default:
+                    $this->dog->update([
+                        $name => $value,
+                    ]);
+                    break;
+            }
         } catch (\Throwable $th) {
             Log::error($th);
 
             $this->showErrorMessage();
         }
     }
+
+    /**
+     * Get dog duration and format it to hours and minutes.
+     *
+     * @return void
+     */
+    private function formatDuration() {
+        $duration = $this->dog->getDurationInHoursMinutes();
+        $this->hours = $duration['hours'];
+        $this->minutes = $duration['minutes'];
+    }
+
 }

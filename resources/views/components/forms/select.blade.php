@@ -8,7 +8,7 @@
             {!! $readonly ? 'readonly' : '' !!}
             {!! $disabled ? 'disabled' : '' !!}
 
-            wire:model.live="{{ $wire }}"
+            wire:model.live.debounce.500ms="{{ $wire }}"
         >
             @if ($hasEmptyRow)
                 <option value=""></option>

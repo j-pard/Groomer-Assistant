@@ -151,19 +151,19 @@
                 
                 <div class="form-group">
                     <label>Durée moyenne</label>
-                    <div class="d-flex">
+                    <div class="d-flex align-items-center">
                         <x-forms.input
                             label="Heures"
                             type="number"
                             min="0"
                             wire="hours"
                         />
-                        <div class="h4 mx-1">:</div>
+                        <div class="h4 mx-2 mb-4">:</div>
+
                         <x-forms.input
                             label="Minutes"
                             type="number"
                             min="0"
-                            max="59"
                             step="5"
                             wire="minutes"
                         />

@@ -7,7 +7,7 @@
         value="{{ $value }}" 
         {{ $checked ? 'checked' : ''}}
 
-        wire:model.live="{{ $wire }}"
+        wire:model.live.debounce.500ms="{{ $wire }}"
     >
 
     <label class="form-check-label" for="radio{{ $value }}">

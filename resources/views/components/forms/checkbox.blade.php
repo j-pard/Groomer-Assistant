@@ -6,7 +6,7 @@
         id="checkbox{{ $name }}" 
         {{ $checked ? 'checked' : ''}}
 
-        wire:model.live="{{ $wire }}"
+        wire:model.live.debounce.500ms="{{ $wire }}"
     >
 
     <label class="form-check-label d-flex align-items-center mt-2" for="checkbox{{ $name }}">
