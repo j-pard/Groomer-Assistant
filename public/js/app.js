@@ -5098,13 +5098,6 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.bootstrap = bootstrap__WEBPACK_IMPORTED_MODULE_0__;
 
-// Remove .loading from body after content loaded
-document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(function () {
-    document.body.classList.remove('loading');
-  }, 20);
-});
-
 /***/ }),
 
 /***/ "./resources/js/libs/confirmation.js":
@@ -5217,37 +5210,43 @@ var prevScrollPos = window.scrollY;
 var navbar = document.getElementById('bottom-nav');
 var secondaryNavbar = document.getElementById('secondary-nav');
 
-// Function to check the screen width and apply the style accordingly.
-var setNavOffset = function setNavOffset() {
-  if (window.matchMedia("(max-width: 768px)").matches) {
-    navbar.style.bottom = '1rem';
-  } else {
-    navbar.classList.toggle('pt-1', false);
-    navbar.style.bottom = '2rem';
-  }
+// Check media queries to define screen size.
+var isSmallScreen = function isSmallScreen() {
+  return window.matchMedia("(max-width: 768px)").matches;
+};
+
+// Open the navbar by setting the offset.
+var openNav = function openNav() {
+  navbar.style.bottom = isSmallScreen() ? '1rem' : '2rem';
   navbar.style.cursor = 'default';
+  navbar.classList.toggle('pt-2', false);
+};
+
+// Close the navbar by transletting it down.
+var closeNav = function closeNav() {
+  if (navbar.contains(secondaryNavbar)) {
+    navbar.style.bottom = isSmallScreen() ? '-97px' : '-102px';
+  } else {
+    navbar.style.bottom = isSmallScreen() ? '-57px' : '-62px';
+  }
+  navbar.style.cursor = 'pointer';
+  navbar.classList.toggle('pt-2', true);
 };
 
 // Hide navbar when scrolling down. Open it when scrolling up.
 window.onscroll = function () {
   var currentScrollPos = window.scrollY;
   if (prevScrollPos > currentScrollPos) {
-    setNavOffset();
+    openNav();
   } else {
-    navbar.style.cursor = 'pointer';
-    if (navbar.contains(secondaryNavbar)) {
-      navbar.style.bottom = '-90px';
-    } else {
-      navbar.classList.toggle('pt-1', true);
-      navbar.style.bottom = '-55px';
-    }
+    closeNav();
   }
   prevScrollPos = currentScrollPos;
 };
 
 // Re-open the nav when clicking on it.
 navbar.addEventListener('click', function () {
-  setNavOffset();
+  openNav();
 });
 
 /***/ }),

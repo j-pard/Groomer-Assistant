@@ -59,7 +59,7 @@
                         @endif
                         <span class="badge rounded-pill {{ 'bg-' . App\Enums\DogStatus::getColor($dog->status) }}">{{ App\Enums\DogStatus::getText($dog->status) }}</span>
                     </div>
-                    <div><em class="text--quartz cell-mobile">{{ $dog->latestAppointment !== null ? Carbon\Carbon::parse($dog->latestAppointment->time)->format('d-m-Y') : '' }}</em></div>
+                    <div><em class="text--quartz cell-mobile">{{ $dog->latestAppointment !== null ? Carbon\Carbon::parse($dog->latestAppointment->time)->translatedFormat('d F Y') : '' }}</em></div>
                 </div>
             </div>
         @endforeach

@@ -13,12 +13,4 @@ import './libs/toast';
 
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 window.bootstrap = bootstrap;
-
-// Remove .loading from body after content loaded
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(() => {
-        document.body.classList.remove('loading');
-    }, 20);
-});

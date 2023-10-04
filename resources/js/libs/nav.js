@@ -4,15 +4,27 @@ let prevScrollPos = window.scrollY;
 const navbar = document.getElementById('bottom-nav');
 const secondaryNavbar = document.getElementById('secondary-nav');
 
-// Function to check the screen width and apply the style accordingly.
-const setNavOffset = () => {
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        navbar.style.bottom = '1rem';
-    } else {
-        navbar.classList.toggle('pt-1', false);
-        navbar.style.bottom = '2rem';
-    }
+// Check media queries to define screen size.
+const isSmallScreen = () => {
+    return window.matchMedia("(max-width: 768px)").matches;
+}
+
+// Open the navbar by setting the offset.
+const openNav = () => {
+    navbar.style.bottom = isSmallScreen() ? '1rem' : '2rem';
     navbar.style.cursor = 'default';
+    navbar.classList.toggle('pt-2', false);
+}
+
+// Close the navbar by transletting it down.
+const closeNav = () => {
+    if (navbar.contains(secondaryNavbar)) {
+        navbar.style.bottom = isSmallScreen() ? '-97px' : '-102px';
+    } else {
+        navbar.style.bottom = isSmallScreen() ? '-57px' : '-62px';
+    }
+    navbar.style.cursor = 'pointer';
+    navbar.classList.toggle('pt-2', true);
 }
 
 // Hide navbar when scrolling down. Open it when scrolling up.
@@ -20,15 +32,9 @@ window.onscroll = function() {
     const currentScrollPos = window.scrollY;
 
     if (prevScrollPos > currentScrollPos) {
-        setNavOffset();
+        openNav();
     } else {
-        navbar.style.cursor = 'pointer';
-        if (navbar.contains(secondaryNavbar)) {
-            navbar.style.bottom = '-90px';
-        } else {
-            navbar.classList.toggle('pt-1', true);
-            navbar.style.bottom = '-55px';
-        }
+        closeNav();
     }
 
     prevScrollPos = currentScrollPos;
@@ -36,5 +42,6 @@ window.onscroll = function() {
 
 // Re-open the nav when clicking on it.
 navbar.addEventListener('click', () => {
-    setNavOffset();
-})
+    openNav();
+});
+
