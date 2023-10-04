@@ -99,26 +99,27 @@ class Form extends Component
     {
         return [
             // Dog
-            'name' => 'required|string|min:2|max:100',
-            'genre' => 'required|string|in:unknown,female,male',
             'birthdate' => 'nullable|string',
-            'status' => 'required|string|in:' . DogStatus::getValidationInRuleValues(),
-            'size' => 'required|string|in:' . DogSizes::getValidationInRuleValues(),
             'details' => 'nullable|string',
+            'genre' => 'required|string|in:unknown,female,male',
+            'has_warning' => 'boolean',
             'main_breed_id' => 'required|integer',
+            'name' => 'required|string|min:2|max:100',
             'second_breed_id' => 'nullable|integer',
+            'size' => 'required|string|in:' . DogSizes::getValidationInRuleValues(),
+            'status' => 'required|string|in:' . DogStatus::getValidationInRuleValues(),
 
             // Duration
             'hours' => 'nullable|integer',
             'minutes' => 'nullable|integer',
 
             // Owner
-            'owner_name' => 'required|string|min:2|max:100',
-            'owner_phone' => 'required|string|min:2|max:50',
             'owner_address' =>  'nullable|string|max:255',
             'owner_city' =>  'nullable|string|min:2|max:100',
             'owner_email' => 'nullable|email|max:100',
             'owner_has_reminder' => 'boolean',
+            'owner_name' => 'required|string|min:2|max:100',
+            'owner_phone' => 'required|string|min:2|max:50',
             'owner_secondary_phone' => 'nullable|string|max:100',
             'owner_zip_code' => 'nullable|integer|digits_between:4,6',
         ];
@@ -182,7 +183,7 @@ class Form extends Component
         $this->validate([
             $name => Arr::get($this->rules(), $name, 'required|string'),
         ]);
-        
+
         try {
             if (Str::startsWith($name, 'owner_')) {
                 $cleanedName = str_replace('owner_', '', $name);
