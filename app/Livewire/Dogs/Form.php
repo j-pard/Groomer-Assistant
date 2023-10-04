@@ -6,10 +6,12 @@ use App\Enums\DogSizes;
 use App\Enums\DogStatus;
 use App\Models\Breed;
 use App\Models\Dog;
+use App\Models\Owner;
 use App\Traits\Livewire\WithToast;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,6 +22,7 @@ class Form extends Component
 
     // General
     public Dog $dog;
+    public Owner $owner;
     public array $breeds = [];
     public array $statuses = [];
     public array $sizes = [];
@@ -59,6 +62,7 @@ class Form extends Component
     {
         // General
         $this->dog = $dog;
+        $this->owner = $dog->owner;
         $this->breeds = Breed::getAsOptions();
         $this->statuses = DogStatus::getAsOptions();
         $this->sizes = DogSizes::getAsOptions();
@@ -76,14 +80,14 @@ class Form extends Component
         $this->formatDuration();
 
         // Owner
-        $this->owner_name = $this->dog->owner_name;
-        $this->owner_phone = $this->dog->owner_phone;
-        $this->owner_address = $this->dog->owner_address;
-        $this->owner_city = $this->dog->owner_city;
-        $this->owner_email = $this->dog->owner_email;
-        $this->owner_has_reminder = $this->dog->owner_has_reminder;
-        $this->owner_secondary_phone = $this->dog->owner_secondary_phone;
-        $this->owner_zip_code = $this->dog->owner_zip_code;
+        $this->owner_name = $this->owner->name;
+        $this->owner_phone = $this->owner->phone;
+        $this->owner_address = $this->owner->address;
+        $this->owner_city = $this->owner->city;
+        $this->owner_email = $this->owner->email;
+        $this->owner_has_reminder = $this->owner->has_reminder;
+        $this->owner_secondary_phone = $this->owner->secondary_phone;
+        $this->owner_zip_code = $this->owner->zip_code;
     }
 
     /**
@@ -132,6 +136,10 @@ class Form extends Component
 
     public function save()
     {
+        // TODO
+        dd('Creating dog and owner');
+
+        
         $this->validate();
 
         $this->dog->update([
@@ -142,17 +150,20 @@ class Form extends Component
             'has_warning' => $this->has_warning,
             'main_breed_id' => $this->main_breed_id,
             'name' => $this->name,
-            'owner_address' => $this->owner_address,
-            'owner_city' => $this->owner_city,
-            'owner_email' => $this->owner_email,
-            'owner_has_reminder' => $this->owner_has_reminder,
-            'owner_name' => $this->owner_name,
-            'owner_phone' => $this->owner_phone,
-            'owner_secondary_phone' => $this->owner_secondary_phone,
-            'owner_zip_code' => $this->owner_zip_code,
             'second_breed_id' => $this->second_breed_id,
             'size' => $this->size,
             'status' => $this->status,
+        ]);
+
+        $this->owner->update([
+            'address' => $this->owner_address,
+            'city' => $this->owner_city,
+            'email' => $this->owner_email,
+            'has_reminder' => $this->owner_has_reminder,
+            'name' => $this->owner_name,
+            'phone' => $this->owner_phone,
+            'secondary_phone' => $this->owner_secondary_phone,
+            'zip_code' => $this->owner_zip_code,
         ]);
 
         $this->showSuccessMessage();
@@ -173,26 +184,34 @@ class Form extends Component
         ]);
         
         try {
-            switch ($name) {
-                case 'hours':
-                case 'minutes':
-                    // Update duration
-                    $this->dog->update([
-                        'average_duration' => intval($this->hours * 60) + intval($this->minutes),
-                    ]);
+            if (Str::startsWith($name, 'owner_')) {
+                $cleanedName = str_replace('owner_', '', $name);
+                // Update owner
+                $this->owner->update([
+                    $cleanedName => $value,
+                ]);
+            } else {
+                // Update dog
+                switch ($name) {
+                    case 'hours':
+                    case 'minutes':
+                        // Update duration
+                        $this->dog->update([
+                            'average_duration' => intval($this->hours * 60) + intval($this->minutes),
+                        ]);
 
-                    $this->formatDuration();
-                    break;
-                
-                default:
-                    $this->dog->update([
-                        $name => $value,
-                    ]);
-                    break;
+                        $this->formatDuration();
+                        break;
+
+                    default:
+                        $this->dog->update([
+                            $name => $value,
+                        ]);
+                        break;
+                }
             }
         } catch (\Throwable $th) {
             Log::error($th);
-
             $this->showErrorMessage();
         }
     }

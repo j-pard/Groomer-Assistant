@@ -17,6 +17,7 @@ return new class extends Migration
     {
         Schema::create('dogs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('owner_id')->constrained();
 
             // Breeds
             $table->unsignedBigInteger('main_breed_id')->nullable();
@@ -33,16 +34,6 @@ return new class extends Migration
             $table->unsignedInteger('average_duration')->nullable();
             $table->boolean('has_warning')->default(false);
             $table->text('details')->nullable();
-
-            // Owner details
-            $table->string('owner_name', 100);
-            $table->string('owner_phone', 50);
-            $table->string('owner_secondary_phone', 100)->nullable();
-            $table->string('owner_email', 100)->nullable();
-            $table->string('owner_address', 255)->nullable();
-            $table->integer('owner_zip_code')->nullable();
-            $table->string('owner_city', 100)->nullable();
-            $table->boolean('owner_has_reminder')->default(false);
             
             $table->timestamps();
         });

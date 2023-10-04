@@ -34,14 +34,14 @@
                             @endswitch
                             {{ $dog->name }}
                         </div>
-                        <span class="text--quartz">{{ $dog->owner_name }}</span>
-                        <em class="text--quartz cell-mobile">{{ $dog->owner_phone }}</em>
+                        <span class="text--quartz">{{ $dog->owner->name }}</span>
+                        <em class="text--quartz cell-mobile">{{ $dog->owner->phone }}</em>
                     </div>
                 </div>
 
                 <div class="cell-desktop col-md-3">
                     <div class="d-flex flex-column">
-                        <div class="text--quartz"><i class="fa-solid fa-phone text--copper me-2"></i>{{ $dog->owner_phone }}</div>
+                        <div class="text--quartz"><i class="fa-solid fa-phone text--copper me-2"></i>{{ $dog->owner->phone }}</div>
                         <div class="text--quartz"><i class="fa-solid fa-calendar-day text--copper me-2"></i>{{ $dog->latestAppointment !== null ? Carbon\Carbon::parse($dog->latestAppointment->time)->translatedFormat('d F Y') : '' }}</div>
                     </div>
                 </div>

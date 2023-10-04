@@ -23,14 +23,7 @@ class Dog extends Model
         'has_warning',
         'main_breed_id',
         'name',
-        'owner_address',
-        'owner_city',
-        'owner_email',
-        'owner_has_reminder',
-        'owner_name',
-        'owner_phone',
-        'owner_secondary_phone',
-        'owner_zip_code',
+        'owner_id',
         'second_breed_id',
         'size',
         'status',
@@ -43,8 +36,14 @@ class Dog extends Model
      */
     protected $casts = [
         'has_warning' => 'boolean',
-        'owner_has_reminder' => 'boolean',
     ];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['owner'];
 
     /**
      * Get appointments of specified dog.
@@ -64,6 +63,16 @@ class Dog extends Model
     public function mainBreed(): BelongsTo
     {
         return $this->belongsTo(Breed::class, 'main_breed_id');
+    }
+
+    /**
+     * Get owner of specified dog.
+     *
+     * @return BelongsTo
+     */
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(Owner::class);
     }
 
     /**
@@ -125,6 +134,6 @@ class Dog extends Model
 
     public function getAvatarAttribute(): string
     {
-        return strtoupper(substr($this->name, 0, 1) . substr($this->owner_name ?? '', 0, 1));
+        return strtoupper(substr($this->name, 0, 1) . substr($this->owner->name ?? '', 0, 1));
     }
 }

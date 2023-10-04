@@ -71,10 +71,12 @@ class Table extends Component
             ->with('mainBreed', 'secondBreed', 'latestAppointment')
             ->when($this->search !== null, function (Builder $query) {
                 $query->where('name', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('owner_name', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('owner_phone', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('owner_secondary_phone', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('owner_name', 'LIKE', '%' . $this->search . '%')
+                    ->orWhereHas('owner', function (Builder $ownerQuery) {
+                        $ownerQuery->where('name', 'LIKE', '%' . $this->search . '%')
+                        ->orWhere('phone', 'LIKE', '%' . $this->search . '%')
+                        ->orWhere('secondary_phone', 'LIKE', '%' . $this->search . '%')
+                        ->orWhere('name', 'LIKE', '%' . $this->search . '%');
+                    })
                     ->orWhere(function (Builder $q) {
                         $q->whereHas('mainBreed', function (Builder $breedQuery) {
                             $breedQuery->where('breed', 'LIKE', '%' . $this->search . '%');
@@ -85,7 +87,6 @@ class Table extends Component
                     });
             })
             ->orderBy('name', 'ASC')
-            ->orderBy('owner_name', 'ASC')
             ->paginate($this->perPage);
     }
 

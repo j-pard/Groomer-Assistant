@@ -234,7 +234,7 @@ class Pet extends Model implements HasMedia
             $newDetails .= $this->warnings;
         }
 
-        if ($this->customer->more_info !== null) {
+        if ($this?->customer?->more_info !== null) {
             if ($newDetails != '') {
                 $newDetails .= $emptyRow;
             }
