@@ -8,6 +8,16 @@ use Illuminate\Contracts\View\View;
 class DogsController extends Controller
 {
     /**
+     * Show dog creator interface.
+     *
+     * @return View
+     */
+    public function create(): View
+    {
+        return view('manager.dogs.create');
+    }
+
+    /**
      * Show dog details.
      *
      * @return View

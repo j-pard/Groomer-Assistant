@@ -1,7 +1,7 @@
 <div class="form-container p-4">
     <form wire:submit="save">
         <div class="row justify-content-between">
-            <div class="col-12 col-md-5 mb-5">
+            <div class="col-12 col-md-5 mb-4">
                 <h3 class="mb-3 text--copper">Essentiels</h3>
                 <x-forms.input
                     label="Nom"
@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-5 mb-5">
+            <div class="col-12 col-md-5 mb-4">
                 <h3 class="mb-3 text--copper">Propriétaire</h3>
                 <x-forms.input
                     label="Nom du propriétaire"
@@ -115,7 +115,7 @@
         </div>
 
         <div class="row justify-content-between">
-            <div class="col-12 col-md-5 mb-5">
+            <div class="col-12 col-md-5 mb-4">
                 <h3 class="mb-3 text--copper">Contact</h3>
                 <x-forms.input
                     label="Numéro de téléphone"
@@ -144,7 +144,7 @@
                 />
             </div>
 
-            <div class="col-12 col-md-5 mb-5">
+            <div class="col-12 col-md-5 mb-4">
                 <h3 class="mb-3 text--copper">Informations</h3>
 
                 <x-forms.checkbox

@@ -1,5 +1,5 @@
 <div>
-    <div class="list-heading">
+    <div class="d-flex justify-content-between align-items-center">
         <div class="input-group searchbar px-3 px-md-2">
             <input type="text" wire:model.live.debounce.500ms="search" class="form-control mb-0 search-input" placeholder="Akinator n'a qu'à bien se tenir ...">
             <span class="input-group-text">
@@ -8,6 +8,12 @@
             <span class="input-group-text clearable" wire:click="clearSearch">
                 <i class="fa-solid fa-xmark"></i>
             </span>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center me-4 mt-2">
+            <a href="{{ route('dogs.create') }}">
+                <i class="fa-solid fa-plus h3 text--quartz hoverable"></i>
+            </a>
         </div>
     </div>
 
