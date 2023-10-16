@@ -6,11 +6,17 @@
         id="checkbox{{ $name }}" 
         {{ $checked ? 'checked' : ''}}
 
-        wire:model.live.debounce.500ms="{{ $wire }}"
+        @if ($lazy)
+            wire:model="{{ $wire }}"
+        @else
+            wire:model.live.debounce.500ms="{{ $wire }}"
+        @endif
     >
 
     <label class="form-check-label d-flex align-items-center mt-2" for="checkbox{{ $name }}">
-        <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+        @if (!$lazy)
+            <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+        @endif
         @if ($icon)
             <i class="{{ $icon }} {{ $iconClass }}"></i>
         @endif

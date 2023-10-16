@@ -25,6 +25,7 @@ class Textarea extends Component
         public ?int $cols = null,
         public ?int $rows = null,
         public ?string $maxlength = null,
+        public bool $lazy = false
     ) {
         $this->name = $this->name ?: $this->wire;
     }

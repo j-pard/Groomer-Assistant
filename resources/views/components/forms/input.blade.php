@@ -15,11 +15,17 @@
             {!! isset($max) ? 'max="' . $max . '"' : '' !!}
             {!! isset($value) ? 'value="' . $value . '"' : '' !!}
 
-            wire:model.live.debounce.500ms="{{ $wire }}"
+            @if ($lazy)
+                wire:model="{{ $wire }}"
+            @else
+                wire:model.live.debounce.500ms="{{ $wire }}"
+            @endif
         >
 
         <label for="{{ $name }}">
-            <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+            @if (!$lazy)
+                <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+            @endif
             {{ $label }}
             @if ($required)
                 <span class="text--copper">*</span>

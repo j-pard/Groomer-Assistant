@@ -26,7 +26,8 @@ class Input extends Component
         public ?string $min = null,
         public ?string $max = null,
         public ?string $step = null,
-        public ?string $maxlength = null
+        public ?string $maxlength = null,
+        public bool $lazy = false
     ) {
         $this->name = $this->name ?: $this->wire;
     }

@@ -22,6 +22,7 @@ class Select extends ViewComponent
         public bool $disabled = false,
         public array $options = [],
         public bool $hasEmptyRow = false,
+        public bool $lazy = false
     ) {
         $this->name = $this->name ?: $this->wire;
     }
