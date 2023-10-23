@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 
 Route::middleware([Authenticate::class])->group(function () {
-    Route::get('', [HomeController::class, 'index'])->name('home');
+    Route::view('', 'manager.home')->name('home');
     
     Route::prefix('dogs')->name('dogs.')->group(function () {
         Route::view('', 'manager.dogs.table')->name('index');

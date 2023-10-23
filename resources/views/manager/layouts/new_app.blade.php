@@ -72,7 +72,7 @@
 
                 <div id="primary-nav" class="d-flex justify-content-between align-items-center px-3 py-1">
                     <div class="text--dark-700 my-2 mx-3 h3">
-                        <a href="" class="nav-item" {{ Route::currentRouteName() === 'home' ? 'active' : '' }}>
+                        <a href="{{ route('home') }}" class="nav-item" {{ Route::currentRouteName() === 'home' ? 'active' : '' }}>
                             <i class="fa-solid fa-house p-1"></i>
                         </a>
                     </div>
