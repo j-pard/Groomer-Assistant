@@ -18,6 +18,7 @@ class Input extends Component
         public ?string $placeholder = null,
         public string $type = 'text',
         public ?string $class = null,
+        public ?string $classContainer = null,
         public ?string $id = null,
         public bool $required = false,
         public bool $readonly = false,

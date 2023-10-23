@@ -193,12 +193,12 @@ class Form extends Component
         try {
             if (Str::startsWith($name, 'owner_')) {
                 $cleanedName = str_replace('owner_', '', $name);
-                // Update owner
+                // Update Owner
                 $this->owner->update([
                     $cleanedName => $value,
                 ]);
             } else {
-                // Update dog
+                // Update Dog
                 switch ($name) {
                     case 'hours':
                     case 'minutes':

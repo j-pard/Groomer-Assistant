@@ -1,14 +1,17 @@
 <div>
     <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex px-3 px-md-2">
-            <x-forms.datepicker
+        <div class="px-3 px-md-2 datebar">
+            <x-forms.input
+                label="Rendez-vous du jour"
+                type="date"
                 wire="date"
                 required
+                classContainer="mb-0"
             />
         </div>
 
         <div class="d-flex justify-content-center align-items-center me-4 mt-2">
-            <a href="{{ route('dogs.create') }}">
+            <a wire:click="loadCreateApptModal">
                 <i class="fa-solid fa-plus h3 text--quartz hoverable"></i>
             </a>
         </div>
@@ -35,7 +38,7 @@
                 <div class="d-flex flex-row col-md-5">
                     <div class="d-flex flex-row align-items-center">
                         <div class="avatar mx-2 mx-sm-4">
-                            <a href="{{ route('dogs.show', ['dog' => $dog->id]) }}">{{ $dog->avatar }}</a>
+                            <a wire:click="loadApptModal({{ $appointment->id }})">{{ $dog->avatar }}</a>
                         </div>
                     </div>
                     <div class="d-flex flex-column">
@@ -86,7 +89,7 @@
                         @endif
                         <span class="badge rounded-pill {{ 'bg-' . App\Enums\AppointmentStatus::getColor($appointment->status) }}">{{ App\Enums\AppointmentStatus::getText($appointment->status) }}</span>
                     </div>
-                    <div>{{ $appointment->price ?? '' }}</div>
+                    <div>{{ $appointment->getPriceAsString() }}</div>
                 </div>
             </div>
 
@@ -95,4 +98,7 @@
             @endphp
         @endforeach
     </div>
+
+    @include('livewire.appts.modals.create')
+    @include('livewire.appts.modals.show')
 </div>

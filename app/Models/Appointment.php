@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 
 class Appointment extends Model
 {
+    public const DEFAULT_TIME = '08:30';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -43,16 +45,6 @@ class Appointment extends Model
     }
 
     /**
-     * Interact with the appointment's price.
-     */
-    protected function price(): Attribute
-    {
-        return Attribute::make(
-            get: fn (?string $value) => ($value !== null && $value > 0) ? $value . ' €' : '',
-        );
-    }
-
-    /**
      * Interact with the appointment's short note.
      */
     protected function getShortNoteAttribute(): string
@@ -66,8 +58,18 @@ class Appointment extends Model
     protected function notes(): Attribute
     {
         return Attribute::make(
-            set: fn (string $value) => trim($value),
+            set: fn (?string $value) => $value !== null ? trim($value) : null,
         );
+    }
+
+    /**
+     * Return price with currency.
+     *
+     * @return string
+     */
+    public function getPriceAsString(): string
+    {
+        return $this->price . (($this->price !== null) ? ' €' : '');
     }
 }
 

@@ -38,7 +38,7 @@
                     <div class="d-flex justify-content-end flex-no-wrap">
                         <span class="badge rounded-pill {{ 'bg-' . App\Enums\AppointmentStatus::getColor($item->status) }}">{{ App\Enums\AppointmentStatus::getText($item->status) }}</span>
                     </div>
-                    <div>{{ $item->price ?? '' }}</div>
+                    <div>{{ $item->getPriceAsString() }}</div>
                 </div>
             </div>
 

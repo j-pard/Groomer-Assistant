@@ -1,5 +1,5 @@
 <div class="form-group">
-    <div class="form-floating mb-4">
+    <div class="form-floating {{ $classContainer ?? 'mb-4' }}">
         <input 
             class="form-control {{ $class }} @error($name) is-invalid @enderror"
             type="{!! $type !!}"

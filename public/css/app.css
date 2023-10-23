@@ -12205,6 +12205,7 @@ button .active, a .active {
 
 .hoverable {
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 .hoverable:hover {
   color: #e1bb80;
@@ -12510,6 +12511,11 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
 }
 .searchbar .clearable:hover {
   color: #e1bb80;
+}
+
+.datebar {
+  max-width: 400px;
+  min-width: 300px;
 }
 
 .livewire-custom-pagination .page-item {

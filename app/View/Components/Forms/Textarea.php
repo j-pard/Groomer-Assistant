@@ -17,17 +17,19 @@ class Textarea extends Component
         public ?string $label = null,
         public ?string $placeholder = null,
         public ?string $class = null,
+        public ?string $classContainer = null,
         public ?string $id = null,
         public bool $required = false,
         public bool $readonly = false,
         public bool $disabled = false,
         public ?string $value = null,
         public ?int $cols = null,
-        public ?int $rows = null,
+        public ?string $rows = null,
         public ?string $maxlength = null,
         public bool $lazy = false
     ) {
         $this->name = $this->name ?: $this->wire;
+        $this->rows = $this->rows . 'rem' ?: '1rem';
     }
 
     /**

@@ -73,6 +73,7 @@ button, a {
 
 .hoverable {
     transition: color .3s ease;
+    cursor: pointer;
     
     &:hover {
         color: $ecru;

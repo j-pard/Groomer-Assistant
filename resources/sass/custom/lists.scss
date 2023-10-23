@@ -51,6 +51,11 @@
     }
 }
 
+.datebar {
+    max-width: 400px;
+    min-width: 300px;
+}
+
 .livewire-custom-pagination {
     .page-item {
         font-size: 1.5rem;
