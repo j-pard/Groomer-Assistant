@@ -22,7 +22,8 @@ class Datetime extends Component
         public bool $disabled = false,
         public ?string $value = null,
         public ?string $min = null,
-        public ?string $max = null
+        public ?string $max = null,
+        public bool $lazy = false
     ) {
         $this->name = $this->name ?: $this->wire;
     }

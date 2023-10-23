@@ -1,11 +1,14 @@
 <div class="form-group">
-    <label for="{{ $name }}">
-        <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
-        {{ $label }}
-        @if ($required)
-            <span class="text--copper">*</span>
-        @endif
-    </label>
+    @if ($label)
+        <label for="{{ $name }}">
+            <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+            {{ $label }}
+            @if ($required)
+                <span class="text--copper">*</span>
+            @endif
+        </label>
+    @endif
+    
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">€</span>

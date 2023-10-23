@@ -1,13 +1,16 @@
 <div class="form-group">
-    <label for="{{ $name }}">
-        @if (!$lazy)
-            <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
-        @endif
-        {{ $label }}
-        @if ($required)
-            <span class="text--copper">*</span>
-        @endif
-    </label>
+    @if ($label)
+        <label for="{{ $name }}">
+            @if (!$lazy)
+                <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+            @endif
+            {{ $label }}
+            @if ($required)
+                <span class="text--copper">*</span>
+            @endif
+        </label>
+    @endif
+    
     <textarea 
         class="form-control {{ $class }}"
         {{ $name ? 'name="' . $name . '"' : ''}}
