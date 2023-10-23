@@ -9,6 +9,7 @@ use App\Traits\Livewire\WithModals;
 use App\Traits\Livewire\WithToast;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -20,19 +21,23 @@ class Table extends Component
     use WithToast;
 
     public ?Appointment $appointment = null;
+    public ?string $search = null;
     public string $date;
     public array $statuses = [];
-    public array $dogs = [];
+    public ?Collection $dogs = null;
 
     // Modal
     public bool $isUpdating = false;
     public bool $isModalXl = false;
     public string $apptDate;
     public string $apptTime;
+    public int $activeStep = 1;
     // Dog
     public int $dogId = 0;
     public ?string $dogName = null;
+    public ?string $ownerName = null;
     public ?string $dogDetails = null;
+    public ?int $selectedDog = null;
     // Appointment
     public int $apptId = 0;
     public ?string $apptNotes = null;
@@ -90,45 +95,70 @@ class Table extends Component
      */
     public function updated(string $name, string|int|bool $value)
     {
-        $this->validate([
-            $name => Arr::get($this->rules(), $name, 'required|string'),
-        ]);
-
-        try {
-            // "if" is used to avoind unwanted update when closing modals.
-            if ($this->appointment?->id !== null) {
-                // Update Appointment
-                switch ($name) {
-                    case 'apptDate':
-                    case 'apptTime':
-                        $this->appointment->update([
-                            'time' => Carbon::parse($this->apptDate . ' ' . $this->apptTime)->format('Y-m-d H:i:s'),
-                        ]);
-                        break;
-    
-                    case 'apptStatus':
-                        $this->appointment->update([
-                            'status' => $value,
-                        ]);
-                        break;
-    
-                    case 'apptPrice':
-                        $this->appointment->update([
-                            'price' => $value,
-                        ]);
-                        break;
-    
-                    case 'apptNotes':
-                        $this->appointment->update([
-                            'notes' => $value,
-                        ]);
-                        break;
-    
+        if ($name === 'search') {
+                // Step 1 > Search dogs
+                if (strlen($value) < 2) {
+                    // Emptying the list
+                    $this->dogs = null;
+                } else {
+                    // Validate live search
+                    $this->validate([
+                        $name => 'required|string|min:2',
+                    ]);
+                    $this->searchDogs();
                 }
+        } elseif ($name === 'selectedDog') {
+            // Step 1 > Select dog
+            $this->validate([
+                $name => 'required|numeric',
+            ]);
+
+            $dog = Dog::findOrFail($this->selectedDog);
+            $this->dogId = $dog->id;
+            $this->dogName = $dog->name;
+            $this->ownerName = $dog->owner->name;
+            $this->activeStep = 2;
+        } else {
+            $this->validate([
+                $name => Arr::get($this->rules(), $name, 'required|string'),
+            ]);
+
+            try {
+                // Update Appointment
+                // "if" is used to avoind unwanted update when closing modals.
+                if ($this->appointment?->id !== null) {
+                    switch ($name) {
+                        case 'apptDate':
+                        case 'apptTime':
+                            $this->appointment->update([
+                                'time' => Carbon::parse($this->apptDate . ' ' . $this->apptTime)->format('Y-m-d H:i:s'),
+                            ]);
+                            break;
+        
+                        case 'apptStatus':
+                            $this->appointment->update([
+                                'status' => $value,
+                            ]);
+                            break;
+        
+                        case 'apptPrice':
+                            $this->appointment->update([
+                                'price' => $value,
+                            ]);
+                            break;
+        
+                        case 'apptNotes':
+                            $this->appointment->update([
+                                'notes' => $value,
+                            ]);
+                            break;
+        
+                    }
+                }
+            } catch (\Throwable $th) {
+                Log::error($th);
+                $this->showErrorMessage();
             }
-        } catch (\Throwable $th) {
-            Log::error($th);
-            $this->showErrorMessage();
         }
     }
 
@@ -184,8 +214,6 @@ class Table extends Component
     public function loadCreateApptModal()
     {
         $this->resetAppointment();
-        $this->dogs = $this->getDogsAsOptions();
-        $this->dogId = $this->dogs[0]['value'];
         $this->apptStatus = $this->statuses[0]['value'];
         $this->showModal('createApptModal');
     }
@@ -218,6 +246,7 @@ class Table extends Component
      */
     public function resetAppointment()
     {
+        $this->activeStep = 1;
         $this->appointment = null;
         $this->apptDate = $this->date;
         $this->apptId = 0;
@@ -228,8 +257,11 @@ class Table extends Component
         $this->dogDetails = null;
         $this->dogId = 0;
         $this->dogName = null;
+        $this->dogs = null;
         $this->isModalXl = false;
         $this->isUpdating = false;
+        $this->ownerName = null;
+        $this->selectedDog = null;
     }
     /**
      * Display skeleton during component loading.
@@ -247,28 +279,23 @@ class Table extends Component
     }
 
     /**
-     * Get all dogs as options.
+     * Search dogs by their name or by owner.
      *
-     * @return array
+     * @return void
      */
-    private function getDogsAsOptions(): array
+    private function searchDogs()
     {
-        return Dog::select(
-                'dogs.id',
-                'dogs.owner_id',
-                'dogs.name',
-                'owners.name AS owner_name',
-                'owners.phone AS owner_phone',
-            )
-            ->leftJoin('owners', 'owners.id', '=', 'dogs.owner_id')
-            ->orderBy('dogs.name')
-            ->get()
-            ->map(function (Dog $dog) {
-                return [
-                    'value' => $dog->id, 
-                    'label' => $dog->name . ' - ' . $dog->owner_name . ' - ' . $dog->owner_phone,
-                ];
+        $this->dogs = Dog::query()
+            ->whereIn('status', ['active', 'private'])
+            ->where('name', 'LIKE', '%' . $this->search . '%')
+            ->orWhereHas('owner', function (Builder $ownerQuery) {
+                $ownerQuery->where('name', 'LIKE', '%' . $this->search . '%')
+                    ->orWhere('phone', 'LIKE', '%' . $this->search . '%')
+                    ->orWhere('secondary_phone', 'LIKE', '%' . $this->search . '%')
+                    ->orWhere('name', 'LIKE', '%' . $this->search . '%');
             })
-            ->toArray();
+            ->orderBy('name')
+            ->take(5)
+            ->get();
     }
 }

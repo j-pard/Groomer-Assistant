@@ -55,7 +55,7 @@
                     </div>
                 @empty
                     <div>
-                        Pas de chien connu avec ce nom.
+                        Il n'y a pas de chien connu avec ce nom.
                     </div>
                 @endforelse
             </div>
