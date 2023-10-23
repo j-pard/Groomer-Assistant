@@ -5,9 +5,12 @@
             <span class="input-group-text">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </span>
-            <span class="input-group-text clearable" wire:click="clearSearch">
-                <i class="fa-solid fa-xmark"></i>
-            </span>
+            
+            @if (strlen($search) > 0)
+                <span class="input-group-text clearable" wire:click="clearSearch">
+                    <i class="fa-solid fa-xmark"></i>
+                </span>
+            @endif
         </div>
 
         <div class="d-flex justify-content-center align-items-center me-4 mt-2">
