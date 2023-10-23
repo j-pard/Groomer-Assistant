@@ -1,7 +1,7 @@
 <div>
     <div class="d-flex flex-column pt-3 pb-1 mb-1" wire:loading.class="opacity-50">
         @php
-            // Define years to display separation wetween years
+            // Define years to display separation between years
             $currentYear = 0;
             $previousYear = 0;
         @endphp

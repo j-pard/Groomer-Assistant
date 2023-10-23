@@ -12600,8 +12600,8 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
 }
 
 #primary-nav {
-  border-top-left-radius: 25px !important;
-  border-top-right-radius: 25px !important;
+  border-top-left-radius: 50px !important;
+  border-top-right-radius: 50px !important;
   background-color: #eeeeee;
 }
 #primary-nav .nav-item[active] {

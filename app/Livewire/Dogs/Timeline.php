@@ -56,6 +56,7 @@ class Timeline extends Component
     {
         $params['rows'] = 10;
         $params['search'] = false;
+        $params['pagination'] = false;
 
         return view('livewire.placeholders.table-skeleton', $params);
     }

@@ -77,8 +77,8 @@
                         </a>
                     </div>
                     <div class="text--dark-700 my-2 mx-3 h3">
-                        <a href="" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'appointments.')? 'active' : '' }}>
-                            <i class="fa-solid fa-calendar-days p-1"></i>
+                        <a href="{{ route('appointments.index') }}" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'appointments.')? 'active' : '' }}>
+                            <i class="fa-solid fa-calendar-days p-1" style="padding: 6px !important"></i>
                         </a>
                     </div>
                     <div class="text--dark-700 my-2 mx-3 h3">

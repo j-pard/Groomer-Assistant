@@ -23,7 +23,8 @@ class Datepicker extends Component
         public ?string $value = null,
         public ?string $min = null,
         public ?string $max = null,
-        public string $type = 'date'
+        public string $type = 'date',
+        public bool $lazy = false
     ) {
         $this->name = $this->name ?: $this->wire;
     }

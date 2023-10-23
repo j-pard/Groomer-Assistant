@@ -35,7 +35,9 @@
         @endfor
     </div>
 
-    <div class="d-flex justify-content-center mb-5 pt-3 pb-5 px-2">
-        <div class="skeleton-cell skeleton-pagination"></div>
-    </div>
+    @if ($pagination)
+        <div class="d-flex justify-content-center mb-5 pt-3 pb-5 px-2">
+            <div class="skeleton-cell skeleton-pagination"></div>
+        </div>
+    @endif
 </div>

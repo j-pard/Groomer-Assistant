@@ -24,7 +24,7 @@ class Table extends Component
     public function rules(): array
     {
         return [
-            'search' => 'string',
+            'search' => 'nullable|string',
         ];
     }
 
@@ -100,6 +100,7 @@ class Table extends Component
     {
         $params['rows'] = $this->perPage;
         $params['search'] = true;
+        $params['pagination'] = true;
 
         return view('livewire.placeholders.table-skeleton', $params);
     }

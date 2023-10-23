@@ -36,6 +36,10 @@ Route::middleware([Authenticate::class])->group(function () {
         });
     });
 
+    Route::prefix('appointments')->name('appointments.')->group(function () {
+        Route::view('', 'manager.appts.table')->name('index');
+    });
+
     Route::prefix('pets')->name('pets.')->group(function () {
         Route::get('', [PetsController::class, 'index'])->name('index');
         Route::get('new', [PetsController::class, 'create'])->name('create');
