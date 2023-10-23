@@ -12210,6 +12210,15 @@ button .active, a .active {
   color: #e1bb80;
 }
 
+.deletable {
+  color: #a7a2a9;
+  transition: color 0.3s ease;
+}
+.deletable:hover {
+  color: #e3342f;
+  cursor: pointer;
+}
+
 .avatar {
   border-radius: 50px;
   width: 50px;

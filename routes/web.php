@@ -29,6 +29,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::prefix('dogs')->name('dogs.')->group(function () {
         Route::view('', 'manager.dogs.table')->name('index');
         Route::get('create', [DogsController::class, 'create'])->name('create');
+        Route::post('delete', [DogsController::class, 'delete'])->name('delete');
         Route::prefix('{dog}')->group(function () {
             Route::get('', [DogsController::class, 'show'])->name('show');
             Route::get('timeline', [DogsController::class, 'timeline'])->name('timeline');

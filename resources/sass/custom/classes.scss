@@ -79,6 +79,16 @@ button, a {
     }
 }
 
+.deletable {
+    color: $quartz;
+    transition: color .3s ease;
+    
+    &:hover {
+        color: $red;
+        cursor: pointer;
+    }
+}
+
 .avatar {
     border-radius: 50px;
     width: 50px;

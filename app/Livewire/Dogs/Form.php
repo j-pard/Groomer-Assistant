@@ -7,6 +7,7 @@ use App\Enums\DogStatus;
 use App\Models\Breed;
 use App\Models\Dog;
 use App\Models\Owner;
+use App\Traits\Livewire\WithModals;
 use App\Traits\Livewire\WithToast;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
@@ -17,6 +18,7 @@ use Livewire\WithPagination;
 
 class Form extends Component
 {
+    use WithModals;
     use WithPagination;
     use WithToast;
 
@@ -51,6 +53,10 @@ class Form extends Component
     public bool $owner_has_reminder = false;
     public ?string $owner_secondary_phone;
     public ?int $owner_zip_code;
+
+    // Delete dog
+    public bool $ownerHasMoreDogs = false;
+    public bool $isDeletingOwner = false;
 
     /**
      * Call on component mount.
@@ -218,14 +224,25 @@ class Form extends Component
     }
 
     /**
+     * Check if owner has other dogs and open delete dog modal.
+     *
+     * @return void
+     */
+    public function openDeleteModal()
+    {
+        $this->ownerHasMoreDogs = $this->owner->dogs()->where('dogs.id', '!==', $this->dog->id)->count() > 0;
+        $this->showModal('deleteDogModal');
+    }
+
+    /**
      * Get dog duration and format it to hours and minutes.
      *
      * @return void
      */
-    private function formatDuration() {
+    private function formatDuration()
+    {
         $duration = $this->dog->getDurationInHoursMinutes();
         $this->hours = $duration['hours'];
         $this->minutes = $duration['minutes'];
     }
-
 }

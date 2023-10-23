@@ -182,4 +182,10 @@
             </div>
         </div>
     </form>
+
+    <div class="row">
+        <span wire:click="openDeleteModal" class="deletable"><i class="fa-solid fa-trash-can"></i> Supprimer le chien</span>
+    </div>
+
+    @include('livewire.dogs.modals.delete')
 </div>

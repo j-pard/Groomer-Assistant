@@ -2,7 +2,7 @@
     <input 
         class="form-check-input me-2" 
         type="checkbox" 
-        {{ $name ? 'name="' . $name . '"' : ''}}
+        {{ $name ? 'name=' . $name : ''}}
         id="checkbox{{ $name }}" 
         {{ $checked ? 'checked' : ''}}
 
