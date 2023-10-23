@@ -261,6 +261,7 @@ class Table extends Component
         $this->isModalXl = false;
         $this->isUpdating = false;
         $this->ownerName = null;
+        $this->search = null;
         $this->selectedDog = null;
     }
     /**
