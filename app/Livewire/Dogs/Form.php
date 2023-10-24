@@ -231,6 +231,7 @@ class Form extends Component
     public function openDeleteModal()
     {
         $this->ownerHasMoreDogs = $this->owner->dogs()->where('dogs.id', '!==', $this->dog->id)->count() > 0;
+        $this->isDeletingOwner = !$this->ownerHasMoreDogs;
         $this->showModal('deleteDogModal');
     }
 
