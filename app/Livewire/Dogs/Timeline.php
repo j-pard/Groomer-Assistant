@@ -2,14 +2,26 @@
 
 namespace App\Livewire\Dogs;
 
+use App\Enums\AppointmentStatus;
 use App\Models\Dog;
+use App\Traits\Livewire\CRUD\ReactiveAppointment;
+use App\Traits\Livewire\WithModals;
+use App\Traits\Livewire\WithToast;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Arr;
 use Livewire\Component;
 
 class Timeline extends Component
 {
+    use ReactiveAppointment;
+    use WithModals;
+    use WithToast;
+
     public Dog $dog;
+    public string $date;
+    public array $statuses = [];
 
     /**
      * Call on component mount.
@@ -20,6 +32,9 @@ class Timeline extends Component
     public function mount(Dog $dog) 
     {
         $this->dog = $dog;
+        $this->date = Carbon::now()->format('Y-m-d');
+        $this->statuses = AppointmentStatus::getAsOptions();
+        $this->resetAppointment();
     }
 
     /**
@@ -32,6 +47,16 @@ class Timeline extends Component
         return view('livewire.dogs.timeline', [
             'items' => $this->getDogsTimelineQuery(),
         ]);
+    }
+
+    /**
+     * Define rules.
+     *
+     * @return array
+     */
+    public function rules(): array
+    {
+        return ReactiveAppointment::getValidationRules();
     }
 
     /**
@@ -59,5 +84,23 @@ class Timeline extends Component
         $params['pagination'] = false;
 
         return view('livewire.placeholders.table-skeleton', $params);
+    }
+
+    /**
+     * React on updated hook from attribute.
+     * Update model after validating attribute value.
+     *
+     * @param string $name
+     * @param string|integer|boolean $value
+     * @return void
+     */
+    public function updated(string $name, string|int|bool $value)
+    {
+        // Live update
+        $this->validate([
+            $name => Arr::get($this->rules(), $name, 'required|string'),
+        ]);
+
+        $this->liveUpdateAppointment($name, $value);
     }
 }

@@ -102,6 +102,14 @@
                     @endif
                 </div>
 
+                <div class="row">
+                    <div class="text-center">
+                        <a type="button" class="btn deletable" title="Supprimer le rendez-vous" data-confirm="Le rendez-vous sera supprimé définitivement." data-confirm-action="@this.deleteAppointment()">
+                            <i class="fa-solid fa-trash-can"></i> Supprimer le rendez-vous
+                        </a>
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer d-flex justify-content-start">
                 <button type="button" class="btn btn-transparent text--light-100 hoverable" data-bs-dismiss="modal">Fermer</button>

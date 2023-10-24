@@ -11,7 +11,7 @@
         </div>
 
         <div class="d-flex justify-content-center align-items-center me-4 mt-2">
-            <a wire:click="loadCreateApptModal">
+            <a wire:click="loadCreateApptModal()">
                 <i class="fa-solid fa-plus h3 text--quartz hoverable"></i>
             </a>
         </div>
