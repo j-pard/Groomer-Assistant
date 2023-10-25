@@ -5078,10 +5078,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_form_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_libs_form_modal__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _libs_nav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/nav */ "./resources/js/libs/nav.js");
 /* harmony import */ var _libs_nav__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_libs_nav__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _libs_overlay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/overlay */ "./resources/js/libs/overlay.js");
-/* harmony import */ var _libs_overlay__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_libs_overlay__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _libs_toast__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./libs/toast */ "./resources/js/libs/toast.js");
-
+/* harmony import */ var _libs_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/toast */ "./resources/js/libs/toast.js");
 
 
 
@@ -5247,30 +5244,6 @@ window.onscroll = function () {
 // Re-open the nav when clicking on it.
 navbar.addEventListener('click', function () {
   openNav();
-});
-
-/***/ }),
-
-/***/ "./resources/js/libs/overlay.js":
-/*!**************************************!*\
-  !*** ./resources/js/libs/overlay.js ***!
-  \**************************************/
-/***/ (() => {
-
-var overlayContainers = Array.from(document.querySelectorAll('div.overlay-images'));
-var overlays = Array.from(document.querySelectorAll('div.overlay'));
-overlayContainers.forEach(function (container) {
-  container.addEventListener('click', function (event) {
-    event.stopPropagation();
-    var el = container.querySelector('.overlay');
-    el.classList.toggle('overlay--show');
-    el.classList.toggle('overlay--hide');
-  });
-});
-overlays.forEach(function (overlay) {
-  overlay.addEventListener('click', function (event) {
-    event.stopPropagation();
-  });
 });
 
 /***/ }),

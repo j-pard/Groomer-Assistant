@@ -15,8 +15,6 @@
 
             wire:model="{{ $wire }}"
         >
-
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Upload</button>
     </div>
 
     <div class="text--copper" wire:loading wire:target="{{ $wire }}">Uploading...</div>

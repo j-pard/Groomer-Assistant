@@ -33,6 +33,7 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::prefix('{dog}')->group(function () {
             Route::get('', [DogsController::class, 'show'])->name('show');
             Route::get('timeline', [DogsController::class, 'timeline'])->name('timeline');
+            Route::get('gallery', [DogsController::class, 'gallery'])->name('gallery');
         });
     });
 
@@ -40,6 +41,7 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::view('', 'manager.appts.table')->name('index');
     });
 
+    /** Old routes */
     Route::prefix('pets')->name('pets.')->group(function () {
         Route::get('', [PetsController::class, 'index'])->name('index');
         Route::get('new', [PetsController::class, 'create'])->name('create');

@@ -46,6 +46,19 @@ class DogsController extends Controller
     }
 
     /**
+     * Show dog gallery.
+     *
+     * @param Dog $dog
+     * @return View
+     */
+    public function gallery(Dog $dog): View
+    {
+        return view('manager.dogs.gallery', [
+            'dog' => $dog,
+        ]);
+    }
+
+    /**
      * Delete specified dog and redirect to dogs index.
      *
      * @param Request $request

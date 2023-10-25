@@ -63,7 +63,7 @@
                             </a>
                         </div>
                         <div class="my-2 mx-3">
-                            <a href="" class="nav-item" {{ Route::currentRouteName() === 'dogs.gallery' ? 'active' : '' }}>
+                            <a href="{{ route('dogs.gallery', ['dog' => $dog->id]) }}" class="nav-item" {{ Route::currentRouteName() === 'dogs.gallery' ? 'active' : '' }}>
                                 Gallerie
                             </a>
                         </div>
