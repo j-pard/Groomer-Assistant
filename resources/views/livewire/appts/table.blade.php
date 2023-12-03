@@ -58,7 +58,7 @@
                         <span class="text--quartz">
                             {{ $dog->owner->name }}
                             @if ($dog->owner->has_reminder)
-                                <span class="badge rounded-pill bg--copper ms-1"><i class="fa-solid fa-envelope"></i></span>
+                                <i class="fa-solid fa-envelope ms-1"></i>
                             @endif
                             @if (!empty($dog->details))
                                 <i class="fa-solid fa-comment ms-1"></i>
