@@ -6,12 +6,12 @@
         
         @include('livewire.accounting.partials.header')
 
-        <div class="scrollable-content" wire:loading.class="opacity-50">
+        <div class="scrollable-content rounded-3" wire:loading.class="opacity-50">
             <fieldset>
                 <table class="table table-dark table-hover bg--dark-700 px-2">
                     <thead class="table--sticky-head">
-                        <tr>
-                            <th scope="col">#</th>
+                        <tr class="pe-3">
+                            <th scope="col ps-3">#</th>
                             <th scope="col">Date</th>
                             <th scope="col">Chien</th>
                             <th scope="col">Client</th>
@@ -39,8 +39,8 @@
                                 </tr>
                             @endif
     
-                            <tr>
-                                <th class="py-3" scope="row">{{ $loop->iteration }}</th>
+                            <tr class="pe-3">
+                                <th class="py-3 ps-3" scope="row">{{ $loop->iteration }}</th>
                                 <td class="py-3">{{ $appt['formatted_date'] }}</td>
                                 <td class="py-3">
                                     <a class="text-white" href="{{ route('dogs.show', ['dog' => $appt['dog_id']]) }}" target="_blank">

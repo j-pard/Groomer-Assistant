@@ -6,6 +6,7 @@ use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
 use App\Models\Customer;
 use App\Traits\Livewire\WithModals;
+use App\Traits\Livewire\WithToast;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -15,6 +16,7 @@ use Livewire\Component;
 class Form extends Component
 {
     use WithModals;
+    use WithToast;
 
     public string $date;
     public string $activeMonth;
@@ -111,7 +113,7 @@ class Form extends Component
 
         $this->appointments = $this->getMonthAppointments();
 
-        $this->showMessage();
+        $this->showSuccessMessage();
     }
 
     /**
