@@ -41,34 +41,38 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::view('', 'manager.appts.table')->name('index');
     });
 
-    /** Old routes */
-    Route::prefix('pets')->name('pets.')->group(function () {
-        Route::get('', [PetsController::class, 'index'])->name('index');
-        Route::get('new', [PetsController::class, 'create'])->name('create');
-        Route::prefix('{pet}')->group(function () {
-            Route::get('edit', [PetsController::class, 'edit'])->name('edit');
-            Route::get('appointments', [PetsController::class, 'appointments'])->name('appointments');
-            Route::get('appointment', [PetsController::class, 'appointment'])->name('appointment');
-            Route::get('gallery', [PetsController::class, 'gallery'])->name('gallery');
-        });
-        
-    });
-    
-    Route::prefix('customers')->name('customers.')->group(function () {
-        Route::get('', [CustomersController::class, 'index'])->name('index');
-        Route::get('new', [CustomersController::class, 'create'])->name('create');
-        Route::prefix('{customer}')->group(function () {
-            Route::get('edit', [CustomersController::class, 'edit'])->name('edit');
-            Route::get('appointments', [CustomersController::class, 'appointments'])->name('appointments');
-            Route::get('appointment', [CustomersController::class, 'appointment'])->name('appointment');
-        });
-    });
-    
-    Route::prefix('appointments')->name('appointments.')->group(function () {
-        Route::get('{appointment}/edit', [AppointmentsController::class, 'edit'])->name('edit');
+    Route::prefix('accounting')->name('accounting.')->group(function () {
+        Route::view('', 'manager.accounting.index')->name('index');
     });
 
-    Route::prefix('accounting')->name('accounting.')->group(function () {
-        Route::get('', [AccountingController::class, 'index'])->name('index');
-    });
+    /** Old routes */
+    // Route::prefix('pets')->name('pets.')->group(function () {
+    //     Route::get('', [PetsController::class, 'index'])->name('index');
+    //     Route::get('new', [PetsController::class, 'create'])->name('create');
+    //     Route::prefix('{pet}')->group(function () {
+    //         Route::get('edit', [PetsController::class, 'edit'])->name('edit');
+    //         Route::get('appointments', [PetsController::class, 'appointments'])->name('appointments');
+    //         Route::get('appointment', [PetsController::class, 'appointment'])->name('appointment');
+    //         Route::get('gallery', [PetsController::class, 'gallery'])->name('gallery');
+    //     });
+        
+    // });
+    
+    // Route::prefix('customers')->name('customers.')->group(function () {
+    //     Route::get('', [CustomersController::class, 'index'])->name('index');
+    //     Route::get('new', [CustomersController::class, 'create'])->name('create');
+    //     Route::prefix('{customer}')->group(function () {
+    //         Route::get('edit', [CustomersController::class, 'edit'])->name('edit');
+    //         Route::get('appointments', [CustomersController::class, 'appointments'])->name('appointments');
+    //         Route::get('appointment', [CustomersController::class, 'appointment'])->name('appointment');
+    //     });
+    // });
+    
+    // Route::prefix('appointments')->name('appointments.')->group(function () {
+    //     Route::get('{appointment}/edit', [AppointmentsController::class, 'edit'])->name('edit');
+    // });
+
+    // Route::prefix('accounting')->name('accounting.')->group(function () {
+    //     Route::get('', [AccountingController::class, 'index'])->name('index');
+    // });
 });

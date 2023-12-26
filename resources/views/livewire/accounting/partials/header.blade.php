@@ -1,10 +1,9 @@
-<header id="sticky-header">
+<header class="mb-3">
     <div class="row">
-        <div class="d-flex justify-content-around align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
             <x-forms.price
                 label="Total TVA"
                 wire="tva"
-                class="mb-0"
                 help="{{ $tvaCount }} chiens"
                 disabled
             />
@@ -12,7 +11,6 @@
             <x-forms.price
                 label="Voie électronique"
                 wire="bank"
-                class="mb-0"
                 help="{{ $bankCount }} chiens"
                 disabled
             />
@@ -20,7 +18,6 @@
             <x-forms.price
                 label="Total HTVA"
                 wire="htva"
-                class="mb-0"
                 help="{{ $htvaCount }} chiens"
                 disabled
             />
@@ -28,7 +25,6 @@
             <x-forms.price
                 label="Cumul"
                 wire="cumulated"
-                class="mb-0"
                 help="{{ $cumulatedCount }} chiens"
                 disabled
             />
@@ -36,14 +32,13 @@
             <x-forms.price
                 label="Franchise"
                 wire="remaining"
-                class="mb-0"
                 help="{{ $totalOfYearCount }} chiens sur l'année"
                 disabled
             />
 
-            <div id="calendar-input" class="d-flex align-items-center mt-2">
-                <button type="button" class="btn btn-transparent mb-2" wire:click="previousMonth">
-                    <i class="fas fa-backward"></i>
+            <div id="calendar-input" class="d-flex align-items-center">
+                <button type="button" class="btn btn-transparent" wire:click="previousMonth">
+                    <i class="fas fa-backward text--quartz"></i>
                 </button>
 
                 <x-forms.datepicker
@@ -53,8 +48,8 @@
                     class="mb-0"
                 />
 
-                <button type="button" class="btn btn-transparent mb-2" wire:click="nextMonth">
-                    <i class="fas fa-forward"></i>
+                <button type="button" class="btn btn-transparent" wire:click="nextMonth">
+                    <i class="fas fa-forward text--quartz"></i>
                 </button>
             </div>
         </div>

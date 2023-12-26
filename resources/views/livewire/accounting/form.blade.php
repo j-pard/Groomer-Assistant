@@ -6,10 +6,10 @@
         
         @include('livewire.accounting.partials.header')
 
-        <div class="scrollable-content">
+        <div class="scrollable-content" wire:loading.class="opacity-50">
             <fieldset>
-                <table class="table table-hover px-2">
-                    <thead>
+                <table class="table table-dark table-hover bg--dark-700 px-2">
+                    <thead class="table--sticky-head">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Date</th>
@@ -30,8 +30,12 @@
                                 $date = Carbon\Carbon::parse($appt['time']);
                             @endphp
                             @if ($dateSeparator != $date->format('d F'))
-                                <tr class="bg-gray h5">
-                                    <td class="px-3" colspan="7">{{ ucfirst($date->translatedFormat('l jS F')) }}</td>
+                                <tr class="h5">
+                                    <td class="px-3" colspan="7">
+                                        <span class="text--copper">
+                                            {{ ucfirst($date->translatedFormat('l jS F')) }}
+                                        </span>
+                                    </td>
                                 </tr>
                             @endif
     
@@ -39,14 +43,12 @@
                                 <th class="py-3" scope="row">{{ $loop->iteration }}</th>
                                 <td class="py-3">{{ $appt['formatted_date'] }}</td>
                                 <td class="py-3">
-                                    <a class="text-dark" href="{{ route('pets.edit', ['pet' => $appt['pet_id']]) }}" target="_blank">
-                                        {{ $appt['pet_name'] }}
+                                    <a class="text-white" href="{{ route('dogs.show', ['dog' => $appt['dog_id']]) }}" target="_blank">
+                                        {{ $appt['dog_name'] }}
                                     </a>
                                 </td>
                                 <td class="py-3">
-                                    <a class="text-dark" href="{{ route('customers.edit', ['customer' => $appt['customer_id']]) }}" target="_blank">
-                                        {{ $appt['customer_lastname'] }}
-                                    </a>
+                                    <span>{{ $appt['customer_lastname'] }}</span>
                                 </td>
                                 <td class="py-3 {{ $appt['status'] == 'cancelled' ? 'line-through' : ''}}">
                                     @if ($appt['status'] == 'cancelled')
@@ -60,11 +62,11 @@
                                         class="mb-0"
                                         classContainer="mb-0"
                                         wire="appts.{{$key}}.status"
-                                        :options="$availableStatus"
+                                        :options="$statuses"
                                         wiremodifier="lazy"
                                         :disabled="in_array($appt['status'], $offStatus) && !array_key_exists($key, $apptsToUpdate)"
                                         x-on:change="
-                                            $wire.emit('apptUpdated', {
+                                            $wire.apptUpdated({
                                                 target: {{ $key }},
                                                 status: this.event.target.value
                                             })
@@ -76,7 +78,7 @@
                                         <i class="fas fa-sync"></i>
                                     </span>
     
-                                    @if ($appt['pet_status'] == 'private')
+                                    @if ($appt['dog_status'] == 'private')
                                         <i class="fab fa-product-hunt text-secondary ms-2"></i>
                                     @endif
     

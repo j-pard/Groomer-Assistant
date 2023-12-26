@@ -12323,6 +12323,9 @@ button .active, a .active {
   max-width: 1440px;
   min-height: 100vh;
 }
+#app.app--xl {
+  max-width: 1920px;
+}
 #app main {
   color: #eeeeee;
 }
@@ -12384,53 +12387,6 @@ button:focus {
   box-shadow: none !important;
 }
 
-table.custom-table tbody tr td:first-child, table.custom-table tbody tr tr:first-child {
-  max-width: auto;
-  padding-left: 1rem;
-}
-table.custom-table tbody tr td {
-  vertical-align: middle;
-  white-space: nowrap;
-}
-table.custom-table tbody tr td a {
-  color: #343a40;
-}
-table.custom-table tbody tr td a:focus {
-  color: #ff0096;
-}
-table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-child {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  flex-wrap: nowrap;
-  padding-right: 1rem;
-}
-
-.table-container {
-  margin: auto;
-  padding: 0;
-}
-.table-container input:focus, .table-container select:focus {
-  border-width: 1px !important;
-  border-color: #ced4da !important;
-  outline: 0;
-  -webkit-appearance: none !important;
-  box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-}
-
-.actions-container {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-@media screen and (min-width: 768px) {
-  .table-container {
-    margin: 2rem 3rem;
-    padding: 1rem;
-  }
-}
 .bg--dark-900 {
   background-color: #1e1e1e;
 }
@@ -12632,6 +12588,20 @@ table.custom-table tbody tr tr:last-child, table.custom-table tbody tr td:last-c
     bottom: 2rem;
   }
 }
+.table-dark tr td, .table-dark th {
+  background-color: #252526;
+}
+
+.table--sticky-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.table--sticky-head tr th {
+  background-color: #2d2d30;
+  border-bottom: 1px solid #a7a2a9;
+}
+
 .text-pink {
   color: #ff0096;
 }

@@ -69,7 +69,7 @@ abstract class AppointmentStatus extends Enum
      *
      * @return array
      */
-    public static function tvaStatus(): array
+    public static function tvaStatuses(): array
     {
         return [
             self::CASH,
@@ -83,11 +83,25 @@ abstract class AppointmentStatus extends Enum
      *
      * @return array
      */
-    public static function tvaBankStatus(): array
+    public static function tvaBankStatuses(): array
     {
         return [
             self::PAYCONIQ,
             self::BANK,
+        ];
+    }
+
+    /**
+     * Get all private status.
+     *
+     * @return array
+     */
+    public static function privateStatuses(): array
+    {
+        return [
+            self::PRIVATE_CASH,
+            self::PRIVATE_PAYCONIQ,
+            self::PRIVATE_BANK,
         ];
     }
 }

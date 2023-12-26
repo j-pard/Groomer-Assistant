@@ -1,5 +1,5 @@
 <div class="form-group {!! $classContainer !!}">
-    <div class="form-floating mb-4">
+    <div class="{{ $label ? 'form-floating mb-4' : '' }}">
         <select 
             {!! $attributes->merge(['class' => "form-control " . $class]) !!}
             name="{!! $name !!}"

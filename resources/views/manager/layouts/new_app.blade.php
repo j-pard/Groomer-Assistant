@@ -30,7 +30,7 @@
     @endguest
     
     @auth
-        <div id="app">
+        <div id="app" class="{{ (isset($size) && $size === 'app--xl') ? 'app--xl' : '' }}">
             <header class="d-flex justify-content-between align-items-center text--light-200 py-3">
                 <div>
                     <h1 class="m-2"><strong class="text--copper">G</strong>roomer <strong class="text--copper">A</strong>ssistant</h1>
@@ -87,7 +87,7 @@
                         </a>
                     </div>
                     <div class="my-2 mx-3 h3">
-                        <a href="" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'accounting.') ? 'active' : '' }}>
+                        <a href="{{ route('accounting.index') }}" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'accounting.') ? 'active' : '' }}>
                             <i class="fa-solid fa-coins p-1"></i>
                         </a>
                     </div>
