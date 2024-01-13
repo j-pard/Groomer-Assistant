@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -11,8 +15,54 @@ class HomeController extends Controller
      *
      * @return View
      */
-    public function index(): View
+    public function dashboard(): View
     {
-        return view('manager.appointments.home');
+        $todayCount = $this->getAppointmentsCountForToday();
+        $reminders = $this->getTomorrowReminders();
+
+        return view('manager.dashboard', [
+            'user' => Auth::user(),
+            'todayCount' =>  $todayCount,
+            'reminders' => $reminders,
+        ]);
+    }
+
+    /**
+     * Get count of appointments for today.
+     *
+     * @return integer
+     */
+    private function getAppointmentsCountForToday(): int
+    {
+        return Appointment::query()
+            ->whereBetween('time', [
+                Carbon::today()->startOfDay(),
+                Carbon::today()->endOfDay()
+            ])
+            ->count();
+    }
+
+    /**
+     * Get dogs and owners who have appointments tomorrow and need remaining.
+     *
+     * @return Collection
+     */
+    private function getTomorrowReminders(): Collection
+    {
+        return Appointment::query()
+            ->join('dogs', 'appointments.dog_id', '=', 'dogs.id')
+            ->join('owners', 'dogs.owner_id', '=', 'owners.id')
+            ->whereBetween('time', [
+                Carbon::tomorrow()->startOfDay(),
+                Carbon::tomorrow()->endOfDay()
+            ])
+            ->where('owners.has_reminder', true)
+            ->select(
+                'appointments.id',
+                'owners.name as owner_name',
+                'owners.phone',
+                'dogs.name',
+            )
+            ->get();
     }
 }
