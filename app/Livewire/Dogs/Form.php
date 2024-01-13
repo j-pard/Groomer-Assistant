@@ -184,7 +184,7 @@ class Form extends Component
      * @param string|integer|boolean $value
      * @return void
      */
-    public function updated(string $name, string|int|bool $value)
+    public function updated(string $name, string|int|bool|null $value)
     {
         $this->validate([
             $name => Arr::get($this->rules(), $name, 'required|string'),
@@ -204,7 +204,8 @@ class Form extends Component
                     case 'minutes':
                         // Update duration
                         $this->dog->update([
-                            'average_duration' => intval($this->hours * 60) + intval($this->minutes),
+                            // *?? 0* is used to set to 0 if input is empty
+                            'average_duration' => intval(($this?->hours ?? 0) * 60) + intval($this?->minutes ?? 0),
                         ]);
 
                         $this->formatDuration();

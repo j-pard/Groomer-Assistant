@@ -70,17 +70,17 @@ class Table extends Component
     public function updated(string $name, string|int|bool $value)
     {
         if ($name === 'search') {
-                // Step 1 > Search dogs
-                if (strlen($value) < 2) {
-                    // Emptying the list
-                    $this->dogs = null;
-                } else {
-                    // Validate live search
-                    $this->validate([
-                        $name => 'required|string|min:2',
-                    ]);
-                    $this->searchDogs();
-                }
+            // Step 1 > Search dogs
+            if (strlen($value) < 2) {
+                // Emptying the list
+                $this->dogs = null;
+            } else {
+                // Validate live search
+                $this->validate([
+                    $name => 'required|string|min:2',
+                ]);
+                $this->searchDogs();
+            }
         } elseif ($name === 'selectedDog') {
             // Step 1 > Select dog
             $this->validate([
