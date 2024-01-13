@@ -49,21 +49,21 @@ class Header extends Component
 
         return redirect()->route('pets.index');
     }
-    
+
     /**
      * Return array of navigation links
      *
      * @return array
      */
-    private function getNavigation() :array
+    private function getNavigation(): array
     {
         $nav = [];
 
         if ($this->pet->exists) {
             $nav = [
                 'Détails' => route('pets.edit', ['pet' => $this->pet]),
-                'Rendez-vous'=> route('pets.appointments', ['pet' => $this->pet]),
-                'Gallerie'=> route('pets.gallery', ['pet' => $this->pet]),
+                'Rendez-vous' => route('pets.appointments', ['pet' => $this->pet]),
+                'Gallerie' => route('pets.gallery', ['pet' => $this->pet]),
             ];
         }
 

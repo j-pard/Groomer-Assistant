@@ -38,7 +38,6 @@ class Form extends Component
     public string $remaining;
     public string $totalOfYearCount;
 
-    
     // Modal
     public ?Appointment $appointment;
     public string $dogName;
@@ -242,7 +241,7 @@ class Form extends Component
                 'dogs.status AS dog_status',
                 'customers.lastname AS customer_lastname',
                 DB::raw('DATE_FORMAT(appointments.time, "%H:%i") as formatted_date')
-                )
+            )
             ->orderBy('appointments.time')
             ->get();
 

@@ -96,10 +96,10 @@ class Creator extends Component
                     'name' => $this->owner_name,
                     'phone' => $this->owner_phone,
                 ]);
-    
+
                 $this->owner_id = $owner->id;
             }
-    
+
             // Create new dog.
             $dog = Dog::create([
                 'genre' => $this->genre,
@@ -139,7 +139,7 @@ class Creator extends Component
                 $this->validate([
                     $name => Arr::get($this->rules(), $name, 'required|string'),
                 ]);
-                
+
                 // Live query for existing dogs with same name.
                 $this->existingDogs = Dog::where('name', 'LIKE', '%' . $value . '%')
                     ->orderBy('name')
@@ -147,7 +147,7 @@ class Creator extends Component
                     ->get();
             }
         }
-        
+
         // Update owner_name in step 2 "owner"
         if ($name === 'owner_name') {
             if (strlen($value) < 2) {
@@ -161,9 +161,9 @@ class Creator extends Component
 
                 // Live query for existing owners with same name or phone number.
                 $this->existingOwners = Owner::where(function (Builder $query) use ($value) {
-                        $query->where('name', 'LIKE', '%' . $value . '%')
-                            ->orWhere('phone', 'LIKE', '%' . $value . '%');
-                    })
+                    $query->where('name', 'LIKE', '%' . $value . '%')
+                        ->orWhere('phone', 'LIKE', '%' . $value . '%');
+                })
                     ->orderBy('name')
                     ->take(5)
                     ->get();
@@ -190,7 +190,7 @@ class Creator extends Component
             // Move forward one step
             $this->activeStep = 'owner';
         }
-        
+
         // STEP 3 - From owner step to creation step.
         if ($step === 'creation') {
             if ($this->owner_id !== null) {

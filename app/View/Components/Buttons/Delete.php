@@ -18,8 +18,8 @@ class Delete extends Component
         public string $method = '',
         public string $icon = 'fas fa-trash',
         public bool $dropdown = false
-    )
-    {}
+    ) {
+    }
 
     /**
      * Get the view / contents that represent the component.

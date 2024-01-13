@@ -64,7 +64,7 @@ class Form extends Component
      * @param Dog $dog
      * @return void
      */
-    public function mount(Dog $dog) 
+    public function mount(Dog $dog)
     {
         // General
         $this->dog = $dog;
@@ -143,10 +143,6 @@ class Form extends Component
 
     public function save()
     {
-        // TODO
-        dd('Creating dog and owner');
-
-        
         $this->validate();
 
         $this->dog->update([

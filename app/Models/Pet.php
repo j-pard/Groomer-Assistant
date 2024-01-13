@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-
 class Pet extends Model implements HasMedia
 {
     use InteractsWithMedia;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -203,7 +202,7 @@ class Pet extends Model implements HasMedia
             ->get()
             ->map(function ($item) {
                 return [
-                    'value' => $item->id, 
+                    'value' => $item->id,
                     'label' => $item->name,
                 ];
             })

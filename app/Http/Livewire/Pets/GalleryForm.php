@@ -27,7 +27,7 @@ class GalleryForm extends LivewireForm
     {
         $this->medias = $this->getMediaUrls();
     }
-    
+
     /**
      * Valdiation rules
      *

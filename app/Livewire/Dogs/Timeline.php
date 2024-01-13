@@ -29,7 +29,7 @@ class Timeline extends Component
      * @param Dog $dog
      * @return void
      */
-    public function mount(Dog $dog) 
+    public function mount(Dog $dog)
     {
         $this->dog = $dog;
         $this->date = Carbon::now()->format('Y-m-d');

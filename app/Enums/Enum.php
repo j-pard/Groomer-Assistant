@@ -10,7 +10,7 @@ abstract class Enum
      * @param string $constant
      * @return string
      */
-    abstract static function getText(string $constant): string;
+    abstract public static function getText(string $constant): string;
 
     /**
      * Get all constants.

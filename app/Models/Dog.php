@@ -91,7 +91,7 @@ class Dog extends Model implements HasMedia
 
     /**
      * Get the dogs's most recent appointment.
-     * 
+     *
      * @return HasOne
      */
     public function latestAppointment(): HasOne

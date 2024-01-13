@@ -25,7 +25,7 @@ Auth::routes(['register' => false]);
 
 Route::middleware([Authenticate::class])->group(function () {
     Route::get('', [HomeController::class, 'dashboard'])->name('home');
-    
+
     Route::prefix('dogs')->name('dogs.')->group(function () {
         Route::view('', 'manager.dogs.table')->name('index');
         Route::view('create', 'manager.dogs.create')->name('create');
@@ -55,9 +55,9 @@ Route::middleware([Authenticate::class])->group(function () {
     //         Route::get('appointment', [PetsController::class, 'appointment'])->name('appointment');
     //         Route::get('gallery', [PetsController::class, 'gallery'])->name('gallery');
     //     });
-        
+
     // });
-    
+
     // Route::prefix('customers')->name('customers.')->group(function () {
     //     Route::get('', [CustomersController::class, 'index'])->name('index');
     //     Route::get('new', [CustomersController::class, 'create'])->name('create');
@@ -67,7 +67,7 @@ Route::middleware([Authenticate::class])->group(function () {
     //         Route::get('appointment', [CustomersController::class, 'appointment'])->name('appointment');
     //     });
     // });
-    
+
     // Route::prefix('appointments')->name('appointments.')->group(function () {
     //     Route::get('{appointment}/edit', [AppointmentsController::class, 'edit'])->name('edit');
     // });

@@ -17,17 +17,17 @@ class Table extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id')
-            ->setTableRowUrl(function($row) {
+            ->setTableRowUrl(function ($row) {
                 return route('pets.edit', $row);
             });
     }
-    
+
     public function builder(): Builder
     {
         return Pet::query()
             ->when($this->getAppliedFilterWithValue('status'), fn ($query, $status) => $query->where('status', $status));
     }
-    
+
     public function setTableClass(): ?string
     {
         return 'table custom-table';
@@ -48,13 +48,13 @@ class Table extends DataTableComponent
 
             Column::make('Propiétaire', 'customer.lastname')
                 ->searchable(),
-                
+
             Column::make('Propiétaire', 'customer.firstname')
                 ->searchable(),
 
             Column::make('Status', 'status')
                 ->sortable()
-                ->format(function($value) {
+                ->format(function ($value) {
                     switch ($value) {
                         case 'private':
                             return '<span class="badge rounded-pill bg-success">Privé</span>';
@@ -67,7 +67,7 @@ class Table extends DataTableComponent
                         case 'dead':
                             return '<span class="badge rounded-pill bg-dark">Décédé</span>';
                             break;
-                        
+
                         default:
                             return '<span class="badge rounded-pill bg-info">Actif</span>';
                             break;
@@ -78,7 +78,7 @@ class Table extends DataTableComponent
             Column::make('Actions', 'id')
                 // ->addClass('text-center')
                 ->searchable()
-                ->format(function($id) {
+                ->format(function ($id) {
                     return '<div class="actions-container">
                         <a href="' . route('pets.edit', ['pet' => $id]) . '" class="btn btn-outline-secondary btn-sm mx-2">Editer</a>
                         <a href="' . route('pets.appointments', ['pet' => $id]) . '" class="btn btn-outline-info btn-sm mx-2">RDV</a>
@@ -100,5 +100,5 @@ class Table extends DataTableComponent
                     'dead' => 'Décédés',
                 ]),
         ];
-    }   
+    }
 }

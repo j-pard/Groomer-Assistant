@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class Appointment extends Model
 {
     public const DEFAULT_TIME = '08:30';
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -72,4 +72,3 @@ class Appointment extends Model
         return $this->price . (($this->price !== null) ? ' €' : '');
     }
 }
-

@@ -8,8 +8,8 @@ use App\Models\Dog;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
-trait ReactiveAppointment {
-
+trait ReactiveAppointment
+{
     public ?Appointment $appointment = null;
 
     // Modal
@@ -157,25 +157,25 @@ trait ReactiveAppointment {
                             'time' => Carbon::parse($this->apptDate . ' ' . $this->apptTime)->format('Y-m-d H:i:s'),
                         ]);
                         break;
-    
+
                     case 'apptStatus':
                         $this->appointment->update([
                             'status' => $value,
                         ]);
                         break;
-    
+
                     case 'apptPrice':
                         $this->appointment->update([
                             'price' => $value === '' ? null : $value,
                         ]);
                         break;
-    
+
                     case 'apptNotes':
                         $this->appointment->update([
                             'notes' => $value,
                         ]);
                         break;
-    
+
                 }
             }
         } catch (\Throwable $th) {

@@ -72,7 +72,7 @@ class Customer extends Model
             ->get()
             ->map(function ($item) {
                 return [
-                    'value' => $item->id, 
+                    'value' => $item->id,
                     'label' => $item->getFullName(true),
                 ];
             })
@@ -93,7 +93,7 @@ class Customer extends Model
             ->get()
             ->map(function ($pet) {
                 return [
-                    'value' => $pet->id, 
+                    'value' => $pet->id,
                     'label' => $pet->name,
                 ];
             })

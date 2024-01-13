@@ -19,8 +19,7 @@ class Toggle extends Component
         public bool $checked = false,
         public ?string $icon = null,
         public string $iconClass = 'h4'
-    )
-    {
+    ) {
         $this->name = $this->name ?: $this->wire;
     }
 

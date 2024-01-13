@@ -2,8 +2,8 @@
 
 namespace App\Traits\Livewire;
 
-trait WithModals {
-
+trait WithModals
+{
     /**
      * Show modal with specified id.
      *

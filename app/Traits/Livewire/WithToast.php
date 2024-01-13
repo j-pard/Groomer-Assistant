@@ -2,8 +2,8 @@
 
 namespace App\Traits\Livewire;
 
-trait WithToast {
-
+trait WithToast
+{
     /**
      * Dispatch event to display success toast.
      *

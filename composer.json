@@ -19,9 +19,11 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
         "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.2",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
+        "nunomaduro/larastan": "^2.0",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
     },
@@ -50,6 +52,8 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
+        "phpstan": "phpstan analyse --memory-limit=2G --xdebug",
+        "pint": "pint",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

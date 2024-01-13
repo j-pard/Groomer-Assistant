@@ -21,8 +21,7 @@ class Radio extends Component
         public ?string $icon = null,
         public string $iconClass = 'h4',
         public bool $lazy = false
-    )
-    {
+    ) {
         $this->name = $this->name ?: $this->wire;
     }
 

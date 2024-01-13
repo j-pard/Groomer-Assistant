@@ -52,7 +52,7 @@ class Form extends LivewireForm
         } else {
             $this->appointment->pet_id = $this->appointment->pet_id ?? array_key_first($this->pets);
         }
-        
+
         if ($this->appointment->exists) {
             $time = Carbon::parse($this->appointment->time);
             $this->date = $time->format('Y-m-d');

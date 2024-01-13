@@ -27,7 +27,7 @@ class Gallery extends Component
      * @param Dog $dog
      * @return void
      */
-    public function mount(Dog $dog) 
+    public function mount(Dog $dog)
     {
         $this->dog = $dog;
         $this->loadMedias();
@@ -82,7 +82,7 @@ class Gallery extends Component
         foreach ($this->uploadedFiles as $media) {
             $this->dog->addMedia($media)->toMediaCollection('gallery');
         }
-        
+
         $this->showSuccessMessage();
         $this->resetMedia();
         $this->loadMedias();

@@ -18,7 +18,7 @@ class CustomersController extends Controller
     {
         return view('manager.customers.list');
     }
-    
+
     /**
      * Show customer creation interface
      *
@@ -27,7 +27,7 @@ class CustomersController extends Controller
     public function create(): View
     {
         return view('manager.customers.form', [
-            'customer' => new Customer,
+            'customer' => new Customer(),
         ]);
     }
 
@@ -66,9 +66,9 @@ class CustomersController extends Controller
     public function appointment(Customer $customer): View
     {
         return view('manager.appointments.form', [
-            'appointment' => new Appointment,
+            'appointment' => new Appointment(),
             'customer' => $customer,
-            'pet' => new Pet,
+            'pet' => new Pet(),
         ]);
     }
 }
