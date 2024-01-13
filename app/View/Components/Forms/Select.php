@@ -3,9 +3,6 @@
 namespace App\View\Components\Forms;
 
 use App\View\Component as ViewComponent;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Illuminate\View\Component;
 
 class Select extends ViewComponent
 {
@@ -16,7 +13,6 @@ class Select extends ViewComponent
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public ?string $class = null,
@@ -26,8 +22,9 @@ class Select extends ViewComponent
         public bool $disabled = false,
         public array $options = [],
         public bool $hasEmptyRow = false,
+        public bool $lazy = false
     ) {
-        $this->name = $this->wire;
+        $this->name = $this->name ?: $this->wire;
     }
 
     /**
@@ -38,16 +35,5 @@ class Select extends ViewComponent
     public function render()
     {
         return view('components.forms.select');
-    }
-
-    /**
-     * Check if the specified value is selected.
-     *
-     * @param  string $key
-     * @return bool
-     */
-    public function isSelected($key): bool
-    {
-        return in_array($key, Arr::wrap($this->value));
     }
 }

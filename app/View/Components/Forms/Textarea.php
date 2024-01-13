@@ -13,23 +13,23 @@ class Textarea extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public ?string $placeholder = null,
         public ?string $class = null,
+        public ?string $classContainer = null,
         public ?string $id = null,
         public bool $required = false,
         public bool $readonly = false,
         public bool $disabled = false,
         public ?string $value = null,
         public ?int $cols = null,
-        public ?int $rows = null,
+        public ?string $rows = null,
         public ?string $maxlength = null,
+        public bool $lazy = false
     ) {
-        if ($this->wire) {
-            $this->name = $this->wire;
-        }
+        $this->name = $this->name ?: $this->wire;
+        $this->rows = $this->rows . 'rem' ?: '1rem';
     }
 
     /**

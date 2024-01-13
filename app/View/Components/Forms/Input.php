@@ -13,12 +13,12 @@ class Input extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public ?string $placeholder = null,
         public string $type = 'text',
         public ?string $class = null,
+        public ?string $classContainer = null,
         public ?string $id = null,
         public bool $required = false,
         public bool $readonly = false,
@@ -28,8 +28,9 @@ class Input extends Component
         public ?string $max = null,
         public ?string $step = null,
         public ?string $maxlength = null,
+        public bool $lazy = false
     ) {
-        $this->name = $this->wire;
+        $this->name = $this->name ?: $this->wire;
     }
 
     /**

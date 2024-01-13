@@ -31,13 +31,13 @@ class Breed extends Model
      *
      * @return array
      */
-    public static function getList(): array
+    public static function getAsOptions(): array
     {
         return Breed::orderBy('breed')
         ->get()
         ->map(function ($item) {
             return [
-                'value' => $item->id, 
+                'value' => $item->id,
                 'label' => $item->breed,
             ];
         })

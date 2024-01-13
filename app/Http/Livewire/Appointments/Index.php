@@ -48,7 +48,7 @@ class Index extends LivewireForm
     {
         return view('livewire.appointments.index');
     }
-    
+
     protected function appointmentRules()
     {
         return [
@@ -132,7 +132,7 @@ class Index extends LivewireForm
 
     public function save()
     {
-        // 
+        //
     }
 
     public function deleteAppt()
@@ -141,7 +141,7 @@ class Index extends LivewireForm
         $this->resetFields();
 
         $this->loadAppointments();
-        
+
         $this->dispatchBrowserEvent('form-modal-saved', ['modalId' => 'apptModal']);
 
         $this->showMessage('Rendez-vous supprimé');
@@ -171,7 +171,7 @@ class Index extends LivewireForm
 
     private function resetFields()
     {
-        $this->appointment = new Appointment;
+        $this->appointment = new Appointment();
         $this->appointment->status = 'planned';
         $this->petId = null;
         $this->modalTitle = 'Nouveau rendez-vous';
@@ -183,19 +183,19 @@ class Index extends LivewireForm
     private function getAllPetsAsOptions()
     {
         return Pet::select(
-                'pets.id',
-                'pets.customer_id',
-                'pets.name',
-                'customers.firstname AS customer_firstname',
-                'customers.lastname AS customer_lastname',
-                'customers.phone AS customer_phone',
-            )
+            'pets.id',
+            'pets.customer_id',
+            'pets.name',
+            'customers.firstname AS customer_firstname',
+            'customers.lastname AS customer_lastname',
+            'customers.phone AS customer_phone',
+        )
             ->leftJoin('customers', 'customers.id', '=', 'pets.customer_id')
             ->orderBy('pets.name')
             ->get()
             ->map(function ($pet) {
                 return [
-                    'value' => $pet->id, 
+                    'value' => $pet->id,
                     'label' => $pet->name . ' - ' . $pet->customer_lastname . ' ' . $pet->customer_firstname . ' - ' . $pet->customer_phone,
                 ];
             })

@@ -13,19 +13,12 @@ class Price extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
-        public ?string $placeholder = null,
-        public ?string $class = null,
         public ?string $id = null,
-        public bool $required = false,
-        public bool $readonly = false,
-        public bool $disabled = false,
-        public ?string $max = null,
         public ?string $help = null
     ) {
-        $this->name = $this->wire;
+        $this->name = $this->name ?: $this->wire;
     }
 
     /**

@@ -17,6 +17,24 @@
       }
 }
 
+.btn-primary {
+      &--copper {
+            background-color: $copper;
+
+            &:hover {
+                  background-color: $ecru;
+            }
+      }
+
+      &--light-copper {
+            background-color: $light-copper;
+
+            &:hover {
+                  background-color: $ecru;
+            }
+      }
+}
+
 .btn--primary {
       background-color: $pink;
       color: white;

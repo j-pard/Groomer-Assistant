@@ -2,116 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class Appointment extends Model
 {
+    public const DEFAULT_TIME = '08:30';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'customer_id',
-        'pet_id',
+        'dog_id',
         'time',
         'price',
         'notes',
         'status',
     ];
-
-    /**
-     * Enum values for status
-     *
-     * @var array
-     */
-    protected $status = [
-        0 => 'planned',
-        1 => 'cash',
-        2 => 'payconiq',
-        3 => 'bank',
-        4 => 'private',
-        5 => 'voucher',
-        6 => 'not paid',
-        7 => 'cancelled',
-    ];
-
-    /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
-    protected $with = ['customer', 'pet'];
-
-    /**
-     * Enum values for TVA status
-     *
-     * @var array
-     */
-    public static $tvaStatus = ['cash', 'payconiq', 'bank', 'voucher'];
-
-    /**
-     * Enum values for Bank status
-     *
-     * @var array
-     */
-    public static $bankStatus = ['payconiq', 'bank'];
-
-    /**
-     * Return status as option key => value
-     *
-     * @var array
-     */
-    public static function getStatusAsOptions(): array
-    {
-        $array = [
-            [
-                'value' => 'planned',
-                'label' => 'En attente',
-            ],
-            [
-                'value' => 'cash',
-                'label' => 'Cash',
-            ],
-            [
-                'value' => 'payconiq',
-                'label' => 'Payconiq',
-            ],
-            [
-                'value' => 'bank',
-                'label' => 'Virement',
-            ],
-            [
-                'value' => 'private',
-                'label' => 'Privé',
-            ],
-            [
-                'value' => 'voucher',
-                'label' => 'Voucher',
-            ],
-            [
-                'value' => 'not paid',
-                'label' => 'Non payé',
-            ],
-            [
-                'value' => 'cancelled',
-                'label' => 'Annulé',
-            ],
-        ];
-
-        return $array;
-    }
-
-    /**
-     * Get customer of specified appointment.
-     *
-     * @return BelongsTo
-     */
-    public function customer(): BelongsTo
-    {
-        return $this->belongsTo(Customer::class);
-    }
 
     /**
      * Get pet of specified appointment.
@@ -123,4 +34,41 @@ class Appointment extends Model
         return $this->belongsTo(Pet::class);
     }
 
+    /**
+     * Get dog of specified appointment.
+     *
+     * @return BelongsTo
+     */
+    public function dog(): BelongsTo
+    {
+        return $this->belongsTo(Dog::class);
+    }
+
+    /**
+     * Interact with the appointment's short note.
+     */
+    protected function getShortNoteAttribute(): string
+    {
+        return $this->notes !== null ? Str::limit(trim($this->notes), 100, ' (...)') : '';
+    }
+
+    /**
+     * Interact with the appointment's notes.
+     */
+    protected function notes(): Attribute
+    {
+        return Attribute::make(
+            set: fn (?string $value) => $value !== null ? trim($value) : null,
+        );
+    }
+
+    /**
+     * Return price with currency.
+     *
+     * @return string
+     */
+    public function getPriceAsString(): string
+    {
+        return $this->price . (($this->price !== null) ? ' €' : '');
+    }
 }

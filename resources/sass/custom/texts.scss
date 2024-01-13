@@ -1,0 +1,72 @@
+.text {
+    // Old colors
+    &-pink {
+        color: $pink;
+    }
+    
+    &-gray {
+        color: gray;
+    }
+    
+    &-green {
+        color: $green;
+    }
+    
+    &-transparent {
+        color: $body-bg;
+        opacity: 0;
+    }
+    
+    // New colors
+    &--copper {
+        color: $copper;
+    }
+    
+    &--light-copper {
+        color: $light-copper;
+    }
+    
+    &--quartz {
+        color: $quartz;
+    
+        &-link:hover {
+            color: $ghost;
+        }
+    }
+
+    &--dark {
+        &-900 {
+            color: $dark900;
+        }
+    
+        &-700 {
+            color: $dark700;
+        }
+    
+        &-500 {
+            color: $dark500;
+        }
+    
+        &-300 {
+            color: $dark300;
+        }
+    }
+
+    &--light {
+        &-50 {
+            color: $light50;
+        }
+    
+        &-100 {
+            color: $light100;
+        }
+    
+        &-200 {
+            color: $light200;
+        }
+    
+        &-300 {
+            color: $light300;
+        }
+    }
+}

@@ -5,19 +5,20 @@
     x-ref="modal"
 >
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg--dark-700 text--light-100">
             <form wire:submit.prevent="saveAppointment">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addPetModalLabel">Rendez-vous</h5>
+                    <h5 class="modal-title" id="apptModalLabel">Rendez-vous</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
                     <div class="row">
                         <div class="col-6">
-                            <x-forms.datepicker
+                            <x-forms.input
                                 label="Date"
-                                wire="date"
+                                type="date"
+                                wire="apptDate"
                                 disabled
                             />
                         </div>
@@ -25,7 +26,7 @@
                             <x-forms.input
                                 label="Heure"
                                 type="time"
-                                wire="time"
+                                wire="apptTime"
                                 disabled
                             />
                         </div>
@@ -34,7 +35,7 @@
                     <div class="mb-3">
                         <x-forms.input
                             label="Client"
-                            wire="customerName"
+                            wire="ownerName"
                             disabled
                         />
                     </div>
@@ -42,7 +43,7 @@
                     <div class="mb-3">
                         <x-forms.input
                             label="Chien"
-                            wire="petName"
+                            wire="dogName"
                             disabled
                         />
                     </div>
@@ -50,7 +51,7 @@
                     <x-forms.textarea
                         label="Notes"
                         rows="4"
-                        wire="appointment.notes"
+                        wire="apptNotes"
                         disabled
                     />
 
@@ -58,16 +59,16 @@
                         <div class="col-6">
                             <x-forms.select
                                 label="Status"
-                                wire="appointment.status"
-                                :options='$availableStatus'
+                                wire="apptStatus"
+                                :options='$statuses'
                                 disabled
                             />
                         </div>
 
                         <div class="col-6">
-                            <x-forms.price
+                            <x-forms.input
                                 label="Prix"
-                                wire="appointment.price"
+                                wire="apptPrice"
                                 disabled
                             />
                         </div>

@@ -1,38 +1,48 @@
 <div class="form-group {!! $classContainer !!}">
-    @if ($label)
-        <label for="{{ $name }}">
-            {{ $label }}
-            @if ($label && $required)
-                <span class="text-danger">*</span>
+    <div class="{{ $label ? 'form-floating mb-4' : '' }}">
+        <select 
+            {!! $attributes->merge(['class' => "form-control " . $class]) !!}
+            name="{!! $name !!}"
+            {!! $id ? 'id="' . $id . '"' : "" !!}
+            {!! $required ? 'required' : '' !!}
+            {!! $readonly ? 'readonly' : '' !!}
+            {!! $disabled ? 'disabled' : '' !!}
+
+            @if ($lazy)
+                wire:model="{{ $wire }}"
+            @else
+                wire:model.live.debounce.500ms="{{ $wire }}"
             @endif
-        </label>
-    @endif
+        >
+            @if ($hasEmptyRow)
+                <option value=""></option>
+            @endif
 
-    <select 
-        {!! $attributes->merge(['class' => "form-control " . $class]) !!}
-        name="{!! $name !!}"
-        {!! $id ? 'id="' . $id . '"' : "" !!}
-        {!! $required ? 'required' : '' !!}
-        {!! $readonly ? 'readonly' : '' !!}
-        {!! $disabled ? 'disabled' : '' !!}
+            @forelse($options as $option)
+                <option value="{{ $option['value'] }}" wire:key="{{ "$id-" . $option['value'] }}">
+                    {{ $option['label'] }}
+                </option>
+            @empty
+                <option value="null" disabled></option>
+            @endforelse
+        </select>
 
-        wire:model{{ $wireModifier === '' ? '' : ".$wireModifier" }}="{{ $wire }}"
-    >
-        @if ($hasEmptyRow)
-            <option value=""></option>
+        @if ($label)
+            <label for="{{ $name }}">
+                @if (!$lazy)
+                    <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+                @endif
+                {{ $label }}
+                @if ($label && $required)
+                    <span class="text--copper">*</span>
+                @endif
+            </label>
         @endif
 
-        @forelse($options as $option)
-        <option
-        @if(!$wire && $isSelected($option['value'])) selected="selected" @endif
-            value="{{ $option['value'] }}"
-            wire:key="{{ "$id-" . $option['value'] }}"
-        >{{ $option['label'] }}</option>
-        @empty
-            <option value="null" disabled></option>
-        @endforelse
-    </select>
-    @error($name)
-        <small class="text-danger">{{ $message }}</small>
-    @enderror
+        @error($name)
+            <div class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+        @enderror
+    </div>
 </div>

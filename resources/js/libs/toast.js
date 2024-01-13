@@ -20,7 +20,7 @@ window.groomer.showMessage = function (message, style = 'success') {
     button.setAttribute('type', 'button');
     button.setAttribute('data-bs-dismiss', 'toast');
     button.setAttribute('aria-label', 'Close');
-    button.innerHTML += '<img src="/images/close.svg"/>';
+    button.innerHTML += '<i class="fa-solid fa-xmark"></i>';
     body.appendChild(button);
 
     // Append the new toast to the toasts container
@@ -35,12 +35,14 @@ window.groomer.showMessage = function (message, style = 'success') {
     (new Toast(el, options)).show();
 }
 
+// Delete the toast from the DOM when it is hidden.
 document.addEventListener('hidden.bs.toast', (e) => {
-    // Delete the toast from the DOM when it is hidden
     Toast.getInstance(e.target).dispose();
     e.target.parentElement.removeChild(e.target);
 }, false);
 
+// Display the toast on event.
 window.addEventListener('show-toast', e => {
-    window.groomer.showMessage(e.detail.message, e.detail.style);
+    const eData = e.detail[0];
+    window.groomer.showMessage(eData?.message, eData?.style);
 });

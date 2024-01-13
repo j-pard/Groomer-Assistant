@@ -9,21 +9,18 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class Table extends DataTableComponent
 {
-    // Default sorting
     public ?string $defaultSortColumn = 'lastname';
     public string $defaultSortDirection = 'asc';
-
-    public bool $showPerPage = false;
     public array $perPageAccepted = [25];
 
     public function configure(): void
     {
         $this->setPrimaryKey('id')
-            ->setTableRowUrl(function($row) {
+            ->setTableRowUrl(function ($row) {
                 return route('customers.edit', $row);
             });
     }
-    
+
     public function builder(): Builder
     {
         return Customer::query();
@@ -40,7 +37,7 @@ class Table extends DataTableComponent
             Column::make('Nom', 'lastname')
                 ->sortable()
                 ->searchable(),
-                
+
             Column::make('Prénom', 'firstname')
                 ->sortable()
                 ->searchable(),
@@ -54,7 +51,7 @@ class Table extends DataTableComponent
 
             Column::make('Info', 'has_reminder')
                 ->searchable()
-                ->format(function($has_reminder) {
+                ->format(function ($has_reminder) {
                     if ($has_reminder) {
                         return '<div class="actions-container">
                                 <i class="fas fa-envelope" title="Envoyer un message de rappel"></i>
@@ -66,7 +63,7 @@ class Table extends DataTableComponent
             Column::make('Actions', 'id')
                 // ->addClass('text-center')
                 ->searchable()
-                ->format(function($id) {
+                ->format(function ($id) {
                     return '<div class="actions-container">
                         <a href="' . route('customers.edit', ['customer' => $id]) . '" class="btn btn-outline-secondary btn-sm mx-2">Editer</a>
                         <a href="' . route('customers.appointments', ['customer' => $id]) . '" class="btn btn-outline-info btn-sm mx-2">RDV</a>

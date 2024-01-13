@@ -1,5 +1,5 @@
 @extends('manager.layouts.app')
 
 @section('content')
-    <livewire:appointments.index />
+    {{-- <livewire:appointments.index /> --}}
 @endsection

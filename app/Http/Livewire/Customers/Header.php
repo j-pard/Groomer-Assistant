@@ -51,20 +51,20 @@ class Header extends Component
 
         return redirect()->route('customers.index');
     }
-    
+
     /**
      * Return array of navigation links
      *
      * @return array
      */
-    private function getNavigation() :array
+    private function getNavigation(): array
     {
         $nav = [];
 
         if ($this->customer->exists) {
             $nav = [
                 'Détails' => route('customers.edit', ['customer' => $this->customer]),
-                'Rendez-vous'=> route('customers.appointments', ['customer' => $this->customer]),
+                'Rendez-vous' => route('customers.appointments', ['customer' => $this->customer]),
             ];
         }
 

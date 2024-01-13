@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-
 class Pet extends Model implements HasMedia
 {
     use InteractsWithMedia;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -203,10 +202,51 @@ class Pet extends Model implements HasMedia
             ->get()
             ->map(function ($item) {
                 return [
-                    'value' => $item->id, 
+                    'value' => $item->id,
                     'label' => $item->name,
                 ];
             })
             ->toArray();
+    }
+
+    public function formatOldDetails()
+    {
+        $newDetails = '';
+        $lineJump = '
+';
+        $emptyRow = '
+
+';
+
+        if ($this->remarks !== null) {
+            $newDetails .= '# Remarques';
+            $newDetails .= $lineJump;
+            $newDetails .= $this->remarks;
+        }
+
+        if ($this->warnings !== null) {
+            if ($newDetails != '') {
+                $newDetails .= $emptyRow;
+            }
+            $newDetails .= '# Attention';
+            $newDetails .= $lineJump;
+            $newDetails .= $this->warnings;
+        }
+
+        if ($this?->customer?->more_info !== null) {
+            if ($newDetails != '') {
+                $newDetails .= $emptyRow;
+            }
+            $newDetails .= '# Client';
+            $newDetails .= $lineJump;
+            $newDetails .= $this->customer->more_info;
+        }
+
+        $newDetails = trim($newDetails);
+        if ($newDetails === '' || strlen($newDetails) == 0) {
+            return null;
+        }
+
+        return $newDetails;
     }
 }

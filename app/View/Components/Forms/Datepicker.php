@@ -13,7 +13,6 @@ class Datepicker extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public ?string $class = null,
@@ -24,9 +23,10 @@ class Datepicker extends Component
         public ?string $value = null,
         public ?string $min = null,
         public ?string $max = null,
-        public string $type = 'date'
+        public string $type = 'date',
+        public bool $lazy = false
     ) {
-        $this->name = $this->wire;
+        $this->name = $this->name ?: $this->wire;
     }
 
     /**

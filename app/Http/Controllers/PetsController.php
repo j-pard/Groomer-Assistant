@@ -17,7 +17,7 @@ class PetsController extends Controller
     {
         return view('manager.pets.list');
     }
-    
+
     /**
      * Show pet creation interface
      *
@@ -26,7 +26,7 @@ class PetsController extends Controller
     public function create(): View
     {
         return view('manager.pets.form', [
-            'pet' => new Pet,
+            'pet' => new Pet(),
         ]);
     }
 

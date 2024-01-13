@@ -13,7 +13,6 @@ class FileUpload extends Component
      */
     public function __construct(
         public $wire = null,
-        public string $wireModifier = 'defer',
         public ?string $name = null,
         public ?string $label = null,
         public ?string $placeholder = null,
@@ -24,7 +23,7 @@ class FileUpload extends Component
         public bool $disabled = false,
         public ?string $accept = null
     ) {
-        $this->name = $this->wire;
+        $this->name = $this->name ?: $this->wire;
     }
 
     /**
