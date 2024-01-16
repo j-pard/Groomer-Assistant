@@ -3,7 +3,7 @@
         class="form-check-input" 
         type="radio" 
         {{ $name ? 'name="' . $name . '"' : ''}}
-        id="radio{{ $value }}" 
+        id="{{ $id }}" 
         value="{{ $value }}" 
         {{ $checked ? 'checked' : ''}}
 

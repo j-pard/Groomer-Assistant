@@ -17,9 +17,10 @@
                 @endif
 
                 @forelse ($existingOwners as $existingOwner)
-                    <div class="list-element justify-content-start mx-2 my-2 p-2">
+                    <label class="list-element justify-content-start mx-2 my-2 p-2" for="owner_{{ $existingOwner->id }}">
                         <div class="d-flex justify-content-center align-items-center mx-3">
                             <x-forms.radio
+                                id="owner_{{ $existingOwner->id }}"
                                 wire="owner_id"
                                 :value="$existingOwner->id"
                             />
@@ -35,7 +36,7 @@
                         <div class="d-flex flex-column text-end justify-content-between ms-auto col-md-4">
                             <div>{{ $existingOwner->city }}</div>
                         </div>
-                    </div>
+                    </label>
                 @empty
                     <div>
                         Pas de propriétaire connu avec ce nom.

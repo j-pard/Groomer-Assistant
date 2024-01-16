@@ -5,6 +5,7 @@ namespace App\Livewire\Dogs;
 use App\Models\Dog;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -103,5 +104,10 @@ class Table extends Component
         $params['pagination'] = true;
 
         return view('livewire.placeholders.table-skeleton', $params);
+    }
+
+    public function showDog(int $dogId)
+    {
+        $this->redirectRoute('dogs.show', ['dog' => $dogId]);
     }
 }
