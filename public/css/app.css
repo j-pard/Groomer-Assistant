@@ -12229,6 +12229,9 @@ button .active, a .active {
   font-size: 1.3rem;
   color: #c97c5d;
   text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   cursor: pointer;
   transition: color 0.3s ease;
 }
