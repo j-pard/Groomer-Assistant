@@ -84,8 +84,8 @@
                         @if ($dog->has_warning)
                             <span class="badge rounded-pill bg-danger me-2"><i class="fa-solid fa-triangle-exclamation"></i></span>
                         @endif
-                        @if (!empty($appointment->notes))
-                            <i class="fa-solid fa-note-sticky me-2"></i>
+                        @if ($dog->status !==  App\Enums\DogStatus::ACTIVE)
+                            <span class="badge rounded-pill {{ 'bg-' . App\Enums\DogStatus::getColor($dog->status) }} me-2">{{ App\Enums\DogStatus::getText($dog->status) }}</span>
                         @endif
                         <span class="badge rounded-pill {{ 'bg-' . App\Enums\AppointmentStatus::getColor($appointment->status) }}">{{ App\Enums\AppointmentStatus::getText($appointment->status) }}</span>
                     </div>
