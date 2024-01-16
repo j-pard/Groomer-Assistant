@@ -22,12 +22,10 @@
 
     <div class="d-flex flex-column pt-3 pb-1 mb-1" wire:loading.class="opacity-50">
         @foreach ($dogs as $dog)
-            <div class="list-element mx-2 my-1 py-2 px-1 px-sm-3" data-id="{{ $dog->id }}">
+            <div class="list-element mx-2 my-1 py-2 px-1 px-sm-3" data-id="{{ $dog->id }}" wire:click="showDog({{ $dog->id }})">
                 <div class="d-flex flex-row col-md-5">
                     <div class="d-flex flex-row align-items-center">
-                        <div class="avatar mx-2 mx-sm-4">
-                            <a href="{{ route('dogs.show', ['dog' => $dog->id]) }}">{{ $dog->avatar }}</a>
-                        </div>
+                        <div class="avatar mx-2 mx-sm-4">{{ $dog->avatar }}</div>
                     </div>
                     <div class="d-flex flex-column">
                         <div>

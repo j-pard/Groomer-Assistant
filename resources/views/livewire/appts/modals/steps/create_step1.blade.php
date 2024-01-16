@@ -12,11 +12,13 @@
         @if ($dogs !== null)
             <div class="mb-3">
                 @forelse ($dogs as $dog)
-                    <div class="list-element justify-content-start align-items-center mx-2 my-2 p-2">
+                    <label class="list-element justify-content-start align-items-center mx-2 my-2 p-2" for="dog_{{ $dog->id }}">
                         <x-forms.radio
+                            id="dog_{{ $dog->id }}"
                             wire="selectedDog"
                             :value="$dog->id"
                         />
+                        
                         <div class="d-flex flex-row col-md-5">
                             <div class="d-flex flex-column">
                                 <div>
@@ -47,7 +49,7 @@
                                 <span class="badge rounded-pill {{ 'bg-' . App\Enums\DogStatus::getColor($dog->status) }}">{{ App\Enums\DogStatus::getText($dog->status) }}</span>
                             </div>
                         </div>
-                    </div>
+                    </label>
                 @empty
                     @if (strlen($search) >= 2)
                         <div>

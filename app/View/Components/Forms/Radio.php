@@ -14,6 +14,7 @@ class Radio extends Component
     public function __construct(
         public $wire = null,
         public ?string $name = null,
+        public ?string $id = null,
         public ?string $value = null,
         public ?string $label = null,
         public bool $inline = false,
@@ -23,6 +24,7 @@ class Radio extends Component
         public bool $lazy = false
     ) {
         $this->name = $this->name ?: $this->wire;
+        $this->id = $this->id ?: 'radio' . $this->value;
     }
 
     /**
