@@ -86,7 +86,7 @@
                             <i class="fa-solid fa-paw p-1"></i>
                         </a>
                     </div>
-                    <div class="my-2 mx-3 h3">
+                    <div id="accountingLink" class="my-2 mx-3 h3">
                         <a href="{{ route('accounting.index') }}" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'accounting.') ? 'active' : '' }}>
                             <i class="fa-solid fa-coins p-1"></i>
                         </a>

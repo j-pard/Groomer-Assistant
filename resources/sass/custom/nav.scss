@@ -23,8 +23,8 @@
 }
 
 #primary-nav {
-      border-top-left-radius: 50px !important;
-      border-top-right-radius: 50px !important;
+      border-top-left-radius: 25px !important;
+      border-top-right-radius: 25px !important;
       background-color: $light200;
       
       .nav-item {
@@ -49,8 +49,10 @@
 
 @media screen and (min-width: 0px) and (max-width: 768px) {
       #bottom-nav { bottom: 1rem; }
+      #accountingLink { display: none; }
 }
 
 @media screen and (min-width: 768px) {
       #bottom-nav { bottom: 2rem; }
+      #accountingLink { display: block; }
 }
