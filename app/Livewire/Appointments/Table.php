@@ -13,6 +13,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Table extends Component
@@ -76,6 +77,7 @@ class Table extends Component
                 $this->dogs = null;
             } else {
                 // Validate live search
+                $this->search = Str::of($this->search)->trim()->value();
                 $this->validate([
                     $name => 'required|string|min:2',
                 ]);
