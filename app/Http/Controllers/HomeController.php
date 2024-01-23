@@ -24,6 +24,7 @@ class HomeController extends Controller
             'user' => Auth::user(),
             'todayCount' =>  $todayCount,
             'reminders' => $reminders,
+            'isWeekend' => $this->isWeekend(),
         ]);
     }
 
@@ -44,18 +45,24 @@ class HomeController extends Controller
 
     /**
      * Get dogs and owners who have appointments tomorrow and need remaining.
+     * If current day is weekend, display monday remainings.
      *
      * @return Collection
      */
     private function getTomorrowReminders(): Collection
     {
+        $from = Carbon::tomorrow()->startOfDay();
+        $to = Carbon::tomorrow()->endOfDay();
+
+        if ($this->isWeekend()) {
+            $from = Carbon::parse('next monday')->startOfDay();
+            $to = Carbon::parse('next monday')->endOfDay();
+        }
+
         return Appointment::query()
             ->join('dogs', 'appointments.dog_id', '=', 'dogs.id')
             ->join('owners', 'dogs.owner_id', '=', 'owners.id')
-            ->whereBetween('time', [
-                Carbon::tomorrow()->startOfDay(),
-                Carbon::tomorrow()->endOfDay()
-            ])
+            ->whereBetween('time', [$from, $to])
             ->where('owners.has_reminder', true)
             ->select(
                 'appointments.id',
@@ -64,5 +71,15 @@ class HomeController extends Controller
                 'dogs.name',
             )
             ->get();
+    }
+
+    /**
+     * Check if current day is friday or later.
+     *
+     * @return boolean
+     */
+    private function isWeekend(): bool
+    {
+        return Carbon::today()->getDaysFromStartOfWeek() >= 4;
     }
 }

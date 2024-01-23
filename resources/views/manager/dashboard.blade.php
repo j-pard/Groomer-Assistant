@@ -10,7 +10,7 @@
 
         @if($reminders->count() > 0)
             <p>
-                Penses à envoyer tes messages de rappel pour demain
+                Penses à envoyer tes messages de rappel pour {{ $isWeekend ? 'lundi' : 'demain' }}
                 <ul>
                     @foreach ($reminders as $reminder)
                         <li>
