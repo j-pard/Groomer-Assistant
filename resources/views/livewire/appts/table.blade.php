@@ -100,5 +100,5 @@
     </div>
 
     @include('livewire.appts.modals.create')
-    @include('livewire.appts.modals.show')
+    @include('livewire.appts.modals.show', ['showTimelineLink' => true])
 </div>

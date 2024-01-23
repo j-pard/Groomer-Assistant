@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="row d-flex align-items-center mb-4">
-                            <div class="col-11">
+                            <div class="col">
                                 <x-forms.input
                                     label="Nom du chien"
                                     wire="dogName"
@@ -44,11 +44,13 @@
                                 />
                             </div>
 
-                            <div class="col-1">
-                                <a href="{{ route('dogs.show', ['dog' => $dogId]) }}" target="_blank" class="btn btn--secondary text--quartz hoverable ms-0 ps-0">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
+                            @if (isset($showTimelineLink) && $showTimelineLink)
+                                <div class="col-1">
+                                    <a href="{{ route('dogs.timeline', ['dog' => $dogId]) }}" target="_blank" class="btn btn--secondary text--quartz hoverable ms-0 ps-0">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="mb-4">
