@@ -1,45 +1,45 @@
 .bg {
     &--dark {
         &-900 {
-            background-color: $dark900;
+            background-color: $dark900 !important;
         }
     
         &-700 {
-            background-color: $dark700;
+            background-color: $dark700 !important;
         }
     
         &-500 {
-            background-color: $dark500;
+            background-color: $dark500 !important;
         }
     
         &-300 {
-            background-color: $dark300;
+            background-color: $dark300 !important;
         }
     }
 
     &--light {
         &-50 {
-            background-color: $light50;
+            background-color: $light50 !important;
         }
     
         &-100 {
-            background-color: $light100;
+            background-color: $light100 !important;
         }
     
         &-200 {
-            background-color: $light200;
+            background-color: $light200 !important;
         }
     
         &-300 {
-            background-color: $light300;
+            background-color: $light300 !important;
         }
     }
 
     &--quartz {
-        background-color: $quartz;
+        background-color: $quartz !important;
     }
 
     &--copper {
-        background-color: $copper;
+        background-color: $copper !important;
     }
 }
