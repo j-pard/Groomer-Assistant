@@ -4,7 +4,7 @@ namespace App\Livewire\Accounting;
 
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
-use App\Models\Customer;
+use App\Models\Owner;
 use App\Traits\Livewire\WithModals;
 use App\Traits\Livewire\WithToast;
 use Carbon\Carbon;
@@ -177,23 +177,24 @@ class Form extends Component
     {
         $this->appointment = Appointment::where('appointments.id', $id)
             ->join('dogs', 'appointments.dog_id', '=', 'dogs.id')
-            ->join('customers', 'appointments.customer_id', '=', 'customers.id')
+            ->join('owners', 'dogs.owner_id', '=', 'owners.id')
             ->select(
                 'appointments.id',
                 'appointments.time',
                 'appointments.price',
                 'appointments.dog_id',
-                'appointments.customer_id',
                 'appointments.status',
-                'appointments.notes'
+                'appointments.notes',
+                'dogs.owner_id',
             )
             ->first();
 
         $time = Carbon::parse($this->appointment->time);
         $this->apptDate = $time->format('Y-m-d');
         $this->apptTime = $time->format('H:i');
-        $this->ownerName = Customer::find($this->appointment->customer_id)->getFullName(true);
-        $this->dogName = $this->appointment->dog->name;
+        $dog = $this->appointment->dog;
+        $this->ownerName = $dog->owner->name;
+        $this->dogName = $dog->name;
 
         $this->showModal('apptModal');
     }
@@ -229,22 +230,22 @@ class Form extends Component
 
         $appointments = Appointment::whereBetween('appointments.time', [$start, $end])
             ->join('dogs', 'appointments.dog_id', '=', 'dogs.id')
-            ->join('customers', 'appointments.customer_id', '=', 'customers.id')
+            ->join('owners', 'dogs.owner_id', '=', 'owners.id')
             ->select(
-                'appointments.id',
-                'appointments.time',
-                'appointments.price',
                 'appointments.dog_id',
-                'appointments.customer_id',
+                'appointments.id',
+                'appointments.price',
                 'appointments.status',
+                'appointments.time',
                 'dogs.name AS dog_name',
+                'dogs.owner_id',
                 'dogs.status AS dog_status',
-                'customers.lastname AS customer_lastname',
-                DB::raw('DATE_FORMAT(appointments.time, "%H:%i") as formatted_date')
+                'owners.name AS owner_name',
+                DB::raw('DATE_FORMAT(appointments.time, "%H:%i") as formatted_date'),
             )
             ->orderBy('appointments.time')
             ->get();
-
+            
         foreach ($appointments as $item) {
             $this->appts[$item->id] = $item->toArray();
         }
