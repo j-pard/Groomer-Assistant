@@ -8,7 +8,7 @@
 
         <div class="rounded-3" wire:loading.class="opacity-50">
             <fieldset>
-                <table class="table table-dark table-hover bg--dark-700 px-2 mt-3">
+                <table class="table table-dark table-hover bg--dark-700 px-2">
                     <thead class="table--sticky-head">
                         <tr class="pe-3">
                             <th scope="col ps-3">#</th>

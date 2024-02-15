@@ -1,6 +1,6 @@
-<header class="mb-3">
+<div class="sticky-top bg--dark-900 py-3">
     <div class="row">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-start">
             <x-forms.price
                 label="Total TVA"
                 wire="tva"
@@ -45,7 +45,6 @@
                     type="month"
                     wire="activeMonth"
                     wireModifier="lazy"
-                    class="mb-0"
                 />
 
                 <button type="button" class="btn btn-transparent" wire:click="nextMonth">
@@ -54,4 +53,4 @@
             </div>
         </div>
     </div>
-</header>
+</div>
