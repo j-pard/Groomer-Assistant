@@ -1,25 +1,43 @@
 <div class="form-group">
-    <div class="mb-0">
-        <label for="{{ $name }}">
-            {{ $label }}
-        </label>
-        
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">€</span>
-            </div>
-
+    <div class="input-group mb-0">
+        <span class="input-group-text mb-0">€</span>
+        <div class="form-floating mb-0">
             <input 
-                class="form-control"
+                class="form-control {{ $class }} @error($name) is-invalid @enderror"
                 type="number"
+                disabled
                 name="{!! $name !!}"
-                {!! $id ? 'id="' . $id . '"' : "" !!}
-                wire:model="{{ $wire }}"
+                {!! $placeholder ? 'placeholder="' . $placeholder . '"' : "" !!}
+                {!! isset($value) ? 'value="' . $value . '"' : '' !!}
+    
+                @if ($lazy)
+                    wire:model="{{ $wire }}"
+                @else
+                    wire:model.live.debounce.500ms="{{ $wire }}"
+                @endif
             >
+    
+            @if ($label)
+                <label for="{{ $name }}">
+                    @if (!$lazy)
+                        <span wire:dirty wire:target="{{ $name }}" class="text--copper mx-1"><i class="fa-solid fa-spinner dirty-spinner"></i></span>
+                    @endif
+                    {{ $label }}
+                    @if ($required)
+                        <span class="text--copper">*</span>
+                    @endif
+                </label>
+            @endif
         </div>
-
-        @if (isset($help))
-            <small class="text--quartz ps-2">{!! $help !!}</small>
-        @endif
     </div>
+
+    @if (isset($help))
+        <small class="text--quartz ps-2">{!! $help !!}</small>
+    @endif
+
+    @error($name)
+        <div class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+    @enderror
 </div>

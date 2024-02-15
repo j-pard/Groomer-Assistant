@@ -15,8 +15,11 @@ class Price extends Component
         public $wire = null,
         public ?string $name = null,
         public ?string $label = null,
-        public ?string $id = null,
-        public ?string $help = null
+        public ?string $placeholder = null,
+        public ?string $class = null,
+        public ?string $value = null,
+        public ?string $help = null,
+        public bool $lazy = false
     ) {
         $this->name = $this->name ?: $this->wire;
     }
