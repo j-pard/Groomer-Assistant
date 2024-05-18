@@ -97,7 +97,6 @@
                                     rows="10"
                                     wire="dogDetails"
                                     disabled
-                                    class="bg--copper"
                                 />
                             </div>
                         </div>
