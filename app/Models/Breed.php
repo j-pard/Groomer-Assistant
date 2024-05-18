@@ -17,13 +17,13 @@ class Breed extends Model
     ];
 
     /**
-     * Get pets of specified breed.
+     * Get dogs of specified breed.
      *
      * @return HasMany
      */
-    public function pets(): HasMany
+    public function dogs(): HasMany
     {
-        return $this->hasMany(Pet::class);
+        return $this->hasMany(Dog::class);
     }
 
     /**
@@ -35,10 +35,10 @@ class Breed extends Model
     {
         return Breed::orderBy('breed')
         ->get()
-        ->map(function ($item) {
+        ->map(function (Breed $breed) {
             return [
-                'value' => $item->id,
-                'label' => $item->breed,
+                'value' => $breed->id,
+                'label' => $breed->breed,
             ];
         })
         ->toArray();

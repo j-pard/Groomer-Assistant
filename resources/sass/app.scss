@@ -7,18 +7,16 @@
 // Boostrap5
 @import '~bootstrap/scss/bootstrap';
 
+@import 'custom/reset.scss';
+@import 'custom/backgrounds.scss';
 @import 'custom/badges.scss';
 @import 'custom/buttons.scss';
 @import 'custom/cards.scss';
 @import 'custom/classes.scss';
 @import 'custom/forms.scss';
+@import 'custom/lists.scss';
 @import 'custom/login.scss';
 @import 'custom/main.scss';
-@import 'custom/reset.scss';
-
-// New version
-@import 'custom/backgrounds.scss';
-@import 'custom/lists.scss';
 @import 'custom/nav.scss';
 @import 'custom/scrollbar.scss';
 @import 'custom/tables.scss';

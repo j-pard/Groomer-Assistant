@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Str;
 
 class Appointment extends Model
 {
@@ -25,16 +24,6 @@ class Appointment extends Model
     ];
 
     /**
-     * Get pet of specified appointment.
-     *
-     * @return BelongsTo
-     */
-    public function pet(): BelongsTo
-    {
-        return $this->belongsTo(Pet::class);
-    }
-
-    /**
      * Get dog of specified appointment.
      *
      * @return BelongsTo
@@ -42,14 +31,6 @@ class Appointment extends Model
     public function dog(): BelongsTo
     {
         return $this->belongsTo(Dog::class);
-    }
-
-    /**
-     * Interact with the appointment's short note.
-     */
-    protected function getShortNoteAttribute(): string
-    {
-        return $this->notes !== null ? Str::limit(trim($this->notes), 100, ' (...)') : '';
     }
 
     /**

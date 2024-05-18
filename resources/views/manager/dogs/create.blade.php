@@ -1,4 +1,4 @@
-@extends('manager.layouts.new_app')
+@extends('manager.layouts.app')
 
 @section('content')
     <livewire:dogs.creator />

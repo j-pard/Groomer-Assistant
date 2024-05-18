@@ -22,100 +22,88 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') . '?' . time()}}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/126bbe9047.js" crossorigin="anonymous"></script>
-    <!-- The "defer" attribute is important to make sure Alpine waits for Livewire to load first. -->
-    @livewireStyles
 
 </head>
 <body data-page="{{ $page ?? '' }}" @guest class="bg-guest" @endguest>
     @guest
         @yield('login')
     @endguest
-
+    
     @auth
-        <nav id="topBar" class="navbar navbar-expand-md navbar-dark bg-dark">
-            <div class="container-fluid px-md-5">
-                <h1>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <span class="text-pink">G</span>roomer <span class="text-pink">A</span>ssistant
-                    </a>
-                </h1>
-
-                <div class="d-flex justify-content-end">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Se connecter</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item d-flex">
-                                <a class="nav-link text-white me-3" href="#">{{ Auth::user()->name }}</a>
-                                <div>
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();"
-                                    >
-                                        <i class="fas fa-sign-out-alt"></i>
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                                </li>
-                            </li>
-                        @endguest
-                        <!-- Authentication Links -->
+        <div id="app" class="{{ (isset($size) && $size === 'app--xl') ? 'app--xl' : '' }}">
+            <header class="d-flex justify-content-between align-items-center text--light-200 py-3">
+                <div>
+                    <h1 class="m-2"><strong class="text--copper">G</strong>roomer <strong class="text--copper">A</strong>ssistant</h1>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-toggle--no-arrow d-flex align-items-center me-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-circle-user text--light-200 hoverable h1 m-0"></i>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fas fa-sign-out-altr"></i> Se déconnecter
+                            </a>
+                        </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </header>
 
-        <nav id="aside-nav" class="nav-bg-dark">
-            <x-buttons.nav
-                icon="fas fa-calendar-alt"
-                :url="route('home')" 
-                :active="Route::currentRouteName() == 'home'"
-            />
-            <x-buttons.nav
-                icon="fas fa-paw"
-                :url="route('pets.index')"
-                :active="Str::startsWith(Route::currentRouteName(), 'pets.')"
-            />
-            <x-buttons.nav
-                icon="fas fa-users"
-                :url="route('customers.index')"
-                :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
-            />
-            <x-buttons.nav
-                icon="fas fa-coins"
-                :url="route('accounting.index')"
-                :active="Str::startsWith(Route::currentRouteName(), 'accounting.')"
-            />
-        </nav>
+            <nav id="bottom-nav">
+                @if (isset($secondNav))
+                    <div id="secondary-nav" class="d-flex justify-content-around align-items-center px-4">
+                        <div class="my-2 mx-3">
+                            <a href="{{ route('dogs.show', ['dog' => $dog->id]) }}" class="nav-item" {{ Route::currentRouteName() === 'dogs.show' ? 'active' : '' }}>
+                                Détails
+                            </a>
+                        </div>
+                        <div class="my-2 mx-3">
+                            <a href="{{ route('dogs.timeline', ['dog' => $dog->id]) }}" class="nav-item" {{ Route::currentRouteName() === 'dogs.timeline' ? 'active' : '' }}>
+                                Rdv
+                            </a>
+                        </div>
+                        <div class="my-2 mx-3">
+                            <a href="{{ route('dogs.gallery', ['dog' => $dog->id]) }}" class="nav-item" {{ Route::currentRouteName() === 'dogs.gallery' ? 'active' : '' }}>
+                                Gallerie
+                            </a>
+                        </div>
+                    </div>
+                @endif
 
-        <main class="container-fluid">
-            @yield('content')
-        </main>
+                <div id="primary-nav" class="d-flex justify-content-between align-items-center px-3 py-1">
+                    <div class="text--dark-700 my-2 mx-3 h3">
+                        <a href="{{ route('home') }}" class="nav-item" {{ Route::currentRouteName() === 'home' ? 'active' : '' }}>
+                            <i class="fa-solid fa-house p-1"></i>
+                        </a>
+                    </div>
+                    <div class="text--dark-700 my-2 mx-3 h3">
+                        <a href="{{ route('appointments.index') }}" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'appointments.')? 'active' : '' }}>
+                            <i class="fa-solid fa-calendar-days p-1" style="padding: 6px !important"></i>
+                        </a>
+                    </div>
+                    <div class="text--dark-700 my-2 mx-3 h3">
+                        <a href="{{ route('dogs.index') }}" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'dogs.')? 'active' : '' }}>
+                            <i class="fa-solid fa-paw p-1"></i>
+                        </a>
+                    </div>
+                    <div id="accountingLink" class="my-2 mx-3 h3">
+                        <a href="{{ route('accounting.index') }}" class="nav-item" {{ Str::startsWith(Route::currentRouteName(), 'accounting.') ? 'active' : '' }}>
+                            <i class="fa-solid fa-coins p-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </nav>
 
-        <nav id="mobile-nav" class="nav-bg-dark">
-            <x-buttons.nav
-                icon="fas fa-calendar-alt"
-                :url="route('home')"
-                :active="Route::currentRouteName() == 'home'"
-            />
-            <x-buttons.nav
-                icon="fas fa-paw"
-                :url="route('pets.index')"
-                :active="Str::startsWith(Route::currentRouteName(), 'pets.')"
-            />
-            <x-buttons.nav
-                icon="fas fa-users"
-                :url="route('customers.index')"
-                :active="Str::startsWith(Route::currentRouteName(), 'customers.')"
-            />
-        </nav>
+            <main>
+                @php
+                    // Define local for Carbon
+                    Carbon\Carbon::setLocale('fr');
+                @endphp
+
+                @yield('content')
+            </main>
+            
+        </div>
 
         <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
 
@@ -137,10 +125,13 @@
             </div>
         </div>
 
-        <!-- Scripts -->
+        {{-- Logout --}}
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+
+        {{-- Scripts --}}
         @stack('scripts')
-        @livewireScripts
-    
         <script>
             window.groomer = window.groomer || {};
         </script>
@@ -154,7 +145,5 @@
             <script>window.groomer.showMessage(@json(session('message_danger')), 'danger')</script>
         @endif
     @endauth
-    
-
 </body>
 </html>

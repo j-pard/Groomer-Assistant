@@ -50,12 +50,6 @@
                         </div>
                     </form>
                 </div>
-
-                @if (Route::has('password.request'))
-                    <a class="btn btn-link text--quartz" href="{{ route('password.request') }}">
-                        Mot de passe oublié ?
-                    </a>
-                @endif
             </div>
 
             <div id="logo-container" class="col-md-6 d-none d-md-block">

@@ -13,8 +13,6 @@ class Owner extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        // Will be removed after deploy
-        'customer_id',
         'address',
         'city',
         'email',

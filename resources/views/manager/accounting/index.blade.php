@@ -1,4 +1,4 @@
-@extends('manager.layouts.new_app', ['size' => 'app--xl'])
+@extends('manager.layouts.app', ['size' => 'app--xl'])
 
 @section('content')
     <livewire:accounting.form lazy/>

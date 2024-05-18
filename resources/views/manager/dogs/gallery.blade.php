@@ -1,4 +1,4 @@
-@extends('manager.layouts.new_app', ['secondNav' => 'dog'])
+@extends('manager.layouts.app', ['secondNav' => 'dog'])
 
 @section('content')
     <livewire:dogs.gallery :dog="$dog" lazy />

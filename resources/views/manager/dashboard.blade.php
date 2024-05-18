@@ -1,4 +1,4 @@
-@extends('manager.layouts.new_app')
+@extends('manager.layouts.app')
 
 @section('content')
     <div class="d-flex flex-column align-items-center my-3 px-5">
