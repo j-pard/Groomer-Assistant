@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::dropIfExists('pets');
         Schema::table('appointments', function (Blueprint $table) {
             $table->dropColumn('customer_id');
+            $table->dropColumn('pet_id');
         });
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
