@@ -61,7 +61,7 @@
                             />
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row">
                             <div class="col-6">
                                 <x-forms.select
                                     label="Status"
@@ -79,6 +79,30 @@
                                     type="number"
                                     step="0.05"
                                     min="0"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label>Durée</label>
+                            <div class="col-6">
+                                <x-forms.input
+                                    required
+                                    label="Heures"
+                                    type="number"
+                                    min="0"
+                                    wire="hours"
+                                />
+                            </div>
+
+                            <div class="col-6">
+                                <x-forms.input
+                                    required
+                                    label="Minutes"
+                                    type="number"
+                                    min="0"
+                                    step="5"
+                                    wire="minutes"
                                 />
                             </div>
                         </div>
