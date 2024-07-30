@@ -124,15 +124,13 @@ class Dog extends Model implements HasMedia
     /**
      * Return duration in hours and minutes
      *
-     * @return Array
+     * @return array
      */
     public function getDurationInHoursMinutes(): array
     {
-        $duration = $this->average_duration;
-
         return [
-            'hours' => intval(floor($duration / 60)),
-            'minutes' => intval($duration % 60),
+            'hours' => intval(floor($this->average_duration / 60)),
+            'minutes' => intval($this->average_duration % 60),
         ];
     }
 

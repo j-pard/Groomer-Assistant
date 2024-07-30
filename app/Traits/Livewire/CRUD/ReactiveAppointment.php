@@ -29,6 +29,9 @@ trait ReactiveAppointment
     public ?string $apptNotes = null;
     public ?string $apptStatus = null;
     public ?string $apptPrice = null;
+    // Duration
+    public int $hours = 0;
+    public int $minutes = 0;
 
     /**
      * Load modal to display existing appointment details.
@@ -53,6 +56,7 @@ trait ReactiveAppointment
         $this->apptNotes = $this->appointment->notes;
         $this->apptStatus = $this->appointment->status;
         $this->apptPrice = $this->appointment->price;
+        $this->formatDuration();
 
         $this->showModal('apptModal');
     }
@@ -86,6 +90,7 @@ trait ReactiveAppointment
     public function saveAppointment()
     {
         $dog = Dog::findOrFail($this->dogId);
+        $duration = $dog->getDurationInHoursMinutes();
 
         Appointment::create([
             'dog_id' => $dog->id,
@@ -93,6 +98,7 @@ trait ReactiveAppointment
             'price' => null,
             'notes' => $this->apptNotes,
             'status' => $this->apptStatus,
+            'duration' => intval($duration['hours'] * 60) + intval($duration['minutes']),
         ]);
 
         $this->showSuccessMessage();
@@ -123,6 +129,8 @@ trait ReactiveAppointment
         $this->ownerName = null;
         $this->search = null;
         $this->selectedDog = null;
+        $this->hours = 0;
+        $this->minutes = 0;
     }
 
     /**
@@ -176,6 +184,16 @@ trait ReactiveAppointment
                         ]);
                         break;
 
+                    case 'hours':
+                    case 'minutes':
+                        // Update duration
+                        $this->appointment->update([
+                            'duration' => $this->setDurationInMinutes(),
+                        ]);
+
+                        $this->formatDuration();
+                        break;
+
                 }
             }
         } catch (\Throwable $th) {
@@ -199,6 +217,36 @@ trait ReactiveAppointment
             'apptTime' => 'required|string',
             'apptPrice' => 'nullable|numeric|min:0',
             'apptNotes' => 'nullable|string',
+
+            // Duration
+            'hours' => 'nullable|integer',
+            'minutes' => 'nullable|integer',
         ];
+    }
+
+    /**
+     * Get appointment duration and format it to hours and minutes.
+     *
+     * @return void
+     */
+    private function formatDuration()
+    {
+        $duration = $this->appointment?->duration !== null
+            ? $this->appointment->getDurationInHoursMinutes()
+            : $this->appointment->dog->getDurationInHoursMinutes();
+
+        $this->hours = $duration['hours'];
+        $this->minutes = $duration['minutes'];
+    }
+
+    /**
+     * Format duration in minutes to be compatible for saving.
+     * *?? 0* is used to set to 0 if input is empty.
+     *
+     * @return integer
+     */
+    private function setDurationInMinutes(): int
+    {
+        return intval(($this?->hours ?? 0) * 60) + intval($this?->minutes ?? 0);
     }
 }

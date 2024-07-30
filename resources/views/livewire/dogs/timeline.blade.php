@@ -36,7 +36,7 @@
                     </div>
                     <div class="d-flex flex-column">
                         {{ $item->time !== null ? Carbon\Carbon::parse($item->time)->translatedFormat('d F H:i') : '-' }}
-                        <span class="text--quartz">Rendez-vous</span>
+                        <span class="text--quartz">{{ $item->getDurationAsString() }}</span>
                     </div>
                 </div>
 
