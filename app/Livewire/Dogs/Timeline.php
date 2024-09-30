@@ -91,10 +91,10 @@ class Timeline extends Component
      * Update model after validating attribute value.
      *
      * @param string $name
-     * @param string|integer|boolean $value
+     * @param string|integer|boolean|null $value
      * @return void
      */
-    public function updated(string $name, string|int|bool $value)
+    public function updated(string $name, string|int|bool|null $value)
     {
         // Live update
         $this->validate([
