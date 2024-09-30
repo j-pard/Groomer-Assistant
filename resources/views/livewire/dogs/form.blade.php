@@ -95,7 +95,7 @@
                         <x-forms.input
                             label="Code postal"
                             wire="owner_zip_code"
-                            type="numeric"
+                            type="number"
                         />
                     </div>
                     
