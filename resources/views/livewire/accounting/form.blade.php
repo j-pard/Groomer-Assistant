@@ -53,6 +53,8 @@
                                 <td class="py-3 {{ $appt['status'] == 'cancelled' ? 'line-through' : ''}}">
                                     @if ($appt['status'] == 'cancelled')
                                         {!! isset($appt['price']) ? $appt['price'] . ' €' : '&mdash;' !!}
+                                    @elseif ($appt['status'] == 'planned' && isset($appt['price']))
+                                        {!! $appt['price'] . ' € <i class="fas fa-circle-question text--quartz mt-1 ms-2"></i>' !!}
                                     @else
                                         {!! (!isset($appt['price']) || $appt['price'] == '') ? '<i class="fas fa-exclamation-triangle text-danger mt-1"></i>' : $appt['price'] . ' €' !!}
                                     @endif

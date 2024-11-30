@@ -9,6 +9,7 @@ use App\Traits\Livewire\WithModals;
 use App\Traits\Livewire\WithToast;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -31,10 +32,12 @@ class Form extends Component
     public string $bank;
     public string $htva;
     public string $cumulated;
+    public string $yearTvaCumulated;
     public string $tvaCount;
     public string $bankCount;
     public string $htvaCount;
     public string $cumulatedCount;
+    public string $yearTvaCumulatedCount;
     public string $remaining;
     public string $totalOfYearCount;
 
@@ -284,7 +287,11 @@ class Form extends Component
             Carbon::parse($this->activeMonth)->firstOfYear()->format('Y-m-d H:i:s'),
             Carbon::parse($this->activeMonth)->lastOfYear()->format('Y-m-d H:i:s')
         ]);
-        $this->remaining = 25000 - (clone $totalOfYearQuery)->whereIn('status', AppointmentStatus::tvaStatuses())->sum('price');
+
+        $this->yearTvaCumulated =(clone $totalOfYearQuery)->whereIn('status', AppointmentStatus::tvaStatuses())->sum('price');
+        $this->yearTvaCumulatedCount = (clone $totalOfYearQuery)->whereIn('status', AppointmentStatus::tvaStatuses())->count();
+
+        $this->remaining = 25000 -  $this->yearTvaCumulated;
         $this->totalOfYearCount = (clone $totalOfYearQuery)->whereNotIn('status', ['cancelled'])->count();
     }
 

@@ -23,9 +23,16 @@
             />
 
             <x-forms.price
-                label="Cumul"
+                label="Cumul mensuel"
                 wire="cumulated"
                 help="{{ $cumulatedCount }} chiens"
+                disabled
+            />
+
+            <x-forms.price
+                label="Total annuel TVA"
+                wire="yearTvaCumulated"
+                help="{{ $yearTvaCumulatedCount }} chiens sur l'année"
                 disabled
             />
 
