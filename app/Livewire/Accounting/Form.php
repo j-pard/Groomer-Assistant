@@ -4,12 +4,10 @@ namespace App\Livewire\Accounting;
 
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
-use App\Models\Owner;
 use App\Traits\Livewire\WithModals;
 use App\Traits\Livewire\WithToast;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -248,7 +246,7 @@ class Form extends Component
             )
             ->orderBy('appointments.time')
             ->get();
-            
+
         foreach ($appointments as $item) {
             $this->appts[$item->id] = $item->toArray();
         }
@@ -288,7 +286,7 @@ class Form extends Component
             Carbon::parse($this->activeMonth)->lastOfYear()->format('Y-m-d H:i:s')
         ]);
 
-        $this->yearTvaCumulated =(clone $totalOfYearQuery)->whereIn('status', AppointmentStatus::tvaStatuses())->sum('price');
+        $this->yearTvaCumulated = (clone $totalOfYearQuery)->whereIn('status', AppointmentStatus::tvaStatuses())->sum('price');
         $this->yearTvaCumulatedCount = (clone $totalOfYearQuery)->whereIn('status', AppointmentStatus::tvaStatuses())->count();
 
         $this->remaining = 25000 -  $this->yearTvaCumulated;
